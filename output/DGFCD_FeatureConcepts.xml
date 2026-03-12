@@ -1,0 +1,2742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- INTERLIS 2.4 XML Catalog - DGFCD_FeatureConcepts -->
+<!-- Generated from DGIF_BL_2025-1.xmi -->
+<TRANSFER xmlns="http://www.interlis.ch/INTERLIS2.4">
+  <HEADERSECTION SENDER="DGIF_XMI_Extractor" VERSION="2.4">
+    <MODELS>
+      <MODEL NAME="DGIF" VERSION="2025-1" URI="https://dgiwg.org/dgif"/>
+    </MODELS>
+  </HEADERSECTION>
+  <DATASECTION>
+    <DGIF.DGFCD_FeatureConcepts BID="DGFCD.FeatureConcepts">
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.1">
+        <Code>AccessZone</Code>
+        <Name>AccessZone</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.2">
+        <Code>AcousticStation</Code>
+        <Name>AcousticStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.3">
+        <Code>ActorEntity</Code>
+        <Name>ActorEntity</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.4">
+        <Code>AddressInfo</Code>
+        <Name>AddressInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.5">
+        <Code>AdminDivisionDesig</Code>
+        <Name>AdminDivisionDesig</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.6">
+        <Code>AdministrativeBoundary</Code>
+        <Name>AdministrativeBoundary</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.7">
+        <Code>AdministrativeDivision</Code>
+        <Name>AdministrativeDivision</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.8">
+        <Code>AerationBasin</Code>
+        <Name>AerationBasin</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.9">
+        <Code>Aerial</Code>
+        <Name>Aerial</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.10">
+        <Code>AerialFarm</Code>
+        <Name>AerialFarm</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.11">
+        <Code>Aerodrome</Code>
+        <Name>Aerodrome</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.12">
+        <Code>AerodromeBeacon</Code>
+        <Name>AerodromeBeacon</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.13">
+        <Code>AerodromeBilletingInfo</Code>
+        <Name>AerodromeBilletingInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.14">
+        <Code>AerodromeBoundary</Code>
+        <Name>AerodromeBoundary</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.15">
+        <Code>AerodromeElevationPoint</Code>
+        <Name>AerodromeElevationPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.16">
+        <Code>AerodromeFuelFillingStand</Code>
+        <Name>AerodromeFuelFillingStand</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.17">
+        <Code>AerodromeFuelInfo</Code>
+        <Name>AerodromeFuelInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.18">
+        <Code>AerodromeHotSpot</Code>
+        <Name>AerodromeHotSpot</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.19">
+        <Code>AerodromeInstLocation</Code>
+        <Name>AerodromeInstLocation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.20">
+        <Code>AerodromeMarkings</Code>
+        <Name>AerodromeMarkings</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.21">
+        <Code>AerodromeMoveArea</Code>
+        <Name>AerodromeMoveArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.22">
+        <Code>AerodromeMoveAreaLighting</Code>
+        <Name>AerodromeMoveAreaLighting</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.23">
+        <Code>AerodromePavementInfo</Code>
+        <Name>AerodromePavementInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.24">
+        <Code>AerodromeReferencePoint</Code>
+        <Name>AerodromeReferencePoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.25">
+        <Code>AerodromeServiceInfo</Code>
+        <Name>AerodromeServiceInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.26">
+        <Code>AerodromeServiceRoad</Code>
+        <Name>AerodromeServiceRoad</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.27">
+        <Code>AerodromeSurfDetectStation</Code>
+        <Name>AerodromeSurfDetectStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.28">
+        <Code>AeronauticalGroundLight</Code>
+        <Name>AeronauticalGroundLight</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.29">
+        <Code>AeronauticalObstacleInfo</Code>
+        <Name>AeronauticalObstacleInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.30">
+        <Code>AeroRadioNavInstallation</Code>
+        <Name>AeroRadioNavInstallation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.31">
+        <Code>AeroRadioNavInstPoint</Code>
+        <Name>AeroRadioNavInstPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.32">
+        <Code>AeroRadioNavService</Code>
+        <Name>AeroRadioNavService</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.33">
+        <Code>AircraftCharacteristicsInfo</Code>
+        <Name>AircraftCharacteristicsInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.34">
+        <Code>AircraftHangar</Code>
+        <Name>AircraftHangar</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.35">
+        <Code>AircraftMaintenanceService</Code>
+        <Name>AircraftMaintenanceService</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.36">
+        <Code>AircraftRescueFireService</Code>
+        <Name>AircraftRescueFireService</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.37">
+        <Code>AircraftStand</Code>
+        <Name>AircraftStand</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.38">
+        <Code>AirRefuellingAnchorPat</Code>
+        <Name>AirRefuellingAnchorPat</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.39">
+        <Code>AirRefuellingPoint</Code>
+        <Name>AirRefuellingPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.40">
+        <Code>AirRefuellingProcedure</Code>
+        <Name>AirRefuellingProcedure</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.41">
+        <Code>AirRefuellingRoute</Code>
+        <Name>AirRefuellingRoute</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.42">
+        <Code>AirRefuellingTrack</Code>
+        <Name>AirRefuellingTrack</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.43">
+        <Code>Airspace</Code>
+        <Name>Airspace</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.44">
+        <Code>AllotmentArea</Code>
+        <Name>AllotmentArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.45">
+        <Code>Amenity</Code>
+        <Name>Amenity</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.46">
+        <Code>Amphitheatre</Code>
+        <Name>Amphitheatre</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.47">
+        <Code>AmusementPark</Code>
+        <Name>AmusementPark</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.48">
+        <Code>AmusementParkAttraction</Code>
+        <Name>AmusementParkAttraction</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.49">
+        <Code>Anchor</Code>
+        <Name>Anchor</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.50">
+        <Code>Anchorage</Code>
+        <Name>Anchorage</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.51">
+        <Code>AntiAircraftArtillerySite</Code>
+        <Name>AntiAircraftArtillerySite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.52">
+        <Code>AntiShippingActivity</Code>
+        <Name>AntiShippingActivity</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.53">
+        <Code>ApproachLightingSystem</Code>
+        <Name>ApproachLightingSystem</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.54">
+        <Code>Apron</Code>
+        <Name>Apron</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.55">
+        <Code>AquaticVegetation</Code>
+        <Name>AquaticVegetation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.56">
+        <Code>Aqueduct</Code>
+        <Name>Aqueduct</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.57">
+        <Code>Aquifer</Code>
+        <Name>Aquifer</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.58">
+        <Code>Arcade</Code>
+        <Name>Arcade</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.59">
+        <Code>ArcheologicalSite</Code>
+        <Name>ArcheologicalSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.60">
+        <Code>ArchipelagicSeaLaneArea</Code>
+        <Name>ArchipelagicSeaLaneArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.61">
+        <Code>ArchipelagicSeaLaneAxis</Code>
+        <Name>ArchipelagicSeaLaneAxis</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.62">
+        <Code>AreaOfDisplacedPersons</Code>
+        <Name>AreaOfDisplacedPersons</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.63">
+        <Code>ArrestingSystem</Code>
+        <Name>ArrestingSystem</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.64">
+        <Code>ArrivalSegment</Code>
+        <Name>ArrivalSegment</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.65">
+        <Code>ArtificialReef</Code>
+        <Name>ArtificialReef</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.66">
+        <Code>AsphaltLake</Code>
+        <Name>AsphaltLake</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.67">
+        <Code>AstronomicalObservatory</Code>
+        <Name>AstronomicalObservatory</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.68">
+        <Code>AtsRouteCrossingInfo</Code>
+        <Name>AtsRouteCrossingInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.69">
+        <Code>AtsRouteSegment</Code>
+        <Name>AtsRouteSegment</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.70">
+        <Code>AtsRouteSegmentDirection</Code>
+        <Name>AtsRouteSegmentDirection</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.71">
+        <Code>AtsRouteSigPoint</Code>
+        <Name>AtsRouteSigPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.72">
+        <Code>AutoAerodromeWeatherStation</Code>
+        <Name>AutoAerodromeWeatherStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.73">
+        <Code>AviationDesigPoint</Code>
+        <Name>AviationDesigPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.74">
+        <Code>AviationDesigPointInfo</Code>
+        <Name>AviationDesigPointInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.75">
+        <Code>AviationDesigPointLocInfo</Code>
+        <Name>AviationDesigPointLocInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.76">
+        <Code>Backshore</Code>
+        <Name>Backshore</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.77">
+        <Code>Bandshell</Code>
+        <Name>Bandshell</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.78">
+        <Code>BankVegetationZone</Code>
+        <Name>BankVegetationZone</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.79">
+        <Code>Barn</Code>
+        <Name>Barn</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.80">
+        <Code>BasinGate</Code>
+        <Name>BasinGate</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.81">
+        <Code>Beach</Code>
+        <Name>Beach</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.82">
+        <Code>BeachLandingSite</Code>
+        <Name>BeachLandingSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.83">
+        <Code>BeachProfile</Code>
+        <Name>BeachProfile</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.84">
+        <Code>BeliefSystem</Code>
+        <Name>BeliefSystem</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.85">
+        <Code>Bench</Code>
+        <Name>Bench</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.86">
+        <Code>Berth</Code>
+        <Name>Berth</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.87">
+        <Code>BlastBarrier</Code>
+        <Name>BlastBarrier</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.88">
+        <Code>BlastFurnace</Code>
+        <Name>BlastFurnace</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.89">
+        <Code>BoatLanding</Code>
+        <Name>BoatLanding</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.90">
+        <Code>BogieExchangeSite</Code>
+        <Name>BogieExchangeSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.91">
+        <Code>Bollard</Code>
+        <Name>Bollard</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.92">
+        <Code>BoomingGround</Code>
+        <Name>BoomingGround</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.93">
+        <Code>Borehole</Code>
+        <Name>Borehole</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.94">
+        <Code>BotanicGarden</Code>
+        <Name>BotanicGarden</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.95">
+        <Code>BottomCharacterRegion</Code>
+        <Name>BottomCharacterRegion</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.96">
+        <Code>BoundaryMonument</Code>
+        <Name>BoundaryMonument</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.97">
+        <Code>Bridge</Code>
+        <Name>Bridge</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.98">
+        <Code>BridgePier</Code>
+        <Name>BridgePier</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.99">
+        <Code>BridgeSpan</Code>
+        <Name>BridgeSpan</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.100">
+        <Code>BridgeSuperstructure</Code>
+        <Name>BridgeSuperstructure</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.101">
+        <Code>BridgeTower</Code>
+        <Name>BridgeTower</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.102">
+        <Code>Brush</Code>
+        <Name>Brush</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.103">
+        <Code>Building</Code>
+        <Name>Building</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.104">
+        <Code>BuildingOverhang</Code>
+        <Name>BuildingOverhang</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.105">
+        <Code>BuildingSuperstructure</Code>
+        <Name>BuildingSuperstructure</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.106">
+        <Code>BuiltUpArea</Code>
+        <Name>BuiltUpArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.107">
+        <Code>BunkerSilo</Code>
+        <Name>BunkerSilo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.108">
+        <Code>Buoy</Code>
+        <Name>Buoy</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.109">
+        <Code>Cable</Code>
+        <Name>Cable</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.110">
+        <Code>Cableway</Code>
+        <Name>Cableway</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.111">
+        <Code>Cairn</Code>
+        <Name>Cairn</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.112">
+        <Code>CallingInPoint</Code>
+        <Name>CallingInPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.113">
+        <Code>Camp</Code>
+        <Name>Camp</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.114">
+        <Code>CampSite</Code>
+        <Name>CampSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.115">
+        <Code>Canal</Code>
+        <Name>Canal</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.116">
+        <Code>Cane</Code>
+        <Name>Cane</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.117">
+        <Code>CantonmentArea</Code>
+        <Name>CantonmentArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.118">
+        <Code>CarbonCaptureFacility</Code>
+        <Name>CarbonCaptureFacility</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.119">
+        <Code>CatalyticCracker</Code>
+        <Name>CatalyticCracker</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.120">
+        <Code>CattleDippingTank</Code>
+        <Name>CattleDippingTank</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.121">
+        <Code>CausewayStructure</Code>
+        <Name>CausewayStructure</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.122">
+        <Code>CaveChamber</Code>
+        <Name>CaveChamber</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.123">
+        <Code>CaveInfo</Code>
+        <Name>CaveInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.124">
+        <Code>CaveMouth</Code>
+        <Name>CaveMouth</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.125">
+        <Code>Cemetery</Code>
+        <Name>Cemetery</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.126">
+        <Code>Channel</Code>
+        <Name>Channel</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.127">
+        <Code>Checkpoint</Code>
+        <Name>Checkpoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.128">
+        <Code>ChokePoint</Code>
+        <Name>ChokePoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.129">
+        <Code>Cistern</Code>
+        <Name>Cistern</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.130">
+        <Code>ClearedWay</Code>
+        <Name>ClearedWay</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.131">
+        <Code>Clearway</Code>
+        <Name>Clearway</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.132">
+        <Code>CompactSurface</Code>
+        <Name>CompactSurface</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.133">
+        <Code>ConservationArea</Code>
+        <Name>ConservationArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.134">
+        <Code>ConstructionZone</Code>
+        <Name>ConstructionZone</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.135">
+        <Code>ContactInfo</Code>
+        <Name>ContactInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.136">
+        <Code>ContactZone</Code>
+        <Name>ContactZone</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.137">
+        <Code>ContaminatedRegion</Code>
+        <Name>ContaminatedRegion</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.138">
+        <Code>ControlTower</Code>
+        <Name>ControlTower</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.139">
+        <Code>Conveyor</Code>
+        <Name>Conveyor</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.140">
+        <Code>CoolingFacility</Code>
+        <Name>CoolingFacility</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.141">
+        <Code>CoolingTower</Code>
+        <Name>CoolingTower</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.142">
+        <Code>Courtyard</Code>
+        <Name>Courtyard</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.143">
+        <Code>Crane</Code>
+        <Name>Crane</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.144">
+        <Code>Crater</Code>
+        <Name>Crater</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.145">
+        <Code>Crevasse</Code>
+        <Name>Crevasse</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.146">
+        <Code>Crevice</Code>
+        <Name>Crevice</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.147">
+        <Code>Crib</Code>
+        <Name>Crib</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.148">
+        <Code>CropInfo</Code>
+        <Name>CropInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.149">
+        <Code>CropLand</Code>
+        <Name>CropLand</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.150">
+        <Code>Crossing</Code>
+        <Name>Crossing</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.151">
+        <Code>CulturalConservationArea</Code>
+        <Name>CulturalConservationArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.152">
+        <Code>CulturalContextLocation</Code>
+        <Name>CulturalContextLocation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.153">
+        <Code>CulturalProtectionInfo</Code>
+        <Name>CulturalProtectionInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.154">
+        <Code>CulturalSignificanceInfo</Code>
+        <Name>CulturalSignificanceInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.155">
+        <Code>CulturalSiteRegistrationInfo</Code>
+        <Name>CulturalSiteRegistrationInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.156">
+        <Code>Culvert</Code>
+        <Name>Culvert</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.157">
+        <Code>Curb</Code>
+        <Name>Curb</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.158">
+        <Code>CurveGeometryInfo</Code>
+        <Name>CurveGeometryInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.159">
+        <Code>CustomsImmigrationService</Code>
+        <Name>CustomsImmigrationService</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.160">
+        <Code>Cut</Code>
+        <Name>Cut</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.161">
+        <Code>CutLine</Code>
+        <Name>CutLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.162">
+        <Code>Dam</Code>
+        <Name>Dam</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.163">
+        <Code>DeIcingAntiIcingArea</Code>
+        <Name>DeIcingAntiIcingArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.164">
+        <Code>DepartureSegment</Code>
+        <Name>DepartureSegment</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.165">
+        <Code>Depression</Code>
+        <Name>Depression</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.166">
+        <Code>DepthArea</Code>
+        <Name>DepthArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.167">
+        <Code>DepthContour</Code>
+        <Name>DepthContour</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.168">
+        <Code>DepthCurve</Code>
+        <Name>DepthCurve</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.169">
+        <Code>Desert</Code>
+        <Name>Desert</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.170">
+        <Code>DiscolouredWater</Code>
+        <Name>DiscolouredWater</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.171">
+        <Code>DishAerial</Code>
+        <Name>DishAerial</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.172">
+        <Code>DisplaySign</Code>
+        <Name>DisplaySign</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.173">
+        <Code>DisposalSite</Code>
+        <Name>DisposalSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.174">
+        <Code>DistanceMark</Code>
+        <Name>DistanceMark</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.175">
+        <Code>DistanceMeasuringEquipment</Code>
+        <Name>DistanceMeasuringEquipment</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.176">
+        <Code>Ditch</Code>
+        <Name>Ditch</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.177">
+        <Code>Dock</Code>
+        <Name>Dock</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.178">
+        <Code>Dolphin</Code>
+        <Name>Dolphin</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.179">
+        <Code>DredgedArea</Code>
+        <Name>DredgedArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.180">
+        <Code>DriveInTheatre</Code>
+        <Name>DriveInTheatre</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.181">
+        <Code>DryDock</Code>
+        <Name>DryDock</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.182">
+        <Code>DumpingGround</Code>
+        <Name>DumpingGround</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.183">
+        <Code>EconomicReserve</Code>
+        <Name>EconomicReserve</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.184">
+        <Code>EducationalAmenity</Code>
+        <Name>EducationalAmenity</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.185">
+        <Code>ElectricalPowerGenerator</Code>
+        <Name>ElectricalPowerGenerator</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.186">
+        <Code>ElectricPowerStation</Code>
+        <Name>ElectricPowerStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.187">
+        <Code>ElevationContour</Code>
+        <Name>ElevationContour</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.188">
+        <Code>Embankment</Code>
+        <Name>Embankment</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.189">
+        <Code>EmergencyMedicalService</Code>
+        <Name>EmergencyMedicalService</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.190">
+        <Code>EmergencyResponseEquipInfo</Code>
+        <Name>EmergencyResponseEquipInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.191">
+        <Code>EmergencyResponseService</Code>
+        <Name>EmergencyResponseService</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.192">
+        <Code>EmergencyTelephone</Code>
+        <Name>EmergencyTelephone</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.193">
+        <Code>EngineTestCell</Code>
+        <Name>EngineTestCell</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.194">
+        <Code>EnrouteAtsRoute</Code>
+        <Name>EnrouteAtsRoute</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.195">
+        <Code>Entity</Code>
+        <Name>Entity</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.196">
+        <Code>EntranceExit</Code>
+        <Name>EntranceExit</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.197">
+        <Code>Esker</Code>
+        <Name>Esker</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.198">
+        <Code>EthnicGroup</Code>
+        <Name>EthnicGroup</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.199">
+        <Code>Event</Code>
+        <Name>Event</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.200">
+        <Code>EventEntity</Code>
+        <Name>EventEntity</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.201">
+        <Code>ExcavatingMachine</Code>
+        <Name>ExcavatingMachine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.202">
+        <Code>ExplosiveNavalMine</Code>
+        <Name>ExplosiveNavalMine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.203">
+        <Code>ExtractionMine</Code>
+        <Name>ExtractionMine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.204">
+        <Code>Facility</Code>
+        <Name>Facility</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.205">
+        <Code>Fairground</Code>
+        <Name>Fairground</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.206">
+        <Code>Farm</Code>
+        <Name>Farm</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.207">
+        <Code>FeatureAttMetadata</Code>
+        <Name>FeatureAttMetadata</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.208">
+        <Code>FeatureEntity</Code>
+        <Name>FeatureEntity</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.209">
+        <Code>FeatureMetadata</Code>
+        <Name>FeatureMetadata</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.210">
+        <Code>Fence</Code>
+        <Name>Fence</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.211">
+        <Code>FerryCrossing</Code>
+        <Name>FerryCrossing</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.212">
+        <Code>FerryStation</Code>
+        <Name>FerryStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.213">
+        <Code>FinalApproachSegDataBlock</Code>
+        <Name>FinalApproachSegDataBlock</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.214">
+        <Code>FinalApproachSegment</Code>
+        <Name>FinalApproachSegment</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.215">
+        <Code>FinalApproachTakeOffArea</Code>
+        <Name>FinalApproachTakeOffArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.216">
+        <Code>FireHydrant</Code>
+        <Name>FireHydrant</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.217">
+        <Code>FirePool</Code>
+        <Name>FirePool</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.218">
+        <Code>FiringRange</Code>
+        <Name>FiringRange</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.219">
+        <Code>FisherySpeciesDistribution</Code>
+        <Name>FisherySpeciesDistribution</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.220">
+        <Code>FishFarmFacility</Code>
+        <Name>FishFarmFacility</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.221">
+        <Code>FishHaven</Code>
+        <Name>FishHaven</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.222">
+        <Code>FishingStakes</Code>
+        <Name>FishingStakes</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.223">
+        <Code>FishingVesselActivityRegion</Code>
+        <Name>FishingVesselActivityRegion</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.224">
+        <Code>FishLadder</Code>
+        <Name>FishLadder</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.225">
+        <Code>FishTrapArea</Code>
+        <Name>FishTrapArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.226">
+        <Code>FishWeir</Code>
+        <Name>FishWeir</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.227">
+        <Code>Flagpole</Code>
+        <Name>Flagpole</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.228">
+        <Code>FlarePipe</Code>
+        <Name>FlarePipe</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.229">
+        <Code>FloatingBarrier</Code>
+        <Name>FloatingBarrier</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.230">
+        <Code>FloatingDryDock</Code>
+        <Name>FloatingDryDock</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.231">
+        <Code>FloodControlStructure</Code>
+        <Name>FloodControlStructure</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.232">
+        <Code>FluidCapacityAndCapabilityInfo</Code>
+        <Name>FluidCapacityAndCapabilityInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.233">
+        <Code>FogSignal</Code>
+        <Name>FogSignal</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.234">
+        <Code>Ford</Code>
+        <Name>Ford</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.235">
+        <Code>FordableSite</Code>
+        <Name>FordableSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.236">
+        <Code>Foreshore</Code>
+        <Name>Foreshore</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.237">
+        <Code>Forest</Code>
+        <Name>Forest</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.238">
+        <Code>ForestClearing</Code>
+        <Name>ForestClearing</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.239">
+        <Code>Fortification</Code>
+        <Name>Fortification</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.240">
+        <Code>FoulGround</Code>
+        <Name>FoulGround</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.241">
+        <Code>Fountain</Code>
+        <Name>Fountain</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.242">
+        <Code>FuelStorageFacility</Code>
+        <Name>FuelStorageFacility</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.243">
+        <Code>Gantry</Code>
+        <Name>Gantry</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.244">
+        <Code>Gate</Code>
+        <Name>Gate</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.245">
+        <Code>GaugingStation</Code>
+        <Name>GaugingStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.246">
+        <Code>GeneralLocation</Code>
+        <Name>GeneralLocation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.247">
+        <Code>GeologicFault</Code>
+        <Name>GeologicFault</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.248">
+        <Code>GeometryInfo</Code>
+        <Name>GeometryInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.249">
+        <Code>GeomorphicBreakline</Code>
+        <Name>GeomorphicBreakline</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.250">
+        <Code>GeomorphicExtreme</Code>
+        <Name>GeomorphicExtreme</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.251">
+        <Code>GeoNameInfo</Code>
+        <Name>GeoNameInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.252">
+        <Code>GeophysicalDataTrackLine</Code>
+        <Name>GeophysicalDataTrackLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.253">
+        <Code>GeopoliticalEntity</Code>
+        <Name>GeopoliticalEntity</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.254">
+        <Code>GeopoliticalEntityDesig</Code>
+        <Name>GeopoliticalEntityDesig</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.255">
+        <Code>GeothermalOutlet</Code>
+        <Name>GeothermalOutlet</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.256">
+        <Code>Glacier</Code>
+        <Name>Glacier</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.257">
+        <Code>GM_Curve</Code>
+        <Name>GM_Curve</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.258">
+        <Code>GM_Object</Code>
+        <Name>GM_Object</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.259">
+        <Code>GM_OrientableCurve</Code>
+        <Name>GM_OrientableCurve</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.260">
+        <Code>GM_OrientablePrimitive</Code>
+        <Name>GM_OrientablePrimitive</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.261">
+        <Code>GM_OrientableSurface</Code>
+        <Name>GM_OrientableSurface</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.262">
+        <Code>GM_Point</Code>
+        <Name>GM_Point</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.263">
+        <Code>GM_Primitive</Code>
+        <Name>GM_Primitive</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.264">
+        <Code>GM_Surface</Code>
+        <Name>GM_Surface</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.265">
+        <Code>GolfCourse</Code>
+        <Name>GolfCourse</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.266">
+        <Code>GolfDrivingRange</Code>
+        <Name>GolfDrivingRange</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.267">
+        <Code>GrainElevator</Code>
+        <Name>GrainElevator</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.268">
+        <Code>GrainStorageStructure</Code>
+        <Name>GrainStorageStructure</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.269">
+        <Code>Grandstand</Code>
+        <Name>Grandstand</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.270">
+        <Code>Grassland</Code>
+        <Name>Grassland</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.271">
+        <Code>Grave</Code>
+        <Name>Grave</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.272">
+        <Code>GraveMarker</Code>
+        <Name>GraveMarker</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.273">
+        <Code>Greenhouse</Code>
+        <Name>Greenhouse</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.274">
+        <Code>Gridiron</Code>
+        <Name>Gridiron</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.275">
+        <Code>Grove</Code>
+        <Name>Grove</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.276">
+        <Code>Gully</Code>
+        <Name>Gully</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.277">
+        <Code>Harbour</Code>
+        <Name>Harbour</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.278">
+        <Code>HardenedAircraftShelter</Code>
+        <Name>HardenedAircraftShelter</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.279">
+        <Code>HazardousRock</Code>
+        <Name>HazardousRock</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.280">
+        <Code>Heathland</Code>
+        <Name>Heathland</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.281">
+        <Code>HeatingFacility</Code>
+        <Name>HeatingFacility</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.282">
+        <Code>Hedgerow</Code>
+        <Name>Hedgerow</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.283">
+        <Code>Helipad</Code>
+        <Name>Helipad</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.284">
+        <Code>Heliport</Code>
+        <Name>Heliport</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.285">
+        <Code>HighWaterLine</Code>
+        <Name>HighWaterLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.286">
+        <Code>Hill</Code>
+        <Name>Hill</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.287">
+        <Code>HoldingPen</Code>
+        <Name>HoldingPen</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.288">
+        <Code>HoldingProcedure</Code>
+        <Name>HoldingProcedure</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.289">
+        <Code>HopField</Code>
+        <Name>HopField</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.290">
+        <Code>Hopper</Code>
+        <Name>Hopper</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.291">
+        <Code>HorizCoordMetadata</Code>
+        <Name>HorizCoordMetadata</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.292">
+        <Code>Hulk</Code>
+        <Name>Hulk</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.293">
+        <Code>HumanActivityCapacityInfo</Code>
+        <Name>HumanActivityCapacityInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.294">
+        <Code>Hummock</Code>
+        <Name>Hummock</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.295">
+        <Code>Hut</Code>
+        <Name>Hut</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.296">
+        <Code>HydrocarbonProdFacility</Code>
+        <Name>HydrocarbonProdFacility</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.297">
+        <Code>HydrocarbonsField</Code>
+        <Name>HydrocarbonsField</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.298">
+        <Code>HydrographicBaseHeightInfo</Code>
+        <Name>HydrographicBaseHeightInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.299">
+        <Code>HydroVertPositioningInfo</Code>
+        <Name>HydroVertPositioningInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.300">
+        <Code>IceCliff</Code>
+        <Name>IceCliff</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.301">
+        <Code>IcePeak</Code>
+        <Name>IcePeak</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.302">
+        <Code>IceShelf</Code>
+        <Name>IceShelf</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.303">
+        <Code>IdentifiedQualityIssue</Code>
+        <Name>IdentifiedQualityIssue</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.304">
+        <Code>IfrTakeoffMinInfo</Code>
+        <Name>IfrTakeoffMinInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.305">
+        <Code>IndigenousSettlement</Code>
+        <Name>IndigenousSettlement</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.306">
+        <Code>IndustrialFarm</Code>
+        <Name>IndustrialFarm</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.307">
+        <Code>IndustrialFurnace</Code>
+        <Name>IndustrialFurnace</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.308">
+        <Code>IndustrialPark</Code>
+        <Name>IndustrialPark</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.309">
+        <Code>InitialApproachSegment</Code>
+        <Name>InitialApproachSegment</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.310">
+        <Code>InlandWaterbody</Code>
+        <Name>InlandWaterbody</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.311">
+        <Code>InlandWaterbodyBank</Code>
+        <Name>InlandWaterbodyBank</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.312">
+        <Code>Installation</Code>
+        <Name>Installation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.313">
+        <Code>InstApproachConditionInfo</Code>
+        <Name>InstApproachConditionInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.314">
+        <Code>InstLandingSysGlidePath</Code>
+        <Name>InstLandingSysGlidePath</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.315">
+        <Code>InstLandingSysLocalizer</Code>
+        <Name>InstLandingSysLocalizer</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.316">
+        <Code>InstrumentApproachProc</Code>
+        <Name>InstrumentApproachProc</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.317">
+        <Code>InstrumentApproachProcSeg</Code>
+        <Name>InstrumentApproachProcSeg</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.318">
+        <Code>InterestSite</Code>
+        <Name>InterestSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.319">
+        <Code>IntermediateApproachSeg</Code>
+        <Name>IntermediateApproachSeg</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.320">
+        <Code>IntermediateHoldingPos</Code>
+        <Name>IntermediateHoldingPos</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.321">
+        <Code>InternationalDateLine</Code>
+        <Name>InternationalDateLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.322">
+        <Code>InundatedLand</Code>
+        <Name>InundatedLand</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.323">
+        <Code>IrrigationSystem</Code>
+        <Name>IrrigationSystem</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.324">
+        <Code>Island</Code>
+        <Name>Island</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.325">
+        <Code>IsogonicLine</Code>
+        <Name>IsogonicLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.326">
+        <Code>JetAircraftStartUnitServ</Code>
+        <Name>JetAircraftStartUnitServ</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.327">
+        <Code>Lagoon</Code>
+        <Name>Lagoon</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.328">
+        <Code>LandAerodrome</Code>
+        <Name>LandAerodrome</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.329">
+        <Code>LandArea</Code>
+        <Name>LandArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.330">
+        <Code>LandHoldShortOpHoldPoint</Code>
+        <Name>LandHoldShortOpHoldPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.331">
+        <Code>LandingSteps</Code>
+        <Name>LandingSteps</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.332">
+        <Code>LandmarkInfo</Code>
+        <Name>LandmarkInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.333">
+        <Code>LandMorphologyArea</Code>
+        <Name>LandMorphologyArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.334">
+        <Code>LandParcel</Code>
+        <Name>LandParcel</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.335">
+        <Code>LandRoute</Code>
+        <Name>LandRoute</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.336">
+        <Code>LandslideMass</Code>
+        <Name>LandslideMass</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.337">
+        <Code>LandSubjectToInundation</Code>
+        <Name>LandSubjectToInundation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.338">
+        <Code>LandTransportationWay</Code>
+        <Name>LandTransportationWay</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.339">
+        <Code>LandWaterBoundary</Code>
+        <Name>LandWaterBoundary</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.340">
+        <Code>LargeBottomObject</Code>
+        <Name>LargeBottomObject</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.341">
+        <Code>LaunchPad</Code>
+        <Name>LaunchPad</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.342">
+        <Code>LeadingLine</Code>
+        <Name>LeadingLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.343">
+        <Code>LegalTrafficRestrictInfo</Code>
+        <Name>LegalTrafficRestrictInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.344">
+        <Code>Lighthouse</Code>
+        <Name>Lighthouse</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.345">
+        <Code>LightSector</Code>
+        <Name>LightSector</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.346">
+        <Code>LightSupportStructure</Code>
+        <Name>LightSupportStructure</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.347">
+        <Code>LightVessel</Code>
+        <Name>LightVessel</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.348">
+        <Code>LinguisticEntity</Code>
+        <Name>LinguisticEntity</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.349">
+        <Code>LiquidDiffuser</Code>
+        <Name>LiquidDiffuser</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.350">
+        <Code>LocalizerDirectionalAid</Code>
+        <Name>LocalizerDirectionalAid</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.351">
+        <Code>LocalMagneticAnomaly</Code>
+        <Name>LocalMagneticAnomaly</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.352">
+        <Code>Lock</Code>
+        <Name>Lock</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.353">
+        <Code>LockBasin</Code>
+        <Name>LockBasin</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.354">
+        <Code>LoggingSite</Code>
+        <Name>LoggingSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.355">
+        <Code>Lookout</Code>
+        <Name>Lookout</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.356">
+        <Code>LowAirManeuverPylon</Code>
+        <Name>LowAirManeuverPylon</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.357">
+        <Code>LowWaterLine</Code>
+        <Name>LowWaterLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.358">
+        <Code>MagneticVariationInfo</Code>
+        <Name>MagneticVariationInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.359">
+        <Code>ManufacturingInfo</Code>
+        <Name>ManufacturingInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.360">
+        <Code>MaricultureSite</Code>
+        <Name>MaricultureSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.361">
+        <Code>MarineRangeCentreLine</Code>
+        <Name>MarineRangeCentreLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.362">
+        <Code>MaritimeBottomCharacterInfo</Code>
+        <Name>MaritimeBottomCharacterInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.363">
+        <Code>MaritimeCautionArea</Code>
+        <Name>MaritimeCautionArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.364">
+        <Code>MaritimeDaymark</Code>
+        <Name>MaritimeDaymark</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.365">
+        <Code>MaritimeEnergyFarm</Code>
+        <Name>MaritimeEnergyFarm</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.366">
+        <Code>MaritimeLimit</Code>
+        <Name>MaritimeLimit</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.367">
+        <Code>MaritimeNavigationBeacon</Code>
+        <Name>MaritimeNavigationBeacon</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.368">
+        <Code>MaritimeNavigationLight</Code>
+        <Name>MaritimeNavigationLight</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.369">
+        <Code>MaritimeNavigationMarker</Code>
+        <Name>MaritimeNavigationMarker</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.370">
+        <Code>MaritimeNavLightSupport</Code>
+        <Name>MaritimeNavLightSupport</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.371">
+        <Code>MaritimeNavRetroReflector</Code>
+        <Name>MaritimeNavRetroReflector</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.372">
+        <Code>MaritimeNoticeBoard</Code>
+        <Name>MaritimeNoticeBoard</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.373">
+        <Code>MaritimeRadarReflector</Code>
+        <Name>MaritimeRadarReflector</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.374">
+        <Code>MaritimeRadarRefLine</Code>
+        <Name>MaritimeRadarRefLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.375">
+        <Code>MaritimeRadiobeacon</Code>
+        <Name>MaritimeRadiobeacon</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.376">
+        <Code>MaritimeRoute</Code>
+        <Name>MaritimeRoute</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.377">
+        <Code>MaritimeSignalStation</Code>
+        <Name>MaritimeSignalStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.378">
+        <Code>MarkerRadioBeacon</Code>
+        <Name>MarkerRadioBeacon</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.379">
+        <Code>Market</Code>
+        <Name>Market</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.380">
+        <Code>MassGrave</Code>
+        <Name>MassGrave</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.381">
+        <Code>MeasuredDistanceLine</Code>
+        <Name>MeasuredDistanceLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.382">
+        <Code>MedicalAmenity</Code>
+        <Name>MedicalAmenity</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.383">
+        <Code>MedicalResourceInfo</Code>
+        <Name>MedicalResourceInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.384">
+        <Code>MedicalServiceInfo</Code>
+        <Name>MedicalServiceInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.385">
+        <Code>MicrowaveLandingSysAzim</Code>
+        <Name>MicrowaveLandingSysAzim</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.386">
+        <Code>MicrowaveLandingSysElev</Code>
+        <Name>MicrowaveLandingSysElev</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.387">
+        <Code>MigrationRoute</Code>
+        <Name>MigrationRoute</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.388">
+        <Code>MilitaryInstallation</Code>
+        <Name>MilitaryInstallation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.389">
+        <Code>Minefield</Code>
+        <Name>Minefield</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.390">
+        <Code>MineralPile</Code>
+        <Name>MineralPile</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.391">
+        <Code>MineShaftSuperstructure</Code>
+        <Name>MineShaftSuperstructure</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.392">
+        <Code>MiscFeatureType</Code>
+        <Name>MiscFeatureType</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.393">
+        <Code>MissedApproachInfo</Code>
+        <Name>MissedApproachInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.394">
+        <Code>MissedApproachSegment</Code>
+        <Name>MissedApproachSegment</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.395">
+        <Code>MissileSite</Code>
+        <Name>MissileSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.396">
+        <Code>Moat</Code>
+        <Name>Moat</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.397">
+        <Code>Monument</Code>
+        <Name>Monument</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.398">
+        <Code>MooringChain</Code>
+        <Name>MooringChain</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.399">
+        <Code>MooringMast</Code>
+        <Name>MooringMast</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.400">
+        <Code>MooringRing</Code>
+        <Name>MooringRing</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.401">
+        <Code>Moraine</Code>
+        <Name>Moraine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.402">
+        <Code>MotorVehicleStation</Code>
+        <Name>MotorVehicleStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.403">
+        <Code>MountainPass</Code>
+        <Name>MountainPass</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.404">
+        <Code>MovementAreaShoulder</Code>
+        <Name>MovementAreaShoulder</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.405">
+        <Code>MultiCurveGeometryInfo</Code>
+        <Name>MultiCurveGeometryInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.406">
+        <Code>MultiPointGeometryInfo</Code>
+        <Name>MultiPointGeometryInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.407">
+        <Code>MultiSolidGeometryInfo</Code>
+        <Name>MultiSolidGeometryInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.408">
+        <Code>MultiSurfaceGeometryInfo</Code>
+        <Name>MultiSurfaceGeometryInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.409">
+        <Code>MunitionStorageFacility</Code>
+        <Name>MunitionStorageFacility</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.410">
+        <Code>NameSpecification</Code>
+        <Name>NameSpecification</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.411">
+        <Code>NaturalPool</Code>
+        <Name>NaturalPool</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.412">
+        <Code>NavalFiringPracticeArea</Code>
+        <Name>NavalFiringPracticeArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.413">
+        <Code>NavalOperationsArea</Code>
+        <Name>NavalOperationsArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.414">
+        <Code>Nearshore</Code>
+        <Name>Nearshore</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.415">
+        <Code>Neighbourhood</Code>
+        <Name>Neighbourhood</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.416">
+        <Code>NonBuildingStructure</Code>
+        <Name>NonBuildingStructure</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.417">
+        <Code>NonDirectionalRadioBeacon</Code>
+        <Name>NonDirectionalRadioBeacon</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.418">
+        <Code>NonWaterWell</Code>
+        <Name>NonWaterWell</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.419">
+        <Code>NuclearReactorContainment</Code>
+        <Name>NuclearReactorContainment</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.420">
+        <Code>Oasis</Code>
+        <Name>Oasis</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.421">
+        <Code>OceanographicFront</Code>
+        <Name>OceanographicFront</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.422">
+        <Code>OfficePark</Code>
+        <Name>OfficePark</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.423">
+        <Code>OffshoreConstruction</Code>
+        <Name>OffshoreConstruction</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.424">
+        <Code>OperatingTimeInfo</Code>
+        <Name>OperatingTimeInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.425">
+        <Code>Orchard</Code>
+        <Name>Orchard</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.426">
+        <Code>Organisation</Code>
+        <Name>Organisation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.427">
+        <Code>OrganisationalUnit</Code>
+        <Name>OrganisationalUnit</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.428">
+        <Code>OutdoorTheatreScreen</Code>
+        <Name>OutdoorTheatreScreen</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.429">
+        <Code>OverheadObstruction</Code>
+        <Name>OverheadObstruction</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.430">
+        <Code>OwnershipGroup</Code>
+        <Name>OwnershipGroup</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.431">
+        <Code>PackIce</Code>
+        <Name>PackIce</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.432">
+        <Code>Park</Code>
+        <Name>Park</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.433">
+        <Code>ParkingGarage</Code>
+        <Name>ParkingGarage</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.434">
+        <Code>ParticleAccelerator</Code>
+        <Name>ParticleAccelerator</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.435">
+        <Code>Penstock</Code>
+        <Name>Penstock</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.436">
+        <Code>PermanentSnowIce</Code>
+        <Name>PermanentSnowIce</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.437">
+        <Code>PhysicalAutomaticIdentSys</Code>
+        <Name>PhysicalAutomaticIdentSys</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.438">
+        <Code>PicnicSite</Code>
+        <Name>PicnicSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.439">
+        <Code>PicnicTable</Code>
+        <Name>PicnicTable</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.440">
+        <Code>PilotageDistrict</Code>
+        <Name>PilotageDistrict</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.441">
+        <Code>PilotBoardingPlace</Code>
+        <Name>PilotBoardingPlace</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.442">
+        <Code>Pingo</Code>
+        <Name>Pingo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.443">
+        <Code>Pipeline</Code>
+        <Name>Pipeline</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.444">
+        <Code>PipelineCrossingPoint</Code>
+        <Name>PipelineCrossingPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.445">
+        <Code>Planter</Code>
+        <Name>Planter</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.446">
+        <Code>PlantNursery</Code>
+        <Name>PlantNursery</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.447">
+        <Code>PointGeometryInfo</Code>
+        <Name>PointGeometryInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.448">
+        <Code>PolarIce</Code>
+        <Name>PolarIce</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.449">
+        <Code>Pontoon</Code>
+        <Name>Pontoon</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.450">
+        <Code>PopulatedAreaInfo</Code>
+        <Name>PopulatedAreaInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.451">
+        <Code>PopulatedPlace</Code>
+        <Name>PopulatedPlace</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.452">
+        <Code>PopulationInfo</Code>
+        <Name>PopulationInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.453">
+        <Code>Port</Code>
+        <Name>Port</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.454">
+        <Code>PowerGeneratingUnit</Code>
+        <Name>PowerGeneratingUnit</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.455">
+        <Code>PowerSubstation</Code>
+        <Name>PowerSubstation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.456">
+        <Code>PreparedWatercourseCross</Code>
+        <Name>PreparedWatercourseCross</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.457">
+        <Code>ProcedureSegmentLeg</Code>
+        <Name>ProcedureSegmentLeg</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.458">
+        <Code>ProcedureTransitionSeg</Code>
+        <Name>ProcedureTransitionSeg</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.459">
+        <Code>ProtectWaterGatherGround</Code>
+        <Name>ProtectWaterGatherGround</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.460">
+        <Code>PublicSquare</Code>
+        <Name>PublicSquare</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.461">
+        <Code>Pump</Code>
+        <Name>Pump</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.462">
+        <Code>PumpingStation</Code>
+        <Name>PumpingStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.463">
+        <Code>Pylon</Code>
+        <Name>Pylon</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.464">
+        <Code>QanatShaft</Code>
+        <Name>QanatShaft</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.465">
+        <Code>Racetrack</Code>
+        <Name>Racetrack</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.466">
+        <Code>RadarRange</Code>
+        <Name>RadarRange</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.467">
+        <Code>RadarStation</Code>
+        <Name>RadarStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.468">
+        <Code>RadioCommunicationsService</Code>
+        <Name>RadioCommunicationsService</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.469">
+        <Code>RadioNavServiceLimit</Code>
+        <Name>RadioNavServiceLimit</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.470">
+        <Code>RadioTransmissionInfo</Code>
+        <Name>RadioTransmissionInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.471">
+        <Code>Railway</Code>
+        <Name>Railway</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.472">
+        <Code>RailwaySidetrack</Code>
+        <Name>RailwaySidetrack</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.473">
+        <Code>RailwaySignal</Code>
+        <Name>RailwaySignal</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.474">
+        <Code>RailwaySwitch</Code>
+        <Name>RailwaySwitch</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.475">
+        <Code>RailwayTraverser</Code>
+        <Name>RailwayTraverser</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.476">
+        <Code>RailwayTurntable</Code>
+        <Name>RailwayTurntable</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.477">
+        <Code>RailwayYard</Code>
+        <Name>RailwayYard</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.478">
+        <Code>Ramp</Code>
+        <Name>Ramp</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.479">
+        <Code>Ranch</Code>
+        <Name>Ranch</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.480">
+        <Code>Rapids</Code>
+        <Name>Rapids</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.481">
+        <Code>RecyclingSite</Code>
+        <Name>RecyclingSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.482">
+        <Code>Reef</Code>
+        <Name>Reef</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.483">
+        <Code>RegulatorySign</Code>
+        <Name>RegulatorySign</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.484">
+        <Code>Religion</Code>
+        <Name>Religion</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.485">
+        <Code>ReligiousGroup</Code>
+        <Name>ReligiousGroup</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.486">
+        <Code>ReligiousInfo</Code>
+        <Name>ReligiousInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.487">
+        <Code>RestrictionInfo</Code>
+        <Name>RestrictionInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.488">
+        <Code>RetailStand</Code>
+        <Name>RetailStand</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.489">
+        <Code>RiceField</Code>
+        <Name>RiceField</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.490">
+        <Code>RidgeLine</Code>
+        <Name>RidgeLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.491">
+        <Code>Rig</Code>
+        <Name>Rig</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.492">
+        <Code>River</Code>
+        <Name>River</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.493">
+        <Code>RoadInterchange</Code>
+        <Name>RoadInterchange</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.494">
+        <Code>RoadsideRestArea</Code>
+        <Name>RoadsideRestArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.495">
+        <Code>Roadstead</Code>
+        <Name>Roadstead</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.496">
+        <Code>RockFormation</Code>
+        <Name>RockFormation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.497">
+        <Code>Roundhouse</Code>
+        <Name>Roundhouse</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.498">
+        <Code>Ruins</Code>
+        <Name>Ruins</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.499">
+        <Code>Runway</Code>
+        <Name>Runway</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.500">
+        <Code>RunwayCentreLinePoint</Code>
+        <Name>RunwayCentreLinePoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.501">
+        <Code>RunwayDeclaredDistInfo</Code>
+        <Name>RunwayDeclaredDistInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.502">
+        <Code>RunwayDirection</Code>
+        <Name>RunwayDirection</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.503">
+        <Code>RunwayElement</Code>
+        <Name>RunwayElement</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.504">
+        <Code>RunwayEndpoint</Code>
+        <Name>RunwayEndpoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.505">
+        <Code>RunwayHoldingPosition</Code>
+        <Name>RunwayHoldingPosition</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.506">
+        <Code>RunwayIntersection</Code>
+        <Name>RunwayIntersection</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.507">
+        <Code>RunwayRadarReflector</Code>
+        <Name>RunwayRadarReflector</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.508">
+        <Code>RunwayThreshold</Code>
+        <Name>RunwayThreshold</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.509">
+        <Code>RunwayTurnPad</Code>
+        <Name>RunwayTurnPad</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.510">
+        <Code>Sabkha</Code>
+        <Name>Sabkha</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.511">
+        <Code>SafeAltitudeArea</Code>
+        <Name>SafeAltitudeArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.512">
+        <Code>SafeAltitudeAreaSector</Code>
+        <Name>SafeAltitudeAreaSector</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.513">
+        <Code>SaltEvaporator</Code>
+        <Name>SaltEvaporator</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.514">
+        <Code>SaltFlat</Code>
+        <Name>SaltFlat</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.515">
+        <Code>SandDunes</Code>
+        <Name>SandDunes</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.516">
+        <Code>Scrubland</Code>
+        <Name>Scrubland</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.517">
+        <Code>SeabedMaterialExtractionArea</Code>
+        <Name>SeabedMaterialExtractionArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.518">
+        <Code>SeaplaneRun</Code>
+        <Name>SeaplaneRun</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.519">
+        <Code>SearchRescueRegion</Code>
+        <Name>SearchRescueRegion</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.520">
+        <Code>SearchRescueRespOrg</Code>
+        <Name>SearchRescueRespOrg</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.521">
+        <Code>SearchRescueService</Code>
+        <Name>SearchRescueService</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.522">
+        <Code>SearchRescueUnit</Code>
+        <Name>SearchRescueUnit</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.523">
+        <Code>SensorCalibrationPoint</Code>
+        <Name>SensorCalibrationPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.524">
+        <Code>SettlingPond</Code>
+        <Name>SettlingPond</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.525">
+        <Code>SewageTreatmentPlant</Code>
+        <Name>SewageTreatmentPlant</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.526">
+        <Code>ShallowWaterArea</Code>
+        <Name>ShallowWaterArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.527">
+        <Code>SharpCurve</Code>
+        <Name>SharpCurve</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.528">
+        <Code>ShearWall</Code>
+        <Name>ShearWall</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.529">
+        <Code>Shed</Code>
+        <Name>Shed</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.530">
+        <Code>Shelter</Code>
+        <Name>Shelter</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.531">
+        <Code>ShipElevator</Code>
+        <Name>ShipElevator</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.532">
+        <Code>ShippingContainer</Code>
+        <Name>ShippingContainer</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.533">
+        <Code>Shipyard</Code>
+        <Name>Shipyard</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.534">
+        <Code>ShoppingComplex</Code>
+        <Name>ShoppingComplex</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.535">
+        <Code>Shoreline</Code>
+        <Name>Shoreline</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.536">
+        <Code>ShorelineConstruction</Code>
+        <Name>ShorelineConstruction</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.537">
+        <Code>ShorelineRamp</Code>
+        <Name>ShorelineRamp</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.538">
+        <Code>ShrubLand</Code>
+        <Name>ShrubLand</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.539">
+        <Code>SideScanSonarCoverage</Code>
+        <Name>SideScanSonarCoverage</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.540">
+        <Code>SignificantRock</Code>
+        <Name>SignificantRock</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.541">
+        <Code>SimplifiedDirectionFacility</Code>
+        <Name>SimplifiedDirectionFacility</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.542">
+        <Code>SkiJump</Code>
+        <Name>SkiJump</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.543">
+        <Code>SkiRun</Code>
+        <Name>SkiRun</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.544">
+        <Code>SlopeRegion</Code>
+        <Name>SlopeRegion</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.545">
+        <Code>SluiceGate</Code>
+        <Name>SluiceGate</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.546">
+        <Code>SmallBottomObject</Code>
+        <Name>SmallBottomObject</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.547">
+        <Code>SmallCraftFacility</Code>
+        <Name>SmallCraftFacility</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.548">
+        <Code>Smokestack</Code>
+        <Name>Smokestack</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.549">
+        <Code>Snag</Code>
+        <Name>Snag</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.550">
+        <Code>SocialGroup</Code>
+        <Name>SocialGroup</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.551">
+        <Code>SoilSurfaceRegion</Code>
+        <Name>SoilSurfaceRegion</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.552">
+        <Code>SolarFarm</Code>
+        <Name>SolarFarm</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.553">
+        <Code>SolarPanel</Code>
+        <Name>SolarPanel</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.554">
+        <Code>SolidGeometryInfo</Code>
+        <Name>SolidGeometryInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.555">
+        <Code>Sounding</Code>
+        <Name>Sounding</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.556">
+        <Code>SoundingMetadata</Code>
+        <Name>SoundingMetadata</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.557">
+        <Code>SoundSignalDevice</Code>
+        <Name>SoundSignalDevice</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.558">
+        <Code>SourceInfo</Code>
+        <Name>SourceInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.559">
+        <Code>Spa</Code>
+        <Name>Spa</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.560">
+        <Code>SpaceFacility</Code>
+        <Name>SpaceFacility</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.561">
+        <Code>SpecialAdminDesig</Code>
+        <Name>SpecialAdminDesig</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.562">
+        <Code>SpecialNavigationSystem</Code>
+        <Name>SpecialNavigationSystem</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.563">
+        <Code>SpecialNavSystemStation</Code>
+        <Name>SpecialNavSystemStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.564">
+        <Code>Spillway</Code>
+        <Name>Spillway</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.565">
+        <Code>SportsGround</Code>
+        <Name>SportsGround</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.566">
+        <Code>SpotElevation</Code>
+        <Name>SpotElevation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.567">
+        <Code>Spring</Code>
+        <Name>Spring</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.568">
+        <Code>Stable</Code>
+        <Name>Stable</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.569">
+        <Code>Stadium</Code>
+        <Name>Stadium</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.570">
+        <Code>Stair</Code>
+        <Name>Stair</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.571">
+        <Code>StandardInstrumentArrival</Code>
+        <Name>StandardInstrumentArrival</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.572">
+        <Code>StandardInstrumentDepart</Code>
+        <Name>StandardInstrumentDepart</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.573">
+        <Code>Standpipe</Code>
+        <Name>Standpipe</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.574">
+        <Code>Statistic</Code>
+        <Name>Statistic</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.575">
+        <Code>StatisticalExtentLocation</Code>
+        <Name>StatisticalExtentLocation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.576">
+        <Code>StatisticCollection</Code>
+        <Name>StatisticCollection</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.577">
+        <Code>StatuePedestal</Code>
+        <Name>StatuePedestal</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.578">
+        <Code>SteepGrade</Code>
+        <Name>SteepGrade</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.579">
+        <Code>SteepTerrainFace</Code>
+        <Name>SteepTerrainFace</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.580">
+        <Code>Stopway</Code>
+        <Name>Stopway</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.581">
+        <Code>StopwayEndpoint</Code>
+        <Name>StopwayEndpoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.582">
+        <Code>StorageDepot</Code>
+        <Name>StorageDepot</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.583">
+        <Code>StorageTank</Code>
+        <Name>StorageTank</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.584">
+        <Code>StormDrain</Code>
+        <Name>StormDrain</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.585">
+        <Code>StreetLamp</Code>
+        <Name>StreetLamp</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.586">
+        <Code>StreetSign</Code>
+        <Name>StreetSign</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.587">
+        <Code>StructuralPile</Code>
+        <Name>StructuralPile</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.588">
+        <Code>SubmarineAcousticSignal</Code>
+        <Name>SubmarineAcousticSignal</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.589">
+        <Code>SubmarineSpring</Code>
+        <Name>SubmarineSpring</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.590">
+        <Code>SubmergedVolcano</Code>
+        <Name>SubmergedVolcano</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.591">
+        <Code>SupranationalEntity</Code>
+        <Name>SupranationalEntity</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.592">
+        <Code>SurfaceBunker</Code>
+        <Name>SurfaceBunker</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.593">
+        <Code>SurfaceGeometryInfo</Code>
+        <Name>SurfaceGeometryInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.594">
+        <Code>SurveyPoint</Code>
+        <Name>SurveyPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.595">
+        <Code>SweptArea</Code>
+        <Name>SweptArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.596">
+        <Code>SwimmingPool</Code>
+        <Name>SwimmingPool</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.597">
+        <Code>TacticalAirNavAidBeacon</Code>
+        <Name>TacticalAirNavAidBeacon</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.598">
+        <Code>TankFarm</Code>
+        <Name>TankFarm</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.599">
+        <Code>Taxiway</Code>
+        <Name>Taxiway</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.600">
+        <Code>TaxiwayElement</Code>
+        <Name>TaxiwayElement</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.601">
+        <Code>TerminalArrivalAltitude</Code>
+        <Name>TerminalArrivalAltitude</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.602">
+        <Code>TerminalArrivalAltSector</Code>
+        <Name>TerminalArrivalAltSector</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.603">
+        <Code>TerminalInstProcedure</Code>
+        <Name>TerminalInstProcedure</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.604">
+        <Code>TerminalInstProcMinima</Code>
+        <Name>TerminalInstProcMinima</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.605">
+        <Code>TerminalInstProcSegPoint</Code>
+        <Name>TerminalInstProcSegPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.606">
+        <Code>TerminalInstProcTransition</Code>
+        <Name>TerminalInstProcTransition</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.607">
+        <Code>TestSite</Code>
+        <Name>TestSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.608">
+        <Code>TetheredBalloon</Code>
+        <Name>TetheredBalloon</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.609">
+        <Code>Thalweg</Code>
+        <Name>Thalweg</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.610">
+        <Code>TheodoliteReferenceLine</Code>
+        <Name>TheodoliteReferenceLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.611">
+        <Code>Thicket</Code>
+        <Name>Thicket</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.612">
+        <Code>TidalStreamObserveStation</Code>
+        <Name>TidalStreamObserveStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.613">
+        <Code>TidalWater</Code>
+        <Name>TidalWater</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.614">
+        <Code>TideGaugeStation</Code>
+        <Name>TideGaugeStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.615">
+        <Code>Tomb</Code>
+        <Name>Tomb</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.616">
+        <Code>TouchdownAndLiftOffArea</Code>
+        <Name>TouchdownAndLiftOffArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.617">
+        <Code>Tower</Code>
+        <Name>Tower</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.618">
+        <Code>TrackInfo</Code>
+        <Name>TrackInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.619">
+        <Code>TrackLine</Code>
+        <Name>TrackLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.620">
+        <Code>TrackSwath</Code>
+        <Name>TrackSwath</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.621">
+        <Code>TrafficLight</Code>
+        <Name>TrafficLight</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.622">
+        <Code>TrafficSeparationScheme</Code>
+        <Name>TrafficSeparationScheme</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.623">
+        <Code>TrainingSite</Code>
+        <Name>TrainingSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.624">
+        <Code>TranspondLandingSysStation</Code>
+        <Name>TranspondLandingSysStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.625">
+        <Code>TransportationBlock</Code>
+        <Name>TransportationBlock</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.626">
+        <Code>TransportationPlatform</Code>
+        <Name>TransportationPlatform</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.627">
+        <Code>TransportationStation</Code>
+        <Name>TransportationStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.628">
+        <Code>TransRouteCharacterChange</Code>
+        <Name>TransRouteCharacterChange</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.629">
+        <Code>TransRouteProtectStruct</Code>
+        <Name>TransRouteProtectStruct</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.630">
+        <Code>Tree</Code>
+        <Name>Tree</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.631">
+        <Code>Tundra</Code>
+        <Name>Tundra</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.632">
+        <Code>Tunnel</Code>
+        <Name>Tunnel</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.633">
+        <Code>TunnelMouth</Code>
+        <Name>TunnelMouth</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.634">
+        <Code>UndergroundBunker</Code>
+        <Name>UndergroundBunker</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.635">
+        <Code>UndergroundDwelling</Code>
+        <Name>UndergroundDwelling</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.636">
+        <Code>UnvegetatedLand</Code>
+        <Name>UnvegetatedLand</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.637">
+        <Code>UtilityCover</Code>
+        <Name>UtilityCover</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.638">
+        <Code>VanishingPoint</Code>
+        <Name>VanishingPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.639">
+        <Code>VehicleBarrier</Code>
+        <Name>VehicleBarrier</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.640">
+        <Code>VehicleLot</Code>
+        <Name>VehicleLot</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.641">
+        <Code>VertCoordMetadata</Code>
+        <Name>VertCoordMetadata</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.642">
+        <Code>VesselLift</Code>
+        <Name>VesselLift</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.643">
+        <Code>VhfOmniRadioBeacon</Code>
+        <Name>VhfOmniRadioBeacon</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.644">
+        <Code>Vineyard</Code>
+        <Name>Vineyard</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.645">
+        <Code>VirtualAutomaticIdentSys</Code>
+        <Name>VirtualAutomaticIdentSys</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.646">
+        <Code>VisualAppSlopeIndSystem</Code>
+        <Name>VisualAppSlopeIndSystem</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.647">
+        <Code>VoidCollectionArea</Code>
+        <Name>VoidCollectionArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.648">
+        <Code>VolcanicDyke</Code>
+        <Name>VolcanicDyke</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.649">
+        <Code>Volcano</Code>
+        <Name>Volcano</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.650">
+        <Code>Wall</Code>
+        <Name>Wall</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.651">
+        <Code>WasteHeap</Code>
+        <Name>WasteHeap</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.652">
+        <Code>WaterAerodrome</Code>
+        <Name>WaterAerodrome</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.653">
+        <Code>WaterbodyArea</Code>
+        <Name>WaterbodyArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.654">
+        <Code>WaterbodyBar</Code>
+        <Name>WaterbodyBar</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.655">
+        <Code>WaterbodyDivider</Code>
+        <Name>WaterbodyDivider</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.656">
+        <Code>WaterbodyMorphologyArea</Code>
+        <Name>WaterbodyMorphologyArea</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.657">
+        <Code>WaterCurrentRegion</Code>
+        <Name>WaterCurrentRegion</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.658">
+        <Code>Waterfall</Code>
+        <Name>Waterfall</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.659">
+        <Code>WaterIntakeTower</Code>
+        <Name>WaterIntakeTower</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.660">
+        <Code>WaterLine</Code>
+        <Name>WaterLine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.661">
+        <Code>WaterMeasurementLocation</Code>
+        <Name>WaterMeasurementLocation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.662">
+        <Code>WaterMill</Code>
+        <Name>WaterMill</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.663">
+        <Code>WaterMovementDataLocation</Code>
+        <Name>WaterMovementDataLocation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.664">
+        <Code>WaterRace</Code>
+        <Name>WaterRace</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.665">
+        <Code>WaterResourceInfo</Code>
+        <Name>WaterResourceInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.666">
+        <Code>WaterTower</Code>
+        <Name>WaterTower</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.667">
+        <Code>WaterTreatmentBed</Code>
+        <Name>WaterTreatmentBed</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.668">
+        <Code>WaterTurbulence</Code>
+        <Name>WaterTurbulence</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.669">
+        <Code>WaterWell</Code>
+        <Name>WaterWell</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.670">
+        <Code>Waterwork</Code>
+        <Name>Waterwork</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.671">
+        <Code>WayPoint</Code>
+        <Name>WayPoint</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.672">
+        <Code>WeighStation</Code>
+        <Name>WeighStation</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.673">
+        <Code>Well</Code>
+        <Name>Well</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.674">
+        <Code>Wetland</Code>
+        <Name>Wetland</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.675">
+        <Code>WindDirectionIndicator</Code>
+        <Name>WindDirectionIndicator</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.676">
+        <Code>WindFarm</Code>
+        <Name>WindFarm</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.677">
+        <Code>Windmill</Code>
+        <Name>Windmill</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.678">
+        <Code>WindTurbine</Code>
+        <Name>WindTurbine</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.679">
+        <Code>WirelessTelecomInfo</Code>
+        <Name>WirelessTelecomInfo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.680">
+        <Code>Wreck</Code>
+        <Name>Wreck</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.681">
+        <Code>Zoo</Code>
+        <Name>Zoo</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+      <DGIF.DGFCD_FeatureConcepts.FeatureConcept TID="DGFCD.FeatureConcepts.682">
+        <Code>TurnaroundSite</Code>
+        <Name>TurnaroundSite</Name>
+      </DGIF.DGFCD_FeatureConcepts.FeatureConcept>
+    </DGIF.DGFCD_FeatureConcepts>
+  </DATASECTION>
+</TRANSFER>

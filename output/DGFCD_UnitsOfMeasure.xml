@@ -1,0 +1,1202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- INTERLIS 2.4 XML Catalog - DGFCD_UnitsOfMeasure -->
+<!-- Generated from DGIF_BL_2025-1.xmi -->
+<TRANSFER xmlns="http://www.interlis.ch/INTERLIS2.4">
+  <HEADERSECTION SENDER="DGIF_XMI_Extractor" VERSION="2.4">
+    <MODELS>
+      <MODEL NAME="DGIF" VERSION="2025-1" URI="https://dgiwg.org/dgif"/>
+    </MODELS>
+  </HEADERSECTION>
+  <DATASECTION>
+    <DGIF.DGFCD_UnitsOfMeasure BID="DGFCD.UnitsOfMeasure">
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.1">
+        <Code>acre</Code>
+        <Name>acre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.2">
+        <Code>ampere</Code>
+        <Name>ampere</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.3">
+        <Code>arcCentidegree</Code>
+        <Name>arcCentidegree</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.4">
+        <Code>arcCentimilllidegree</Code>
+        <Name>arcCentimilllidegree</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.5">
+        <Code>arcCentiminute</Code>
+        <Name>arcCentiminute</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.6">
+        <Code>arcCentisecond</Code>
+        <Name>arcCentisecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.7">
+        <Code>arcDecadegree</Code>
+        <Name>arcDecadegree</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.8">
+        <Code>arcDecidegree</Code>
+        <Name>arcDecidegree</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.9">
+        <Code>arcDecimillidegree</Code>
+        <Name>arcDecimillidegree</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.10">
+        <Code>arcDecimilliminute</Code>
+        <Name>arcDecimilliminute</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.11">
+        <Code>arcDeciminute</Code>
+        <Name>arcDeciminute</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.12">
+        <Code>arcDecisecond</Code>
+        <Name>arcDecisecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.13">
+        <Code>arcDegree</Code>
+        <Name>arcDegree</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.14">
+        <Code>arcMicrodegree</Code>
+        <Name>arcMicrodegree</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.15">
+        <Code>arcMillidegree</Code>
+        <Name>arcMillidegree</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.16">
+        <Code>arcMilliminute</Code>
+        <Name>arcMilliminute</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.17">
+        <Code>arcMillisecond</Code>
+        <Name>arcMillisecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.18">
+        <Code>arcMinute</Code>
+        <Name>arcMinute</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.19">
+        <Code>arcQuintdegree</Code>
+        <Name>arcQuintdegree</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.20">
+        <Code>arcSecond</Code>
+        <Name>arcSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.21">
+        <Code>astronomicUnit</Code>
+        <Name>astronomicUnit</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.22">
+        <Code>bar</Code>
+        <Name>bar</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.23">
+        <Code>becquerel</Code>
+        <Name>becquerel</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.24">
+        <Code>bel</Code>
+        <Name>bel</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.25">
+        <Code>belPerMetre</Code>
+        <Name>belPerMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.26">
+        <Code>candela</Code>
+        <Name>candela</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.27">
+        <Code>centibar</Code>
+        <Name>centibar</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.28">
+        <Code>centimetre</Code>
+        <Name>centimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.29">
+        <Code>coulomb</Code>
+        <Name>coulomb</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.30">
+        <Code>cubicCentimetre</Code>
+        <Name>cubicCentimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.31">
+        <Code>cubicDecimetre</Code>
+        <Name>cubicDecimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.32">
+        <Code>cubicFoot</Code>
+        <Name>cubicFoot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.33">
+        <Code>cubicInch</Code>
+        <Name>cubicInch</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.34">
+        <Code>cubicMetre</Code>
+        <Name>cubicMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.35">
+        <Code>cubicMetrePerAnnum</Code>
+        <Name>cubicMetrePerAnnum</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.36">
+        <Code>cubicMetrePerCubicMetre</Code>
+        <Name>cubicMetrePerCubicMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.37">
+        <Code>cubicMetrePerHour</Code>
+        <Name>cubicMetrePerHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.38">
+        <Code>cubicMetrePerMinute</Code>
+        <Name>cubicMetrePerMinute</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.39">
+        <Code>cubicMetrePerSecond</Code>
+        <Name>cubicMetrePerSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.40">
+        <Code>cubicMillimetre</Code>
+        <Name>cubicMillimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.41">
+        <Code>cubicYard</Code>
+        <Name>cubicYard</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.42">
+        <Code>dataMile</Code>
+        <Name>dataMile</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.43">
+        <Code>dataMilePerHour</Code>
+        <Name>dataMilePerHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.44">
+        <Code>day</Code>
+        <Name>day</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.45">
+        <Code>decafoot</Code>
+        <Name>decafoot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.46">
+        <Code>decakilometre</Code>
+        <Name>decakilometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.47">
+        <Code>decaknot</Code>
+        <Name>decaknot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.48">
+        <Code>decametre</Code>
+        <Name>decametre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.49">
+        <Code>decamil</Code>
+        <Name>decamil</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.50">
+        <Code>decibel</Code>
+        <Name>decibel</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.51">
+        <Code>decibelPerMetre</Code>
+        <Name>decibelPerMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.52">
+        <Code>decifoot</Code>
+        <Name>decifoot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.53">
+        <Code>decilitre</Code>
+        <Name>decilitre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.54">
+        <Code>deciMachNumber</Code>
+        <Name>deciMachNumber</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.55">
+        <Code>decimetre</Code>
+        <Name>decimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.56">
+        <Code>decimetrePerSecond</Code>
+        <Name>decimetrePerSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.57">
+        <Code>deciNauticalMile</Code>
+        <Name>deciNauticalMile</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.58">
+        <Code>degreeCelsius</Code>
+        <Name>degreeCelsius</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.59">
+        <Code>degreeFahrenheit</Code>
+        <Name>degreeFahrenheit</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.60">
+        <Code>dyne</Code>
+        <Name>dyne</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.61">
+        <Code>electronVolt</Code>
+        <Name>electronVolt</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.62">
+        <Code>erg</Code>
+        <Name>erg</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.63">
+        <Code>ergsPerSqCmPerSecond</Code>
+        <Name>ergsPerSqCmPerSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.64">
+        <Code>euro</Code>
+        <Name>euro</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.65">
+        <Code>farad</Code>
+        <Name>farad</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.66">
+        <Code>fathom</Code>
+        <Name>fathom</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.67">
+        <Code>flightLevel</Code>
+        <Name>flightLevel</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.68">
+        <Code>foot</Code>
+        <Name>foot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.69">
+        <Code>footPerSecond</Code>
+        <Name>footPerSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.70">
+        <Code>footPerSecondSquare</Code>
+        <Name>footPerSecondSquare</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.71">
+        <Code>footPoundForce</Code>
+        <Name>footPoundForce</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.72">
+        <Code>footPoundForcePerSecond</Code>
+        <Name>footPoundForcePerSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.73">
+        <Code>gal</Code>
+        <Name>gal</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.74">
+        <Code>gauss</Code>
+        <Name>gauss</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.75">
+        <Code>geopotentialMetre</Code>
+        <Name>geopotentialMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.76">
+        <Code>gigabecquerel</Code>
+        <Name>gigabecquerel</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.77">
+        <Code>gigahertz</Code>
+        <Name>gigahertz</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.78">
+        <Code>gigajoulePerAnnum</Code>
+        <Name>gigajoulePerAnnum</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.79">
+        <Code>grad</Code>
+        <Name>grad</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.80">
+        <Code>gram</Code>
+        <Name>gram</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.81">
+        <Code>gramPerCubicCentimetre</Code>
+        <Name>gramPerCubicCentimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.82">
+        <Code>gramPerCubicMetre</Code>
+        <Name>gramPerCubicMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.83">
+        <Code>gramPerGram</Code>
+        <Name>gramPerGram</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.84">
+        <Code>gramPerKilogram</Code>
+        <Name>gramPerKilogram</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.85">
+        <Code>gramPerLitre</Code>
+        <Name>gramPerLitre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.86">
+        <Code>gray</Code>
+        <Name>gray</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.87">
+        <Code>halfFoot</Code>
+        <Name>halfFoot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.88">
+        <Code>halfHectometre</Code>
+        <Name>halfHectometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.89">
+        <Code>halfMetre</Code>
+        <Name>halfMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.90">
+        <Code>hectare</Code>
+        <Name>hectare</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.91">
+        <Code>hectofoot</Code>
+        <Name>hectofoot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.92">
+        <Code>hectokilometre</Code>
+        <Name>hectokilometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.93">
+        <Code>hectometre</Code>
+        <Name>hectometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.94">
+        <Code>hectometrePerHour</Code>
+        <Name>hectometrePerHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.95">
+        <Code>hectomil</Code>
+        <Name>hectomil</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.96">
+        <Code>hectoPascal</Code>
+        <Name>hectoPascal</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.97">
+        <Code>henry</Code>
+        <Name>henry</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.98">
+        <Code>hertz</Code>
+        <Name>hertz</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.99">
+        <Code>horsepowerElectric</Code>
+        <Name>horsepowerElectric</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.100">
+        <Code>horsepowerMechanic</Code>
+        <Name>horsepowerMechanic</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.101">
+        <Code>horsepowerMetric</Code>
+        <Name>horsepowerMetric</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.102">
+        <Code>hour</Code>
+        <Name>hour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.103">
+        <Code>hoursPerDay</Code>
+        <Name>hoursPerDay</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.104">
+        <Code>inch</Code>
+        <Name>inch</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.105">
+        <Code>joule</Code>
+        <Name>joule</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.106">
+        <Code>joulePerKilometre</Code>
+        <Name>joulePerKilometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.107">
+        <Code>joulePerMetre</Code>
+        <Name>joulePerMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.108">
+        <Code>kelvin</Code>
+        <Name>kelvin</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.109">
+        <Code>kgForceMetrePerSecond</Code>
+        <Name>kgForceMetrePerSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.110">
+        <Code>kiloampere</Code>
+        <Name>kiloampere</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.111">
+        <Code>kilobar</Code>
+        <Name>kilobar</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.112">
+        <Code>kilobecquerel</Code>
+        <Name>kilobecquerel</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.113">
+        <Code>kilofoot</Code>
+        <Name>kilofoot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.114">
+        <Code>kilogram</Code>
+        <Name>kilogram</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.115">
+        <Code>kilogramForce</Code>
+        <Name>kilogramForce</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.116">
+        <Code>kilogramForceMetre</Code>
+        <Name>kilogramForceMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.117">
+        <Code>kilogramForcePerSquareMetre</Code>
+        <Name>kilogramForcePerSquareMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.118">
+        <Code>kilogramPerCubicMetre</Code>
+        <Name>kilogramPerCubicMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.119">
+        <Code>kilogramPerKilogram</Code>
+        <Name>kilogramPerKilogram</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.120">
+        <Code>kilogramPerLitre</Code>
+        <Name>kilogramPerLitre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.121">
+        <Code>kilogramPerSecond</Code>
+        <Name>kilogramPerSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.122">
+        <Code>kilogramPerSqMetreSecond</Code>
+        <Name>kilogramPerSqMetreSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.123">
+        <Code>kilohertz</Code>
+        <Name>kilohertz</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.124">
+        <Code>kilohm</Code>
+        <Name>kilohm</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.125">
+        <Code>kilojoule</Code>
+        <Name>kilojoule</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.126">
+        <Code>kilolux</Code>
+        <Name>kilolux</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.127">
+        <Code>kilometre</Code>
+        <Name>kilometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.128">
+        <Code>kilometrePerDay</Code>
+        <Name>kilometrePerDay</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.129">
+        <Code>kilometrePerHour</Code>
+        <Name>kilometrePerHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.130">
+        <Code>kilometrePerSquareKilometre</Code>
+        <Name>kilometrePerSquareKilometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.131">
+        <Code>kiloPascal</Code>
+        <Name>kiloPascal</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.132">
+        <Code>kilopound</Code>
+        <Name>kilopound</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.133">
+        <Code>kilopoundForce</Code>
+        <Name>kilopoundForce</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.134">
+        <Code>kilovolt</Code>
+        <Name>kilovolt</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.135">
+        <Code>kilovoltAmpere</Code>
+        <Name>kilovoltAmpere</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.136">
+        <Code>kilowatt</Code>
+        <Name>kilowatt</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.137">
+        <Code>kilowattHour</Code>
+        <Name>kilowattHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.138">
+        <Code>kilowattHourPerAnnum</Code>
+        <Name>kilowattHourPerAnnum</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.139">
+        <Code>kiloyard</Code>
+        <Name>kiloyard</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.140">
+        <Code>knot</Code>
+        <Name>knot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.141">
+        <Code>litre</Code>
+        <Name>litre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.142">
+        <Code>litrePerHour</Code>
+        <Name>litrePerHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.143">
+        <Code>litrePerMinute</Code>
+        <Name>litrePerMinute</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.144">
+        <Code>litrePerSecond</Code>
+        <Name>litrePerSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.145">
+        <Code>longTon</Code>
+        <Name>longTon</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.146">
+        <Code>lumen</Code>
+        <Name>lumen</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.147">
+        <Code>lux</Code>
+        <Name>lux</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.148">
+        <Code>machNumber</Code>
+        <Name>machNumber</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.149">
+        <Code>megabecquerel</Code>
+        <Name>megabecquerel</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.150">
+        <Code>megahertz</Code>
+        <Name>megahertz</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.151">
+        <Code>megaohm</Code>
+        <Name>megaohm</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.152">
+        <Code>megaPascal</Code>
+        <Name>megaPascal</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.153">
+        <Code>megawatt</Code>
+        <Name>megawatt</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.154">
+        <Code>megawattHour</Code>
+        <Name>megawattHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.155">
+        <Code>metre</Code>
+        <Name>metre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.156">
+        <Code>metrePerDay</Code>
+        <Name>metrePerDay</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.157">
+        <Code>metrePerSecond</Code>
+        <Name>metrePerSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.158">
+        <Code>metrePerSecondSquare</Code>
+        <Name>metrePerSecondSquare</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.159">
+        <Code>metrePerSquareMetre</Code>
+        <Name>metrePerSquareMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.160">
+        <Code>microampere</Code>
+        <Name>microampere</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.161">
+        <Code>microcoulomb</Code>
+        <Name>microcoulomb</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.162">
+        <Code>microfarad</Code>
+        <Name>microfarad</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.163">
+        <Code>microgram</Code>
+        <Name>microgram</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.164">
+        <Code>microgramPerCubicMetre</Code>
+        <Name>microgramPerCubicMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.165">
+        <Code>microgramPerSqMetreSecond</Code>
+        <Name>microgramPerSqMetreSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.166">
+        <Code>microhenry</Code>
+        <Name>microhenry</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.167">
+        <Code>micrometre</Code>
+        <Name>micrometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.168">
+        <Code>microsiemens</Code>
+        <Name>microsiemens</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.169">
+        <Code>microsiemensPerCentimetre</Code>
+        <Name>microsiemensPerCentimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.170">
+        <Code>microsiemensPerFoot</Code>
+        <Name>microsiemensPerFoot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.171">
+        <Code>microsiemensPerInch</Code>
+        <Name>microsiemensPerInch</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.172">
+        <Code>microsiemensPerMetre</Code>
+        <Name>microsiemensPerMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.173">
+        <Code>microvolt</Code>
+        <Name>microvolt</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.174">
+        <Code>microwatt</Code>
+        <Name>microwatt</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.175">
+        <Code>microweber</Code>
+        <Name>microweber</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.176">
+        <Code>mil</Code>
+        <Name>mil</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.177">
+        <Code>militaryLoadClass</Code>
+        <Name>militaryLoadClass</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.178">
+        <Code>milliampere</Code>
+        <Name>milliampere</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.179">
+        <Code>millibar</Code>
+        <Name>millibar</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.180">
+        <Code>millicoulomb</Code>
+        <Name>millicoulomb</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.181">
+        <Code>milligal</Code>
+        <Name>milligal</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.182">
+        <Code>milligram</Code>
+        <Name>milligram</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.183">
+        <Code>millilitre</Code>
+        <Name>millilitre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.184">
+        <Code>millilux</Code>
+        <Name>millilux</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.185">
+        <Code>millimetre</Code>
+        <Name>millimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.186">
+        <Code>millimetrePerDay</Code>
+        <Name>millimetrePerDay</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.187">
+        <Code>millimetrePerHour</Code>
+        <Name>millimetrePerHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.188">
+        <Code>millimetresOfMercury</Code>
+        <Name>millimetresOfMercury</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.189">
+        <Code>millimil</Code>
+        <Name>millimil</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.190">
+        <Code>millionCubicMetrePerAnnum</Code>
+        <Name>millionCubicMetrePerAnnum</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.191">
+        <Code>millisecond</Code>
+        <Name>millisecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.192">
+        <Code>millisiemens</Code>
+        <Name>millisiemens</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.193">
+        <Code>millivolt</Code>
+        <Name>millivolt</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.194">
+        <Code>milliwatt</Code>
+        <Name>milliwatt</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.195">
+        <Code>milliweber</Code>
+        <Name>milliweber</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.196">
+        <Code>minute</Code>
+        <Name>minute</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.197">
+        <Code>mole</Code>
+        <Name>mole</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.198">
+        <Code>nanocoulomb</Code>
+        <Name>nanocoulomb</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.199">
+        <Code>nanofarad</Code>
+        <Name>nanofarad</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.200">
+        <Code>nanometre</Code>
+        <Name>nanometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.201">
+        <Code>nanotesla</Code>
+        <Name>nanotesla</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.202">
+        <Code>nanoteslaPerMetre</Code>
+        <Name>nanoteslaPerMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.203">
+        <Code>nanoweber</Code>
+        <Name>nanoweber</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.204">
+        <Code>nauticalMile</Code>
+        <Name>nauticalMile</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.205">
+        <Code>neper</Code>
+        <Name>neper</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.206">
+        <Code>neperPerMetre</Code>
+        <Name>neperPerMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.207">
+        <Code>newton</Code>
+        <Name>newton</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.208">
+        <Code>ohm</Code>
+        <Name>ohm</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.209">
+        <Code>ohmCentimetre</Code>
+        <Name>ohmCentimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.210">
+        <Code>ohmFoot</Code>
+        <Name>ohmFoot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.211">
+        <Code>ohmInch</Code>
+        <Name>ohmInch</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.212">
+        <Code>ohmMetre</Code>
+        <Name>ohmMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.213">
+        <Code>ounce</Code>
+        <Name>ounce</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.214">
+        <Code>partsPerBillion</Code>
+        <Name>partsPerBillion</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.215">
+        <Code>partsPerMillion</Code>
+        <Name>partsPerMillion</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.216">
+        <Code>partsPerThousand</Code>
+        <Name>partsPerThousand</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.217">
+        <Code>partsPerThousandPerAnnum</Code>
+        <Name>partsPerThousandPerAnnum</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.218">
+        <Code>partsPerTrillion</Code>
+        <Name>partsPerTrillion</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.219">
+        <Code>pascal</Code>
+        <Name>pascal</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.220">
+        <Code>perAnnum</Code>
+        <Name>perAnnum</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.221">
+        <Code>percent</Code>
+        <Name>percent</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.222">
+        <Code>percentPerAnnum</Code>
+        <Name>percentPerAnnum</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.223">
+        <Code>perDay</Code>
+        <Name>perDay</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.224">
+        <Code>perHour</Code>
+        <Name>perHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.225">
+        <Code>perMinute</Code>
+        <Name>perMinute</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.226">
+        <Code>perSecond</Code>
+        <Name>perSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.227">
+        <Code>perSquareKilometre</Code>
+        <Name>perSquareKilometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.228">
+        <Code>perSquareMetre</Code>
+        <Name>perSquareMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.229">
+        <Code>perSquareStatuteMile</Code>
+        <Name>perSquareStatuteMile</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.230">
+        <Code>picofarad</Code>
+        <Name>picofarad</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.231">
+        <Code>picometre</Code>
+        <Name>picometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.232">
+        <Code>pound</Code>
+        <Name>pound</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.233">
+        <Code>poundForce</Code>
+        <Name>poundForce</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.234">
+        <Code>poundForcePerSquareInch</Code>
+        <Name>poundForcePerSquareInch</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.235">
+        <Code>poundSterling</Code>
+        <Name>poundSterling</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.236">
+        <Code>radian</Code>
+        <Name>radian</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.237">
+        <Code>radiationAbsorbedDose</Code>
+        <Name>radiationAbsorbedDose</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.238">
+        <Code>ratio</Code>
+        <Name>ratio</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.239">
+        <Code>reciprocalDay</Code>
+        <Name>reciprocalDay</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.240">
+        <Code>reciprocalHour</Code>
+        <Name>reciprocalHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.241">
+        <Code>reciprocalMinute</Code>
+        <Name>reciprocalMinute</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.242">
+        <Code>reciprocalSecond</Code>
+        <Name>reciprocalSecond</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.243">
+        <Code>reciprocalSquareKilometre</Code>
+        <Name>reciprocalSquareKilometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.244">
+        <Code>reciprocalYear</Code>
+        <Name>reciprocalYear</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.245">
+        <Code>rontgenEquivalentMan</Code>
+        <Name>rontgenEquivalentMan</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.246">
+        <Code>second</Code>
+        <Name>second</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.247">
+        <Code>shortTon</Code>
+        <Name>shortTon</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.248">
+        <Code>siderealYear</Code>
+        <Name>siderealYear</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.249">
+        <Code>siemens</Code>
+        <Name>siemens</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.250">
+        <Code>siemensPerCentimetre</Code>
+        <Name>siemensPerCentimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.251">
+        <Code>siemensPerFoot</Code>
+        <Name>siemensPerFoot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.252">
+        <Code>siemensPerInch</Code>
+        <Name>siemensPerInch</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.253">
+        <Code>siemensPerMetre</Code>
+        <Name>siemensPerMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.254">
+        <Code>sievert</Code>
+        <Name>sievert</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.255">
+        <Code>squareCentimetre</Code>
+        <Name>squareCentimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.256">
+        <Code>squareDecametre</Code>
+        <Name>squareDecametre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.257">
+        <Code>squareDecimetre</Code>
+        <Name>squareDecimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.258">
+        <Code>squareFoot</Code>
+        <Name>squareFoot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.259">
+        <Code>squareInch</Code>
+        <Name>squareInch</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.260">
+        <Code>squareKilometre</Code>
+        <Name>squareKilometre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.261">
+        <Code>squareMetre</Code>
+        <Name>squareMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.262">
+        <Code>squareMillimetre</Code>
+        <Name>squareMillimetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.263">
+        <Code>squareStatuteMile</Code>
+        <Name>squareStatuteMile</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.264">
+        <Code>squareYard</Code>
+        <Name>squareYard</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.265">
+        <Code>standardAtmosphere</Code>
+        <Name>standardAtmosphere</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.266">
+        <Code>statuteMile</Code>
+        <Name>statuteMile</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.267">
+        <Code>statuteMilePerHour</Code>
+        <Name>statuteMilePerHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.268">
+        <Code>steradian</Code>
+        <Name>steradian</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.269">
+        <Code>tesla</Code>
+        <Name>tesla</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.270">
+        <Code>teslaPerMetre</Code>
+        <Name>teslaPerMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.271">
+        <Code>thermochemicalCalorie</Code>
+        <Name>thermochemicalCalorie</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.272">
+        <Code>tonne</Code>
+        <Name>tonne</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.273">
+        <Code>tonnePerAnnum</Code>
+        <Name>tonnePerAnnum</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.274">
+        <Code>tonnePerCubicMetre</Code>
+        <Name>tonnePerCubicMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.275">
+        <Code>tonnePerDay</Code>
+        <Name>tonnePerDay</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.276">
+        <Code>tonnePerHour</Code>
+        <Name>tonnePerHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.277">
+        <Code>torr</Code>
+        <Name>torr</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.278">
+        <Code>tropicalYear</Code>
+        <Name>tropicalYear</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.279">
+        <Code>unifiedAtomicMassUnit</Code>
+        <Name>unifiedAtomicMassUnit</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.280">
+        <Code>unitless</Code>
+        <Name>unitless</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.281">
+        <Code>usBarrelOil</Code>
+        <Name>usBarrelOil</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.282">
+        <Code>usCup</Code>
+        <Name>usCup</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.283">
+        <Code>usDollar</Code>
+        <Name>usDollar</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.284">
+        <Code>usFluidOunce</Code>
+        <Name>usFluidOunce</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.285">
+        <Code>usGallon</Code>
+        <Name>usGallon</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.286">
+        <Code>usPint</Code>
+        <Name>usPint</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.287">
+        <Code>usQuart</Code>
+        <Name>usQuart</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.288">
+        <Code>usSurveyFoot</Code>
+        <Name>usSurveyFoot</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.289">
+        <Code>usSurveyMile</Code>
+        <Name>usSurveyMile</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.290">
+        <Code>volt</Code>
+        <Name>volt</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.291">
+        <Code>voltAmpere</Code>
+        <Name>voltAmpere</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.292">
+        <Code>watt</Code>
+        <Name>watt</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.293">
+        <Code>wattHour</Code>
+        <Name>wattHour</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.294">
+        <Code>wattPerSquareMetre</Code>
+        <Name>wattPerSquareMetre</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.295">
+        <Code>weber</Code>
+        <Name>weber</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.296">
+        <Code>week</Code>
+        <Name>week</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+      <DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure TID="DGFCD.UnitsOfMeasure.297">
+        <Code>yard</Code>
+        <Name>yard</Name>
+      </DGIF.DGFCD_UnitsOfMeasure.UnitOfMeasure>
+    </DGIF.DGFCD_UnitsOfMeasure>
+  </DATASECTION>
+</TRANSFER>

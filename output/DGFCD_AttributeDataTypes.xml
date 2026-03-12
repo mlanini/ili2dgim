@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- INTERLIS 2.4 XML Catalog - DGFCD_AttributeDataTypes -->
+<!-- Generated from DGIF_BL_2025-1.xmi -->
+<TRANSFER xmlns="http://www.interlis.ch/INTERLIS2.4">
+  <HEADERSECTION SENDER="DGIF_XMI_Extractor" VERSION="2.4">
+    <MODELS>
+      <MODEL NAME="DGIF" VERSION="2025-1" URI="https://dgiwg.org/dgif"/>
+    </MODELS>
+  </HEADERSECTION>
+  <DATASECTION>
+    <DGIF.DGFCD_AttributeDataTypes BID="DGFCD.AttributeDataTypes">
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.1">
+        <Code>ActivityDurationStrucText</Code>
+        <Name>ActivityDurationStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.2">
+        <Code>AerodromeCoLocationIdentStrucText</Code>
+        <Name>AerodromeCoLocationIdentStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.3">
+        <Code>AerodromeHotSpotDesigStrucText</Code>
+        <Name>AerodromeHotSpotDesigStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.4">
+        <Code>AerodromeIdentifierKey</Code>
+        <Name>AerodromeIdentifierKey</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.5">
+        <Code>AeroRadioNavServiceIdentStrucText</Code>
+        <Name>AeroRadioNavServiceIdentStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.6">
+        <Code>AirbIdentRadarBcnCodeApxStrucText</Code>
+        <Name>AirbIdentRadarBcnCodeApxStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.7">
+        <Code>AirbNavRadarBcnCodeApnStrucText</Code>
+        <Name>AirbNavRadarBcnCodeApnStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.8">
+        <Code>ApproachPerfDesignatorStrucText</Code>
+        <Name>ApproachPerfDesignatorStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.9">
+        <Code>AtsRouteLocDesignatorStrucText</Code>
+        <Name>AtsRouteLocDesignatorStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.10">
+        <Code>BearingReciprocalCategoryStrucText</Code>
+        <Name>BearingReciprocalCategoryStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.11">
+        <Code>Boolean</Code>
+        <Name>Boolean</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.12">
+        <Code>CharacterOfLightStrucText</Code>
+        <Name>CharacterOfLightStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.13">
+        <Code>CI_Citation</Code>
+        <Name>CI_Citation</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.14">
+        <Code>CI_Contact</Code>
+        <Name>CI_Contact</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.15">
+        <Code>CI_ResponsibleParty</Code>
+        <Name>CI_ResponsibleParty</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.16">
+        <Code>CirclingProcedureIdentStrucText</Code>
+        <Name>CirclingProcedureIdentStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.17">
+        <Code>CitationStrucText</Code>
+        <Name>CitationStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.18">
+        <Code>Count</Code>
+        <Name>Count</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.19">
+        <Code>CountInterval</Code>
+        <Name>CountInterval</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.20">
+        <Code>CreationDateTimeStrucText</Code>
+        <Name>CreationDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.21">
+        <Code>CurrencyDateTimeStrucText</Code>
+        <Name>CurrencyDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.22">
+        <Code>CylicRedundancyCheckValueStrucText</Code>
+        <Name>CylicRedundancyCheckValueStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.23">
+        <Code>DerivedAerodromeLocIdentStrucText</Code>
+        <Name>DerivedAerodromeLocIdentStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.24">
+        <Code>DesignatedPointIdentStrucText</Code>
+        <Name>DesignatedPointIdentStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.25">
+        <Code>DiamFunctionClassStrucText</Code>
+        <Name>DiamFunctionClassStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.26">
+        <Code>DodUniqueGravityStationCodeStrucText</Code>
+        <Name>DodUniqueGravityStationCodeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.27">
+        <Code>DuplicateProcedureIdentStrucText</Code>
+        <Name>DuplicateProcedureIdentStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.28">
+        <Code>DynamicMagVariationDateTimeStrucText</Code>
+        <Name>DynamicMagVariationDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.29">
+        <Code>Enumeration</Code>
+        <Name>Enumeration</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.30">
+        <Code>EventDateTimeStrucText</Code>
+        <Name>EventDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.31">
+        <Code>EventLocalTimeStrucText</Code>
+        <Name>EventLocalTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.32">
+        <Code>FirstDetectionDateTimeStrucText</Code>
+        <Name>FirstDetectionDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.33">
+        <Code>GeolocationCodeStrucText</Code>
+        <Name>GeolocationCodeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.34">
+        <Code>GeoNameClassStrucText</Code>
+        <Name>GeoNameClassStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.35">
+        <Code>GeoNameDesignationStrucText</Code>
+        <Name>GeoNameDesignationStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.36">
+        <Code>GmCurve</Code>
+        <Name>GmCurve</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.37">
+        <Code>GmMultiCurve</Code>
+        <Name>GmMultiCurve</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.38">
+        <Code>GmMultiPoint</Code>
+        <Name>GmMultiPoint</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.39">
+        <Code>GmMultiSolid</Code>
+        <Name>GmMultiSolid</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.40">
+        <Code>GmMultiSurface</Code>
+        <Name>GmMultiSurface</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.41">
+        <Code>GmPoint</Code>
+        <Name>GmPoint</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.42">
+        <Code>GmSolid</Code>
+        <Name>GmSolid</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.43">
+        <Code>GmSurface</Code>
+        <Name>GmSurface</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.44">
+        <Code>GridVariationDateTimeStrucText</Code>
+        <Name>GridVariationDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.45">
+        <Code>HighWaterMonthIntStrucText</Code>
+        <Name>HighWaterMonthIntStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.46">
+        <Code>HorizPosAccuracyReason</Code>
+        <Name>HorizPosAccuracyReason</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.47">
+        <Code>IataLocationIdentifierStrucText</Code>
+        <Name>IataLocationIdentifierStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.48">
+        <Code>IcaoLocationIndicatorStrucText</Code>
+        <Name>IcaoLocationIndicatorStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.49">
+        <Code>IgbUniqueStationCodeStrucText</Code>
+        <Name>IgbUniqueStationCodeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.50">
+        <Code>Index</Code>
+        <Name>Index</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.51">
+        <Code>Integer</Code>
+        <Name>Integer</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.52">
+        <Code>Integer0to359</Code>
+        <Name>Integer0to359</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.53">
+        <Code>IntegerNonNeg0to120</Code>
+        <Name>IntegerNonNeg0to120</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.54">
+        <Code>IntegerNonNegative</Code>
+        <Name>IntegerNonNegative</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.55">
+        <Code>Iso15924ScriptCodeStrucText</Code>
+        <Name>Iso15924ScriptCodeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.56">
+        <Code>KeyNonLex18</Code>
+        <Name>KeyNonLex18</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.57">
+        <Code>KeyNonLex24</Code>
+        <Name>KeyNonLex24</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.58">
+        <Code>KeyNonLex254</Code>
+        <Name>KeyNonLex254</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.59">
+        <Code>KeyNonLex5</Code>
+        <Name>KeyNonLex5</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.60">
+        <Code>KeyNonLex80</Code>
+        <Name>KeyNonLex80</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.61">
+        <Code>LanguageDialectStrucText</Code>
+        <Name>LanguageDialectStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.62">
+        <Code>LanguageStrucText</Code>
+        <Name>LanguageStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.63">
+        <Code>LastDetectionDateTimeStrucText</Code>
+        <Name>LastDetectionDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.64">
+        <Code>LogisticsPlanReportCodeStrucText</Code>
+        <Name>LogisticsPlanReportCodeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.65">
+        <Code>LowWaterMonthIntStrucText</Code>
+        <Name>LowWaterMonthIntStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.66">
+        <Code>MagneticVariationDateStrucText</Code>
+        <Name>MagneticVariationDateStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.67">
+        <Code>MaritimeBottomCharacterStrucText</Code>
+        <Name>MaritimeBottomCharacterStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.68">
+        <Code>MinimumClimbGradientStrucText</Code>
+        <Name>MinimumClimbGradientStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.69">
+        <Code>MMSICodeStructuredText</Code>
+        <Name>MMSICodeStructuredText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.70">
+        <Code>ModificationDateTimeStrucText</Code>
+        <Name>ModificationDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.71">
+        <Code>MultipleLightRangesStrucText</Code>
+        <Name>MultipleLightRangesStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.72">
+        <Code>NameEffectiveDateTimeStrucText</Code>
+        <Name>NameEffectiveDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.73">
+        <Code>NameTerminationDateTimeStrucText</Code>
+        <Name>NameTerminationDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.74">
+        <Code>OezStrucText</Code>
+        <Name>OezStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.75">
+        <Code>OperationsEndDateTimeStrucText</Code>
+        <Name>OperationsEndDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.76">
+        <Code>OperationsStartDateTimeStrucText</Code>
+        <Name>OperationsStartDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.77">
+        <Code>PdeStrucText</Code>
+        <Name>PdeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.78">
+        <Code>PdsStrucText</Code>
+        <Name>PdsStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.79">
+        <Code>PdzStrucText</Code>
+        <Name>PdzStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.80">
+        <Code>PeriodicMonthIntervalStrucText</Code>
+        <Name>PeriodicMonthIntervalStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.81">
+        <Code>PeriodMarineCurMonthIntStrucText</Code>
+        <Name>PeriodMarineCurMonthIntStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.82">
+        <Code>PeriodRestrictMonthIntStrucText</Code>
+        <Name>PeriodRestrictMonthIntStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.83">
+        <Code>PresenceDateIntervalStrucText</Code>
+        <Name>PresenceDateIntervalStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.84">
+        <Code>ProcedureSegmentTimeStrucText</Code>
+        <Name>ProcedureSegmentTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.85">
+        <Code>Real</Code>
+        <Name>Real</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.86">
+        <Code>RealInterval</Code>
+        <Name>RealInterval</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.87">
+        <Code>Realm180to180</Code>
+        <Name>Realm180to180</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.88">
+        <Code>RealNonNeg0r00to4r99</Code>
+        <Name>RealNonNeg0r00to4r99</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.89">
+        <Code>RealNonNeg359</Code>
+        <Name>RealNonNeg359</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.90">
+        <Code>RealNonNeg359r9</Code>
+        <Name>RealNonNeg359r9</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.91">
+        <Code>RealNonNeg360</Code>
+        <Name>RealNonNeg360</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.92">
+        <Code>RealNonNegative</Code>
+        <Name>RealNonNegative</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.93">
+        <Code>RealNonNegInterval</Code>
+        <Name>RealNonNegInterval</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.94">
+        <Code>RealNonNegInterval100</Code>
+        <Name>RealNonNegInterval100</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.95">
+        <Code>RealNonNegInterval360</Code>
+        <Name>RealNonNegInterval360</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.96">
+        <Code>RefPathIdentifierStrucText</Code>
+        <Name>RefPathIdentifierStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.97">
+        <Code>RefStationDataSelectorStrucText</Code>
+        <Name>RefStationDataSelectorStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.98">
+        <Code>RefSystemIdentStrucText</Code>
+        <Name>RefSystemIdentStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.99">
+        <Code>RouteIdentificationStrucText</Code>
+        <Name>RouteIdentificationStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.100">
+        <Code>RunwayDesignatorStrucText</Code>
+        <Name>RunwayDesignatorStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.101">
+        <Code>SbasServiceProviderStrucText</Code>
+        <Name>SbasServiceProviderStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.102">
+        <Code>SeasonalIceLimitIntStrucText</Code>
+        <Name>SeasonalIceLimitIntStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.103">
+        <Code>SignalGroupPatternStrucText</Code>
+        <Name>SignalGroupPatternStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.104">
+        <Code>SlavedVariationDateTimeStrucText</Code>
+        <Name>SlavedVariationDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.105">
+        <Code>SpatialSourceDateTimeStrucText</Code>
+        <Name>SpatialSourceDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.106">
+        <Code>SpecifiedDomainValuesStrucText</Code>
+        <Name>SpecifiedDomainValuesStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.107">
+        <Code>StationDeclinationDateTimeStrucText</Code>
+        <Name>StationDeclinationDateTimeStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.108">
+        <Code>TermInstProcDesigStrucText</Code>
+        <Name>TermInstProcDesigStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.109">
+        <Code>TermInstProcIdentStrucText</Code>
+        <Name>TermInstProcIdentStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.110">
+        <Code>TermInstProcTransitionIdStrucText</Code>
+        <Name>TermInstProcTransitionIdStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.111">
+        <Code>Text</Code>
+        <Name>Text</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.112">
+        <Code>TextNonLex60</Code>
+        <Name>TextNonLex60</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.113">
+        <Code>TransliterationMethodStrucText</Code>
+        <Name>TransliterationMethodStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.114">
+        <Code>UniqueFeatureIdentifierStrucText</Code>
+        <Name>UniqueFeatureIdentifierStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.115">
+        <Code>UuiStrucText</Code>
+        <Name>UuiStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.116">
+        <Code>VerticalObstructionIdentStrucText</Code>
+        <Name>VerticalObstructionIdentStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+      <DGIF.DGFCD_AttributeDataTypes.DataType TID="DGFCD.AttributeDataTypes.117">
+        <Code>WorldAeroChartIdentifierStrucText</Code>
+        <Name>WorldAeroChartIdentifierStrucText</Name>
+      </DGIF.DGFCD_AttributeDataTypes.DataType>
+    </DGIF.DGFCD_AttributeDataTypes>
+  </DATASECTION>
+</TRANSFER>

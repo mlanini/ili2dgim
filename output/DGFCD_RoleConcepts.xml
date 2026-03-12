@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- INTERLIS 2.4 XML Catalog - DGFCD_RoleConcepts -->
+<!-- Generated from DGIF_BL_2025-1.xmi -->
+<TRANSFER xmlns="http://www.interlis.ch/INTERLIS2.4">
+  <HEADERSECTION SENDER="DGIF_XMI_Extractor" VERSION="2.4">
+    <MODELS>
+      <MODEL NAME="DGIF" VERSION="2025-1" URI="https://dgiwg.org/dgif"/>
+    </MODELS>
+  </HEADERSECTION>
+  <DATASECTION>
+    <DGIF.DGFCD_RoleConcepts BID="DGFCD.RoleConcepts">
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.1">
+        <Code>aeroObstacleDescribedBy</Code>
+        <Name>aeroObstacleDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.2">
+        <Code>attributeMetadata</Code>
+        <Name>attributeMetadata</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.3">
+        <Code>beliefPracticed</Code>
+        <Name>beliefPracticed</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.4">
+        <Code>beliefPractisedIn</Code>
+        <Name>beliefPractisedIn</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.5">
+        <Code>believePractised</Code>
+        <Name>believePractised</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.6">
+        <Code>consistsOf</Code>
+        <Name>consistsOf</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.7">
+        <Code>cropInfoDescribedBy</Code>
+        <Name>cropInfoDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.8">
+        <Code>describesReligiousInformation</Code>
+        <Name>describesReligiousInformation</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.9">
+        <Code>fluidCapabilitiesDescribedBy</Code>
+        <Name>fluidCapabilitiesDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.10">
+        <Code>hasAdministrativeDesignation</Code>
+        <Name>hasAdministrativeDesignation</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.11">
+        <Code>hasAmenity</Code>
+        <Name>hasAmenity</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.12">
+        <Code>hasAmenityContactInfo</Code>
+        <Name>hasAmenityContactInfo</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.13">
+        <Code>hasCapacity</Code>
+        <Name>hasCapacity</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.14">
+        <Code>hasCulturalProtection</Code>
+        <Name>hasCulturalProtection</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.15">
+        <Code>hasCulturalRegistrationInfo</Code>
+        <Name>hasCulturalRegistrationInfo</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.16">
+        <Code>hasCulturalSignificance</Code>
+        <Name>hasCulturalSignificance</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.17">
+        <Code>hasGeopoliticalDesignation</Code>
+        <Name>hasGeopoliticalDesignation</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.18">
+        <Code>hasLocationAddress</Code>
+        <Name>hasLocationAddress</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.19">
+        <Code>hasMedicalResource</Code>
+        <Name>hasMedicalResource</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.20">
+        <Code>hasName</Code>
+        <Name>hasName</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.21">
+        <Code>hasNameInformation</Code>
+        <Name>hasNameInformation</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.22">
+        <Code>hasOrganisationContactInfo</Code>
+        <Name>hasOrganisationContactInfo</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.23">
+        <Code>hasPresenceOfBelief</Code>
+        <Name>hasPresenceOfBelief</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.24">
+        <Code>hasPresenceOfGroup</Code>
+        <Name>hasPresenceOfGroup</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.25">
+        <Code>hasPresenceOfLanguage</Code>
+        <Name>hasPresenceOfLanguage</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.26">
+        <Code>hasSpecialDesig</Code>
+        <Name>hasSpecialDesig</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.27">
+        <Code>hasStatistic</Code>
+        <Name>hasStatistic</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.28">
+        <Code>hasStatisticCollection</Code>
+        <Name>hasStatisticCollection</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.29">
+        <Code>hydrographicBaseHeightInfoDescribedBy</Code>
+        <Name>hydrographicBaseHeightInfoDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.30">
+        <Code>isAdministrativeCapitalOf</Code>
+        <Name>isAdministrativeCapitalOf</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.31">
+        <Code>isBorderedBy</Code>
+        <Name>isBorderedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.32">
+        <Code>isCaptialOf</Code>
+        <Name>isCaptialOf</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.33">
+        <Code>isDesignatedBy</Code>
+        <Name>isDesignatedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.34">
+        <Code>isEquippedWith</Code>
+        <Name>isEquippedWith</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.35">
+        <Code>isEstablishedBy</Code>
+        <Name>isEstablishedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.36">
+        <Code>isInRelationWith</Code>
+        <Name>isInRelationWith</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.37">
+        <Code>isInvolvedIn</Code>
+        <Name>isInvolvedIn</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.38">
+        <Code>isLocatedAt</Code>
+        <Name>isLocatedAt</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.39">
+        <Code>isPartOf</Code>
+        <Name>isPartOf</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.40">
+        <Code>isRelatedTo</Code>
+        <Name>isRelatedTo</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.41">
+        <Code>isSeatGovernmentOf</Code>
+        <Name>isSeatGovernmentOf</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.42">
+        <Code>isSubdivisionOf</Code>
+        <Name>isSubdivisionOf</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.43">
+        <Code>isSupportedBy</Code>
+        <Name>isSupportedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.44">
+        <Code>landTransportationWay</Code>
+        <Name>landTransportationWay</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.45">
+        <Code>languageSpokenIn</Code>
+        <Name>languageSpokenIn</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.46">
+        <Code>languageUsed</Code>
+        <Name>languageUsed</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.47">
+        <Code>languageUsed</Code>
+        <Name>languageUsed</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.48">
+        <Code>legalTrafficRestrictionDescribedBy</Code>
+        <Name>legalTrafficRestrictionDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.49">
+        <Code>locatedGroup</Code>
+        <Name>locatedGroup</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.50">
+        <Code>manufacturingInfoDescribedBy</Code>
+        <Name>manufacturingInfoDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.51">
+        <Code>maritimeBottomCharacterInfoDescribedBy</Code>
+        <Name>maritimeBottomCharacterInfoDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.52">
+        <Code>medicalInfoDescribedBy</Code>
+        <Name>medicalInfoDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.53">
+        <Code>navigationLandmarkInfoDescribedBy</Code>
+        <Name>navigationLandmarkInfoDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.54">
+        <Code>operatorOrganisation</Code>
+        <Name>operatorOrganisation</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.55">
+        <Code>participatedBy</Code>
+        <Name>participatedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.56">
+        <Code>passesThrough</Code>
+        <Name>passesThrough</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.57">
+        <Code>populatedAreaInfoDescribedBy</Code>
+        <Name>populatedAreaInfoDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.58">
+        <Code>populationInfoDescribedBy</Code>
+        <Name>populationInfoDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.59">
+        <Code>pumpPresentAt</Code>
+        <Name>pumpPresentAt</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.60">
+        <Code>radioTransmissionInfoDescribedBy</Code>
+        <Name>radioTransmissionInfoDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.61">
+        <Code>trackInfoDescribedBy</Code>
+        <Name>trackInfoDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.62">
+        <Code>tunnelRoutePavementInfoDescribedby</Code>
+        <Name>tunnelRoutePavementInfoDescribedby</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.63">
+        <Code>verticalPositionDescribedBy</Code>
+        <Name>verticalPositionDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.64">
+        <Code>waterPropertiesDescribedBy</Code>
+        <Name>waterPropertiesDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.65">
+        <Code>wirelessTelecomInfoDescribedBy</Code>
+        <Name>wirelessTelecomInfoDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.66">
+        <Code>featureMetadata</Code>
+        <Name>featureMetadata</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.67">
+        <Code>restrictionInfo</Code>
+        <Name>restrictionInfo</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+      <DGIF.DGFCD_RoleConcepts.RoleConcept TID="DGFCD.RoleConcepts.68">
+        <Code>sourceInfoDescribedBy</Code>
+        <Name>sourceInfoDescribedBy</Name>
+      </DGIF.DGFCD_RoleConcepts.RoleConcept>
+    </DGIF.DGFCD_RoleConcepts>
+  </DATASECTION>
+</TRANSFER>
