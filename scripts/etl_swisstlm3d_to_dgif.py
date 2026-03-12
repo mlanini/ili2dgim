@@ -149,8 +149,8 @@ def main() -> int:
     )
     parser.add_argument(
         "--tmp-dir",
-        default="C:/tmp/geodata",
-        help="Temporary working directory (default: C:/tmp/geodata)",
+        default="C:/tmp/dgif",
+        help="Temporary working directory (default: C:/tmp/dgif)",
     )
     parser.add_argument(
         "--skip-download",

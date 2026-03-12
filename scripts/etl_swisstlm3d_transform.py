@@ -9,7 +9,7 @@ DGIF-schema GeoPackage.
 
 Usage:
     python etl_swisstlm3d_transform.py \
-        --tlm-gpkg  C:/tmp/geodata/swisstlm3d_temp.gpkg \
+        --tlm-gpkg  C:/tmp/dgif/swisstlm3d_temp.gpkg \
         --dgif-gpkg output/DGIF_swissTLM3D.gpkg \
         --mapping   dgiwg_docs/swissTLM3D_to_DGIF_V3.csv
 """
