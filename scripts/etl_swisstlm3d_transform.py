@@ -7,10 +7,15 @@ applies the mapping table (swissTLM3D_to_DGIF_V3.csv), reprojects from
 LV95 (EPSG:2056) to WGS84 (EPSG:4326), and inserts features into a
 DGIF-schema GeoPackage.
 
+The DGIF GeoPackage uses --smart2Inheritance, so each concrete class table
+(e.g. cultural_building) contains ALL inherited columns from Entity and
+FeatureEntity (including ageometry, beginlifespanversion, etc.).
+This means a single INSERT per feature into the concrete table is sufficient.
+
 Usage:
-    python etl_swisstlm3d_transform.py \
-        --tlm-gpkg  C:/tmp/dgif/swisstlm3d_temp.gpkg \
-        --dgif-gpkg output/DGIF_swissTLM3D.gpkg \
+    python etl_swisstlm3d_transform.py \\
+        --tlm-gpkg  C:/tmp/dgif/swisstlm3d_temp.gpkg \\
+        --dgif-gpkg output/DGIF_swissTLM3D.gpkg \\
         --mapping   models/swissTLM3D_to_DGIF_V3.csv
 """
 
@@ -581,12 +586,6 @@ def transform(
     class_meta = build_class_metadata(dgif_conn)
     print(f"[INFO] Found {len(class_meta)} DGIF classes")
 
-    # Get column sets for the base tables
-    entity_cols = get_column_names(dgif_conn, "foundation_entity")
-    feature_entity_cols = get_column_names(dgif_conn, "foundation_featureentity")
-    print(f"[INFO] Entity columns: {sorted(entity_cols)}")
-    print(f"[INFO] FeatureEntity columns: {sorted(feature_entity_cols)}")
-
     # Coordinate transformer
     transform_ct = create_transformer()
 
@@ -603,8 +602,6 @@ def transform(
             if mr.dgif_class in class_meta:
                 meta = class_meta[mr.dgif_class]
                 topics_needed.add(f"DGIF_V3.{meta['topic']}")
-    # Always include Foundation (for Entity and FeatureEntity)
-    topics_needed.add("DGIF_V3.Foundation")
 
     print(f"[INFO] Creating baskets for {len(topics_needed)} topics...")
     basket_map = ensure_baskets(dgif_conn, topics_needed)
@@ -722,12 +719,11 @@ def transform(
                 # Resolve basket
                 topic_key = f"DGIF_V3.{dgif_topic}"
                 basket_id = basket_map.get(topic_key)
-                foundation_basket_id = basket_map.get("DGIF_V3.Foundation")
-                if basket_id is None or foundation_basket_id is None:
+                if basket_id is None:
                     stats["dgif_basket_not_found"] += 1
                     continue
 
-                # Assign T_Id for this feature (same across all 3 tables)
+                # Assign T_Id for this feature
                 tid = next_tid
                 next_tid += 1
 
@@ -737,7 +733,8 @@ def transform(
                 begin_date = src_datum if src_datum else now_iso
 
                 # --- Geometry ---
-                # FeatureEntity.aGeometry is MANDATORY Coord2 (Point).
+                # With --smart2Inheritance each concrete class has its own
+                # ageometry column (MANDATORY Coord2 = Point).
                 # For Line/Polygon sources, extract centroid.
                 geom_wkb = None
                 if src_geom is not None:
@@ -762,90 +759,69 @@ def transform(
                         if py > extent_max_y:
                             extent_max_y = py
 
-                # --- 1. Insert into foundation_entity ---
-                try:
-                    dgif_conn.execute(
-                        'INSERT INTO "foundation_entity" '
-                        '(T_Id, T_basket, T_Type, T_Ili_Tid, '
-                        ' beginlifespanversion, uniqueuniversalentityidentifier, '
-                        ' T_LastChange, T_CreateDate, T_User) '
-                        'VALUES (?,?,?,?,?,?,?,?,?)',
-                        (tid, foundation_basket_id, dgif_iliname, ili_tid,
-                         begin_date, entity_uuid,
-                         now_iso, now_iso, "etl_swisstlm3d")
-                    )
-                except sqlite3.Error as e:
-                    stats["entity_insert_error"] += 1
-                    class_skipped += 1
-                    continue
+                # --- Single-table insert (--smart2Inheritance) ---
+                # With --smart2Inheritance, each concrete class table contains
+                # ALL inherited columns (Entity + FeatureEntity + domain attrs).
+                # No separate foundation_entity / foundation_featureentity insert.
+                has_geom_col = "ageometry" in dgif_cols
 
-                # --- 2. Insert into foundation_featureentity ---
-                try:
-                    if geom_wkb is not None:
-                        dgif_conn.execute(
-                            'INSERT INTO "foundation_featureentity" '
-                            '(T_Id, T_basket, ageometry, T_LastChange, T_CreateDate, T_User) '
-                            'VALUES (?,?,?,?,?,?)',
-                            (tid, foundation_basket_id, geom_wkb,
-                             now_iso, now_iso, "etl_swisstlm3d")
-                        )
-                    else:
-                        # ageometry is NOT NULL — use a default point (0,0)
-                        default_pt = ogr.Geometry(ogr.wkbPoint)
-                        default_pt.AddPoint(0.0, 0.0)
-                        default_wkb = to_gpkg_wkb(default_pt, srs_id=4326)
-                        dgif_conn.execute(
-                            'INSERT INTO "foundation_featureentity" '
-                            '(T_Id, T_basket, ageometry, T_LastChange, T_CreateDate, T_User) '
-                            'VALUES (?,?,?,?,?,?)',
-                            (tid, foundation_basket_id, default_wkb,
-                             now_iso, now_iso, "etl_swisstlm3d")
-                        )
-                except sqlite3.Error as e:
-                    if stats["feature_entity_insert_error"] == 0:
-                        print(f"  [DEBUG] FeatureEntity insert error: {e}", file=sys.stderr)
-                    stats["feature_entity_insert_error"] += 1
-                    class_skipped += 1
-                    continue
+                # If the table has ageometry (FeatureEntity subclass) and no
+                # geometry was extracted, use a default point (0,0)
+                if has_geom_col and geom_wkb is None:
+                    default_pt = ogr.Geometry(ogr.wkbPoint)
+                    default_pt.AddPoint(0.0, 0.0)
+                    geom_wkb = to_gpkg_wkb(default_pt, srs_id=4326)
 
-                # --- 3. Insert into concrete class table ---
-                concrete_cols = ["T_Id", "T_basket", "T_LastChange", "T_CreateDate", "T_User"]
-                concrete_vals: list = [tid, basket_id, now_iso, now_iso, "etl_swisstlm3d"]
+                insert_cols = [
+                    "T_Id", "T_Ili_Tid", "T_basket",
+                    "beginlifespanversion", "uniqueuniversalentityidentifier",
+                    "T_LastChange", "T_CreateDate", "T_User",
+                ]
+                insert_vals: list = [
+                    tid, ili_tid, basket_id,
+                    begin_date, entity_uuid,
+                    now_iso, now_iso, "etl_swisstlm3d",
+                ]
+
+                # Add geometry column only for FeatureEntity subclasses
+                if has_geom_col:
+                    insert_cols.insert(3, "ageometry")
+                    insert_vals.insert(3, geom_wkb)
 
                 # Map DGIF-specific attributes from CSV
                 if mr.dgif_attr1 and mr.dgif_val1:
                     attr_lower = mr.dgif_attr1.lower()
                     if attr_lower in dgif_cols:
-                        concrete_cols.append(mr.dgif_attr1)
-                        concrete_vals.append(mr.dgif_val1)
+                        insert_cols.append(mr.dgif_attr1)
+                        insert_vals.append(mr.dgif_val1)
 
                 if mr.dgif_attr2 and mr.dgif_val2:
                     attr_lower = mr.dgif_attr2.lower()
                     if attr_lower in dgif_cols:
-                        concrete_cols.append(mr.dgif_attr2)
-                        concrete_vals.append(mr.dgif_val2)
+                        insert_cols.append(mr.dgif_attr2)
+                        insert_vals.append(mr.dgif_val2)
 
                 # Fill remaining NOT NULL columns with defaults
                 notnull_defs = meta.get("notnull_defaults", {})
-                already_set = {c.lower() for c in concrete_cols}
+                already_set = {c.lower() for c in insert_cols}
                 for nn_col, nn_default in notnull_defs.items():
                     if nn_col not in already_set:
-                        concrete_cols.append(nn_col)
-                        concrete_vals.append(nn_default)
+                        insert_cols.append(nn_col)
+                        insert_vals.append(nn_default)
 
-                col_str = ", ".join(f'"{c}"' for c in concrete_cols)
-                placeholders = ", ".join(["?"] * len(concrete_vals))
+                col_str = ", ".join(f'"{c}"' for c in insert_cols)
+                placeholders = ", ".join(["?"] * len(insert_vals))
                 sql = f'INSERT INTO "{dgif_table_name}" ({col_str}) VALUES ({placeholders})'
 
                 try:
-                    dgif_conn.execute(sql, concrete_vals)
+                    dgif_conn.execute(sql, insert_vals)
                     class_inserted += 1
                     stats[f"inserted:{dgif_table_name}"] += 1
                 except sqlite3.Error as e:
-                    if stats["concrete_insert_error"] < 5:
-                        print(f"  [DEBUG] Concrete insert error: {e}", file=sys.stderr)
+                    if stats["insert_error"] < 5:
+                        print(f"  [DEBUG] Insert error: {e}", file=sys.stderr)
                         print(f"  [DEBUG]   table={dgif_table_name}", file=sys.stderr)
-                    stats["concrete_insert_error"] += 1
+                    stats["insert_error"] += 1
                     class_skipped += 1
 
         stats["total_inserted"] += class_inserted
@@ -858,18 +834,28 @@ def transform(
     print("\n[INFO] Committing to DGIF GeoPackage...")
     dgif_conn.commit()
 
-    # Update gpkg_contents extent for foundation_featureentity
+    # Update gpkg_contents extent for all tables that received inserts
     print("[INFO] Updating spatial extents...")
     if extent_min_x < float("inf"):
         try:
-            dgif_conn.execute(
-                "UPDATE gpkg_contents SET min_x=?, min_y=?, max_x=?, max_y=? "
-                "WHERE table_name='foundation_featureentity'",
-                (extent_min_x, extent_min_y, extent_max_x, extent_max_y)
-            )
+            # Collect table names that had features inserted
+            inserted_tables = [
+                k.split(":", 1)[1] for k in stats if k.startswith("inserted:")
+            ]
+            updated_count = 0
+            for tbl in inserted_tables:
+                dgif_conn.execute(
+                    "UPDATE gpkg_contents SET min_x=?, min_y=?, max_x=?, max_y=? "
+                    "WHERE table_name=?",
+                    (extent_min_x, extent_min_y, extent_max_x, extent_max_y, tbl)
+                )
+                updated_count += dgif_conn.execute(
+                    "SELECT changes()"
+                ).fetchone()[0]
             dgif_conn.commit()
             print(f"[INFO]   Extent: ({extent_min_x:.6f}, {extent_min_y:.6f}) - "
                   f"({extent_max_x:.6f}, {extent_max_y:.6f})")
+            print(f"[INFO]   Updated {updated_count} gpkg_contents rows")
         except sqlite3.Error as e:
             print(f"[WARN] Could not update extents: {e}", file=sys.stderr)
     else:
@@ -889,9 +875,7 @@ def transform(
     print(f"  TLM classes not found   : {stats.get('tlm_class_not_found', 0)}")
     print(f"  DGIF class not found    : {stats.get('dgif_class_not_found', 0)}")
     print(f"  DGIF basket not found   : {stats.get('dgif_basket_not_found', 0)}")
-    print(f"  Entity insert errors    : {stats.get('entity_insert_error', 0)}")
-    print(f"  FeatureEntity errors    : {stats.get('feature_entity_insert_error', 0)}")
-    print(f"  Concrete insert errors  : {stats.get('concrete_insert_error', 0)}")
+    print(f"  Insert errors           : {stats.get('insert_error', 0)}")
 
     print("\n  Features per DGIF table:")
     for k, v in sorted(stats.items()):

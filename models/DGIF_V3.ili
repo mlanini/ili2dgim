@@ -80,7 +80,6 @@ MODEL DGIF_V3 (en)
     END FeatureAttMetadata;
 
     CLASS FeatureEntity EXTENDS Entity =
-      geometry : MANDATORY Coord2;
       !! sourceInfoDescribedBy : REFERENCE TO SourceInfo;  !! forward reference - class SourceInfo not yet defined in this topic
       !! featureMetadata : REFERENCE TO FeatureMetadata;  !! forward reference - class FeatureMetadata not yet defined in this topic
       !! isDesignatedBy : REFERENCE TO GeoNameInfo;  !! forward reference - class GeoNameInfo not yet defined in this topic
@@ -299,6 +298,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       supported : BOOLEAN;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Coord2;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
     END AeroRadioNavInstallation;
 
@@ -427,6 +427,7 @@ MODEL DGIF_V3 (en)
       signalLimitMinRange : 0.000 .. 999999999.999;
       verticalLowerLimit : 0.000 .. 999999999.999;
       verticalUpperLimit : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END RadioNavServiceLimit;
 
     CLASS RunwayRadarReflector EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -436,6 +437,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
       radarSignificance : TEXT*255;
+      geometry : MANDATORY Coord2;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
     END RunwayRadarReflector;
 
@@ -449,6 +451,7 @@ MODEL DGIF_V3 (en)
     CLASS SpecialNavSystemStation EXTENDS DGIF_V3.Foundation.FeatureEntity =
       radioEmissionClass : TEXT*255;
       specialNavServiceType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END SpecialNavSystemStation;
 
     CLASS SpecialNavigationSystem EXTENDS AeroRadioNavService =
@@ -463,6 +466,7 @@ MODEL DGIF_V3 (en)
 
     CLASS TranspondLandingSysStation EXTENDS DGIF_V3.Foundation.FeatureEntity =
       heightAboveSurfaceLevel : TEXT*255;
+      geometry : MANDATORY Coord2;
     END TranspondLandingSysStation;
 
     CLASS VhfOmniRadioBeacon EXTENDS AeroRadioNavInstallation =
@@ -480,6 +484,7 @@ MODEL DGIF_V3 (en)
       vasisApproachSlope : 0.000 .. 999999999.999;
       vasisNumberUnits : -2000000000 .. 2000000000;
       vasisType : TEXT*255;
+      geometry : MANDATORY Line;
     END VisualAppSlopeIndSystem;
 
     !! ASSOCIATION RunwayDirectionApproachLightingSystem =  !! forward reference – class RunwayDirection is in topic AeronauticalFacility which is not yet available
@@ -554,12 +559,15 @@ MODEL DGIF_V3 (en)
     END AirRefuellingProcedure;
 
     CLASS AirRefuellingAnchorPat EXTENDS AirRefuellingProcedure =
+      geometry : MANDATORY Line;
     END AirRefuellingAnchorPat;
 
     CLASS AirRefuellingRoute EXTENDS AirRefuellingProcedure =
+      geometry : MANDATORY Line;
     END AirRefuellingRoute;
 
     CLASS AirRefuellingTrack EXTENDS AirRefuellingProcedure =
+      geometry : MANDATORY Line;
     END AirRefuellingTrack;
 
     CLASS Airspace EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -577,6 +585,7 @@ MODEL DGIF_V3 (en)
       rvsmLowerLimit : 0.000 .. 999999999.999;
       rvsmUpperLimit : 0.000 .. 999999999.999;
       standardOperatingTimes : TEXT*255;
+      geometry : MANDATORY Surface;
     END Airspace;
 
     CLASS AtsRouteCrossingInfo =
@@ -597,6 +606,7 @@ MODEL DGIF_V3 (en)
       requiredNavPerformanceType : 0.000 .. 999999999.999;
       verticalLowerLimit : 0.000 .. 999999999.999;
       verticalUpperLimit : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END AtsRouteSegment;
 
     CLASS AtsRouteSegmentDirection =
@@ -634,15 +644,18 @@ MODEL DGIF_V3 (en)
     CLASS AeroRadioNavInstPoint EXTENDS AviationDesigPoint =
       aeroRadioNavServiceIdent : TEXT*255;
       aeroRadioNavServiceName : TEXT*255;
+      geometry : MANDATORY Coord2;
     END AeroRadioNavInstPoint;
 
     CLASS AirRefuellingPoint EXTENDS AviationDesigPoint =
       airRefuelPointUsage : TEXT*255;
+      geometry : MANDATORY Coord2;
     END AirRefuellingPoint;
 
     CLASS AtsRouteSigPoint EXTENDS AviationDesigPoint =
       atcRequiredReportType : TEXT*255;
       atsRouteEssentialSigPoint : BOOLEAN;
+      geometry : MANDATORY Coord2;
     END AtsRouteSigPoint;
 
     CLASS EnrouteAtsRoute =
@@ -677,6 +690,7 @@ MODEL DGIF_V3 (en)
       holdingProcUpperLimit : 0.000 .. 999999999.999;
       procedureSpeedLimit : 0.000 .. 999999999.999;
       turnDirection : TEXT*255;
+      geometry : MANDATORY Line;
     END HoldingProcedure;
 
     CLASS IfrTakeoffMinInfo =
@@ -716,11 +730,13 @@ MODEL DGIF_V3 (en)
 
     CLASS ArrivalSegment EXTENDS ProcedureSegmentLeg =
       requiredNavPerformanceType : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END ArrivalSegment;
 
     CLASS DepartureSegment EXTENDS ProcedureSegmentLeg =
       minimumObstacleClearAlt : 0.000 .. 999999999.999;
       requiredNavPerformanceType : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END DepartureSegment;
 
     CLASS InstrumentApproachProcSeg EXTENDS ProcedureSegmentLeg =
@@ -729,44 +745,53 @@ MODEL DGIF_V3 (en)
     CLASS FinalApproachSegment EXTENDS InstrumentApproachProcSeg =
       finalApproachGuideSystem : TEXT*255;
       requiredNavPerformanceType : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
       instApproachConditionInfo : REFERENCE TO InstApproachConditionInfo;
     END FinalApproachSegment;
 
     CLASS InitialApproachSegment EXTENDS InstrumentApproachProcSeg =
       requiredNavPerformanceType : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END InitialApproachSegment;
 
     CLASS IntermediateApproachSeg EXTENDS InstrumentApproachProcSeg =
       requiredNavPerformanceType : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END IntermediateApproachSeg;
 
     CLASS MissedApproachSegment EXTENDS InstrumentApproachProcSeg =
       heightAboveSurface : 0.000 .. 999999999.999;
       requiredNavPerformanceType : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END MissedApproachSegment;
 
     CLASS ProcedureTransitionSeg EXTENDS InstrumentApproachProcSeg =
       requiredNavPerformanceType : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END ProcedureTransitionSeg;
 
     CLASS SafeAltitudeArea EXTENDS DGIF_V3.Foundation.FeatureEntity =
       emergencySafeAltitude : 0.000 .. 999999999.999;
       minimumSectorAltitude : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END SafeAltitudeArea;
 
     CLASS SafeAltitudeAreaSector EXTENDS DGIF_V3.Foundation.FeatureEntity =
       emergencySafeAltitude : 0.000 .. 999999999.999;
       minimumSectorAltitude : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END SafeAltitudeAreaSector;
 
     CLASS TerminalArrivalAltSector EXTENDS DGIF_V3.Foundation.FeatureEntity =
       altitudeDescription : TEXT*255;
       procedureTurnNotAuthorised : BOOLEAN;
       procedureTurnRequired : BOOLEAN;
+      geometry : MANDATORY Surface;
     END TerminalArrivalAltSector;
 
     CLASS TerminalArrivalAltitude EXTENDS DGIF_V3.Foundation.FeatureEntity =
       terminalArriveAltAreaType : TEXT*255;
+      geometry : MANDATORY Surface;
     END TerminalArrivalAltitude;
 
     CLASS TerminalInstProcMinima =
@@ -796,6 +821,7 @@ MODEL DGIF_V3 (en)
       finalApproachCourseFix : BOOLEAN;
       instApproachProcFixRole : TEXT*255;
       leadRadial : 0.000 .. 999999999.999;
+      geometry : MANDATORY Coord2;
     END TerminalInstProcSegPoint;
 
     CLASS TerminalInstProcTransition =
@@ -839,6 +865,7 @@ MODEL DGIF_V3 (en)
       rvsmPointType : TEXT*255;
       wayPointClass : TEXT*255;
       wayPointUsage : TEXT*255;
+      geometry : MANDATORY Coord2;
     END WayPoint;
 
     ASSOCIATION TerminalInstrumentProcedureSafeAltitudeArea =
@@ -957,6 +984,7 @@ MODEL DGIF_V3 (en)
       limitsPhysicallyBased : BOOLEAN;
       maritimeGeoLimitType : TEXT*255;
       officialLength : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END AdministrativeBoundary;
 
     CLASS BoundaryMonument EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -965,6 +993,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
       !! describesReligiousInformation : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.ReligiousInfo;  !! forward reference - topic Cultural not yet defined
     END BoundaryMonument;
 
@@ -973,6 +1002,7 @@ MODEL DGIF_V3 (en)
       controllingAuthority : TEXT*255;
       controllingAuthorityIdent : TEXT*255;
       terrainSurfaceMaterial : TEXT*255;
+      geometry : MANDATORY Surface;
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
       !! hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;  !! forward reference - topic Cultural not yet defined
@@ -981,11 +1011,13 @@ MODEL DGIF_V3 (en)
     CLASS ContaminatedRegion EXTENDS DGIF_V3.Foundation.FeatureEntity =
       contaminantSource : TEXT*255;
       militaryEnvironHazardCat : TEXT*255;
+      geometry : MANDATORY Surface;
     END ContaminatedRegion;
 
     CLASS EconomicReserve EXTENDS DGIF_V3.Foundation.FeatureEntity =
       economicReserveBasis : TEXT*255;
       specialAdminUnitDesc : TEXT*255;
+      geometry : MANDATORY Surface;
     END EconomicReserve;
 
     CLASS GeopoliticalEntityDesig =
@@ -998,6 +1030,7 @@ MODEL DGIF_V3 (en)
     END GeopoliticalEntityDesig;
 
     CLASS InternationalDateLine EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Line;
     END InternationalDateLine;
 
     CLASS LandParcel EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -1008,6 +1041,7 @@ MODEL DGIF_V3 (en)
       controllingAuthority : TEXT*255;
       controllingAuthorityIdent : TEXT*255;
       featureFunction : TEXT*255;
+      geometry : MANDATORY Surface;
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
       !! hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;  !! forward reference - topic Cultural not yet defined
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -1043,6 +1077,7 @@ MODEL DGIF_V3 (en)
     END GeopoliticalEntity;
 
     CLASS ProtectWaterGatherGround EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Surface;
     END ProtectWaterGatherGround;
 
     CLASS SpecialAdminDesig =
@@ -1061,6 +1096,7 @@ MODEL DGIF_V3 (en)
       controllingAuthorityIdent : TEXT*255;
       specialAdminUnit : TEXT*255;
       specialAdminUnitDesc : TEXT*255;
+      geometry : MANDATORY Surface;
       populationInfoDescribedBy : REFERENCE TO PopulationInfo;
       medicalInfoDescribedBy : REFERENCE TO MedicalServiceInfo;
       !! hasPresenceOfLanguage : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.LinguisticEntity;  !! forward reference - topic HumanGeography not yet defined
@@ -1091,6 +1127,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
       volume : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       !! waterPropertiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.WaterResourceInfo;  !! forward reference - topic InlandWater not yet defined
       !! fluidCapabilitiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.FluidCapacityAndCapabilityInfo;  !! forward reference - topic InlandWater not yet defined
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -1127,6 +1164,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       hasCapacity : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.HumanActivityCapacityInfo;
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -1142,6 +1180,7 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       highestElevation : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END Bench;
 
     CLASS Borehole EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -1155,6 +1194,7 @@ MODEL DGIF_V3 (en)
       rigPresent : BOOLEAN;
       wellboreInjectionMaterial : TEXT*255;
       wellboreStatus : TEXT*255;
+      geometry : MANDATORY Coord2;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Borehole;
 
@@ -1167,6 +1207,7 @@ MODEL DGIF_V3 (en)
       predominantVegHeight : 0.000 .. 999999999.999;
       stemDiameter : 0.000 .. 999999999.999;
       treeSpacing : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       hasAmenity : REFERENCE TO Amenity;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
@@ -1184,6 +1225,7 @@ MODEL DGIF_V3 (en)
       permanent : BOOLEAN;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
     END BuildingOverhang;
 
     CLASS Cable EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -1215,6 +1257,7 @@ MODEL DGIF_V3 (en)
       verticalClearanceSafe : TEXT*255;
       verticalRelativeLocation : TEXT*255;
       waterbodyOverheadObstruct : BOOLEAN;
+      geometry : MANDATORY Line;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
       !! verticalPositioningInfo : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;  !! forward reference - topic OceanEnvironment not yet defined
@@ -1244,6 +1287,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       verticalClearanceSafe : TEXT*255;
       waterbodyOverheadObstruct : BOOLEAN;
+      geometry : MANDATORY Line;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Cableway;
@@ -1257,6 +1301,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Coord2;
       !! hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;  !! forward reference - topic OceanEnvironment not yet defined
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Cairn;
@@ -1268,6 +1313,7 @@ MODEL DGIF_V3 (en)
       meansTransportation : TEXT*255;
       monitored : BOOLEAN;
       permanent : BOOLEAN;
+      geometry : MANDATORY Coord2;
       hasAmenity : REFERENCE TO Amenity;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Checkpoint;
@@ -1300,6 +1346,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       radarSignificance : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
       hasAmenity : REFERENCE TO Amenity;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -1345,6 +1392,7 @@ MODEL DGIF_V3 (en)
       routeTotalUsableWidth : 0.000 .. 999999999.999;
       safeHorizontalClearance : 0.000 .. 999999999.999;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END EntranceExit;
 
@@ -1369,6 +1417,7 @@ MODEL DGIF_V3 (en)
       product : TEXT*255;
       undergroundMineAccess : TEXT*255;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hasAmenity : REFERENCE TO Amenity;
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -1396,6 +1445,7 @@ MODEL DGIF_V3 (en)
       predominantFeatureHeight : 0.000 .. 999999999.999;
       structMatType : TEXT*255;
       thickness : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Fence;
 
@@ -1407,6 +1457,7 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Coord2;
       !! fluidCapabilitiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.FluidCapacityAndCapabilityInfo;  !! forward reference - topic InlandWater not yet defined
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       !! waterPropertiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.WaterResourceInfo;  !! forward reference - topic InlandWater not yet defined
@@ -1428,6 +1479,7 @@ MODEL DGIF_V3 (en)
       relativeLevel : TEXT*255;
       structMatType : TEXT*255;
       weaponsRangeType : TEXT*255;
+      geometry : MANDATORY Surface;
       !! hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;  !! forward reference - topic OceanEnvironment not yet defined
       !! verticalPositionDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;  !! forward reference - topic OceanEnvironment not yet defined
     END FiringRange;
@@ -1444,6 +1496,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       radarSignificance : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Flagpole;
@@ -1456,6 +1509,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
       volume : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
       !! fluidCapabilitiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.FluidCapacityAndCapabilityInfo;  !! forward reference - topic InlandWater not yet defined
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -1466,6 +1520,7 @@ MODEL DGIF_V3 (en)
     CLASS GolfDrivingRange EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END GolfDrivingRange;
@@ -1473,12 +1528,14 @@ MODEL DGIF_V3 (en)
     CLASS HydrocarbonsField EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       product : TEXT*255;
+      geometry : MANDATORY Surface;
     END HydrocarbonsField;
 
     CLASS Installation EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       featureFunction : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
@@ -1491,6 +1548,7 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       leastDepthBelowSurfLevel : 0.000 .. 999999999.999;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Coord2;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       !! verticalPositionDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;  !! forward reference - topic OceanEnvironment not yet defined
     END LiquidDiffuser;
@@ -1498,6 +1556,7 @@ MODEL DGIF_V3 (en)
     CLASS Lookout EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Lookout;
 
@@ -1516,6 +1575,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       permanent : BOOLEAN;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Coord2;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END LowAirManeuverPylon;
 
@@ -1563,6 +1623,7 @@ MODEL DGIF_V3 (en)
       navigationMarkColour : TEXT*255;
       radarSignificance : TEXT*255;
       rawMaterial : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
     END MineralPile;
@@ -1585,6 +1646,7 @@ MODEL DGIF_V3 (en)
       radarSignificance : TEXT*255;
       structMatType : TEXT*255;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Surface;
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -1719,6 +1781,7 @@ MODEL DGIF_V3 (en)
       overheadClearance : 0.000 .. 999999999.999;
       overheadObstructionType : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Line;
     END OverheadObstruction;
 
     CLASS Park EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -1731,6 +1794,7 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -1744,12 +1808,14 @@ MODEL DGIF_V3 (en)
       conspicuousSeaCategory : TEXT*255;
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END ParticleAccelerator;
 
     CLASS PicnicSite EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END PicnicSite;
 
@@ -1761,6 +1827,7 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       highestElevation : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END PicnicTable;
 
     CLASS Planter EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -1774,6 +1841,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       supported : BOOLEAN;
       suspended : BOOLEAN;
+      geometry : MANDATORY Coord2;
     END Planter;
 
     CLASS PowerGeneratingUnit EXTENDS NonBuildingStructure =
@@ -1815,6 +1883,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       racingType : TEXT*255;
       racingVehicleType : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hasAmenity : REFERENCE TO Amenity;
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -1826,6 +1895,7 @@ MODEL DGIF_V3 (en)
       ascentDirection : 0.000 .. 999999999.999;
       heightOfObject : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
     END Ramp;
 
     CLASS RecyclingSite EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -1838,6 +1908,7 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       hasAmenity : REFERENCE TO Amenity;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END RecyclingSite;
@@ -1871,6 +1942,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       radarSignificance : TEXT*255;
       structureShape : TEXT*255;
+      geometry : MANDATORY Surface;
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -1882,6 +1954,7 @@ MODEL DGIF_V3 (en)
     CLASS CampSite EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       describesReligiousInformation : REFERENCE TO ReligiousInfo;
       hasAmenity : REFERENCE TO Amenity;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -1892,6 +1965,7 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       describesReligiousInformation : REFERENCE TO ReligiousInfo;
     END Courtyard;
 
@@ -1900,6 +1974,7 @@ MODEL DGIF_V3 (en)
       isolated : BOOLEAN;
       permanent : BOOLEAN;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
       religiousInfo : REFERENCE TO ReligiousInfo;
@@ -1914,6 +1989,7 @@ MODEL DGIF_V3 (en)
       isolated : BOOLEAN;
       permanent : BOOLEAN;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
       religiousInfo : REFERENCE TO ReligiousInfo;
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -1924,6 +2000,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       historicSignificance : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
@@ -1936,6 +2013,7 @@ MODEL DGIF_V3 (en)
       historicSignificance : TEXT*255;
       isolated : BOOLEAN;
       permanent : BOOLEAN;
+      geometry : MANDATORY Surface;
       religiousInfo : REFERENCE TO ReligiousInfo;
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -1945,6 +2023,7 @@ MODEL DGIF_V3 (en)
       crossSectionalShape : TEXT*255;
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
       hasAmenity : REFERENCE TO Amenity;
@@ -1964,6 +2043,7 @@ MODEL DGIF_V3 (en)
       permanent : BOOLEAN;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hasAmenity : REFERENCE TO Amenity;
     END RetailStand;
@@ -1982,6 +2062,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       historicSignificance : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       !! verticalPositioningInfo : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;  !! forward reference - topic OceanEnvironment not yet defined
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
       describesReligiousInformation : REFERENCE TO ReligiousInfo;
@@ -1994,6 +2075,7 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       manMade : BOOLEAN;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END SaltEvaporator;
 
@@ -2008,6 +2090,7 @@ MODEL DGIF_V3 (en)
       predominantFeatureDepth : 0.000 .. 999999999.999;
       product : TEXT*255;
       volume : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END SettlingPond;
 
@@ -2017,6 +2100,7 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       highestElevation : TEXT*255;
       predominantFeatureHeight : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END ShearWall;
 
     CLASS Shelter EXTENDS NonBuildingStructure =
@@ -2034,6 +2118,7 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END SkiRun;
 
@@ -2055,6 +2140,7 @@ MODEL DGIF_V3 (en)
       product : TEXT*255;
       radarSignificance : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
     END SolarPanel;
@@ -2069,6 +2155,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
       surfaceMaterialType : MANDATORY TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hasAmenity : REFERENCE TO Amenity;
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -2103,6 +2190,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       structureShape : TEXT*255;
       verticalRelativeLocation : MANDATORY TEXT*255;
+      geometry : MANDATORY Surface;
       hasAmenity : REFERENCE TO Amenity;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -2120,6 +2208,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
     END Stair;
 
     CLASS StatuePedestal EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -2131,6 +2220,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       supported : BOOLEAN;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Coord2;
       describesReligiousInformation : REFERENCE TO ReligiousInfo;
     END StatuePedestal;
 
@@ -2154,6 +2244,7 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END StormDrain;
 
     CLASS SwimmingPool EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -2166,6 +2257,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       verticalRelativeLocation : TEXT*255;
       volume : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       hasCapacity : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.HumanActivityCapacityInfo;
       hasAmenity : REFERENCE TO Amenity;
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
@@ -2178,6 +2270,7 @@ MODEL DGIF_V3 (en)
     CLASS TestSite EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
     END TestSite;
 
     CLASS Tomb EXTENDS NonBuildingStructure =
@@ -2200,6 +2293,7 @@ MODEL DGIF_V3 (en)
       leastDepthBelowSurfLevel : 0.000 .. 999999999.999;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
     END UndergroundDwelling;
@@ -2208,6 +2302,7 @@ MODEL DGIF_V3 (en)
       accessibleUtilityType : TEXT*255;
       crossSectionalShape : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END UtilityCover;
 
     CLASS VehicleLot EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -2226,6 +2321,7 @@ MODEL DGIF_V3 (en)
       waySurfaceCategory : TEXT*255;
       weatherRestrictionType : TEXT*255;
       weightBearingCapacity : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       hasAmenity : REFERENCE TO Amenity;
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -2254,6 +2350,7 @@ MODEL DGIF_V3 (en)
       thickness : 0.000 .. 999999999.999;
       wallType : TEXT*255;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Line;
       !! hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;  !! forward reference - topic HumanGeography not yet defined
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -2262,6 +2359,7 @@ MODEL DGIF_V3 (en)
     CLASS WasteHeap EXTENDS DGIF_V3.Foundation.FeatureEntity =
       heightAboveSurfaceLevel : TEXT*255;
       highestElevation : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END WasteHeap;
 
@@ -2280,6 +2378,7 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
       volume : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       !! waterPropertiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.WaterResourceInfo;  !! forward reference - topic InlandWater not yet defined
       !! fluidCapabilitiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.FluidCapacityAndCapabilityInfo;  !! forward reference - topic InlandWater not yet defined
@@ -2306,6 +2405,7 @@ MODEL DGIF_V3 (en)
       submarineLikeObject : BOOLEAN;
       wellboreStatus : TEXT*255;
       wellEquipment : TEXT*255;
+      geometry : MANDATORY Coord2;
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
       hasAmenity : REFERENCE TO Amenity;
       !! verticalPositionDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;  !! forward reference - topic OceanEnvironment not yet defined
@@ -2343,6 +2443,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       supported : BOOLEAN;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Coord2;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
       wirelessTelecomInfoDescribedBy : REFERENCE TO WirelessTelecomInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -2364,6 +2465,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       radarSignificance : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
       !! hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;  !! forward reference - topic OceanEnvironment not yet defined
@@ -2408,6 +2510,7 @@ MODEL DGIF_V3 (en)
       structureShape : TEXT*255;
       vehicleCapacity : -2000000000 .. 2000000000;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Surface;
       describesReligiousInformation : REFERENCE TO ReligiousInfo;
       wirelessTelecomInfoDescribedBy : REFERENCE TO WirelessTelecomInfo;
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -2447,6 +2550,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       supported : BOOLEAN;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Coord2;
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
       wirelessTelecomInfoDescribedBy : REFERENCE TO WirelessTelecomInfo;
@@ -2479,6 +2583,7 @@ MODEL DGIF_V3 (en)
       structureDensity : 0.000 .. 999999999.999;
       terrainSurfaceMaterial : TEXT*255;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Surface;
       !! waterPropertiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.WaterResourceInfo;  !! forward reference - topic InlandWater not yet defined
       hasAmenity : REFERENCE TO Amenity;
       !! hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;  !! forward reference - topic HumanGeography not yet defined
@@ -2682,11 +2787,13 @@ MODEL DGIF_V3 (en)
       elevationSurfaceCategory : TEXT*255;
       highestElevation : TEXT*255;
       hypsographyPortrayalType : TEXT*255;
+      geometry : MANDATORY Line;
     END ElevationContour;
 
     CLASS GeomorphicBreakline EXTENDS DGIF_V3.Foundation.FeatureEntity =
       geomorphicType : TEXT*255;
       surfaceSlope : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END GeomorphicBreakline;
 
     CLASS GeomorphicExtreme EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -2694,12 +2801,14 @@ MODEL DGIF_V3 (en)
       geomorphicHeight : 0.000 .. 999999999.999;
       geomorphicType : TEXT*255;
       highestElevation : TEXT*255;
+      geometry : MANDATORY Surface;
     END GeomorphicExtreme;
 
     CLASS SpotElevation EXTENDS DGIF_V3.Foundation.FeatureEntity =
       canopyCover : 0.000 .. 999999999.999;
       elevationSurfaceCategory : TEXT*255;
       highestElevation : TEXT*255;
+      geometry : MANDATORY Coord2;
     END SpotElevation;
 
     CLASS SurveyPoint EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -2719,6 +2828,7 @@ MODEL DGIF_V3 (en)
       surveyPointMark : TEXT*255;
       surveyPointType : TEXT*255;
       surveyTechnique : TEXT*255;
+      geometry : MANDATORY Coord2;
       !! hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;  !! forward reference - topic OceanEnvironment not yet defined
     END SurveyPoint;
 
@@ -2753,16 +2863,19 @@ MODEL DGIF_V3 (en)
     DEPENDS ON DGIF_V3.Foundation;
 
     CLASS GeophysicalDataTrackLine EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Line;
     END GeophysicalDataTrackLine;
 
     CLASS IsogonicLine EXTENDS DGIF_V3.Foundation.FeatureEntity =
       magneticVariation : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END IsogonicLine;
 
     CLASS LocalMagneticAnomaly EXTENDS DGIF_V3.Foundation.FeatureEntity =
       magneticVarAnomaly : 0.000 .. 999999999.999;
       magneticVarAnomalyDes : TEXT*255;
       manMade : BOOLEAN;
+      geometry : MANDATORY Surface;
     END LocalMagneticAnomaly;
 
   END GeodesyGeophysics;
@@ -2952,6 +3065,7 @@ MODEL DGIF_V3 (en)
 
     CLASS AccessZone EXTENDS DGIF_V3.Foundation.FeatureEntity =
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
     END AccessZone;
 
     CLASS Anchorage EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -2967,6 +3081,7 @@ MODEL DGIF_V3 (en)
       operationsStartDateTime : TEXT*255;
       permanent : BOOLEAN;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
     END Anchorage;
 
     CLASS ArchipelagicSeaLaneArea EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -2998,10 +3113,12 @@ MODEL DGIF_V3 (en)
       tideInfluenced : BOOLEAN;
       trafficFlow : TEXT*255;
       uncoveringHeightKnown : BOOLEAN;
+      geometry : MANDATORY Surface;
     END Channel;
 
     CLASS ContactZone EXTENDS DGIF_V3.Foundation.FeatureEntity =
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
     END ContactZone;
 
     CLASS DredgedArea EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3012,6 +3129,7 @@ MODEL DGIF_V3 (en)
       hydrographicDepth : TEXT*255;
       maintained : BOOLEAN;
       maritimeNavigationMarked : BOOLEAN;
+      geometry : MANDATORY Surface;
       !! verticalPositioningInfo : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;  !! forward reference - topic OceanEnvironment not yet defined
     END DredgedArea;
 
@@ -3024,9 +3142,11 @@ MODEL DGIF_V3 (en)
       maritimeNavigationMarked : BOOLEAN;
       operationsEndDateTime : TEXT*255;
       permanent : BOOLEAN;
+      geometry : MANDATORY Surface;
     END DumpingGround;
 
     CLASS MarineRangeCentreLine EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Line;
     END MarineRangeCentreLine;
 
     CLASS MaritimeCautionArea EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3050,6 +3170,7 @@ MODEL DGIF_V3 (en)
       permanent : BOOLEAN;
       pipelineType : TEXT*255;
       product : TEXT*255;
+      geometry : MANDATORY Surface;
     END MaritimeCautionArea;
 
     CLASS MaritimeLimit EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3076,6 +3197,7 @@ MODEL DGIF_V3 (en)
       navalOperationsType : TEXT*255;
       permanent : BOOLEAN;
       product : TEXT*255;
+      geometry : MANDATORY Line;
     END MaritimeLimit;
 
     CLASS MaritimeRoute EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3094,11 +3216,13 @@ MODEL DGIF_V3 (en)
       permanent : BOOLEAN;
       routeIntendedUse : TEXT*255;
       trafficFlow : TEXT*255;
+      geometry : MANDATORY Surface;
     END MaritimeRoute;
 
     CLASS MeasuredDistanceLine EXTENDS DGIF_V3.Foundation.FeatureEntity =
       bearingReciprocalCategory : TEXT*255;
       lengthOfRange : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END MeasuredDistanceLine;
 
     CLASS NavalFiringPracticeArea EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3109,6 +3233,7 @@ MODEL DGIF_V3 (en)
       nationalMaritimeAuthority : TEXT*255;
       navalFiringPracticeType : TEXT*255;
       permanent : BOOLEAN;
+      geometry : MANDATORY Surface;
     END NavalFiringPracticeArea;
 
     CLASS NavalOperationsArea EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3120,6 +3245,7 @@ MODEL DGIF_V3 (en)
       nationalMaritimeAuthority : TEXT*255;
       navalOperationsType : TEXT*255;
       permanent : BOOLEAN;
+      geometry : MANDATORY Surface;
     END NavalOperationsArea;
 
     CLASS PilotageDistrict EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3130,6 +3256,7 @@ MODEL DGIF_V3 (en)
       hydrographicDepth : TEXT*255;
       minimumAnchoringDepth : 0.000 .. 999999999.999;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Coord2;
     END Roadstead;
 
     CLASS SeabedMaterialExtractionArea EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3143,15 +3270,19 @@ MODEL DGIF_V3 (en)
     CLASS SweptArea EXTENDS DGIF_V3.Foundation.FeatureEntity =
       hydrographicDepth : TEXT*255;
       sweptDate : TEXT*255;
+      geometry : MANDATORY Surface;
     END SweptArea;
 
     CLASS TheodoliteReferenceLine EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Line;
     END TheodoliteReferenceLine;
 
     CLASS TrackLine EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Line;
     END TrackLine;
 
     CLASS TrackSwath EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Surface;
     END TrackSwath;
 
     CLASS TrafficSeparationScheme EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3165,6 +3296,7 @@ MODEL DGIF_V3 (en)
       permanent : BOOLEAN;
       trafficSchemePart : TEXT*255;
       tssAssocAidsToNavigation : TEXT*255;
+      geometry : MANDATORY Surface;
     END TrafficSeparationScheme;
 
   END MaritimeLimits;
@@ -3196,6 +3328,7 @@ MODEL DGIF_V3 (en)
       settlementPattern : TEXT*255;
       structMatType : TEXT*255;
       structureDensity : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;
       populationInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Boundaries.PopulationInfo;
       medicalInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Boundaries.MedicalServiceInfo;
@@ -3219,6 +3352,7 @@ MODEL DGIF_V3 (en)
       settlementPattern : TEXT*255;
       structMatType : TEXT*255;
       structureDensity : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;
       hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -3261,6 +3395,7 @@ MODEL DGIF_V3 (en)
     CLASS PopulatedPlace EXTENDS DGIF_V3.Foundation.FeatureEntity =
       popPlaceAdminLevel : TEXT*255;
       populatedPlaceType : TEXT*255;
+      geometry : MANDATORY Surface;
       hasStatisticCollection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.StatisticCollection;
       hasPresenceOfLanguage : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.LinguisticEntity;
       populationInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Boundaries.PopulationInfo;
@@ -3303,6 +3438,7 @@ MODEL DGIF_V3 (en)
       vegetationDensityEval : TEXT*255;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
       winterCanopyCover : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       !! waterLine : REFERENCE TO (EXTERNAL) DGIF_V3.Physiography.WaterLine;  !! forward reference - topic Physiography not yet defined
     END BankVegetationZone;
@@ -3314,6 +3450,7 @@ MODEL DGIF_V3 (en)
       directivity : TEXT*255;
       terrainSurfaceMaterial : TEXT*255;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END ClearedWay;
 
     CLASS Forest EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3336,6 +3473,7 @@ MODEL DGIF_V3 (en)
       vegetationSpecies : TEXT*255;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
       winterCanopyCover : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
     END Forest;
@@ -3347,6 +3485,7 @@ MODEL DGIF_V3 (en)
       terrainSurfaceMaterial : TEXT*255;
       vegetationCharacteristic : TEXT*255;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END ForestClearing;
 
     CLASS Grassland EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3356,6 +3495,7 @@ MODEL DGIF_V3 (en)
       treesWidelyScattered : BOOLEAN;
       vegetationCharacteristic : TEXT*255;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END Grassland;
 
     CLASS Grove EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3376,20 +3516,24 @@ MODEL DGIF_V3 (en)
       undergrowthDensity : 0.000 .. 999999999.999;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
       winterCanopyCover : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END Grove;
 
     CLASS Heathland EXTENDS DGIF_V3.Foundation.FeatureEntity =
       terrainSurfaceMaterial : TEXT*255;
+      geometry : MANDATORY Surface;
     END Heathland;
 
     CLASS Hummock EXTENDS DGIF_V3.Foundation.FeatureEntity =
       undergrowthDensity : 0.000 .. 999999999.999;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END Hummock;
 
     CLASS LoggingSite EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END LoggingSite;
 
     CLASS ShrubLand EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3404,6 +3548,7 @@ MODEL DGIF_V3 (en)
       predominantVegHeight : 0.000 .. 999999999.999;
       terrainSurfaceMaterial : TEXT*255;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END ShrubLand;
 
@@ -3418,6 +3563,7 @@ MODEL DGIF_V3 (en)
       predominantVegHeight : 0.000 .. 999999999.999;
       undergrowthDensity : 0.000 .. 999999999.999;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END Thicket;
 
     CLASS Tree EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3432,6 +3578,7 @@ MODEL DGIF_V3 (en)
       radarSignificance : TEXT*255;
       stemDiameter : 0.000 .. 999999999.999;
       vegetationSpecies : TEXT*255;
+      geometry : MANDATORY Coord2;
       hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
@@ -3440,10 +3587,12 @@ MODEL DGIF_V3 (en)
 
     CLASS Tundra EXTENDS DGIF_V3.Foundation.FeatureEntity =
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END Tundra;
 
     CLASS UnvegetatedLand EXTENDS DGIF_V3.Foundation.FeatureEntity =
       terrainSurfaceMaterial : TEXT*255;
+      geometry : MANDATORY Surface;
     END UnvegetatedLand;
 
     CLASS Wetland EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3489,6 +3638,7 @@ MODEL DGIF_V3 (en)
       navigationLightCharacter : TEXT*255;
       periodOfLight : 0.000 .. 999999999.999;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Coord2;
     END AerodromeBeacon;
 
     CLASS AerodromeBilletingInfo =
@@ -3497,11 +3647,13 @@ MODEL DGIF_V3 (en)
 
     CLASS AerodromeBoundary EXTENDS DGIF_V3.Foundation.FeatureEntity =
       boundaryLightsPresent : BOOLEAN;
+      geometry : MANDATORY Line;
     END AerodromeBoundary;
 
     CLASS AerodromeFuelFillingStand EXTENDS DGIF_V3.Foundation.FeatureEntity =
       aircraftFuellingRate : 0.000 .. 999999999.999;
       fuelStorageMethod : TEXT*255;
+      geometry : MANDATORY Coord2;
     END AerodromeFuelFillingStand;
 
     CLASS AerodromeFuelInfo =
@@ -3517,12 +3669,15 @@ MODEL DGIF_V3 (en)
     CLASS AerodromeHotSpot EXTENDS DGIF_V3.Foundation.FeatureEntity =
       aerodromeHotSpotDesig : TEXT*255;
       crossSectionalShape : TEXT*255;
+      geometry : MANDATORY Surface;
     END AerodromeHotSpot;
 
     CLASS AerodromeInstLocation EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Coord2;
     END AerodromeInstLocation;
 
     CLASS AerodromeMarkings EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Surface;
     END AerodromeMarkings;
 
     CLASS AerodromePavementInfo =
@@ -3556,6 +3711,7 @@ MODEL DGIF_V3 (en)
     CLASS AerodromeReferencePoint EXTENDS DGIF_V3.Foundation.FeatureEntity =
       elevationMsl : 0.000 .. 999999999.999;
       refPointDetermineMethod : TEXT*255;
+      geometry : MANDATORY Coord2;
     END AerodromeReferencePoint;
 
     CLASS AerodromeServiceInfo =
@@ -3571,14 +3727,17 @@ MODEL DGIF_V3 (en)
       availabilityCategory : TEXT*255;
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
     END AerodromeServiceRoad;
 
     CLASS AerodromeSurfDetectStation EXTENDS DGIF_V3.Foundation.FeatureEntity =
       heightAboveSurfaceLevel : TEXT*255;
       surfaceDetectionStationType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END AerodromeSurfDetectStation;
 
     CLASS AeronauticalGroundLight EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Line;
     END AeronauticalGroundLight;
 
     CLASS AircraftCharacteristicsInfo =
@@ -3614,6 +3773,7 @@ MODEL DGIF_V3 (en)
       aircraftStandType : TEXT*255;
       crossSectionalShape : TEXT*255;
       elevationMsl : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END AircraftStand;
 
     CLASS Apron EXTENDS AerodromeMoveArea =
@@ -3625,6 +3785,7 @@ MODEL DGIF_V3 (en)
       designator : TEXT*255;
       usableLength : 0.000 .. 999999999.999;
       usableWidth : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END Apron;
 
     CLASS ArrestingSystem EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3636,17 +3797,20 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
     END ArrestingSystem;
 
     CLASS AutoAerodromeWeatherStation EXTENDS DGIF_V3.Foundation.FeatureEntity =
       automatedWeatherStationType : TEXT*255;
       heightAboveSurfaceLevel : TEXT*255;
+      geometry : MANDATORY Coord2;
     END AutoAerodromeWeatherStation;
 
     CLASS BlastBarrier EXTENDS DGIF_V3.Cultural.NonBuildingStructure =
     END BlastBarrier;
 
     CLASS Clearway EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Surface;
     END Clearway;
 
     CLASS ControlTower EXTENDS DGIF_V3.Cultural.Building =
@@ -3664,6 +3828,7 @@ MODEL DGIF_V3 (en)
       deIcingAntiIcingAreaDesig : TEXT*255;
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
     END DeIcingAntiIcingArea;
 
     CLASS EmergencyResponseEquipInfo =
@@ -3675,6 +3840,7 @@ MODEL DGIF_V3 (en)
     CLASS FinalApproachTakeOffArea EXTENDS AerodromeMoveArea =
       controllingAuthority : TEXT*255;
       controllingAuthorityIdent : TEXT*255;
+      geometry : MANDATORY Surface;
     END FinalApproachTakeOffArea;
 
     CLASS HardenedAircraftShelter EXTENDS DGIF_V3.Cultural.Building =
@@ -3698,11 +3864,13 @@ MODEL DGIF_V3 (en)
       designator : TEXT*255;
       heightAboveSurfaceLevel : TEXT*255;
       helipadAssociatedFacility : TEXT*255;
+      geometry : MANDATORY Surface;
       !! hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;  !! forward reference - topic OceanEnvironment not yet defined
     END Helipad;
 
     CLASS IntermediateHoldingPos EXTENDS DGIF_V3.Foundation.FeatureEntity =
       elevationMsl : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END IntermediateHoldingPos;
 
     CLASS JetAircraftStartUnitServ EXTENDS AerodromeServiceInfo =
@@ -3721,6 +3889,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       radarSignificance : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
     END LaunchPad;
 
@@ -3735,6 +3904,7 @@ MODEL DGIF_V3 (en)
       aeroMoveAreaSurfaceComp : TEXT*255;
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
     END MovementAreaShoulder;
 
     CLASS OperatingTimeInfo =
@@ -3749,6 +3919,7 @@ MODEL DGIF_V3 (en)
       lightSystemIntensity : TEXT*255;
       lightSystemIntVariable : TEXT*255;
       pilotControlledLighting : BOOLEAN;
+      geometry : MANDATORY Line;
       operatingTimeinfo : REFERENCE TO OperatingTimeInfo;
     END AerodromeMoveAreaLighting;
 
@@ -3789,6 +3960,7 @@ MODEL DGIF_V3 (en)
       elevationMsl : 0.000 .. 999999999.999;
       highestElevation : TEXT*255;
       runwayCentreLineLocRole : TEXT*255;
+      geometry : MANDATORY Coord2;
     END RunwayCentreLinePoint;
 
     CLASS AerodromeElevationPoint EXTENDS RunwayCentreLinePoint =
@@ -3828,12 +4000,14 @@ MODEL DGIF_V3 (en)
       runwayBearingStrength : 0.000 .. 999999999.999;
       runwayMidpointElevation : 0.000 .. 999999999.999;
       supportedByBridgeSpan : BOOLEAN;
+      geometry : MANDATORY Surface;
       useDirection : REFERENCE TO RunwayDirection;
     END Runway;
 
     CLASS RunwayElement EXTENDS AerodromeMoveArea =
       deckLevel : -2000000000 .. 2000000000;
       runwayDisplacedArea : BOOLEAN;
+      geometry : MANDATORY Surface;
     END RunwayElement;
 
     CLASS RunwayEndpoint EXTENDS RunwayCentreLinePoint =
@@ -3843,9 +4017,11 @@ MODEL DGIF_V3 (en)
     CLASS RunwayHoldingPosition EXTENDS DGIF_V3.Foundation.FeatureEntity =
       elevationMsl : 0.000 .. 999999999.999;
       lowVisHoldingPositionCat : TEXT*255;
+      geometry : MANDATORY Line;
     END RunwayHoldingPosition;
 
     CLASS RunwayIntersection EXTENDS AerodromeMoveArea =
+      geometry : MANDATORY Surface;
     END RunwayIntersection;
 
     CLASS RunwayThreshold EXTENDS RunwayCentreLinePoint =
@@ -3854,6 +4030,7 @@ MODEL DGIF_V3 (en)
     CLASS RunwayTurnPad EXTENDS AerodromeMoveArea =
       crossSectionalShape : TEXT*255;
       designator : TEXT*255;
+      geometry : MANDATORY Surface;
     END RunwayTurnPad;
 
     CLASS SeaplaneRun EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3865,9 +4042,11 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       runwayMagHeading : 0.000 .. 999999999.999;
       runwayTrueHeading : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END SeaplaneRun;
 
     CLASS SearchRescueRegion EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Surface;
     END SearchRescueRegion;
 
     CLASS SearchRescueService EXTENDS EmergencyResponseService =
@@ -3899,11 +4078,13 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       loadClassificationNumber : -2000000000 .. 2000000000;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       pavementInfo : REFERENCE TO AerodromePavementInfo;
     END Stopway;
 
     CLASS StopwayEndpoint EXTENDS DGIF_V3.Foundation.FeatureEntity =
       elevationMsl : 0.000 .. 999999999.999;
+      geometry : MANDATORY Coord2;
     END StopwayEndpoint;
 
     CLASS Taxiway EXTENDS AerodromeMoveArea =
@@ -3914,10 +4095,12 @@ MODEL DGIF_V3 (en)
       taxiwayDesignator : TEXT*255;
       taxiwayRemarks : TEXT*255;
       taxiwayType : TEXT*255;
+      geometry : MANDATORY Surface;
     END Taxiway;
 
     CLASS TaxiwayElement EXTENDS AerodromeMoveArea =
       deckLevel : -2000000000 .. 2000000000;
+      geometry : MANDATORY Surface;
     END TaxiwayElement;
 
     CLASS TetheredBalloon EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3930,6 +4113,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       permanent : BOOLEAN;
       radarSignificance : TEXT*255;
+      geometry : MANDATORY Coord2;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
     END TetheredBalloon;
@@ -3937,12 +4121,14 @@ MODEL DGIF_V3 (en)
     CLASS TouchdownAndLiftOffArea EXTENDS AerodromeMoveArea =
       crossSectionalShape : TEXT*255;
       touchdownLiftOffAreaDesig : TEXT*255;
+      geometry : MANDATORY Surface;
     END TouchdownAndLiftOffArea;
 
     CLASS WindDirectionIndicator EXTENDS DGIF_V3.Foundation.FeatureEntity =
       floodlit : BOOLEAN;
       lightedWindIndicPresent : BOOLEAN;
       windDirectIndicatorType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END WindDirectionIndicator;
 
     CLASS Aerodrome EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -3998,6 +4184,7 @@ MODEL DGIF_V3 (en)
 
     CLASS Heliport EXTENDS Aerodrome =
       airfieldSymbolType : TEXT*255;
+      geometry : MANDATORY Surface;
       hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;
     END Heliport;
 
@@ -4005,6 +4192,7 @@ MODEL DGIF_V3 (en)
       airfieldSymbolType : TEXT*255;
       airfieldUse : TEXT*255;
       helipadPresent : BOOLEAN;
+      geometry : MANDATORY Surface;
       hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;
     END LandAerodrome;
 
@@ -4013,6 +4201,7 @@ MODEL DGIF_V3 (en)
       airfieldUse : TEXT*255;
       helipadPresent : BOOLEAN;
       maritimeNavigationMarked : BOOLEAN;
+      geometry : MANDATORY Surface;
     END WaterAerodrome;
 
     ASSOCIATION AerodromeFuelFillingStandAerodromeFuelInfo =
@@ -4162,11 +4351,13 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       predominantVegHeight : 0.000 .. 999999999.999;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END Cane;
 
     CLASS CattleDippingTank EXTENDS DGIF_V3.Foundation.FeatureEntity =
       heightAboveSurfaceLevel : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END CattleDippingTank;
 
     CLASS CropInfo =
@@ -4181,6 +4372,7 @@ MODEL DGIF_V3 (en)
       cropSpecies : MANDATORY TEXT*255;
       predominantVegHeight : 0.000 .. 999999999.999;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       cropInfoDescribedBy : REFERENCE TO CropInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END CropLand;
@@ -4216,6 +4408,7 @@ MODEL DGIF_V3 (en)
       predominantVegHeight : 0.000 .. 999999999.999;
       vegetationCharacteristic : TEXT*255;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
       hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;
       hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -4227,6 +4420,7 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END HoldingPen;
 
@@ -4235,6 +4429,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       predominantStructHeight : 0.000 .. 999999999.999;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       cropInfoDescribedBy : REFERENCE TO CropInfo;
     END HopField;
@@ -4261,6 +4456,7 @@ MODEL DGIF_V3 (en)
       irrigationMethod : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       !! waterPropertiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.WaterResourceInfo;  !! forward reference - topic InlandWater not yet defined
       !! fluidCapabilitiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.FluidCapacityAndCapabilityInfo;  !! forward reference - topic InlandWater not yet defined
     END IrrigationSystem;
@@ -4283,6 +4479,7 @@ MODEL DGIF_V3 (en)
       undergrowthDensity : 0.000 .. 999999999.999;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
       winterCanopyCover : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       cropInfoDescribedBy : REFERENCE TO CropInfo;
     END Orchard;
@@ -4292,6 +4489,7 @@ MODEL DGIF_V3 (en)
       stemDiameter : 0.000 .. 999999999.999;
       treeSpacing : 0.000 .. 999999999.999;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       cropInfoDescribedBy : REFERENCE TO CropInfo;
     END PlantNursery;
@@ -4309,6 +4507,7 @@ MODEL DGIF_V3 (en)
       predominantStructHeight : 0.000 .. 999999999.999;
       trellisedOrientation : 0.000 .. 999999999.999;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       cropInfoDescribedBy : REFERENCE TO CropInfo;
     END Vineyard;
@@ -4352,6 +4551,7 @@ MODEL DGIF_V3 (en)
       victimVesselOutcome : TEXT*255;
       victimVesselStatus : TEXT*255;
       victimVesselType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END AntiShippingActivity;
 
     CLASS Buoy EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4383,6 +4583,7 @@ MODEL DGIF_V3 (en)
       submarineAcousticSigType : TEXT*255;
       submarineLikeObject : BOOLEAN;
       topmarkShape : TEXT*255;
+      geometry : MANDATORY Coord2;
     END Buoy;
 
     CLASS LeadingLine EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4394,6 +4595,7 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       maritimeNavLineFeatures : TEXT*255;
       permanent : BOOLEAN;
+      geometry : MANDATORY Line;
     END LeadingLine;
 
     CLASS LightSector EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4402,6 +4604,7 @@ MODEL DGIF_V3 (en)
       lightSectorInitialLimit : 0.000 .. 999999999.999;
       lightSectorTerminalLimit : 0.000 .. 999999999.999;
       nominalRange : -2000000000 .. 2000000000;
+      geometry : MANDATORY Surface;
     END LightSector;
 
     CLASS LightVessel EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4426,6 +4629,7 @@ MODEL DGIF_V3 (en)
       radarReflectorPresent : BOOLEAN;
       radarSignificance : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
     END LightVessel;
@@ -4464,6 +4668,7 @@ MODEL DGIF_V3 (en)
       topmarkShape : TEXT*255;
       towerShape : TEXT*255;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Coord2;
     END MaritimeNavLightSupport;
 
     CLASS MaritimeNavRetroReflector EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4471,6 +4676,7 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       navigationMarkColour : TEXT*255;
       permanent : BOOLEAN;
+      geometry : MANDATORY Coord2;
     END MaritimeNavRetroReflector;
 
     CLASS MaritimeNavigationBeacon EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4500,6 +4706,7 @@ MODEL DGIF_V3 (en)
       topmarkShape : TEXT*255;
       towerShape : TEXT*255;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Coord2;
       !! hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;  !! forward reference - topic OceanEnvironment not yet defined
     END MaritimeNavigationBeacon;
 
@@ -4529,6 +4736,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       signalGroupPattern : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Line;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END MaritimeNavigationLight;
 
@@ -4536,6 +4744,7 @@ MODEL DGIF_V3 (en)
       heightOfObject : 0.000 .. 999999999.999;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END MaritimeNavigationMarker;
 
     CLASS MaritimeNoticeBoard EXTENDS DGIF_V3.Cultural.RegulatorySign =
@@ -4546,12 +4755,14 @@ MODEL DGIF_V3 (en)
       maritimeNavigationMarked : BOOLEAN;
       maritimeNavRestriction : TEXT*255;
       navalOperationsType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END MaritimeNoticeBoard;
 
     CLASS MaritimeRadarRefLine EXTENDS DGIF_V3.Foundation.FeatureEntity =
       bearingReciprocalCategory : TEXT*255;
       facilityOperationalStatus : TEXT*255;
       permanent : BOOLEAN;
+      geometry : MANDATORY Line;
     END MaritimeRadarRefLine;
 
     CLASS MaritimeRadarReflector EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4578,6 +4789,7 @@ MODEL DGIF_V3 (en)
       signalGroupPattern : TEXT*255;
       signalIndicator : TEXT*255;
       waveLength : -2000000000 .. 2000000000;
+      geometry : MANDATORY Coord2;
       radioTransmissionInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.AeronauticalFacility.RadioTransmissionInfo;
     END MaritimeRadiobeacon;
 
@@ -4588,6 +4800,7 @@ MODEL DGIF_V3 (en)
     END PhysicalAutomaticIdentSys;
 
     CLASS RadarRange EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Surface;
       radioTransmissionInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.AeronauticalFacility.RadioTransmissionInfo;
     END RadarRange;
 
@@ -4595,6 +4808,7 @@ MODEL DGIF_V3 (en)
       permanent : BOOLEAN;
       physicalCondition : TEXT*255;
       sensorCalibrationPointUse : TEXT*255;
+      geometry : MANDATORY Coord2;
       !! hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;  !! forward reference - topic OceanEnvironment not yet defined
     END SensorCalibrationPoint;
 
@@ -4609,6 +4823,7 @@ MODEL DGIF_V3 (en)
       signalDuration : -2000000000 .. 2000000000;
       signalGroupPattern : TEXT*255;
       signalIndicator : BOOLEAN;
+      geometry : MANDATORY Coord2;
     END SoundSignalDevice;
 
     CLASS FogSignal EXTENDS SoundSignalDevice =
@@ -4639,6 +4854,7 @@ MODEL DGIF_V3 (en)
       controllingAuthorityIdent : TEXT*255;
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
     END BoomingGround;
 
     CLASS Dam EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4665,6 +4881,7 @@ MODEL DGIF_V3 (en)
       spillwayHeight : 0.000 .. 999999999.999;
       structMatType : TEXT*255;
       widthAtTop : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;
       hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
@@ -4678,6 +4895,7 @@ MODEL DGIF_V3 (en)
     CLASS FishLadder EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
     END FishLadder;
 
     CLASS FloatingBarrier EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4689,6 +4907,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
       thickness : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END FloatingBarrier;
 
     CLASS FloodControlStructure EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4707,6 +4926,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       verticalClearanceSafe : TEXT*255;
       widthAtTop : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       !! hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;  !! forward reference - topic OceanEnvironment not yet defined
     END FloodControlStructure;
 
@@ -4775,6 +4995,7 @@ MODEL DGIF_V3 (en)
       tideInfluenced : BOOLEAN;
       waterbodyBankHeight : 0.000 .. 999999999.999;
       waterbodyBankVegCover : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END InlandWaterbodyBank;
 
     CLASS InundatedLand EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4783,6 +5004,7 @@ MODEL DGIF_V3 (en)
       inundationType : TEXT*255;
       manMade : BOOLEAN;
       terrainSurfaceMaterial : TEXT*255;
+      geometry : MANDATORY Surface;
     END InundatedLand;
 
     CLASS LandSubjectToInundation EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4790,6 +5012,7 @@ MODEL DGIF_V3 (en)
       floodRecurrenceInterval : TEXT*255;
       inundationType : TEXT*255;
       terrainSurfaceMaterial : TEXT*255;
+      geometry : MANDATORY Surface;
     END LandSubjectToInundation;
 
     CLASS Lock EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4814,6 +5037,7 @@ MODEL DGIF_V3 (en)
       usableLength : 0.000 .. 999999999.999;
       usableWidth : 0.000 .. 999999999.999;
       widthAtTop : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Lock;
 
@@ -4823,12 +5047,14 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
     END LockBasin;
 
     CLASS Rapids EXTENDS DGIF_V3.Foundation.FeatureEntity =
       directivity : TEXT*255;
       inlandWaterObstruction : BOOLEAN;
       rapidClass : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Rapids;
 
@@ -4838,6 +5064,7 @@ MODEL DGIF_V3 (en)
       predominantWaterDepth : 0.000 .. 999999999.999;
       vegetationPresent : BOOLEAN;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Surface;
       !! verticalPositioningInfo : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;  !! forward reference - topic OceanEnvironment not yet defined
     END ShallowWaterArea;
 
@@ -4863,6 +5090,7 @@ MODEL DGIF_V3 (en)
       usableLength : 0.000 .. 999999999.999;
       usableWidth : 0.000 .. 999999999.999;
       widthAtTop : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;
       hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -4879,6 +5107,7 @@ MODEL DGIF_V3 (en)
       thickness : 0.000 .. 999999999.999;
       tideInfluenced : BOOLEAN;
       verticalClearanceSafe : TEXT*255;
+      geometry : MANDATORY Line;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END SluiceGate;
 
@@ -4887,6 +5116,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
       verticalRelativeLocation : MANDATORY TEXT*255;
+      geometry : MANDATORY Surface;
     END Spillway;
 
     CLASS StructuralPile EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -4897,6 +5127,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       pileType : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       !! hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;  !! forward reference - topic OceanEnvironment not yet defined
       !! verticalPositioningInfo : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;  !! forward reference - topic OceanEnvironment not yet defined
@@ -4908,6 +5139,7 @@ MODEL DGIF_V3 (en)
       predominantMaxWaterDepth : 0.000 .. 999999999.999;
       predominantMinWaterDepth : 0.000 .. 999999999.999;
       predominantWaterDepth : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END Thalweg;
 
     CLASS WaterIntakeTower EXTENDS DGIF_V3.Cultural.NonBuildingStructure =
@@ -4982,6 +5214,7 @@ MODEL DGIF_V3 (en)
       terrainGapWidth : 0.000 .. 999999999.999;
       verticalRelativeLocation : TEXT*255;
       waterFlowRate : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
@@ -5000,6 +5233,7 @@ MODEL DGIF_V3 (en)
       groundwaterPotentialScore : TEXT*255;
       waterRechargeRate : 0.000 .. 999999999.999;
       waterWithdrawalRate : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
     END Aquifer;
 
@@ -5036,6 +5270,7 @@ MODEL DGIF_V3 (en)
       verticalRelativeLocation : TEXT*255;
       watercourseMorphology : TEXT*255;
       waterFlowRate : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       fluidCapabilitiesDescribedBy : REFERENCE TO FluidCapacityAndCapabilityInfo;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -5047,6 +5282,7 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       fluidCapabilitiesDescribedBy : REFERENCE TO FluidCapacityAndCapabilityInfo;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
     END GaugingStation;
@@ -5086,6 +5322,7 @@ MODEL DGIF_V3 (en)
       verticalRelativeLocation : TEXT*255;
       volume : 0.000 .. 999999999.999;
       watercourseMorphology : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
     END InlandWaterbody;
@@ -5102,6 +5339,7 @@ MODEL DGIF_V3 (en)
       predominantWaterDepth : 0.000 .. 999999999.999;
       terrainGapWidth : 0.000 .. 999999999.999;
       volume : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
     END Moat;
 
@@ -5112,6 +5350,7 @@ MODEL DGIF_V3 (en)
       deepDepthBelowSurfLevel : 0.000 .. 999999999.999;
       naturalPoolType : TEXT*255;
       volume : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;
       hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
@@ -5127,6 +5366,7 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Coord2;
       useWaterResourcesInfo : REFERENCE TO WaterResourceInfo;
       fluidCapabilitiesDescribedBy : REFERENCE TO FluidCapacityAndCapabilityInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -5139,6 +5379,7 @@ MODEL DGIF_V3 (en)
       deepDepthBelowSurfLevel : 0.000 .. 999999999.999;
       predominantMaxWaterDepth : 0.000 .. 999999999.999;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       cropInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Agricultural.CropInfo;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
     END RiceField;
@@ -5183,6 +5424,7 @@ MODEL DGIF_V3 (en)
       watercourseMorphology : TEXT*255;
       watercourseSinkType : TEXT*255;
       waterFlowRate : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
       !! verticalPositionDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;  !! forward reference - topic OceanEnvironment not yet defined
@@ -5211,6 +5453,7 @@ MODEL DGIF_V3 (en)
       predominantMaxWaterVel : 0.000 .. 999999999.999;
       predominantWaterDepth : 0.000 .. 999999999.999;
       watercourseSinkType : TEXT*255;
+      geometry : MANDATORY Coord2;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
     END VanishingPoint;
 
@@ -5224,6 +5467,7 @@ MODEL DGIF_V3 (en)
       predominantMinWaterVel : 0.000 .. 999999999.999;
       predominantWaterDepth : 0.000 .. 999999999.999;
       waterTestType : TEXT*255;
+      geometry : MANDATORY Surface;
       fluidCapabilitiesDescribedBy : REFERENCE TO FluidCapacityAndCapabilityInfo;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
     END WaterMeasurementLocation;
@@ -5241,6 +5485,7 @@ MODEL DGIF_V3 (en)
       supported : BOOLEAN;
       verticalRelativeLocation : TEXT*255;
       waterRaceType : TEXT*255;
+      geometry : MANDATORY Surface;
       fluidCapabilitiesDescribedBy : REFERENCE TO FluidCapacityAndCapabilityInfo;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -5255,6 +5500,7 @@ MODEL DGIF_V3 (en)
       staticWaterLevel : 0.000 .. 999999999.999;
       waterWellConstructionDesc : TEXT*255;
       wellType : TEXT*255;
+      geometry : MANDATORY Surface;
       hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;
       waterPropertiesDescribedBy : REFERENCE TO WaterResourceInfo;
       hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;
@@ -5265,6 +5511,7 @@ MODEL DGIF_V3 (en)
     CLASS WaterbodyDivider EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Line;
     END WaterbodyDivider;
 
     CLASS Waterfall EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -5273,6 +5520,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       inlandWaterObstruction : BOOLEAN;
       partialFeatureIndicator : BOOLEAN;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Waterfall;
 
@@ -5290,6 +5538,7 @@ MODEL DGIF_V3 (en)
       controllingAuthority : TEXT*255;
       controllingAuthorityIdent : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Surface;
       hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
     END CantonmentArea;
@@ -5350,6 +5599,7 @@ MODEL DGIF_V3 (en)
       mineSwept : BOOLEAN;
       physicalCondition : TEXT*255;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Surface;
     END Minefield;
 
     CLASS MissileSite EXTENDS DGIF_V3.Cultural.Facility =
@@ -5374,6 +5624,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       product : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;
       !! hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;  !! forward reference - topic OceanEnvironment not yet defined
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
@@ -5391,6 +5642,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       product : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       hasCapacity : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.HumanActivityCapacityInfo;
       hasLocationAddress : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AddressInfo;
       hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;
@@ -5405,6 +5657,7 @@ MODEL DGIF_V3 (en)
       asisNumber : -2000000000 .. 2000000000;
       maritimeStationName : TEXT*255;
       oceanographicSurveyIdent : TEXT*255;
+      geometry : MANDATORY Coord2;
     END AcousticStation;
 
     CLASS ArchipelagicSeaLaneAxis EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -5418,18 +5671,22 @@ MODEL DGIF_V3 (en)
 
     CLASS DepthArea EXTENDS DGIF_V3.Foundation.FeatureEntity =
       depthRange : TEXT*255;
+      geometry : MANDATORY Surface;
     END DepthArea;
 
     CLASS DepthContour EXTENDS DGIF_V3.Foundation.FeatureEntity =
       depthCurveOrContourValue : TEXT*255;
       hypsographyPortrayalType : TEXT*255;
+      geometry : MANDATORY Line;
     END DepthContour;
 
     CLASS DepthCurve EXTENDS DGIF_V3.Foundation.FeatureEntity =
       depthCurveOrContourValue : TEXT*255;
+      geometry : MANDATORY Line;
     END DepthCurve;
 
     CLASS DiscolouredWater EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Surface;
     END DiscolouredWater;
 
     CLASS FishWeir EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -5444,6 +5701,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
       thickness : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END FishWeir;
 
     CLASS FisherySpeciesDistribution EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -5454,12 +5712,14 @@ MODEL DGIF_V3 (en)
       marineSpeciesHabitat : TEXT*255;
       periodicMonthInterval : TEXT*255;
       season : TEXT*255;
+      geometry : MANDATORY Surface;
     END FisherySpeciesDistribution;
 
     CLASS FishingVesselActivityRegion EXTENDS DGIF_V3.Foundation.FeatureEntity =
       fishingActivityLevel : TEXT*255;
       periodicMonthInterval : TEXT*255;
       season : TEXT*255;
+      geometry : MANDATORY Surface;
     END FishingVesselActivityRegion;
 
     CLASS Hulk EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -5483,6 +5743,7 @@ MODEL DGIF_V3 (en)
       reserveVessel : BOOLEAN;
       structMatType : TEXT*255;
       tonnage : -2000000000 .. 2000000000;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;
       hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;
@@ -5511,6 +5772,7 @@ MODEL DGIF_V3 (en)
       floating : BOOLEAN;
       humanHazard : TEXT*255;
       vegetationSpecies : TEXT*255;
+      geometry : MANDATORY Surface;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
     END AquaticVegetation;
 
@@ -5537,6 +5799,7 @@ MODEL DGIF_V3 (en)
       sweptMineCondition : TEXT*255;
       tideInfluenced : BOOLEAN;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Coord2;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
     END ExplosiveNavalMine;
 
@@ -5544,6 +5807,7 @@ MODEL DGIF_V3 (en)
       nonSubContactReportAgType : TEXT*255;
       structMatType : TEXT*255;
       submarineLikeObject : BOOLEAN;
+      geometry : MANDATORY Surface;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
     END FishHaven;
 
@@ -5551,6 +5815,7 @@ MODEL DGIF_V3 (en)
       dangerousToNavigation : BOOLEAN;
       nonSubContactReportAgType : TEXT*255;
       submarineLikeObject : BOOLEAN;
+      geometry : MANDATORY Surface;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
     END FoulGround;
 
@@ -5566,6 +5831,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO HydrographicBaseHeightInfo;
     END Crib;
@@ -5577,6 +5843,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Surface;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO HydrographicBaseHeightInfo;
     END FishingStakes;
@@ -5589,6 +5856,7 @@ MODEL DGIF_V3 (en)
       nonSubContactReportAgType : TEXT*255;
       structMatType : TEXT*255;
       submarineLikeObject : BOOLEAN;
+      geometry : MANDATORY Surface;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO HydrographicBaseHeightInfo;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -5602,6 +5870,7 @@ MODEL DGIF_V3 (en)
       predominantMinWaterDepth : 0.000 .. 999999999.999;
       predominantWaterDepth : 0.000 .. 999999999.999;
       tideInfluenced : BOOLEAN;
+      geometry : MANDATORY Surface;
       waterPropertiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.WaterResourceInfo;
       verticalPositionInfo : REFERENCE TO HydroVertPositioningInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -5614,6 +5883,7 @@ MODEL DGIF_V3 (en)
       nonSubContactReportAgType : TEXT*255;
       structMatType : TEXT*255;
       submarineLikeObject : BOOLEAN;
+      geometry : MANDATORY Surface;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
     END LargeBottomObject;
 
@@ -5631,6 +5901,7 @@ MODEL DGIF_V3 (en)
       permanent : BOOLEAN;
       physicalCondition : TEXT*255;
       product : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;
     END MaricultureSite;
@@ -5645,6 +5916,7 @@ MODEL DGIF_V3 (en)
     CLASS BottomCharacterRegion EXTENDS DGIF_V3.Foundation.FeatureEntity =
       vegetationCharacteristic : TEXT*255;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Surface;
       maritimeBottomCharacterInfoDescribedBy : REFERENCE TO MaritimeBottomCharacterInfo;
     END BottomCharacterRegion;
 
@@ -5653,6 +5925,7 @@ MODEL DGIF_V3 (en)
       mooringType : TEXT*255;
       physicalCondition : TEXT*255;
       thickness : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END MooringChain;
 
     CLASS OceanographicFront EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -5665,6 +5938,7 @@ MODEL DGIF_V3 (en)
       temporaryOceanFront : BOOLEAN;
       thermalDifference : 0.000 .. 999999999.999;
       tideInfluenced : BOOLEAN;
+      geometry : MANDATORY Line;
     END OceanographicFront;
 
     CLASS OffshoreConstruction EXTENDS DGIF_V3.Cultural.NonBuildingStructure =
@@ -5695,12 +5969,14 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       radarReflectorPresent : BOOLEAN;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
     END Pontoon;
 
     CLASS Reef EXTENDS DGIF_V3.Foundation.FeatureEntity =
       dangerousToNavigation : BOOLEAN;
       partialFeatureIndicator : BOOLEAN;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
     END Reef;
 
@@ -5728,12 +6004,14 @@ MODEL DGIF_V3 (en)
       solidMaritimeConstruction : BOOLEAN;
       structMatType : TEXT*255;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO HydrographicBaseHeightInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
     END ShorelineConstruction;
 
     CLASS SideScanSonarCoverage EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Surface;
     END SideScanSonarCoverage;
 
     CLASS SmallBottomObject EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -5749,12 +6027,14 @@ MODEL DGIF_V3 (en)
       stationary : BOOLEAN;
       structMatType : TEXT*255;
       submarineLikeObject : BOOLEAN;
+      geometry : MANDATORY Coord2;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
     END SmallBottomObject;
 
     CLASS Snag EXTENDS DGIF_V3.Foundation.FeatureEntity =
       screener : BOOLEAN;
       strainer : BOOLEAN;
+      geometry : MANDATORY Surface;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
     END Snag;
 
@@ -5766,6 +6046,7 @@ MODEL DGIF_V3 (en)
       navigationSystemName : TEXT*255;
       soundingExposition : TEXT*255;
       soundingSourceIdentifier : TEXT*255;
+      geometry : MANDATORY Coord2;
     END Sounding;
 
     CLASS SoundingMetadata =
@@ -5780,6 +6061,7 @@ MODEL DGIF_V3 (en)
     CLASS SubmarineSpring EXTENDS DGIF_V3.Foundation.FeatureEntity =
       aquiferName : TEXT*255;
       directionOfFlow : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       waterPropertiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.WaterResourceInfo;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
     END SubmarineSpring;
@@ -5788,6 +6070,7 @@ MODEL DGIF_V3 (en)
       lastRecordedEruptionDate : TEXT*255;
       volcanicActivity : TEXT*255;
       volcanicEruptionFrequency : -2000000000 .. 2000000000;
+      geometry : MANDATORY Surface;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
     END SubmergedVolcano;
 
@@ -5822,12 +6105,14 @@ MODEL DGIF_V3 (en)
       tidalCurSpeed6HrsAfter : 0.000 .. 999999999.999;
       tidalStationNumber : TEXT*255;
       waterMeasurementDepth : MANDATORY 0.000 .. 999999999.999;
+      geometry : MANDATORY Coord2;
     END TidalStreamObserveStation;
 
     CLASS TidalWater EXTENDS DGIF_V3.Foundation.FeatureEntity =
       bottomMaterialType : TEXT*255;
       operatingCycle : TEXT*255;
       operatingRestriction : TEXT*255;
+      geometry : MANDATORY Surface;
       waterPropertiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.WaterResourceInfo;
     END TidalWater;
 
@@ -5836,10 +6121,12 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END TideGaugeStation;
 
     CLASS WaterCurrentRegion EXTENDS DGIF_V3.Foundation.FeatureEntity =
       waterCurrentSpeed : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END WaterCurrentRegion;
 
     CLASS WaterMovementDataLocation EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -5877,10 +6164,12 @@ MODEL DGIF_V3 (en)
       tidalCurSpeed5HrsAfter : 0.000 .. 999999999.999;
       tidalCurSpeed5HrsBefore : 0.000 .. 999999999.999;
       tidalCurSpeed6HrsAfter : 0.000 .. 999999999.999;
+      geometry : MANDATORY Coord2;
     END WaterMovementDataLocation;
 
     CLASS WaterTurbulence EXTENDS DGIF_V3.Foundation.FeatureEntity =
       waterTurbulenceType : TEXT*255;
+      geometry : MANDATORY Surface;
     END WaterTurbulence;
 
     CLASS WaterbodyArea EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -5888,10 +6177,12 @@ MODEL DGIF_V3 (en)
       hydrographicDepth : TEXT*255;
       leastDepthBelowSurfLevel : 0.000 .. 999999999.999;
       waterbodyMorphology : TEXT*255;
+      geometry : MANDATORY Surface;
     END WaterbodyArea;
 
     CLASS WaterbodyBar EXTENDS DGIF_V3.Foundation.FeatureEntity =
       bottomMaterialType : TEXT*255;
+      geometry : MANDATORY Surface;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
     END WaterbodyBar;
 
@@ -5900,6 +6191,7 @@ MODEL DGIF_V3 (en)
       iceCover : 0.000 .. 999999999.999;
       partialFeatureIndicator : BOOLEAN;
       waterbodyMorphology : TEXT*255;
+      geometry : MANDATORY Surface;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
     END WaterbodyMorphologyArea;
 
@@ -5923,6 +6215,7 @@ MODEL DGIF_V3 (en)
       wreckDistributed : BOOLEAN;
       wreckHulkExposure : TEXT*255;
       wreckName : TEXT*255;
+      geometry : MANDATORY Surface;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO HydrographicBaseHeightInfo;
       verticalPositioningInfo : REFERENCE TO HydroVertPositioningInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -5937,6 +6230,7 @@ MODEL DGIF_V3 (en)
     DEPENDS ON DGIF_V3.Cultural, DGIF_V3.Foundation, DGIF_V3.HumanGeography, DGIF_V3.InlandWater, DGIF_V3.OceanEnvironment;
 
     CLASS AsphaltLake EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END AsphaltLake;
 
@@ -5946,6 +6240,7 @@ MODEL DGIF_V3 (en)
       soilType : TEXT*255;
       soilWetTrafficabilityType : TEXT*255;
       surfaceSlope : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       maritimeBottomCharacterInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.MaritimeBottomCharacterInfo;
     END Beach;
 
@@ -5956,6 +6251,7 @@ MODEL DGIF_V3 (en)
     END BeachLandingSite;
 
     CLASS BeachProfile EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Line;
     END BeachProfile;
 
     CLASS CaveInfo =
@@ -5977,6 +6273,7 @@ MODEL DGIF_V3 (en)
       overheadClearance : 0.000 .. 999999999.999;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       verticalPositioningInfo : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;
       caveInfo : REFERENCE TO CaveInfo;
       hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;
@@ -5991,12 +6288,14 @@ MODEL DGIF_V3 (en)
     CLASS Crater EXTENDS DGIF_V3.Foundation.FeatureEntity =
       deepDepthBelowSurfLevel : 0.000 .. 999999999.999;
       terrainSurfaceMaterial : TEXT*255;
+      geometry : MANDATORY Surface;
     END Crater;
 
     CLASS Crevasse EXTENDS DGIF_V3.Foundation.FeatureEntity =
       deepDepthBelowSurfLevel : 0.000 .. 999999999.999;
       highestElevation : TEXT*255;
       predominantFeatureDepth : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END Crevasse;
 
     CLASS Crevice EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6004,6 +6303,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       predominantFeatureDepth : 0.000 .. 999999999.999;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
     END Crevice;
 
     CLASS Cut EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6016,10 +6316,12 @@ MODEL DGIF_V3 (en)
       predominantFeatureDepth : 0.000 .. 999999999.999;
       surfaceMaterialType : TEXT*255;
       surfaceSlope : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END Cut;
 
     CLASS CutLine EXTENDS DGIF_V3.Foundation.FeatureEntity =
       surfaceSlope : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END CutLine;
 
     CLASS Depression EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6027,10 +6329,12 @@ MODEL DGIF_V3 (en)
       maximumObstacleHeight : 0.000 .. 999999999.999;
       predominantFeatureDepth : 0.000 .. 999999999.999;
       surfaceSlope : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END Depression;
 
     CLASS Desert EXTENDS DGIF_V3.Foundation.FeatureEntity =
       terrainSurfaceMaterial : TEXT*255;
+      geometry : MANDATORY Surface;
     END Desert;
 
     CLASS Embankment EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6054,6 +6358,7 @@ MODEL DGIF_V3 (en)
       vegetationDensityEval : TEXT*255;
       vegetationPresent : BOOLEAN;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Surface;
       hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
@@ -6064,6 +6369,7 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       highestElevation : TEXT*255;
       predominantFeatureHeight : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Esker;
 
@@ -6072,6 +6378,7 @@ MODEL DGIF_V3 (en)
       geologicDip : 0.000 .. 999999999.999;
       geologicFaultType : TEXT*255;
       geologicStrikeDirection : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END GeologicFault;
 
     CLASS GeothermalOutlet EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6081,6 +6388,7 @@ MODEL DGIF_V3 (en)
       conspicuousSeaCategory : TEXT*255;
       directionOfFlow : 0.000 .. 999999999.999;
       geothermalOutletType : TEXT*255;
+      geometry : MANDATORY Surface;
       waterPropertiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.WaterResourceInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       verticalPositioningInfo : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;
@@ -6091,6 +6399,7 @@ MODEL DGIF_V3 (en)
       glacierType : TEXT*255;
       highestElevation : TEXT*255;
       monitored : BOOLEAN;
+      geometry : MANDATORY Surface;
     END Glacier;
 
     CLASS HighWaterLine =
@@ -6101,12 +6410,14 @@ MODEL DGIF_V3 (en)
     CLASS Backshore EXTENDS DGIF_V3.Foundation.FeatureEntity =
       soilType : TEXT*255;
       soilWetTrafficabilityType : TEXT*255;
+      geometry : MANDATORY Surface;
       maritimeBottomCharacterInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.MaritimeBottomCharacterInfo;
       highWaterLine : REFERENCE TO HighWaterLine;
     END Backshore;
 
     CLASS Hill EXTENDS DGIF_V3.Foundation.FeatureEntity =
       highestElevation : TEXT*255;
+      geometry : MANDATORY Surface;
     END Hill;
 
     CLASS IceCliff EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6116,6 +6427,7 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       highestElevation : TEXT*255;
       predominantFeatureHeight : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END IceCliff;
 
     CLASS IcePeak EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6126,25 +6438,30 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       predominantFeatureHeight : 0.000 .. 999999999.999;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END IcePeak;
 
     CLASS IceShelf EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Surface;
     END IceShelf;
 
     CLASS LandArea EXTENDS DGIF_V3.Foundation.FeatureEntity =
       landMorphology : TEXT*255;
+      geometry : MANDATORY Surface;
     END LandArea;
 
     CLASS LandMorphologyArea EXTENDS DGIF_V3.Foundation.FeatureEntity =
       highestElevation : TEXT*255;
       landMorphology : TEXT*255;
       partialFeatureIndicator : BOOLEAN;
+      geometry : MANDATORY Surface;
       hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;
     END LandMorphologyArea;
 
     CLASS LandslideMass EXTENDS DGIF_V3.Foundation.FeatureEntity =
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
     END LandslideMass;
 
     CLASS LowWaterLine =
@@ -6156,12 +6473,14 @@ MODEL DGIF_V3 (en)
       soilType : TEXT*255;
       soilWetTrafficabilityType : TEXT*255;
       vegetationCharacteristic : TEXT*255;
+      geometry : MANDATORY Surface;
       maritimeBottomCharacterInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.MaritimeBottomCharacterInfo;
       lowWaterLine : REFERENCE TO LowWaterLine;
       highWaterLine : REFERENCE TO HighWaterLine;
     END Foreshore;
 
     CLASS Moraine EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Surface;
     END Moraine;
 
     CLASS MountainPass EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6169,12 +6488,14 @@ MODEL DGIF_V3 (en)
       operatingCycle : TEXT*255;
       operatingRestriction : TEXT*255;
       periodRestrictMonth : TEXT*255;
+      geometry : MANDATORY Surface;
     END MountainPass;
 
     CLASS Nearshore EXTENDS DGIF_V3.Foundation.FeatureEntity =
       soilType : TEXT*255;
       soilWetTrafficabilityType : TEXT*255;
       vegetationCharacteristic : TEXT*255;
+      geometry : MANDATORY Surface;
       maritimeBottomCharacterInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.MaritimeBottomCharacterInfo;
       lowWaterLine : REFERENCE TO LowWaterLine;
     END Nearshore;
@@ -6187,17 +6508,20 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       terrainSurfaceMaterial : TEXT*255;
       vegetationTrafficImpact : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END Oasis;
 
     CLASS PackIce EXTENDS DGIF_V3.Foundation.FeatureEntity =
       permanent : BOOLEAN;
       seasonalIceLimit : TEXT*255;
+      geometry : MANDATORY Surface;
     END PackIce;
 
     CLASS PermanentSnowIce EXTENDS DGIF_V3.Foundation.FeatureEntity =
       frozenCoverType : TEXT*255;
       snowIceDepth : 0.000 .. 999999999.999;
       terrainMorphology : TEXT*255;
+      geometry : MANDATORY Surface;
       hasCulturalProtection : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalProtectionInfo;
       hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;
     END PermanentSnowIce;
@@ -6206,6 +6530,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       structMatType : TEXT*255;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Coord2;
     END Pingo;
 
     CLASS PolarIce EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6215,11 +6540,13 @@ MODEL DGIF_V3 (en)
       permanent : BOOLEAN;
       predominantFeatureHeight : 0.000 .. 999999999.999;
       seasonalIceLimit : TEXT*255;
+      geometry : MANDATORY Surface;
     END PolarIce;
 
     CLASS RidgeLine EXTENDS DGIF_V3.Foundation.FeatureEntity =
       highestElevation : TEXT*255;
       surfaceSlope : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END RidgeLine;
 
     CLASS RockFormation EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6229,15 +6556,18 @@ MODEL DGIF_V3 (en)
       predominantFeatureHeight : 0.000 .. 999999999.999;
       rockFormationStructure : TEXT*255;
       terrainMorphology : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END RockFormation;
 
     CLASS Sabkha EXTENDS DGIF_V3.Foundation.FeatureEntity =
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Sabkha;
 
     CLASS SaltFlat EXTENDS DGIF_V3.Foundation.FeatureEntity =
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
     END SaltFlat;
 
     CLASS SandDunes EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6248,6 +6578,7 @@ MODEL DGIF_V3 (en)
       sandDuneOrientation : 0.000 .. 999999999.999;
       sandDuneStabilized : BOOLEAN;
       sandDuneType : TEXT*255;
+      geometry : MANDATORY Surface;
     END SandDunes;
 
     CLASS SignificantRock EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6259,6 +6590,7 @@ MODEL DGIF_V3 (en)
     CLASS SlopeRegion EXTENDS DGIF_V3.Foundation.FeatureEntity =
       dissectedTerrain : BOOLEAN;
       surfaceSlope : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END SlopeRegion;
 
     CLASS SoilSurfaceRegion EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6270,6 +6602,7 @@ MODEL DGIF_V3 (en)
       terrainMorphologyDesc : TEXT*255;
       terrainSurfaceMaterial : TEXT*255;
       waterTableDepth : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END SoilSurfaceRegion;
 
     CLASS SteepTerrainFace EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6284,6 +6617,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       surfaceSlope : 0.000 .. 999999999.999;
       terrainFaceType : TEXT*255;
+      geometry : MANDATORY Surface;
     END SteepTerrainFace;
 
     CLASS VolcanicDyke EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6293,6 +6627,7 @@ MODEL DGIF_V3 (en)
       predominantFeatureHeight : 0.000 .. 999999999.999;
       surfaceSlope : 0.000 .. 999999999.999;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Surface;
     END VolcanicDyke;
 
     CLASS Volcano EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6301,6 +6636,7 @@ MODEL DGIF_V3 (en)
       volcanicActivity : TEXT*255;
       volcanicEruptionFrequency : -2000000000 .. 2000000000;
       volcanoShape : TEXT*255;
+      geometry : MANDATORY Surface;
       hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -6320,6 +6656,7 @@ MODEL DGIF_V3 (en)
       shorelineDelineated : BOOLEAN;
       shorelineType : TEXT*255;
       terrainSurfaceMaterial : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
       waterLine : REFERENCE TO WaterLine;
@@ -6331,6 +6668,7 @@ MODEL DGIF_V3 (en)
       manMade : BOOLEAN;
       shorelineDelineated : BOOLEAN;
       shorelineType : TEXT*255;
+      geometry : MANDATORY Line;
       waterLine : REFERENCE TO WaterLine;
     END LandWaterBoundary;
 
@@ -6338,6 +6676,7 @@ MODEL DGIF_V3 (en)
       manMade : BOOLEAN;
       shorelineDelineated : BOOLEAN;
       shorelineType : TEXT*255;
+      geometry : MANDATORY Line;
       waterLine : REFERENCE TO WaterLine;
     END Shoreline;
 
@@ -6354,6 +6693,7 @@ MODEL DGIF_V3 (en)
     CLASS Anchor EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Coord2;
     END Anchor;
 
     CLASS Berth EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6370,12 +6710,14 @@ MODEL DGIF_V3 (en)
       permanent : BOOLEAN;
       physicalCondition : TEXT*255;
       pilotBoatBerth : BOOLEAN;
+      geometry : MANDATORY Surface;
     END Berth;
 
     CLASS BoatLanding EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       hasAmenity : REFERENCE TO (EXTERNAL) DGIF_V3.Cultural.Amenity;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
     END BoatLanding;
@@ -6389,6 +6731,7 @@ MODEL DGIF_V3 (en)
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END Bollard;
 
     CLASS CallingInPoint EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6398,6 +6741,7 @@ MODEL DGIF_V3 (en)
       directionOfTraffic4 : 0.000 .. 999999999.999;
       facilityOperationalStatus : TEXT*255;
       permanent : BOOLEAN;
+      geometry : MANDATORY Coord2;
       radioTransmissionInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.AeronauticalFacility.RadioTransmissionInfo;
     END CallingInPoint;
 
@@ -6419,6 +6763,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
       usableWidth : MANDATORY 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Dock;
@@ -6430,6 +6775,7 @@ MODEL DGIF_V3 (en)
       mooringWarpingFacType : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
     END Dolphin;
@@ -6453,6 +6799,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       usableLength : 0.000 .. 999999999.999;
       usableWidth : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END DryDock;
@@ -6476,6 +6823,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       usableLength : 0.000 .. 999999999.999;
       usableWidth : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END FloatingDryDock;
 
@@ -6488,6 +6836,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Surface;
     END Gridiron;
 
     CLASS Harbour EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6505,6 +6854,7 @@ MODEL DGIF_V3 (en)
       tideInfluenced : BOOLEAN;
       worldPort : BOOLEAN;
       worldPortIndexIdentifier : -2000000000 .. 2000000000;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       fluidCapabilitiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.FluidCapacityAndCapabilityInfo;
       waterPropertiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.WaterResourceInfo;
@@ -6523,6 +6873,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Surface;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
     END LandingSteps;
 
@@ -6537,6 +6888,7 @@ MODEL DGIF_V3 (en)
     CLASS MooringRing EXTENDS DGIF_V3.Foundation.FeatureEntity =
       diameter : 0.000 .. 999999999.999;
       structMatType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END MooringRing;
 
     CLASS PilotBoardingPlace EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6544,6 +6896,7 @@ MODEL DGIF_V3 (en)
       monitored : BOOLEAN;
       permanent : BOOLEAN;
       pilotBoardingMethod : TEXT*255;
+      geometry : MANDATORY Coord2;
     END PilotBoardingPlace;
 
     CLASS Port EXTENDS DGIF_V3.Cultural.Facility =
@@ -6575,6 +6928,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       surfaceSlope : 0.000 .. 999999999.999;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Surface;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
     END ShorelineRamp;
 
@@ -6609,6 +6963,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       thickness : 0.000 .. 999999999.999;
       verticalClearanceSafe : TEXT*255;
+      geometry : MANDATORY Line;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END BasinGate;
 
@@ -6659,6 +7014,7 @@ MODEL DGIF_V3 (en)
       underbridgeClearance : 0.000 .. 999999999.999;
       verticalClearanceSafe : TEXT*255;
       waterbodyOverheadObstruct : BOOLEAN;
+      geometry : MANDATORY Surface;
       hasCulturalSignificance : REFERENCE TO (EXTERNAL) DGIF_V3.HumanGeography.CulturalSignificanceInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
@@ -6678,6 +7034,7 @@ MODEL DGIF_V3 (en)
       navigationMarkColour : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
     END BridgePier;
@@ -6710,6 +7067,7 @@ MODEL DGIF_V3 (en)
       underbridgeClearance : 0.000 .. 999999999.999;
       verticalClearanceSafe : TEXT*255;
       waterbodyOverheadObstruct : BOOLEAN;
+      geometry : MANDATORY Surface;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
     END BridgeSpan;
 
@@ -6731,6 +7089,7 @@ MODEL DGIF_V3 (en)
       radarSignificance : TEXT*255;
       restrictOverheadClearance : BOOLEAN;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
@@ -6750,6 +7109,7 @@ MODEL DGIF_V3 (en)
       radarSignificance : TEXT*255;
       structMatType : TEXT*255;
       towerShape : TEXT*255;
+      geometry : MANDATORY Coord2;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
@@ -6795,6 +7155,7 @@ MODEL DGIF_V3 (en)
       verticalRelativeLocation : TEXT*255;
       watercourseMorphology : TEXT*255;
       waterFlowRate : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       fluidCapabilitiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.FluidCapacityAndCapabilityInfo;
       waterPropertiesDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.InlandWater.WaterResourceInfo;
@@ -6818,6 +7179,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       surfaceSlope : 0.000 .. 999999999.999;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hydrographicBaseHeightInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydrographicBaseHeightInfo;
     END CausewayStructure;
@@ -6845,6 +7207,7 @@ MODEL DGIF_V3 (en)
       meansTransportation : TEXT*255;
       monitored : BOOLEAN;
       overheadClearance : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
     END Crossing;
 
     CLASS Culvert EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6854,11 +7217,13 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
     END Culvert;
 
     CLASS Curb EXTENDS DGIF_V3.Foundation.FeatureEntity =
       structMatType : TEXT*255;
       surfaceSlope : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
     END Curb;
 
     CLASS DistanceMark EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6868,6 +7233,7 @@ MODEL DGIF_V3 (en)
       maritimeNavigationMarked : BOOLEAN;
       physicalCondition : TEXT*255;
       transportationNetworkType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END DistanceMark;
 
     CLASS FerryCrossing EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6882,6 +7248,7 @@ MODEL DGIF_V3 (en)
       operatingRestriction : TEXT*255;
       permanent : BOOLEAN;
       routeIdentification : TEXT*255;
+      geometry : MANDATORY Line;
       hasCapacity : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.HumanActivityCapacityInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END FerryCrossing;
@@ -6900,6 +7267,7 @@ MODEL DGIF_V3 (en)
       predominantAvWaterVel : 0.000 .. 999999999.999;
       waterbodyDepth : 0.000 .. 999999999.999;
       waySurfaceCategory : TEXT*255;
+      geometry : MANDATORY Surface;
     END Ford;
 
     CLASS Gate EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6920,6 +7288,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       thickness : 0.000 .. 999999999.999;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Line;
     END Gate;
 
     CLASS LegalTrafficRestrictInfo =
@@ -6944,6 +7313,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       supported : BOOLEAN;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END Penstock;
 
@@ -6952,6 +7322,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       supported : BOOLEAN;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Coord2;
     END PipelineCrossingPoint;
 
     CLASS Pipeline EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -6989,6 +7360,7 @@ MODEL DGIF_V3 (en)
       verticalClearanceSafe : TEXT*255;
       verticalRelativeLocation : TEXT*255;
       waterbodyOverheadObstruct : BOOLEAN;
+      geometry : MANDATORY Line;
       verticalPositionDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       aeroObstacleDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.AeronauticalObstacleInfo;
@@ -7003,6 +7375,7 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       heightAboveSurfaceLevel : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Coord2;
     END PreparedWatercourseCross;
 
     CLASS PumpingStation EXTENDS DGIF_V3.Cultural.Facility =
@@ -7013,6 +7386,7 @@ MODEL DGIF_V3 (en)
     CLASS RailwaySignal EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Coord2;
     END RailwaySignal;
 
     CLASS RailwayTraverser EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -7030,6 +7404,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       roadInterchangeType : TEXT*255;
       routeInterchangeDesignation : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END RoadInterchange;
 
@@ -7055,12 +7430,14 @@ MODEL DGIF_V3 (en)
       waySurfaceCategory : TEXT*255;
       weatherRestrictionType : TEXT*255;
       weightBearingCapacity : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       hasCapacity : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.HumanActivityCapacityInfo;
     END RoadsideRestArea;
 
     CLASS SharpCurve EXTENDS DGIF_V3.Foundation.FeatureEntity =
       curveRadius : 0.000 .. 999999999.999;
+      geometry : MANDATORY Coord2;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END SharpCurve;
 
@@ -7075,6 +7452,7 @@ MODEL DGIF_V3 (en)
     CLASS SteepGrade EXTENDS DGIF_V3.Foundation.FeatureEntity =
       gradientLength : 0.000 .. 999999999.999;
       surfaceSlope : 0.000 .. 999999999.999;
+      geometry : MANDATORY Line;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END SteepGrade;
 
@@ -7087,6 +7465,7 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Coord2;
     END StreetLamp;
 
     CLASS StreetSign EXTENDS DGIF_V3.Cultural.RegulatorySign =
@@ -7094,6 +7473,7 @@ MODEL DGIF_V3 (en)
       controllingAuthority : TEXT*255;
       controllingAuthorityIdent : TEXT*255;
       streetSignType : TEXT*255;
+      geometry : MANDATORY Coord2;
     END StreetSign;
 
     CLASS TrackInfo =
@@ -7120,6 +7500,7 @@ MODEL DGIF_V3 (en)
       surfaceSlope : 0.000 .. 999999999.999;
       trackOrLaneCount : -2000000000 .. 2000000000;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Line;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
       trackInfoDescribedBy : REFERENCE TO TrackInfo;
     END Railway;
@@ -7139,12 +7520,14 @@ MODEL DGIF_V3 (en)
       surfaceSlope : 0.000 .. 999999999.999;
       trackOrLaneCount : -2000000000 .. 2000000000;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Line;
       trackInfoDescribedBy : REFERENCE TO TrackInfo;
     END RailwaySidetrack;
 
     CLASS RailwaySwitch EXTENDS DGIF_V3.Foundation.FeatureEntity =
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Coord2;
       trackInfoDescribedBy : REFERENCE TO TrackInfo;
     END RailwaySwitch;
 
@@ -7153,6 +7536,7 @@ MODEL DGIF_V3 (en)
       facilityOperationalStatus : TEXT*255;
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
+      geometry : MANDATORY Surface;
       trackInfoDescribedBy : REFERENCE TO TrackInfo;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END RailwayTurntable;
@@ -7175,6 +7559,7 @@ MODEL DGIF_V3 (en)
       heightAboveSurfaceLevel : TEXT*255;
       highestElevation : TEXT*255;
       physicalCondition : TEXT*255;
+      geometry : MANDATORY Coord2;
     END TrafficLight;
 
     CLASS TransRouteCharacterChange EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -7187,6 +7572,7 @@ MODEL DGIF_V3 (en)
       routeTotalUsableWidth : 0.000 .. 999999999.999;
       safeHorizontalClearance : 0.000 .. 999999999.999;
       trafficRestrictionType : TEXT*255;
+      geometry : MANDATORY Line;
     END TransRouteCharacterChange;
 
     CLASS TransRouteProtectStruct EXTENDS DGIF_V3.Foundation.FeatureEntity =
@@ -7208,6 +7594,7 @@ MODEL DGIF_V3 (en)
       structMatType : TEXT*255;
       transRteProtStructType : TEXT*255;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Surface;
       navigationLandmarkInfoDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.Foundation.LandmarkInfo;
     END TransRouteProtectStruct;
 
@@ -7219,6 +7606,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
       transportationBlockType : TEXT*255;
+      geometry : MANDATORY Surface;
     END TransportationBlock;
 
     CLASS TransportationPlatform EXTENDS DGIF_V3.Cultural.NonBuildingStructure =
@@ -7258,6 +7646,7 @@ MODEL DGIF_V3 (en)
       safeHorizontalClearance : 0.000 .. 999999999.999;
       structMatType : TEXT*255;
       verticalRelativeLocation : TEXT*255;
+      geometry : MANDATORY Surface;
       verticalPositionDescribedBy : REFERENCE TO (EXTERNAL) DGIF_V3.OceanEnvironment.HydroVertPositioningInfo;
     END Tunnel;
 
@@ -7304,6 +7693,7 @@ MODEL DGIF_V3 (en)
       waySurfaceCategory : TEXT*255;
       weatherRestrictionType : TEXT*255;
       weightBearingCapacity : 0.000 .. 999999999.999;
+      geometry : MANDATORY Surface;
       passesThrough : REFERENCE TO Tunnel;
       isSupportedBy : REFERENCE TO BridgeSpan;
       legalTrafficRestrictionDescribedBy : REFERENCE TO LegalTrafficRestrictInfo;
@@ -7359,6 +7749,7 @@ MODEL DGIF_V3 (en)
       physicalCondition : TEXT*255;
       structMatType : TEXT*255;
       waterLevelEffect : TEXT*255;
+      geometry : MANDATORY Line;
     END VehicleBarrier;
 
     CLASS VesselLift EXTENDS DGIF_V3.Cultural.NonBuildingStructure =

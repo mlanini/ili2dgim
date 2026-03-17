@@ -178,6 +178,13 @@ def main() -> int:
         default=sys.executable,
         help="Path to Python interpreter with GDAL (default: current interpreter)",
     )
+    parser.add_argument(
+        "--xtf-dir",
+        default=None,
+        help="Path to a local directory containing .xtf and .ili files "
+             "(e.g. ressources/testdata). When set, download and extraction "
+             "are skipped automatically.",
+    )
     args = parser.parse_args()
 
     # ========================================================================
@@ -270,7 +277,9 @@ def main() -> int:
     # ========================================================================
     banner("Phase 1: Download swissTLM3D XTF")
 
-    if args.skip_download and zip_file.exists():
+    if args.xtf_dir:
+        skip(f"Using local XTF directory: {args.xtf_dir} (--xtf-dir)")
+    elif args.skip_download and zip_file.exists():
         skip(f"Using existing: {zip_file}")
     else:
         info(f"Downloading from:")
@@ -312,26 +321,34 @@ def main() -> int:
     print()
 
     # ========================================================================
-    # Phase 2 — Extract XTF from ZIP
+    # Phase 2 — Extract XTF from ZIP (or use --xtf-dir)
     # ========================================================================
     banner("Phase 2: Extract XTF")
 
-    xtf_dir = tmp_dir / "xtf"
-
-    # Check if we can skip extraction
-    existing_xtfs = sorted(xtf_dir.rglob("*.xtf")) if xtf_dir.exists() else []
-    if args.skip_extract and existing_xtfs:
-        skip(f"Using existing {len(existing_xtfs)} XTF file(s) in {xtf_dir}")
+    if args.xtf_dir:
+        # Use the user-provided directory directly
+        xtf_dir = Path(args.xtf_dir).resolve()
+        if not xtf_dir.exists():
+            error(f"XTF directory not found: {xtf_dir}")
+            return 1
+        skip(f"Using local directory: {xtf_dir}")
     else:
-        if xtf_dir.exists():
-            shutil.rmtree(xtf_dir)
+        xtf_dir = tmp_dir / "xtf"
 
-        info("Extracting ZIP (~28 GB uncompressed, this may take a few minutes)...")
-        t0 = time.perf_counter()
-        with zipfile.ZipFile(str(zip_file), "r") as zf:
-            zf.extractall(str(xtf_dir))
-        elapsed = time.perf_counter() - t0
-        ok(f"Extraction completed in {elapsed:.1f}s")
+        # Check if we can skip extraction
+        existing_xtfs = sorted(xtf_dir.rglob("*.xtf")) if xtf_dir.exists() else []
+        if args.skip_extract and existing_xtfs:
+            skip(f"Using existing {len(existing_xtfs)} XTF file(s) in {xtf_dir}")
+        else:
+            if xtf_dir.exists():
+                shutil.rmtree(xtf_dir)
+
+            info("Extracting ZIP (~28 GB uncompressed, this may take a few minutes)...")
+            t0 = time.perf_counter()
+            with zipfile.ZipFile(str(zip_file), "r") as zf:
+                zf.extractall(str(xtf_dir))
+            elapsed = time.perf_counter() - t0
+            ok(f"Extraction completed in {elapsed:.1f}s")
 
     # Find .xtf files
     xtf_files = sorted(xtf_dir.rglob("*.xtf"), key=lambda p: p.name)
@@ -347,10 +364,11 @@ def main() -> int:
     info(f"Found {len(xtf_files)} XTF file(s), total {total_xtf_mb:.0f} MB")
 
     # Set TLM model directory: xtf/ first (contains the .ili shipped with the
-    # data, e.g. swissTLM3D_ili2_V2_4.ili), then ressources/ as fallback, then
-    # the standard online repository and the JAR bundled models.
+    # data, e.g. swissTLM3D_ili2_V2_4.ili), then the models/ dir (has Units.ili,
+    # CoordSys.ili), then the standard online repository and the JAR bundled models.
     tlm_model_dir = (
         f"{xtf_dir};"
+        f"{models_dir};"
         f"{workspace_root / 'ressources'};"
         f"http://models.interlis.ch/;"
         f"%JAR_DIR"
@@ -419,7 +437,7 @@ def main() -> int:
         "--dbfile", str(dgif_gpkg),
         "--defaultSrsAuth", "EPSG",
         "--defaultSrsCode", "4326",
-        "--noSmartMapping",
+        "--smart2Inheritance",
         "--nameByTopic",
         "--createGeomIdx",
         "--strokeArcs",

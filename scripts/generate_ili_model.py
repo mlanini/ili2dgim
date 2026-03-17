@@ -175,8 +175,9 @@ INTERLIS_TYPE_MAP = {
     "GmMultiSurface": "Surface",
     "GmSolid": "Coord3",
     "GmMultiSolid": "Coord3",
-    # Geometry meta wrapper → mapped like GM_Object (generic geometry)
-    "GeometryInfoMeta": "Coord2",
+    # Geometry meta wrapper → placeholder; actual type resolved per-class
+    # from geometry_GEO OCL constraints
+    "GeometryInfoMeta": "GeometryPlaceholder",
     # Intervals
     "RealInterval": "0.000 .. 999999999.999",
     "IntegerInterval": "-2000000000 .. 2000000000",
@@ -236,7 +237,7 @@ UNION_PATTERN = re.compile(r'^(.+)Union$')
 # external IDs that are NOT included in the file.  We resolve them by the
 # well-known attribute name used in the DGIF Foundation classes.
 GEOMETRY_ATTR_NAME_MAP = {
-    "geometry":             "Coord2",          # FeatureEntity.geometry  (GM_Object → default point)
+    "geometry":             "GeometryPlaceholder",  # FeatureEntity.geometry  (GM_Object → resolved per-class via geometry_GEO constraint)
     "pointGeometry":        "Coord2",          # PointGeometryInfo       (GM_Point)
     "curveGeometry":        "Line",            # CurveGeometryInfo       (GM_Curve)
     "surfaceGeometry":      "Surface",         # SurfaceGeometryInfo     (GM_Surface)
@@ -246,6 +247,86 @@ GEOMETRY_ATTR_NAME_MAP = {
     "solidGeometry":        "Coord3",          # SolidGeometryInfo       (GM_Solid → 3-D fallback)
     "multiSolidGeometry":   "Coord3",          # MultiSolidGeometryInfo  (GM_MultiSolid → 3-D fallback)
 }
+
+# ── Geometry constraint extraction ─────────────────────────────────────────
+# Each concrete FeatureEntity subclass in the XMI carries an ownedRule named
+# "geometry_GEO" with an OCL body such as:
+#   inv: geometry->forAll(g|g.oclIsKindOf(PointGeometryInfo))
+#   inv: geometry->forAll(g|(g.oclIsKindOf(CurveGeometryInfo) or g.oclIsKindOf(SurfaceGeometryInfo)))
+# We parse these to determine the correct INTERLIS geometry type per class.
+
+# Map from GeometryInfo class name (in OCL) → INTERLIS geometry type
+_OCL_GEOM_MAP = {
+    "PointGeometryInfo":        "Coord2",
+    "CurveGeometryInfo":        "Line",
+    "SurfaceGeometryInfo":      "Surface",
+    "MultiPointGeometryInfo":   "Coord2",
+    "MultiCurveGeometryInfo":   "Line",
+    "MultiSurfaceGeometryInfo": "Surface",
+    "SolidGeometryInfo":        "Coord3",
+    "MultiSolidGeometryInfo":   "Coord3",
+}
+
+# Priority order for choosing a single INTERLIS type when the OCL constraint
+# allows multiple geometry types.  Higher index → higher priority.
+_GEOM_PRIORITY = {"Coord2": 0, "Coord3": 1, "Line": 2, "Surface": 3}
+
+_OCL_KINDOF_RE = re.compile(r'oclIsKindOf\((\w+)\)')
+
+
+def build_geometry_type_map(root, id_name_map):
+    """Extract geometry_GEO constraints from XMI and build a map:
+        class_name (sanitized) → INTERLIS geometry type string.
+
+    For classes with multiple allowed geometry types (e.g. Point or Surface),
+    we pick the one with the highest _GEOM_PRIORITY (Surface > Line > Coord2).
+    This gives concrete classes the most expressive geometry column.
+    """
+    geom_map = {}  # sanitized class name → INTERLIS type
+    xmi_ns = f"{{{XMI_NS}}}"
+
+    for rule_elem in root.iter():
+        if local_tag(rule_elem) != "ownedRule":
+            continue
+        if rule_elem.get("name", "") != "geometry_GEO":
+            continue
+
+        # The parent <packagedElement> is the owning class
+        # But in ElementTree we don't have parent pointers, so use
+        # the <constrainedElement> child to get the class xmi:id
+        ce = rule_elem.find("constrainedElement")
+        if ce is None:
+            continue
+        class_id = ce.get(f"{xmi_ns}idref", ce.get("xmi:idref", ""))
+        class_raw = id_name_map.get(class_id, "")
+        if not class_raw:
+            continue
+        class_safe = sanitize_name(class_raw)
+
+        # Parse the OCL body
+        spec = rule_elem.find("specification")
+        if spec is None:
+            continue
+        body = spec.get("body", "")
+
+        # Extract all oclIsKindOf(XxxGeometryInfo) references
+        matches = _OCL_KINDOF_RE.findall(body)
+        if not matches:
+            continue
+
+        # Resolve to INTERLIS types and pick the highest-priority one
+        ili_types = set()
+        for m in matches:
+            if m in _OCL_GEOM_MAP:
+                ili_types.add(_OCL_GEOM_MAP[m])
+
+        if not ili_types:
+            continue
+
+        best = max(ili_types, key=lambda t: _GEOM_PRIORITY.get(t, -1))
+        geom_map[class_safe] = best
+
+    return geom_map
 
 # ── Angle attribute-name pattern ───────────────────────────────────────────
 # Attributes whose name contains "Angle" represent angular measurements in
@@ -553,6 +634,27 @@ def collect_inherited_attr_names(cls_info, all_class_infos_map, id_name_map):
     return inherited
 
 
+def ancestor_has_geometry(cls_info, all_class_infos_map, id_name_map, geom_type_map):
+    """Check whether any ancestor class in the inheritance chain already has
+    a geometry attribute emitted (i.e. is present in geom_type_map).
+    Returns the ancestor's geometry type string if found, else None."""
+    gen_id = cls_info.get("generalization", "")
+    if not gen_id:
+        return None
+    parent_raw = id_name_map.get(gen_id, "")
+    if not parent_raw:
+        return None
+    parent_safe = sanitize_name(parent_raw)
+    # Check if parent itself has a geometry entry
+    if parent_safe in geom_type_map:
+        return geom_type_map[parent_safe]
+    # Recurse up
+    parent_ci = all_class_infos_map.get(parent_safe)
+    if parent_ci is None:
+        return None
+    return ancestor_has_geometry(parent_ci, all_class_infos_map, id_name_map, geom_type_map)
+
+
 def topological_sort_topics(topic_deps):
     """
     Sort topic names topologically so that each topic is emitted after
@@ -686,7 +788,8 @@ def write_topic_footer(w, topic_name):
 def write_class(w, cls_info, id_name_map, id_elem_map, local_enums, 
                 all_class_names, class_to_topic=None, current_topic=None,
                 effective_deps=None, model_name="DGIF_V3",
-                inherited_attr_names=None, emitted_class_names=None):
+                inherited_attr_names=None, emitted_class_names=None,
+                geom_type_map=None, all_class_infos_map=None):
     """Write a single CLASS definition.
     
     effective_deps:      set of topic names declared in DEPENDS ON
@@ -696,12 +799,32 @@ def write_class(w, cls_info, id_name_map, id_elem_map, local_enums,
     emitted_class_names:  set of class names already emitted in this topic;
                           REFERENCE TO targeting a class not yet emitted
                           (intra-topic forward ref) is commented out.
+    geom_type_map:        dict class_name → INTERLIS geometry type, built from
+                          geometry_GEO OCL constraints in the XMI.
+    all_class_infos_map:  dict class_name → cls_info for ancestor lookups.
     """
+    if geom_type_map is None:
+        geom_type_map = {}
+    if all_class_infos_map is None:
+        all_class_infos_map = {}
     if inherited_attr_names is None:
         inherited_attr_names = set()
     if emitted_class_names is None:
         emitted_class_names = set()
     name = cls_info["name"]
+    
+    # Look up the per-class geometry type from the geometry_GEO OCL constraints
+    class_geom_type = geom_type_map.get(name, None)
+    
+    # Check whether an ancestor already defines the geometry attribute.
+    # If so, this class inherits it and must NOT re-declare it (INTERLIS
+    # does not allow re-declaration unless the new type EXTENDS the old one,
+    # which is not the case for Coord2 / Line / Surface).
+    ancestor_geom = ancestor_has_geometry(
+        cls_info, all_class_infos_map, id_name_map, geom_type_map)
+    if ancestor_geom is not None:
+        # An ancestor already provides geometry; suppress for this class.
+        class_geom_type = None
     
     # Determine EXTENDS
     extends_str = ""
@@ -720,6 +843,7 @@ def write_class(w, cls_info, id_name_map, id_elem_map, local_enums,
     w.inc()
     
     # Write attributes
+    geometry_emitted = False
     for attr in cls_info["attributes"]:
         attr_name = attr["name"]
         type_id = attr["type_id"]
@@ -738,6 +862,23 @@ def write_class(w, cls_info, id_name_map, id_elem_map, local_enums,
         if ili_type is None and not is_enum:
             continue  # skip Reason/Union types
         
+        # ── Per-class geometry override ────────────────────────────────
+        # The base FeatureEntity.geometry resolves to "GeometryPlaceholder".
+        # We skip it in the base class and emit it per-class with the correct
+        # type derived from the geometry_GEO OCL constraint.
+        if ili_type == "GeometryPlaceholder":
+            # Don't emit the generic placeholder in the base class.
+            # The concrete subclass will provide the correct type.
+            continue
+        
+        # If this is a geometry attr inherited from FeatureEntity and
+        # this concrete class has a specific geometry type, emit it
+        # with the correct type (overriding the inherited placeholder).
+        if attr_name == "geometry" and is_extended and class_geom_type:
+            w.write(f"geometry : MANDATORY {class_geom_type};")
+            geometry_emitted = True
+            continue
+        
         # Determine MANDATORY
         mandatory = " MANDATORY" if lower != "0" and not is_extended else ""
         
@@ -754,6 +895,14 @@ def write_class(w, cls_info, id_name_map, id_elem_map, local_enums,
         else:
             type_str = ili_type if ili_type else "TEXT*255"
             w.write(f"{attr_name}{extended_tag} :{mandatory} {type_str};")
+    
+    # ── Emit geometry attribute for concrete FeatureEntity subclasses ──
+    # If this class has a geometry_GEO constraint and we haven't already
+    # emitted geometry above, emit it now.  The "geometry" attribute is
+    # inherited from FeatureEntity (which no longer defines it in the .ili)
+    # so each concrete class provides its own typed geometry attribute.
+    if class_geom_type and not geometry_emitted:
+        w.write(f"geometry : MANDATORY {class_geom_type};")
     
     # Write association-end attributes as references
     for assoc_attr in cls_info["assoc_attrs"]:
@@ -908,6 +1057,14 @@ def main():
     print("Building global ID->Element map...")
     id_elem_map = build_id_elem_map(root)
     print(f"  {len(id_elem_map)} elements mapped.")
+    
+    # Build per-class geometry type map from geometry_GEO OCL constraints
+    print("Extracting geometry_GEO constraints...")
+    geom_type_map = build_geometry_type_map(root, id_name_map)
+    geom_counts = {}
+    for gt in geom_type_map.values():
+        geom_counts[gt] = geom_counts.get(gt, 0) + 1
+    print(f"  {len(geom_type_map)} classes with geometry constraints: {geom_counts}")
     
     # Navigate to DGIM
     dgim = navigate_packages(root, ["DGIF", "DGIM"])
@@ -1082,7 +1239,9 @@ def main():
                        all_class_names, class_to_topic, topic_name,
                        effective_deps=eff_deps, model_name="DGIF_V3",
                        inherited_attr_names=inherited,
-                       emitted_class_names=emitted_class_names)
+                       emitted_class_names=emitted_class_names,
+                       geom_type_map=geom_type_map,
+                       all_class_infos_map=all_class_infos_map)
             emitted_class_names.add(cls_info["name"])
             total_classes += 1
         

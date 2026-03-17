@@ -6,13 +6,11 @@ Generates a GeoPackage conforming to the DGIWG profile (STD-08-006) from the
 INTERLIS 2.4 model DGIF_V3.ili using ili2gpkg 5.3.1.
 
 Inheritance strategy:
-  The DGIF model has a very deep and wide hierarchy (Entity with 600+
-  subclasses).  The smart1/smart2 strategies in ili2db cause problems:
-    - smart1Inheritance: "too many columns" on foundation_entity (SQLite max 2000)
-    - smart2Inheritance: "duplicate column T_Id" (bug NewAndSubClass with self-ref)
-  Therefore --noSmartMapping (NewClass for every class) is used, creating one
-  table per class.  A concrete object spans multiple Records (Entity + subclass)
-  linked via an identical T_Id.
+  --smart2Inheritance (NewAndSubClass) is used, meaning each concrete class
+  gets its own table with all inherited attributes (Entity + FeatureEntity)
+  inlined.  This ensures every feature table has its own geometry column.
+  The DGIF hierarchy (Entity → FeatureEntity → 600+ concrete classes) is
+  "flattened" so that each table is self-contained.
 
 Prerequisites:
   - Java 8+ (java in PATH)
@@ -140,8 +138,8 @@ def main() -> int:
         "--defaultSrsAuth", "EPSG",
         "--defaultSrsCode", "4326",
 
-        # --- Inheritance: NewClass for every class ---
-        "--noSmartMapping",
+        # --- Inheritance: NewAndSubClass (each concrete class gets all columns) ---
+        "--smart2Inheritance",
 
         # --- Table names: Topic.Class ---
         "--nameByTopic",
