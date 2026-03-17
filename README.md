@@ -78,7 +78,7 @@ The Defence Geospatial Information Model 3.0 (673 classes, 64 associations) is t
 
 ### Step 1 — INTERLIS XML Catalogues
 
-**Script:** `scripts/extract_dgfcd_dgrwi_catalogs.py` (423 lines)
+**Script:** `scripts/extract_dgfcd_dgrwi_catalogs.py` (371 lines)
 
 Extracts the DGFCD and DGRWI concept dictionaries from the XMI file and serialises
 them into **7 XML catalogues** conforming to the INTERLIS `CatalogueObjects_V2` format:
@@ -102,7 +102,7 @@ python scripts/extract_dgfcd_dgrwi_catalogs.py
 
 ### Step 2 — INTERLIS 2.4 Model
 
-**Script:** `scripts/generate_ili_model.py` (1,135 lines)
+**Script:** `scripts/generate_ili_model.py` (1,030 lines)
 
 Transforms the UML/XMI model into an `.ili` file compliant with INTERLIS 2.4 and eCH-0031 v2.1.0.
 
@@ -128,6 +128,8 @@ Transforms the UML/XMI model into an `.ili` file compliant with INTERLIS 2.4 and
   - `POINT` → `GeometryCHLV95_V2.Coord2`
   - `LINESTRING` → `GeometryCHLV95_V2.Line`
   - `POLYGON` → `GeometryCHLV95_V2.Surface`
+- **28 Angle attributes** mapped to `0.000 .. 360.000 [Units.Angle_Degree]`
+- **Flat model:** all `BAG OF` constructs eliminated (0 occurrences) — every attribute and reference is single-valued for maximum GeoPackage compatibility
 - **Validation:** 0 ili2c errors
 
 **Run:**
@@ -146,7 +148,7 @@ java -jar ressources/ili2c-5.6.8/ili2c.jar --check models/DGIF_V3.ili
 
 **Script:** `scripts/generate_gpkg.py` (Python)
 
-Generates a GeoPackage conforming to the DGIWG profile (STD-08-006) using `ili2gpkg 5.5.1`.
+Generates a GeoPackage conforming to the DGIWG profile (STD-08-006) using `ili2gpkg 5.3.1`.
 
 **Input:** `models/DGIF_V3.ili`
 
@@ -165,8 +167,9 @@ Generates a GeoPackage conforming to the DGIWG profile (STD-08-006) using `ili2g
 | `--createGeomIdx` | Spatial indices (DGIWG requirement) |
 | `--strokeArcs` | Arcs → line segments for compatibility |
 | `--createEnumTabs` | Lookup tables for enumerations |
+| `--createTidCol` | T_Ili_Tid column for Transfer-ID |
 
-**Result:** `output/DGIF_V3.gpkg` — 22.5 MB, **1,457 tables** (9 with geometry, 1,448 attribute-only), SRID 4326.
+**Result:** `output/DGIF_V3.gpkg` — ~5 MB, SRID 4326.
 
 **Run:**
 ```bash
@@ -177,7 +180,7 @@ python scripts/generate_gpkg.py
 
 ### Step 4 — OSM ↔ DGIF V3 Mapping Table
 
-**Script:** `scripts/build_osm_dgif_v3.py` (~480 lines)
+**Script:** `scripts/build_osm_dgif_v3.py` (~476 lines)
 
 Updates the mapping table between OpenStreetMap tags and DGIF classes from version 2.0 to version 3.0, based on three sources:
 
@@ -314,7 +317,7 @@ python scripts/build_swisstlm3d_dgif_v3.py
 **Input:**
 - swissTLM3D XTF archive from [data.geo.admin.ch](https://data.geo.admin.ch/ch.swisstopo.swisstlm3d/)
 - `models/DGIF_V3.ili` — DGIF INTERLIS model
-- `dgiwg_docs/swissTLM3D_to_DGIF_V3.csv` — mapping table (215 rules)
+- `models/swissTLM3D_to_DGIF_V3.csv` — mapping table (215 rules)
 
 **Output:** `output/DGIF_swissTLM3D.gpkg` — DGIF-conformant GeoPackage populated with swissTLM3D data in WGS84 (EPSG:4326).
 
@@ -370,7 +373,7 @@ python scripts/etl_swisstlm3d_to_dgif.py --skip-download --skip-extract --skip-v
 | Python | 3.12+ | System Python or QGIS-bundled Python |
 | Java (JRE) | ≥ 11 | In system `PATH` |
 | ili2c | 5.6.8 | `ressources/ili2c-5.6.8/ili2c.jar` |
-| ili2gpkg | 5.5.1 | `ressources/ili2gpkg-5.5.1/ili2gpkg-5.5.1.jar` |
+| ili2gpkg | 5.3.1 | `ressources/ili2gpkg-5.3.1/ili2gpkg-5.3.1.jar` |
 | ilivalidator | 1.15.0 | `ressources/ilivalidator-1.15.0/ilivalidator-1.15.0.jar` |
 | GDAL/OGR | 3.10+ | Bundled with QGIS or installed separately |
 

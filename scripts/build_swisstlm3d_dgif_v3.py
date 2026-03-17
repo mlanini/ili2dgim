@@ -10,11 +10,11 @@ DGIF 3.0 class (with optional attribute/value) and writes a CSV with the
 same structure as OSM_to_DGIF_V3.csv.
 
 Input:
-  - ressources/swissTLM3D_ili2_V2_3.ili   (swissTLM3D INTERLIS model)
-  - output/DGIF_V3.ili                     (DGIF 3.0 INTERLIS model)
+  - models/swissTLM3D_ili2_V2_4.ili        (swissTLM3D INTERLIS model)
+  - models/DGIF_V3.ili                     (DGIF 3.0 INTERLIS model)
 
 Output:
-  - dgiwg_docs/swissTLM3D_to_DGIF_V3.csv
+  - models/swissTLM3D_to_DGIF_V3.csv
 """
 
 import csv
@@ -23,9 +23,9 @@ import os
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent.parent
-ILI_DGIF  = BASE / "output" / "DGIF_V3.ili"
-ILI_TLM   = BASE / "ressources" / "swissTLM3D_ili2_V2_3.ili"
-CSV_OUT   = BASE / "dgiwg_docs" / "swissTLM3D_to_DGIF_V3.csv"
+ILI_DGIF  = BASE / "models" / "DGIF_V3.ili"
+ILI_TLM   = BASE / "models" / "swissTLM3D_ili2_V2_4.ili"
+CSV_OUT   = BASE / "models" / "swissTLM3D_to_DGIF_V3.csv"
 
 # ── Extract DGIF V3 classes ─────────────────────────────────────────────────
 def extract_dgif_classes(ili_path: Path) -> set:

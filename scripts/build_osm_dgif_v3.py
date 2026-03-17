@@ -26,9 +26,9 @@ from pathlib import Path
 
 # ── paths ────────────────────────────────────────────────────────────────────
 BASE = Path(__file__).resolve().parent.parent
-ILI_FILE  = BASE / "output" / "DGIF_V3.ili"
-CSV_V2    = BASE / "dgiwg_docs" / "OSM_to_DGIF_V2.csv"
-CSV_V3    = BASE / "dgiwg_docs" / "OSM_to_DGIF_V3.csv"
+ILI_FILE  = BASE / "models" / "DGIF_V3.ili"
+CSV_V2    = BASE / "models" / "OSM_to_DGIF_V2.csv"
+CSV_V3    = BASE / "models" / "OSM_to_DGIF_V3.csv"
 
 # ── 1.  Extract V3 classes from .ili ─────────────────────────────────────────
 def extract_v3_classes(ili_path: Path) -> set:

@@ -14,7 +14,7 @@ Orchestrates the full ETL process:
 Prerequisites:
   - Java 8+ (java in PATH)
   - Python 3.12 with GDAL/OGR (QGIS bundled)
-  - ili2gpkg 5.5.1 in ressources/ili2gpkg-5.5.1/
+  - ili2gpkg 5.3.1 in ressources/ili2gpkg-5.3.1/
   - ilivalidator 1.15.0 in ressources/ilivalidator-1.15.0/
   - DGIF_V3.ili in models/
   - swissTLM3D_ili2_V2_4.ili in models/
@@ -184,7 +184,7 @@ def main() -> int:
     # Configuration
     # ========================================================================
     workspace_root = Path(__file__).resolve().parent.parent
-    ili2gpkg_jar = workspace_root / "ressources" / "ili2gpkg-5.5.1" / "ili2gpkg-5.5.1.jar"
+    ili2gpkg_jar = workspace_root / "ressources" / "ili2gpkg-5.3.1" / "ili2gpkg-5.3.1.jar"
     ilivalidator_jar = workspace_root / "ressources" / "ilivalidator-1.15.0" / "ilivalidator-1.15.0.jar"
     dgif_ili = workspace_root / "models" / "DGIF_V3.ili"
     tlm_ili = workspace_root / "models" / "swissTLM3D_ili2_V2_4.ili"

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-DGIF GeoPackage Generator (ili2gpkg 5.5.1)
+DGIF GeoPackage Generator (ili2gpkg 5.3.1)
 
 Generates a GeoPackage conforming to the DGIWG profile (STD-08-006) from the
-INTERLIS 2.4 model DGIF_V3.ili using ili2gpkg 5.5.1.
+INTERLIS 2.4 model DGIF_V3.ili using ili2gpkg 5.3.1.
 
 Inheritance strategy:
   The DGIF model has a very deep and wide hierarchy (Entity with 600+
@@ -16,8 +16,8 @@ Inheritance strategy:
 
 Prerequisites:
   - Java 8+ (java in PATH)
-  - ili2gpkg-5.5.1.jar in ressources/ili2gpkg-5.5.1/
-  - DGIF_V3.ili in output/
+  - ili2gpkg-5.3.1.jar in ressources/ili2gpkg-5.3.1/
+  - DGIF_V3.ili in models/
 """
 
 import os
@@ -67,19 +67,20 @@ def main() -> int:
     # Configuration
     # ========================================================================
     workspace_root = Path(__file__).resolve().parent.parent
-    ili2gpkg_jar = workspace_root / "ressources" / "ili2gpkg-5.5.1" / "ili2gpkg-5.5.1.jar"
-    ili_model = workspace_root / "output" / "DGIF_V3.ili"
+    ili2gpkg_jar = workspace_root / "ressources" / "ili2gpkg-5.3.1" / "ili2gpkg-5.3.1.jar"
+    ili_model = workspace_root / "models" / "DGIF_V3.ili"
     output_dir = workspace_root / "output"
+    models_dir = workspace_root / "models"
     gpkg_file = output_dir / "DGIF_V3.gpkg"
     log_file = output_dir / "ili2gpkg_schemaimport.log"
 
-    # Model directory: output folder (where .ili lives) + standard repository
-    model_dir = f"{output_dir};http://models.interlis.ch/;%JAR_DIR"
+    # Model directory: models folder (where .ili lives) + standard repository
+    model_dir = f"{models_dir};http://models.interlis.ch/;%JAR_DIR"
 
     # ========================================================================
     # Banner
     # ========================================================================
-    banner("DGIF GeoPackage Generator (ili2gpkg 5.5.1)")
+    banner("DGIF GeoPackage Generator (ili2gpkg 5.3.1)")
     print()
 
     # ========================================================================
