@@ -356,7 +356,12 @@ def reproject_geometry(geom: ogr.Geometry, transform: osr.CoordinateTransformati
 
 
 def extract_centroid_coord2(geom: ogr.Geometry, transform: osr.CoordinateTransformation) -> ogr.Geometry:
-    """For polygon/line features that must map to Point DGIF classes, extract centroid."""
+    """For polygon/line features that must map to Point DGIF classes, extract centroid.
+
+    Note: Only used when a source geometry is non-point and the DGIF target
+    column is registered as POINT.  Most DGIF classes now declare the correct
+    geometry type (POLYGON / LINESTRING) so this is rarely needed.
+    """
     if geom is None:
         return None
     clone = geom.Clone()
@@ -467,6 +472,10 @@ def build_class_metadata(conn: sqlite3.Connection) -> dict:
     # Columns always provided by the ETL code
     always_provided = {"t_id", "t_basket", "t_lastchange", "t_createdate", "t_user"}
 
+    # Build a lookup of registered geometry type per table from gpkg_geometry_columns
+    cur.execute("SELECT table_name, geometry_type_name FROM gpkg_geometry_columns")
+    table_geom_type = {row[0]: row[1].upper() for row in cur.fetchall()}
+
     meta = {}
     for iliname, sqlname in classname_rows:
         if sqlname not in all_tables:
@@ -501,6 +510,7 @@ def build_class_metadata(conn: sqlite3.Connection) -> dict:
                 "topic": topic_name,
                 "columns": columns,
                 "notnull_defaults": notnull_defaults,
+                "geom_type": table_geom_type.get(sqlname, ""),  # e.g. "POLYGON", "LINESTRING", "POINT"
             }
     return meta
 
@@ -542,6 +552,256 @@ def ensure_baskets(conn: sqlite3.Connection, topics_needed: set[str]) -> dict[st
 
     conn.commit()
     return basket_map
+
+
+# ============================================================================
+# Populate Foundation metadata from geocat.ch (swissTLM3D)
+# ============================================================================
+# Metadata source: geocat.ch ISO 19115/19139 record
+#   https://www.geocat.ch/geonetwork/srv/api/records/73856ca2-f21d-4cc9-90f6-f3e8375555df
+# The values below are extracted from the official swisstopo metadata for
+# swissTLM3D and mapped to the DGIF Foundation topic classes.
+# ============================================================================
+
+_GEOCAT_FILE_ID = "73856ca2-f21d-4cc9-90f6-f3e8375555df"
+_GEOCAT_URL = (
+    "https://www.geocat.ch/geonetwork/srv/api/records/"
+    f"{_GEOCAT_FILE_ID}/formatters/xml?approved=true"
+)
+
+# Static metadata values (from geocat.ch record for swissTLM3D)
+_META = {
+    # SourceInfo
+    "datasetcitation": (
+        "swissTLM3D - The large-scale topographic landscape model of Switzerland. "
+        f"geocat.ch fileIdentifier: {_GEOCAT_FILE_ID}"
+    ),
+    "sourcedescription": (
+        "The large-scale topographic landscape model of Switzerland covering the "
+        "entire territory of Switzerland and the Principality of Liechtenstein. "
+        "swissTLM3D contains the natural and artificial objects of the landscape. "
+        "It is the most detailed and accurate 3D vector dataset of swisstopo."
+    ),
+    "sourceidentifier": _GEOCAT_FILE_ID,
+    "typeofsource": "vectorDataset",
+    "resourcecontentorigin": "swissTLM3D",
+    "scaledenominator": 5000,
+    "sourcecurrencydatetime": "2024",
+
+    # Organisation
+    "organisationdescription": "Federal Office of Topography swisstopo",
+    "organisationtype": "government",
+    "homegeopoliticalentity": "CHE",
+    "organisationreach": "national",
+    "branding": "swisstopo",
+
+    # ContactInfo
+    "addresscountry": "CHE",
+    "addresscity": "Wabern",
+    "addressdeliverypoint": "Seftigenstrasse 264",
+    "addresspostalcode": "3084",
+    "addressadministrativearea": "BE",
+    "addresselectronicmail": "geodata@swisstopo.ch",
+    "telephonevoice": "+41 58 469 01 11",
+    "onlineresourcelinkage": "https://www.swisstopo.admin.ch",
+
+    # RestrictionInfo (OGD / open data since 2021)
+    "commercialcopyrightnotice": "© swisstopo",
+    "commercialdistribrestrict": "openData (OGD)",
+
+    # HorizCoordMetadata (data reprojected to WGS84 in DGIF)
+    "geodeticdatum": "worldGeodeticSystem1984",
+    "horizaccuracycategory": (
+        "0.2-1.5 m (well-defined features) / 1-3 m (not clearly defined features)"
+    ),
+
+    # FeatureMetadata
+    "delineationknown": 1,  # BOOLEAN as integer
+    "existencecertaintycat": "definite",
+    "surveycoveragecategory": "complete",
+    "dataqualitystatement": (
+        "Geometric accuracy: well-defined objects 0.2-1.5 m, not clearly defined "
+        "objects 1-3 m. Update cycle: approx. 6 years for the full territory. "
+        "Source: official mensuration, aerial imagery, stereo plotting."
+    ),
+
+    # FeatureAttMetadata
+    "att_currencydatetime": "2024",
+    "att_dataqualitystatement": (
+        "Attribute quality controlled against official registers and field "
+        "verification. Thematic accuracy > 95% for main categories."
+    ),
+}
+
+
+def populate_foundation_metadata(
+    conn: sqlite3.Connection,
+    basket_tid: int,
+    start_tid: int,
+) -> int:
+    """Insert Foundation metadata records derived from geocat.ch.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        Open connection to the DGIF GeoPackage.
+    basket_tid : int
+        T_Id of the Foundation basket (from ``ensure_baskets``).
+    start_tid : int
+        First available T_Id (to avoid collisions with existing data).
+
+    Returns
+    -------
+    int
+        The next available T_Id after all inserts.
+    """
+    now_iso = datetime.datetime.now(datetime.timezone.utc).strftime(
+        "%Y-%m-%dT%H:%M:%SZ"
+    )
+    user = "etl_swisstlm3d"
+    tid = start_tid
+
+    def _ili_tid() -> str:
+        return str(uuid.uuid4())
+
+    # Helper: common ili2db bookkeeping columns
+    def _base(extra: dict | None = None) -> dict:
+        nonlocal tid
+        row = {
+            "T_Id": tid,
+            "T_basket": basket_tid,
+            "T_Ili_Tid": _ili_tid(),
+            "T_LastChange": now_iso,
+            "T_CreateDate": now_iso,
+            "T_User": user,
+        }
+        if extra:
+            row.update(extra)
+        tid += 1
+        return row
+
+    # Helper: Entity columns (for Organisation, OrganisationalUnit, …)
+    def _entity(extra: dict | None = None) -> dict:
+        row = _base({
+            "beginlifespanversion": now_iso,
+            "uniqueuniversalentityidentifier": _ili_tid(),
+        })
+        if extra:
+            row.update(extra)
+        return row
+
+    # Helper: generic INSERT
+    def _insert(table: str, row: dict) -> int:
+        cols = ", ".join(row.keys())
+        placeholders = ", ".join(["?"] * len(row))
+        conn.execute(
+            f'INSERT INTO "{table}" ({cols}) VALUES ({placeholders})',
+            list(row.values()),
+        )
+        return row["T_Id"]
+
+    m = _META  # shortcut
+
+    print("\n[INFO] Populating Foundation metadata (geocat.ch -> DGIF) ...")
+
+    # 1) SourceInfo
+    src_tid = _insert("foundation_sourceinfo", _base({
+        "datasetcitation": m["datasetcitation"],
+        "sourcedescription": m["sourcedescription"],
+        "sourceidentifier": m["sourceidentifier"],
+        "typeofsource": m["typeofsource"],
+        "resourcecontentorigin": m["resourcecontentorigin"],
+        "scaledenominator": m["scaledenominator"],
+        "sourcecurrencydatetime": m["sourcecurrencydatetime"],
+    }))
+    print(f"  [OK] foundation_sourceinfo          T_Id={src_tid}")
+
+    # 2) Organisation (EXTENDS ActorEntity EXTENDS Entity)
+    org_tid = _insert("foundation_organisation", _entity({
+        "organisationdescription": m["organisationdescription"],
+        "organisationtype": m["organisationtype"],
+        "homegeopoliticalentity": m["homegeopoliticalentity"],
+        "organisationreach": m["organisationreach"],
+        "branding": m["branding"],
+    }))
+    print(f"  [OK] foundation_organisation         T_Id={org_tid}")
+
+    # 3) ContactInfo
+    contact_tid = _insert("foundation_contactinfo", _base({
+        "addresscountry": m["addresscountry"],
+        "addresscity": m["addresscity"],
+        "addressdeliverypoint": m["addressdeliverypoint"],
+        "addresspostalcode": m["addresspostalcode"],
+        "addressadministrativearea": m["addressadministrativearea"],
+        "addresselectronicmail": m["addresselectronicmail"],
+        "telephonevoice": m["telephonevoice"],
+        "onlineresourcelinkage": m["onlineresourcelinkage"],
+    }))
+    print(f"  [OK] foundation_contactinfo          T_Id={contact_tid}")
+
+    # 4) OrganisationalUnit (EXTENDS ActorEntity EXTENDS Entity)
+    #    contactInfo is MANDATORY TEXT*1024 — we store structured contact summary
+    #    mainOrganisation is FK → Organisation
+    orgunit_tid = _insert("foundation_organisationalunit", _entity({
+        "contactinfo": (
+            f"{m['addressdeliverypoint']}, {m['addresspostalcode']} "
+            f"{m['addresscity']}, {m['addresscountry']}; "
+            f"email: {m['addresselectronicmail']}; "
+            f"tel: {m['telephonevoice']}; "
+            f"web: {m['onlineresourcelinkage']}"
+        ),
+        "mainorganisation": org_tid,
+    }))
+    print(f"  [OK] foundation_organisationalunit   T_Id={orgunit_tid}")
+
+    # 5) RestrictionInfo
+    restr_tid = _insert("foundation_restrictioninfo", _base({
+        "commercialcopyrightnotice": m["commercialcopyrightnotice"],
+        "commercialdistribrestrict": m["commercialdistribrestrict"],
+    }))
+    print(f"  [OK] foundation_restrictioninfo      T_Id={restr_tid}")
+
+    # 6) HorizCoordMetadata
+    hcoord_tid = _insert("foundation_horizcoordmetadata", _base({
+        "geodeticdatum": m["geodeticdatum"],
+        "horizaccuracycategory": m["horizaccuracycategory"],
+    }))
+    print(f"  [OK] foundation_horizcoordmetadata   T_Id={hcoord_tid}")
+
+    # 7) FeatureMetadata
+    fmeta_tid = _insert("foundation_featuremetadata", _base({
+        "delineationknown": m["delineationknown"],
+        "delineationknown_txt": "true",
+        "existencecertaintycat": m["existencecertaintycat"],
+        "surveycoveragecategory": m["surveycoveragecategory"],
+        "dataqualitystatement": m["dataqualitystatement"],
+    }))
+    print(f"  [OK] foundation_featuremetadata      T_Id={fmeta_tid}")
+
+    # 8) FeatureAttMetadata
+    fameta_tid = _insert("foundation_featureattmetadata", _base({
+        "currencydatetime": m["att_currencydatetime"],
+        "dataqualitystatement": m["att_dataqualitystatement"],
+    }))
+    print(f"  [OK] foundation_featureattmetadata   T_Id={fameta_tid}")
+
+    # 9) NameSpecification (dataset name)
+    name_tid = _insert("foundation_namespecification", _base({
+        "aname": "swissTLM3D",
+        "nametype": "official",
+        "nameusedescription": "Official swisstopo product name",
+        "referencename": 1,
+        "referencename_txt": "true",
+    }))
+    print(f"  [OK] foundation_namespecification    T_Id={name_tid}")
+
+    conn.commit()
+
+    inserted = tid - start_tid
+    print(f"[INFO] Foundation metadata: {inserted} records inserted "
+          f"(T_Id {start_tid}..{tid - 1})")
+
+    return tid
 
 
 # ============================================================================
@@ -614,11 +874,21 @@ def transform(
     stats = defaultdict(int)
     now_iso = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # Track spatial extent for gpkg_contents update (no SpatiaLite needed)
-    extent_min_x = float("inf")
-    extent_min_y = float("inf")
-    extent_max_x = float("-inf")
-    extent_max_y = float("-inf")
+    # Track spatial extent **per table** for gpkg_contents update.
+    table_extents: dict[str, list[float]] = {}  # table -> [minX, minY, maxX, maxY]
+
+    # Track actual WKB geometry types written per DGIF table.
+    # OGR geometry type name for the *flat* type (2D), e.g. "POINT", "LINESTRING", "POLYGON".
+    # Used after all inserts to reconcile gpkg_geometry_columns.
+    _OGR_TYPE_NAMES = {
+        ogr.wkbPoint: "POINT",
+        ogr.wkbLineString: "LINESTRING",
+        ogr.wkbPolygon: "POLYGON",
+        ogr.wkbMultiPoint: "MULTIPOINT",
+        ogr.wkbMultiLineString: "MULTILINESTRING",
+        ogr.wkbMultiPolygon: "MULTIPOLYGON",
+    }
+    actual_geom_types: dict[str, set[str]] = defaultdict(set)  # table -> set of type names
 
     # Collect unique TLM classes referenced in mapping
     tlm_classes_needed = set()
@@ -733,31 +1003,41 @@ def transform(
                 begin_date = src_datum if src_datum else now_iso
 
                 # --- Geometry ---
-                # With --smart2Inheritance each concrete class has its own
-                # ageometry column (MANDATORY Coord2 = Point).
-                # For Line/Polygon sources, extract centroid.
+                # With --smart2Inheritance each concrete class table has its
+                # own ageometry column.  The registered geometry type in
+                # gpkg_geometry_columns (POINT, LINESTRING, POLYGON) reflects
+                # the OCL constraint from the INTERLIS model.
+                #
+                # Strategy:
+                #   • If the DGIF target expects POINT but the source is
+                #     Line/Polygon → extract centroid (rare edge case).
+                #   • Otherwise → reproject the source geometry as-is.
+                dgif_geom_type = meta.get("geom_type", "")  # e.g. "POLYGON"
                 geom_wkb = None
                 if src_geom is not None:
-                    geom_type = src_geom.GetGeometryType()
-                    flat_type = ogr.GT_Flatten(geom_type)
-                    if flat_type == ogr.wkbPoint:
-                        target_geom = reproject_geometry(src_geom, transform_ct)
-                    else:
-                        # Polygon, Line, Multi* -> centroid
+                    src_flat = ogr.GT_Flatten(src_geom.GetGeometryType())
+                    if dgif_geom_type == "POINT" and src_flat != ogr.wkbPoint:
+                        # Target is POINT but source is not → centroid
                         target_geom = extract_centroid_coord2(src_geom, transform_ct)
+                    else:
+                        # Keep original geometry (reproject + flatten 3D→2D)
+                        target_geom = reproject_geometry(src_geom, transform_ct)
                     if target_geom is not None:
                         geom_wkb = to_gpkg_wkb(target_geom, srs_id=4326)
-                        # Track extent
-                        px = target_geom.GetX()
-                        py = target_geom.GetY()
-                        if px < extent_min_x:
-                            extent_min_x = px
-                        if px > extent_max_x:
-                            extent_max_x = px
-                        if py < extent_min_y:
-                            extent_min_y = py
-                        if py > extent_max_y:
-                            extent_max_y = py
+                        # Record the actual WKB type written
+                        written_flat = ogr.GT_Flatten(target_geom.GetGeometryType())
+                        written_name = _OGR_TYPE_NAMES.get(written_flat, f"UNKNOWN({written_flat})")
+                        actual_geom_types[dgif_table_name].add(written_name)
+                        # Track per-table extent via envelope
+                        env = target_geom.GetEnvelope()  # (minX, maxX, minY, maxY)
+                        if dgif_table_name not in table_extents:
+                            table_extents[dgif_table_name] = [env[0], env[2], env[1], env[3]]
+                        else:
+                            te = table_extents[dgif_table_name]
+                            if env[0] < te[0]: te[0] = env[0]
+                            if env[2] < te[1]: te[1] = env[2]
+                            if env[1] > te[2]: te[2] = env[1]
+                            if env[3] > te[3]: te[3] = env[3]
 
                 # --- Single-table insert (--smart2Inheritance) ---
                 # With --smart2Inheritance, each concrete class table contains
@@ -765,12 +1045,9 @@ def transform(
                 # No separate foundation_entity / foundation_featureentity insert.
                 has_geom_col = "ageometry" in dgif_cols
 
-                # If the table has ageometry (FeatureEntity subclass) and no
-                # geometry was extracted, use a default point (0,0)
-                if has_geom_col and geom_wkb is None:
-                    default_pt = ogr.Geometry(ogr.wkbPoint)
-                    default_pt.AddPoint(0.0, 0.0)
-                    geom_wkb = to_gpkg_wkb(default_pt, srs_id=4326)
+                # If no geometry was extracted leave ageometry as NULL.
+                # (Inserting a fake default point at 0,0 would place features
+                # off the map and pollute the data.)
 
                 insert_cols = [
                     "T_Id", "T_Ili_Tid", "T_basket",
@@ -834,32 +1111,158 @@ def transform(
     print("\n[INFO] Committing to DGIF GeoPackage...")
     dgif_conn.commit()
 
-    # Update gpkg_contents extent for all tables that received inserts
+    # ---- Foundation metadata (geocat.ch → DGIF) ----
+    foundation_basket = basket_map.get("DGIF_V3.Foundation")
+    if foundation_basket is None:
+        # Ensure Foundation basket exists even when no GeneralLocation features
+        foundation_basket = ensure_baskets(dgif_conn, {"DGIF_V3.Foundation"}).get(
+            "DGIF_V3.Foundation"
+        )
+    if foundation_basket is not None:
+        next_tid = populate_foundation_metadata(
+            dgif_conn, foundation_basket, next_tid
+        )
+    else:
+        print("[WARN] Foundation basket not found — skipping metadata population.")
+
+    # Update gpkg_contents extent **per table** (not global)
     print("[INFO] Updating spatial extents...")
-    if extent_min_x < float("inf"):
+    if table_extents:
         try:
-            # Collect table names that had features inserted
-            inserted_tables = [
-                k.split(":", 1)[1] for k in stats if k.startswith("inserted:")
-            ]
             updated_count = 0
-            for tbl in inserted_tables:
+            for tbl, (minx, miny, maxx, maxy) in table_extents.items():
                 dgif_conn.execute(
                     "UPDATE gpkg_contents SET min_x=?, min_y=?, max_x=?, max_y=? "
                     "WHERE table_name=?",
-                    (extent_min_x, extent_min_y, extent_max_x, extent_max_y, tbl)
+                    (minx, miny, maxx, maxy, tbl)
                 )
                 updated_count += dgif_conn.execute(
                     "SELECT changes()"
                 ).fetchone()[0]
             dgif_conn.commit()
-            print(f"[INFO]   Extent: ({extent_min_x:.6f}, {extent_min_y:.6f}) - "
-                  f"({extent_max_x:.6f}, {extent_max_y:.6f})")
+            # Compute overall extent for log
+            all_minx = min(e[0] for e in table_extents.values())
+            all_miny = min(e[1] for e in table_extents.values())
+            all_maxx = max(e[2] for e in table_extents.values())
+            all_maxy = max(e[3] for e in table_extents.values())
+            print(f"[INFO]   Overall extent: ({all_minx:.6f}, {all_miny:.6f}) - "
+                  f"({all_maxx:.6f}, {all_maxy:.6f})")
             print(f"[INFO]   Updated {updated_count} gpkg_contents rows")
         except sqlite3.Error as e:
             print(f"[WARN] Could not update extents: {e}", file=sys.stderr)
     else:
         print("[INFO]   No geometry inserted, skipping extent update.")
+
+    # Null-out extents for empty feature tables (ili2gpkg sets default
+    # (-180,-90)-(180,90) at schema import which pollutes overall extent).
+    try:
+        nulled = 0
+        feat_tables = [
+            r[0] for r in dgif_conn.execute(
+                "SELECT table_name FROM gpkg_contents WHERE data_type='features'"
+            ).fetchall()
+        ]
+        inserted_set = set(
+            k.split(":", 1)[1] for k in stats if k.startswith("inserted:")
+        )
+        for tbl in feat_tables:
+            if tbl not in inserted_set:
+                dgif_conn.execute(
+                    "UPDATE gpkg_contents SET min_x=NULL, min_y=NULL, "
+                    "max_x=NULL, max_y=NULL WHERE table_name=?", (tbl,)
+                )
+                nulled += 1
+        if nulled:
+            dgif_conn.commit()
+            print(f"[INFO]   Nulled extent for {nulled} empty tables")
+    except sqlite3.Error as e:
+        print(f"[WARN] Could not null empty extents: {e}", file=sys.stderr)
+
+    # Reconcile gpkg_geometry_columns: update geometry_type_name to match
+    # the actual WKB types written.  When a table received a single type
+    # (e.g. only LINESTRING) use that; when mixed types were written use
+    # "GEOMETRY" so QGIS accepts all of them.
+    print("[INFO] Reconciling gpkg_geometry_columns with actual geometry types...")
+    geom_type_updates = 0
+    for tbl, written_types in actual_geom_types.items():
+        if not written_types:
+            continue
+        if len(written_types) == 1:
+            new_type = next(iter(written_types))
+        else:
+            new_type = "GEOMETRY"
+        # Check current registered type
+        row = dgif_conn.execute(
+            "SELECT geometry_type_name FROM gpkg_geometry_columns WHERE table_name=?",
+            (tbl,)
+        ).fetchone()
+        if row and row[0] != new_type:
+            dgif_conn.execute(
+                "UPDATE gpkg_geometry_columns SET geometry_type_name=? WHERE table_name=?",
+                (new_type, tbl)
+            )
+            geom_type_updates += 1
+            if geom_type_updates <= 10:
+                print(f"  [INFO]   {tbl}: {row[0]} -> {new_type}")
+    if geom_type_updates > 10:
+        print(f"  [INFO]   ... and {geom_type_updates - 10} more")
+    dgif_conn.commit()
+    print(f"[INFO]   Updated geometry_type_name for {geom_type_updates} tables")
+
+    # ---------------------------------------------------------------
+    # Populate R-tree spatial indexes.
+    # ili2gpkg creates rtree_<table>_ageometry virtual tables but only
+    # adds a DELETE trigger; INSERTs done via raw SQL bypass the index.
+    # We rebuild each populated table's R-tree from the GP binary
+    # envelope stored in the geometry blob.
+    # ---------------------------------------------------------------
+    print("[INFO] Populating R-tree spatial indexes...")
+    import struct as _struct
+    rtree_total = 0
+    rtree_tables = 0
+    geom_col_rows = dgif_conn.execute(
+        "SELECT table_name, column_name FROM gpkg_geometry_columns"
+    ).fetchall()
+    for tbl, geom_col in geom_col_rows:
+        rtree_name = f"rtree_{tbl}_{geom_col}"
+        # Check the rtree table exists
+        exists = dgif_conn.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",
+            (rtree_name,)
+        ).fetchone()
+        if not exists:
+            continue
+        # Only process tables that have data
+        cnt = dgif_conn.execute(
+            f'SELECT COUNT(*) FROM "{tbl}" WHERE "{geom_col}" IS NOT NULL'
+        ).fetchone()[0]
+        if cnt == 0:
+            continue
+        # Clear any stale entries
+        dgif_conn.execute(f'DELETE FROM "{rtree_name}"')
+        # Insert from geometry blobs: parse GP header envelope
+        inserted = 0
+        for (rowid, blob) in dgif_conn.execute(
+            f'SELECT T_Id, "{geom_col}" FROM "{tbl}" WHERE "{geom_col}" IS NOT NULL'
+        ):
+            if blob is None or len(blob) < 40:
+                continue
+            flags = blob[3]
+            envelope_type = (flags >> 1) & 0x07
+            if envelope_type == 0:
+                # No envelope in GP header — skip (should not happen with our writer)
+                continue
+            minx, maxx, miny, maxy = _struct.unpack_from('<4d', blob, 8)
+            dgif_conn.execute(
+                f'INSERT INTO "{rtree_name}" (id, minx, maxx, miny, maxy) '
+                f'VALUES (?, ?, ?, ?, ?)',
+                (rowid, minx, maxx, miny, maxy)
+            )
+            inserted += 1
+        rtree_total += inserted
+        rtree_tables += 1
+    dgif_conn.commit()
+    print(f"[INFO]   Indexed {rtree_total} geometries across {rtree_tables} tables")
 
     # Clean up
     dgif_conn.close()
@@ -892,7 +1295,7 @@ def transform(
 # ============================================================================
 def main():
     parser = argparse.ArgumentParser(
-        description="ETL Transform: swissTLM3D GeoPackage → DGIF GeoPackage"
+        description="ETL Transform: swissTLM3D GeoPackage -> DGIF GeoPackage"
     )
     parser.add_argument("--tlm-gpkg", required=True, help="Path to temporary swissTLM3D GeoPackage")
     parser.add_argument("--dgif-gpkg", required=True, help="Path to target DGIF GeoPackage")

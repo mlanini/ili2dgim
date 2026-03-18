@@ -31,10 +31,11 @@ ressources/
 # ressources/*.pdf
 # ressources/*.csv
 
-# ── DGIWG reference documents (copyrighted PDFs/XLSX) ──
-dgiwg_docs/
-# dgiwg_docs/*.pdf
-# dgiwg_docs/*.xlsx
+# ── DGIWG reference documents (copyrighted PDFs/XLSX/XMI) ─
+# dgiwg_docs/
+dgiwg_docs/*.pdf
+dgiwg_docs/*.xlsx
+dgiwg_docs/*.xmi
 
 # ── Deprecated PowerShell scripts ───────────────────────
 scripts/*.ps1
