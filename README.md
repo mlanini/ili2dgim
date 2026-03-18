@@ -422,7 +422,7 @@ python scripts/etl_swisstlm3d_to_dgif.py --skip-download --skip-extract --skip-v
 python scripts/etl_swisstlm3d_to_dgif.py \
     --tmp-dir C:/tmp/dgif \
     --skip-download --skip-extract --skip-validation --skip-import \
-    --python "C:\Program Files\QGIS 3.40.7\apps\Python312\python.exe"
+    --python "<path_to>\python.exe"
 ```
 
 ---
