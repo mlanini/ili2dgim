@@ -1,8 +1,8 @@
-# ili2dgif
+# ili2dgim
 
-**An implementation of the Defence Geospatial Information Framework (DGIF) 3.0 using INTERLIS 2.4**
+**An implementation of the Defence Geospatial Information Model (DGIM) 3.0 using INTERLIS 2.4**
 
-This aims at setting up an end-to-end, fully automated pipeline that takes the DGIF 3.0 UML model — maintained by the [Defence Geospatial Information Working Group (DGIWG)](https://dgiwg.org/) — and produces a standards-compliant Swiss geospatial data stack:
+This aims at setting up an end-to-end, fully automated pipeline that takes the DGIM 3.0 UML model — maintained by the [Defence Geospatial Information Working Group (DGIWG)](https://dgiwg.org/) — and produces a standards-compliant Swiss geospatial data stack:
 
 1. **INTERLIS 2.4 model** (`models/DGIF_V3.ili`) — 673 classes, 21 topics, 0 compiler errors
 2. **GeoPackage schema** (`output/DGIF_V3.gpkg`) — OGC/DGIWG-conformant empty schema in WGS84
@@ -18,7 +18,7 @@ the INTERLIS toolchain: ili2c, ili2gpkg, ilivalidator).
 
 ## Overview
 
-This project implements an **automated pipeline** to transform the UML model of the **Defence Geospatial Information Framework (DGIF) 3.0** — exported as an XMI file from Enterprise Architect — into a data model compliant with the Swiss standard **INTERLIS 2.4 / eCH-0031**, generate a **GeoPackage** conforming to the DGIWG profile, and update the **mapping tables** between OpenStreetMap / swissTLM3D and DGIF from version 2.0 to version 3.0.
+This project implements an **automated pipeline** to transform the UML model of the **Defence Geospatial Information Model (DGIM) 3.0** — exported as an XMI file from Enterprise Architect — into a data model compliant with the Swiss standard **INTERLIS 2.4 / eCH-0031**, generate a **GeoPackage** conforming to the DGIWG profile, and update the **mapping tables** between OpenStreetMap / swissTLM3D and DGIF from version 2.0 to version 3.0.
 
 ---
 
