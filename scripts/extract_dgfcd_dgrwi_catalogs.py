@@ -17,6 +17,7 @@ Output:
 import xml.etree.ElementTree as ET
 import os
 import sys
+import argparse
 from collections import OrderedDict
 
 # ── Configuration ──────────────────────────────────────────────────────────
@@ -26,8 +27,11 @@ XMI_PATH = os.path.join(BASE_DIR, "ressources", "DGIF_BL_2025-1.xmi")
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
 
 # XMI namespaces
+XMI_NS_CANDIDATES = (
+    "http://schema.omg.org/spec/XMI/2.1",
+    "http://www.omg.org/spec/XMI/20110701",
+)
 NS = {
-    "xmi": "http://www.omg.org/spec/XMI/20110701",
     "uml": "http://www.omg.org/spec/UML/20110701",
 }
 
@@ -35,6 +39,21 @@ NS = {
 INTERLIS_VERSION = "2.4"
 CATALOG_MODEL = "CatalogueObjects_V2"
 SENDER = "DGIF_XMI_Extractor"
+
+
+def configure_stdio() -> None:
+    """Avoid crashes on Windows cp1252 consoles when printing Unicode symbols."""
+    for stream_name in ("stdout", "stderr"):
+        stream = getattr(sys, stream_name, None)
+        if not hasattr(stream, "reconfigure"):
+            continue
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            try:
+                stream.reconfigure(errors="replace")
+            except Exception:
+                pass
 
 
 def parse_xmi(path):
@@ -46,6 +65,17 @@ def parse_xmi(path):
     return root
 
 
+def xmi_attr(elem, local_name, default=""):
+    for ns in XMI_NS_CANDIDATES:
+        value = elem.get(f"{{{ns}}}{local_name}")
+        if value:
+            return value
+    for key, value in elem.attrib.items():
+        if key == local_name or key.endswith(f":{local_name}") or key.endswith(f"}}{local_name}"):
+            return value
+    return default
+
+
 def find_package_by_name(parent, name):
     """Find a direct child packagedElement of type uml:Package with given name."""
     for elem in parent:
@@ -53,31 +83,39 @@ def find_package_by_name(parent, name):
         # Handle namespaced and non-namespaced tags
         local_tag = tag.split("}")[-1] if "}" in tag else tag
         if local_tag == "packagedElement":
-            xmi_type = elem.get("{http://www.omg.org/spec/XMI/20110701}type", "")
+            xmi_type = xmi_attr(elem, "type", "")
             elem_name = elem.get("name", "")
             if xmi_type == "uml:Package" and elem_name == name:
                 return elem
     return None
 
 
-def find_all_packages_recursive(root, path_names):
-    """Navigate through nested packages by name list."""
-    current = root
-    # First find uml:Model
+def find_model_element(root):
     for child in root:
         local_tag = child.tag.split("}")[-1] if "}" in child.tag else child.tag
-        if local_tag == "Model" or (local_tag == "packagedElement" and 
-            child.get("{http://www.omg.org/spec/XMI/20110701}type", "") == "uml:Model"):
-            current = child
-            break
-    
-    for name in path_names:
-        found = find_package_by_name(current, name)
-        if found is None:
-            print(f"  WARNING: Package '{name}' not found under current element")
-            return None
-        current = found
-    return current
+        if local_tag == "Model" or (local_tag == "packagedElement" and xmi_attr(child, "type", "") == "uml:Model"):
+            return child
+    return root
+
+
+def find_all_packages_recursive(root, path_names):
+    """Navigate through nested packages by name list."""
+    current = find_model_element(root)
+
+    for start_index in range(len(path_names)):
+        candidate = current
+        matched = True
+        for name in path_names[start_index:]:
+            found = find_package_by_name(candidate, name)
+            if found is None:
+                matched = False
+                break
+            candidate = found
+        if matched:
+            return candidate
+
+    print(f"  WARNING: Package path not found: {'/'.join(path_names)}")
+    return None
 
 
 def extract_classes(package_elem):
@@ -88,10 +126,10 @@ def extract_classes(package_elem):
     for elem in package_elem:
         local_tag = elem.tag.split("}")[-1] if "}" in elem.tag else elem.tag
         if local_tag == "packagedElement":
-            xmi_type = elem.get("{http://www.omg.org/spec/XMI/20110701}type", "")
+            xmi_type = xmi_attr(elem, "type", "")
             if xmi_type == "uml:Class":
                 name = elem.get("name", "")
-                xmi_id = elem.get("{http://www.omg.org/spec/XMI/20110701}id", "")
+                xmi_id = xmi_attr(elem, "id", "")
                 classes.append({"name": name, "xmi_id": xmi_id, "element": elem})
     return classes
 
@@ -104,10 +142,10 @@ def extract_attribute_concepts(package_elem):
     for elem in package_elem:
         local_tag = elem.tag.split("}")[-1] if "}" in elem.tag else elem.tag
         if local_tag == "packagedElement":
-            xmi_type = elem.get("{http://www.omg.org/spec/XMI/20110701}type", "")
+            xmi_type = xmi_attr(elem, "type", "")
             if xmi_type == "uml:Class":
                 name = elem.get("name", "")
-                xmi_id = elem.get("{http://www.omg.org/spec/XMI/20110701}id", "")
+                xmi_id = xmi_attr(elem, "id", "")
                 # Find datatype reference
                 datatype_ref = ""
                 for attr in elem:
@@ -115,14 +153,13 @@ def extract_attribute_concepts(package_elem):
                     if attr_tag == "ownedAttribute" and attr.get("name") == "datatype":
                         type_elem = attr.find("type")
                         if type_elem is not None:
-                            datatype_ref = type_elem.get("{http://www.omg.org/spec/XMI/20110701}idref", "")
+                            datatype_ref = xmi_attr(type_elem, "idref", "")
                         else:
                             # type might be referenced via xmi:idref on a child
                             for sub in attr:
                                 sub_tag = sub.tag.split("}")[-1] if "}" in sub.tag else sub.tag
                                 if sub_tag == "type":
-                                    datatype_ref = sub.get("{http://www.omg.org/spec/XMI/20110701}idref", 
-                                                          sub.get("xmi:idref", ""))
+                                    datatype_ref = xmi_attr(sub, "idref", "")
                 concepts.append({
                     "name": name,
                     "xmi_id": xmi_id,
@@ -139,14 +176,14 @@ def extract_attribute_value_concepts(package_elem):
     for elem in package_elem:
         local_tag = elem.tag.split("}")[-1] if "}" in elem.tag else elem.tag
         if local_tag == "packagedElement":
-            xmi_type = elem.get("{http://www.omg.org/spec/XMI/20110701}type", "")
+            xmi_type = xmi_attr(elem, "type", "")
             if xmi_type == "uml:Package":
                 pkg_name = elem.get("name", "")
                 values = []
                 for sub in elem:
                     sub_tag = sub.tag.split("}")[-1] if "}" in sub.tag else sub.tag
                     if sub_tag == "packagedElement":
-                        sub_type = sub.get("{http://www.omg.org/spec/XMI/20110701}type", "")
+                        sub_type = xmi_attr(sub, "type", "")
                         if sub_type == "uml:Class":
                             values.append(sub.get("name", ""))
                 avc_list.append({
@@ -166,7 +203,7 @@ def extract_dgrwi(package_elem):
     for elem in package_elem:
         local_tag = elem.tag.split("}")[-1] if "}" in elem.tag else elem.tag
         if local_tag == "packagedElement":
-            xmi_type = elem.get("{http://www.omg.org/spec/XMI/20110701}type", "")
+            xmi_type = xmi_attr(elem, "type", "")
             if xmi_type == "uml:Dependency":
                 client = elem.get("client", "")
                 supplier = elem.get("supplier", "")
@@ -177,10 +214,10 @@ def extract_dgrwi(package_elem):
     for elem in package_elem:
         local_tag = elem.tag.split("}")[-1] if "}" in elem.tag else elem.tag
         if local_tag == "packagedElement":
-            xmi_type = elem.get("{http://www.omg.org/spec/XMI/20110701}type", "")
+            xmi_type = xmi_attr(elem, "type", "")
             if xmi_type == "uml:Class":
                 name = elem.get("name", "")
-                xmi_id = elem.get("{http://www.omg.org/spec/XMI/20110701}id", "")
+                xmi_id = xmi_attr(elem, "id", "")
                 suppliers = dep_map.get(xmi_id, [])
                 rwos.append({
                     "name": name,
@@ -196,7 +233,7 @@ def build_id_name_map(root):
     for elem in root.iter():
         local_tag = elem.tag.split("}")[-1] if "}" in elem.tag else elem.tag
         if local_tag == "packagedElement":
-            xmi_id = elem.get("{http://www.omg.org/spec/XMI/20110701}id", "")
+            xmi_id = xmi_attr(elem, "id", "")
             name = elem.get("name", "")
             if xmi_id and name:
                 id_map[xmi_id] = name
@@ -315,11 +352,31 @@ def write_dgrwi_catalog(filepath, model_name, rwos, id_map):
 # ── Main ────────────────────────────────────────────────────────────────────
 
 def main():
-    if not os.path.exists(XMI_PATH):
-        print(f"ERROR: XMI file not found: {XMI_PATH}")
+    configure_stdio()
+
+    parser = argparse.ArgumentParser(
+        description="Extract DGFCD/DGRWI XML catalogs from DGIF XMI"
+    )
+    parser.add_argument(
+        "--xmi-path",
+        default=XMI_PATH,
+        help=f"Path to DGIF XMI file (default: {XMI_PATH})",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=OUTPUT_DIR,
+        help=f"Directory where XML catalogs are written (default: {OUTPUT_DIR})",
+    )
+    args = parser.parse_args()
+
+    xmi_path = args.xmi_path
+    output_dir = args.output_dir
+
+    if not os.path.exists(xmi_path):
+        print(f"ERROR: XMI file not found: {xmi_path}")
         sys.exit(1)
 
-    root = parse_xmi(XMI_PATH)
+    root = parse_xmi(xmi_path)
     
     # Build global ID → name map
     print("Building ID→Name map...")
@@ -337,7 +394,7 @@ def main():
     fc = extract_classes(pkg)
     print(f"  Found {len(fc)} feature concepts")
     write_simple_catalog(
-        os.path.join(OUTPUT_DIR, "DGFCD_FeatureConcepts.xml"),
+        os.path.join(output_dir, "DGFCD_FeatureConcepts.xml"),
         model_name, "DGFCD_FeatureConcepts", "DGFCD.FeatureConcepts",
         fc, entry_tag="FeatureConcept"
     )
@@ -348,7 +405,7 @@ def main():
     ac = extract_attribute_concepts(pkg)
     print(f"  Found {len(ac)} attribute concepts")
     write_attribute_concepts_catalog(
-        os.path.join(OUTPUT_DIR, "DGFCD_AttributeConcepts.xml"),
+        os.path.join(output_dir, "DGFCD_AttributeConcepts.xml"),
         model_name, ac, id_map
     )
 
@@ -358,7 +415,7 @@ def main():
     adt = extract_classes(pkg)
     print(f"  Found {len(adt)} attribute data types")
     write_simple_catalog(
-        os.path.join(OUTPUT_DIR, "DGFCD_AttributeDataTypes.xml"),
+        os.path.join(output_dir, "DGFCD_AttributeDataTypes.xml"),
         model_name, "DGFCD_AttributeDataTypes", "DGFCD.AttributeDataTypes",
         adt, entry_tag="DataType"
     )
@@ -370,7 +427,7 @@ def main():
     total_vals = sum(len(a["values"]) for a in avc)
     print(f"  Found {len(avc)} attribute enumerations with {total_vals} total values")
     write_attribute_value_concepts_catalog(
-        os.path.join(OUTPUT_DIR, "DGFCD_AttributeValueConcepts.xml"),
+        os.path.join(output_dir, "DGFCD_AttributeValueConcepts.xml"),
         model_name, avc
     )
 
@@ -380,7 +437,7 @@ def main():
     rc = extract_classes(pkg)
     print(f"  Found {len(rc)} role concepts")
     write_simple_catalog(
-        os.path.join(OUTPUT_DIR, "DGFCD_RoleConcepts.xml"),
+        os.path.join(output_dir, "DGFCD_RoleConcepts.xml"),
         model_name, "DGFCD_RoleConcepts", "DGFCD.RoleConcepts",
         rc, entry_tag="RoleConcept"
     )
@@ -391,7 +448,7 @@ def main():
     uom = extract_classes(pkg)
     print(f"  Found {len(uom)} units of measure")
     write_simple_catalog(
-        os.path.join(OUTPUT_DIR, "DGFCD_UnitsOfMeasure.xml"),
+        os.path.join(output_dir, "DGFCD_UnitsOfMeasure.xml"),
         model_name, "DGFCD_UnitsOfMeasure", "DGFCD.UnitsOfMeasure",
         uom, entry_tag="UnitOfMeasure"
     )
@@ -402,7 +459,7 @@ def main():
     rwos = extract_dgrwi(pkg)
     print(f"  Found {len(rwos)} real-world objects")
     write_dgrwi_catalog(
-        os.path.join(OUTPUT_DIR, "DGRWI_RealWorldObjects.xml"),
+        os.path.join(output_dir, "DGRWI_RealWorldObjects.xml"),
         model_name, rwos, id_map
     )
 
@@ -415,7 +472,7 @@ def main():
     print(f"  DGFCD RoleConcepts:          {len(rc)}")
     print(f"  DGFCD UnitsOfMeasure:        {len(uom)}")
     print(f"  DGRWI RealWorldObjects:      {len(rwos)}")
-    print(f"\nAll catalogs written to: {OUTPUT_DIR}")
+    print(f"\nAll catalogs written to: {output_dir}")
 
 
 if __name__ == "__main__":

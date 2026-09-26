@@ -22,14 +22,79 @@ Prerequisites:
 """
 
 import argparse
+import io
+import json
 import os
+import re
 import shutil
 import subprocess
 import sys
 import time
+import socket
+import urllib.error
+import urllib.parse
 import urllib.request
 import zipfile
 from pathlib import Path
+
+from interlis_tool_paths import (
+    describe_configured_interlis_tools,
+    resolve_interlis_tool_path,
+    should_log,
+)
+
+
+# Ensure Unicode output works on Windows terminals when printing symbols like arrows.
+if sys.platform == "win32":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
+
+
+DEFAULT_PROXY_URL = "http://proxy-bvcol.admin.ch:8080"
+SWISSTLM3D_BROWSER_COLLECTION_URL = (
+    "https://data.geo.admin.ch/browser/index.html#/collections/"
+    "ch.swisstopo.swisstlm3d"
+)
+SWISSTLM3D_DOWNLOAD_PAGE_URL = (
+    "https://www.swisstopo.admin.ch/de/landschaftsmodell-swisstlm3d"
+)
+SWISSTLM3D_CATALOG_PATH = "/ch.swisstopo.swisstlm3d/"
+SWISSTLM3D_ZIP_RE = re.compile(
+    r"(swisstlm3d_(\d{4}-\d{2})[_\w.-]*\.xtf\.zip)",
+    re.IGNORECASE,
+)
+SWISSTLM3D_RELEASE_RE = re.compile(
+    r"swisstlm3d_(\d{4}-\d{2})",
+    re.IGNORECASE,
+)
+
+
+def _configure_network_proxy(default_proxy: str = DEFAULT_PROXY_URL) -> None:
+    """Configure proxy defaults for Python urllib and Java subprocesses.
+
+    Uses existing env settings when provided; otherwise falls back to the
+    corporate proxy supplied in this repository.
+    """
+    for key in ("HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy"):
+        if not os.environ.get(key):
+            os.environ[key] = default_proxy
+
+    proxy_url = os.environ.get("HTTPS_PROXY") or os.environ.get("HTTP_PROXY") or default_proxy
+    parsed = urllib.parse.urlparse(proxy_url)
+    if parsed.hostname and parsed.port:
+        java_opts = os.environ.get("JAVA_TOOL_OPTIONS", "")
+        wanted = (
+            f"-Dhttp.proxyHost={parsed.hostname} "
+            f"-Dhttp.proxyPort={parsed.port} "
+            f"-Dhttps.proxyHost={parsed.hostname} "
+            f"-Dhttps.proxyPort={parsed.port}"
+        )
+        if "-Dhttp.proxyHost" not in java_opts and "-Dhttps.proxyHost" not in java_opts:
+            os.environ["JAVA_TOOL_OPTIONS"] = (java_opts + " " + wanted).strip()
+
+    urllib.request.install_opener(
+        urllib.request.build_opener(urllib.request.ProxyHandler(urllib.request.getproxies()))
+    )
 
 
 # ============================================================================
@@ -72,6 +137,7 @@ def _setup_qgis_env(qgis_root: str | None = None) -> None:
 
 # Apply QGIS environment before anything else uses GDAL
 _setup_qgis_env()
+_configure_network_proxy()
 
 
 # ============================================================================
@@ -86,19 +152,23 @@ RESET = "\033[0m"
 
 
 def info(msg: str) -> None:
-    print(f"{CYAN}[INFO]{RESET} {msg}")
+    if should_log("INFO"):
+        print(f"{CYAN}[INFO]{RESET} {msg}")
 
 
 def ok(msg: str) -> None:
-    print(f"{GREEN}[OK]{RESET} {msg}")
+    if should_log("INFO"):
+        print(f"{GREEN}[OK]{RESET} {msg}")
 
 
 def warn(msg: str) -> None:
-    print(f"{YELLOW}[WARNING]{RESET} {msg}")
+    if should_log("WARNING"):
+        print(f"{YELLOW}[WARNING]{RESET} {msg}")
 
 
 def skip(msg: str) -> None:
-    print(f"{YELLOW}[SKIP]{RESET} {msg}")
+    if should_log("INFO"):
+        print(f"{YELLOW}[SKIP]{RESET} {msg}")
 
 
 def error(msg: str) -> None:
@@ -106,10 +176,11 @@ def error(msg: str) -> None:
 
 
 def banner(title: str) -> None:
-    print()
-    print(f"{CYAN}================================================================{RESET}")
-    print(f"{CYAN}  {title}{RESET}")
-    print(f"{CYAN}================================================================{RESET}")
+    if should_log("INFO"):
+        print()
+        print(f"{CYAN}================================================================{RESET}")
+        print(f"{CYAN}  {title}{RESET}")
+        print(f"{CYAN}================================================================{RESET}")
 
 
 def run_java(args: list[str], label: str) -> int:
@@ -135,6 +206,90 @@ def file_size_mb(path: str | Path) -> float:
     return round(os.path.getsize(path) / (1024 * 1024), 1)
 
 
+def discover_latest_tlm_url(seed_url: str, timeout_s: int) -> str | None:
+    """Discover the latest swissTLM3D XTF ZIP URL.
+
+    The authoritative source is the STAC API at data.geo.admin.ch. It exposes each
+    release as a dated item and the downloadable XTF asset as a direct URL. We use
+    the HTML pages only as a fallback when the API is unavailable.
+    """
+    parsed = urllib.parse.urlparse(seed_url)
+    catalog_base = (
+        f"{parsed.scheme}://{parsed.netloc}{SWISSTLM3D_CATALOG_PATH}"
+        if parsed.scheme and parsed.netloc
+        else "https://data.geo.admin.ch/"
+    )
+
+    stac_url = "https://data.geo.admin.ch/api/stac/v1/collections/ch.swisstopo.swisstlm3d/items?limit=80"
+    try:
+        req = urllib.request.Request(stac_url, headers={"User-Agent": "DGIF-ETL/1.0"})
+        with urllib.request.urlopen(req, timeout=timeout_s) as resp:
+            payload = json.loads(resp.read().decode("utf-8", errors="replace"))
+    except Exception:
+        payload = None
+
+    if payload and isinstance(payload, dict):
+        features = payload.get("features") or []
+        best_id = ""
+        for feature in features:
+            feature_id = str(feature.get("id") or "")
+            if not feature_id.startswith("swisstlm3d_"):
+                continue
+            if feature_id >= best_id:
+                best_id = feature_id
+
+        if best_id:
+            assets = None
+            for feature in features:
+                if str(feature.get("id") or "") == best_id:
+                    assets = feature.get("assets") or {}
+                    break
+            if assets:
+                xtf_key = f"{best_id}_2056_5728.xtf.zip"
+                href = assets.get(xtf_key, {}).get("href")
+                if href:
+                    return href
+
+    candidates = [
+        catalog_base,
+        urllib.parse.urljoin(catalog_base, "index.html"),
+        SWISSTLM3D_DOWNLOAD_PAGE_URL,
+    ]
+
+    best_date = ""
+    best_rel_path: str | None = None
+    discovered_dates: set[str] = set()
+
+    for url in candidates:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "DGIF-ETL/1.0"})
+            with urllib.request.urlopen(req, timeout=timeout_s) as resp:
+                payload = resp.read().decode("utf-8", errors="replace")
+        except Exception:
+            continue
+
+        for match in SWISSTLM3D_ZIP_RE.finditer(payload):
+            filename = match.group(1)
+            release_date = match.group(2)
+            if release_date >= best_date:
+                best_date = release_date
+                best_rel_path = f"ch.swisstopo.swisstlm3d/swisstlm3d_{release_date}/{filename}"
+
+        for match in SWISSTLM3D_RELEASE_RE.finditer(payload):
+            discovered_dates.add(match.group(1))
+
+    if not best_rel_path and discovered_dates:
+        latest_date = max(discovered_dates)
+        best_rel_path = (
+            f"ch.swisstopo.swisstlm3d/swisstlm3d_{latest_date}/"
+            f"swisstlm3d_{latest_date}_2056_5728.xtf.zip"
+        )
+
+    if not best_rel_path:
+        return None
+    return urllib.parse.urljoin("https://data.geo.admin.ch/", best_rel_path)
+
+
 # ============================================================================
 # Main
 # ============================================================================
@@ -144,9 +299,34 @@ def main() -> int:
     )
     parser.add_argument(
         "--tlm-url",
-        default="https://data.geo.admin.ch/ch.swisstopo.swisstlm3d/"
-                "swisstlm3d_2026-02-24/swisstlm3d_2026-02-24_2056_5728.xtf.zip",
-        help="URL of the swissTLM3D XTF ZIP archive",
+        default=SWISSTLM3D_BROWSER_COLLECTION_URL,
+        help=(
+            "Reference URL for swissTLM3D collection discovery. "
+            "The script always resolves the latest current XTF ZIP before download."
+        ),
+    )
+    parser.add_argument(
+        "--download-timeout",
+        type=int,
+        default=300,
+        help="Download timeout per attempt in seconds (default: 300)",
+    )
+    parser.add_argument(
+        "--download-retries",
+        type=int,
+        default=3,
+        help="Number of download attempts before failing (default: 3)",
+    )
+    parser.add_argument(
+        "--download-retry-wait",
+        type=int,
+        default=20,
+        help="Wait time in seconds between retry attempts (default: 20)",
+    )
+    parser.add_argument(
+        "--no-auto-discover-tlm-url",
+        action="store_true",
+        help="Deprecated: latest swissTLM3D URL discovery is always enabled.",
     )
     parser.add_argument(
         "--tmp-dir",
@@ -174,6 +354,11 @@ def main() -> int:
         help="Skip XTF→GeoPackage import (Phase 4) if swisstlm3d_temp.gpkg already exists",
     )
     parser.add_argument(
+        "--skip-schema",
+        action="store_true",
+        help="Skip DGIF schema creation (Phase 3) when output GeoPackage already exists",
+    )
+    parser.add_argument(
         "--python",
         default=sys.executable,
         help="Path to Python interpreter with GDAL (default: current interpreter)",
@@ -185,30 +370,72 @@ def main() -> int:
              "(e.g. ressources/testdata). When set, download and extraction "
              "are skipped automatically.",
     )
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="Output directory for DGIF GeoPackage (default: workspace/output)",
+    )
+    parser.add_argument(
+        "--output-gpkg",
+        default=None,
+        help="Full output GeoPackage path; overrides output directory default",
+    )
+    parser.add_argument(
+        "--ili-model",
+        default=None,
+        help="Path to DGIF INTERLIS model (.ili). Defaults to the generated output model or workspace models/DGIF_V3.ili",
+    )
+    parser.add_argument(
+        "--aoi-file",
+        default=None,
+        help="Optional AOI GeoJSON file for compatibility with the backend ETL runner.",
+    )
+    parser.add_argument(
+        "--aoi-wkt",
+        default=None,
+        help="Optional AOI WKT for compatibility with the backend ETL runner.",
+    )
+    parser.add_argument(
+        "--target-topics",
+        default=None,
+        help="Comma-separated DGIF topics to write (e.g. Foundation,Cultural,Transportation)",
+    )
     args = parser.parse_args()
 
     # ========================================================================
     # Configuration
     # ========================================================================
     workspace_root = Path(__file__).resolve().parent.parent
-    ili2gpkg_jar = workspace_root / "ressources" / "ili2gpkg-5.3.1" / "ili2gpkg-5.3.1.jar"
-    ilivalidator_jar = workspace_root / "ressources" / "ilivalidator-1.15.0" / "ilivalidator-1.15.0.jar"
-    dgif_ili = workspace_root / "models" / "DGIF_V3.ili"
-    tlm_ili = workspace_root / "models" / "swissTLM3D_ili2_V2_4.ili"
-    mapping_csv = workspace_root / "models" / "swissTLM3D_to_DGIF_V3.csv"
+    ili2gpkg_jar = resolve_interlis_tool_path("ili2gpkg")
+    ilivalidator_jar = resolve_interlis_tool_path("ili2validator")
     transform_py = workspace_root / "scripts" / "etl_swisstlm3d_transform.py"
     python_exe = args.python
 
-    output_dir = workspace_root / "output"
+    output_dir = Path(args.output_dir).expanduser() if args.output_dir else (workspace_root / "output")
     dgif_gpkg = output_dir / "DGIF_swissTLM3D.gpkg"
+    if args.output_gpkg:
+        dgif_gpkg = Path(args.output_gpkg).expanduser()
+        output_dir = dgif_gpkg.parent
+
+    if args.ili_model:
+        dgif_ili = Path(args.ili_model).expanduser()
+    else:
+        default_model = workspace_root / "models" / "DGIF_V3.ili"
+        output_model = output_dir / "DGIF_V3.ili"
+        dgif_ili = output_model if output_model.exists() else default_model
+
+    tlm_ili = workspace_root / "models" / "swissTLM3D_ili2_V2_4.ili"
+    mapping_csv = workspace_root / "models" / "swissTLM3D_to_DGIF_V3.csv"
 
     tmp_dir = Path(args.tmp_dir)
     zip_file = tmp_dir / "swisstlm3d.xtf.zip"
     tlm_gpkg = tmp_dir / "swisstlm3d_temp.gpkg"
 
-    # Model directories (semicolon-separated, as expected by ili2gpkg / ilivalidator)
+    # Model directories (semicolon-separated, as expected by ili2gpkg / ilivalidator).
+    # Prefer the explicitly configured DGIF model folder first so generated models in
+    # the UI output directory are respected instead of always falling back to models/.
     models_dir = workspace_root / "models"
-    dgif_model_dir = f"{models_dir};http://models.interlis.ch/;%JAR_DIR"
+    dgif_model_dir = f"{dgif_ili.parent};{models_dir};http://models.interlis.ch/;%JAR_DIR"
     # tlm_model_dir is set after Phase 2 (includes the xtf/ directory where
     # the model .ili shipped with the data resides)
 
@@ -217,6 +444,9 @@ def main() -> int:
     # ========================================================================
     banner("ETL Pipeline: swissTLM3D → DGIF GeoPackage")
     print()
+    if should_log("DEBUG"):
+        for configured_tool in describe_configured_interlis_tools():
+            info(f"Configured tool: {configured_tool}")
 
     # ========================================================================
     # Prerequisites check
@@ -236,7 +466,7 @@ def main() -> int:
         return 1
 
     # ili2gpkg
-    if not ili2gpkg_jar.exists():
+    if ili2gpkg_jar is None or not ili2gpkg_jar.exists():
         error(f"ili2gpkg not found: {ili2gpkg_jar}")
         return 1
     ok(f"ili2gpkg: {ili2gpkg_jar}")
@@ -246,6 +476,15 @@ def main() -> int:
         error(f"ilivalidator not found: {ilivalidator_jar}")
         return 1
     ok(f"ilivalidator: {ilivalidator_jar}")
+
+    if args.aoi_file:
+        aoi_path = Path(args.aoi_file).expanduser()
+        if not aoi_path.exists():
+            error(f"AOI file not found: {aoi_path}")
+            return 1
+        info(f"AOI file: {aoi_path}")
+    if args.aoi_wkt:
+        info(f"AOI WKT provided: {args.aoi_wkt[:80]}...")
 
     # Required files
     for f in (dgif_ili, tlm_ili, mapping_csv, transform_py):
@@ -269,6 +508,7 @@ def main() -> int:
 
     # Temp directory
     tmp_dir.mkdir(parents=True, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
     ok(f"Temp dir: {tmp_dir}")
     print()
 
@@ -282,39 +522,182 @@ def main() -> int:
     elif args.skip_download and zip_file.exists():
         skip(f"Using existing: {zip_file}")
     else:
-        info(f"Downloading from:")
-        print(f"  {GREY}{args.tlm_url}{RESET}")
+        info("Resolving latest swissTLM3D current XTF URL from catalog...")
+        current_download_url = discover_latest_tlm_url(
+            seed_url=args.tlm_url,
+            timeout_s=max(30, int(args.download_timeout)),
+        )
+        if not current_download_url:
+            error(
+                "Unable to resolve latest swissTLM3D current dataset URL from catalog."
+            )
+            print(
+                f"  {GREY}Catalog reference: {SWISSTLM3D_BROWSER_COLLECTION_URL}{RESET}"
+            )
+            return 1
+
+        if args.no_auto_discover_tlm_url:
+            warn("--no-auto-discover-tlm-url is deprecated and ignored.")
+
+        info("Downloading from:")
+        print(f"  {GREY}{current_download_url}{RESET}")
         info(f"Destination: {zip_file}")
 
         t0 = time.perf_counter()
-        try:
-            req = urllib.request.Request(args.tlm_url, headers={"User-Agent": "DGIF-ETL/1.0"})
-            with urllib.request.urlopen(req, timeout=300) as resp:
-                total = int(resp.headers.get("Content-Length", 0))
-                total_mb = total / (1024 * 1024) if total else 0
-                downloaded = 0
-                chunk_size = 1024 * 1024  # 1 MB chunks
-                with open(str(zip_file), "wb") as fout:
-                    while True:
-                        chunk = resp.read(chunk_size)
-                        if not chunk:
-                            break
-                        fout.write(chunk)
-                        downloaded += len(chunk)
-                        if total:
-                            pct = downloaded * 100 / total
-                            dl_mb = downloaded / (1024 * 1024)
-                            print(
-                                f"\r  {GREY}Progress: {dl_mb:.0f} / {total_mb:.0f} MB"
-                                f" ({pct:.1f}%){RESET}",
-                                end="", flush=True,
+        last_exc: Exception | None = None
+        retries = max(1, int(args.download_retries))
+        auto_discover_attempted = False
+        part_file = zip_file.with_suffix(zip_file.suffix + ".part")
+        # Resume a previously interrupted download instead of restarting from
+        # scratch. This matters a lot for this ~3.6 GB asset over a slow/flaky
+        # corporate proxy, where a single network hiccup used to mean losing
+        # all progress.
+        if part_file.exists():
+            info(
+                f"Resuming previous partial download "
+                f"({file_size_mb(part_file)} MB already downloaded)"
+            )
+        for attempt in range(1, retries + 1):
+            should_retry = True
+            resume_offset = part_file.stat().st_size if part_file.exists() else 0
+            try:
+                info(f"Download attempt {attempt}/{retries} (timeout={args.download_timeout}s)")
+                headers = {"User-Agent": "DGIF-ETL/1.0"}
+                if resume_offset:
+                    headers["Range"] = f"bytes={resume_offset}-"
+                req = urllib.request.Request(current_download_url, headers=headers)
+                with urllib.request.urlopen(req, timeout=args.download_timeout) as resp:
+                    resumed = resp.status == 206 and resume_offset > 0
+                    if resume_offset and not resumed:
+                        # Server ignored the Range request (e.g. no Accept-Ranges
+                        # support): start over cleanly to avoid a corrupt file.
+                        warn("Server does not support resuming; restarting download from scratch.")
+                        resume_offset = 0
+                    content_length = int(resp.headers.get("Content-Length", 0))
+                    total = content_length + resume_offset if resumed else content_length
+                    total_mb = total / (1024 * 1024) if total else 0
+                    downloaded = resume_offset
+                    chunk_size = 1024 * 1024  # 1 MB chunks
+                    mode = "ab" if resumed else "wb"
+                    with open(str(part_file), mode) as fout:
+                        last_reported_pct = -1.0
+                        while True:
+                            chunk = resp.read(chunk_size)
+                            if not chunk:
+                                break
+                            fout.write(chunk)
+                            downloaded += len(chunk)
+                            if total:
+                                pct = downloaded * 100 / total
+                                dl_mb = downloaded / (1024 * 1024)
+                                if pct - last_reported_pct >= 5.0 or downloaded == total:
+                                    print(
+                                        f"  {GREY}[etl-download-progress] {pct:.1f}% "
+                                        f"({dl_mb:.1f} / {total_mb:.1f} MB){RESET}",
+                                        flush=True,
+                                    )
+                                    last_reported_pct = pct
+                    print()  # newline after progress
+                part_file.replace(zip_file)
+                last_exc = None
+                break
+            except urllib.error.HTTPError as exc:
+                last_exc = exc
+
+                status = int(getattr(exc, "code", 0) or 0)
+                reason = str(getattr(exc, "reason", "")).strip()
+                detail = f"HTTP {status}" if status else "HTTP error"
+                if reason:
+                    detail += f" ({reason})"
+
+                if status == 416:
+                    # Range not satisfiable: our partial file is stale/invalid
+                    # (e.g. server-side asset changed). Drop it and retry fresh.
+                    warn("Resume offset rejected by server (416); discarding partial download.")
+                    if part_file.exists():
+                        part_file.unlink()
+                elif status in (404, 410):
+                    if part_file.exists():
+                        part_file.unlink()
+                    if not auto_discover_attempted:
+                        auto_discover_attempted = True
+                        info("Auto-discovery: searching latest swissTLM3D release URL...")
+                        discovered_url = discover_latest_tlm_url(
+                            seed_url=current_download_url,
+                            timeout_s=max(30, int(args.download_timeout)),
+                        )
+                        if discovered_url and discovered_url != current_download_url:
+                            warn(
+                                "Configured URL returned not found. "
+                                "Switching to discovered latest release URL."
                             )
-                print()  # newline after progress
-        except Exception as exc:
-            # Clean up partial download
-            if zip_file.exists():
-                zip_file.unlink()
-            error(f"Download failed: {exc}")
+                            print(f"  {GREY}{discovered_url}{RESET}")
+                            current_download_url = discovered_url
+                            should_retry = True
+                        else:
+                            should_retry = False
+                            error(
+                                "Download URL not found on server "
+                                f"({detail}) and autodiscovery found no replacement URL."
+                            )
+                    else:
+                        should_retry = False
+                        error(
+                            "Download URL not found on server "
+                            f"({detail}). Latest dataset discovery did not return a valid replacement URL."
+                        )
+                elif 400 <= status < 500 and status not in (408, 429):
+                    should_retry = False
+                    error(f"Client-side HTTP error: {detail}.")
+                else:
+                    warn(f"Download attempt {attempt}/{retries} failed: {detail}")
+            except (urllib.error.URLError, socket.timeout, TimeoutError) as exc:
+                last_exc = exc
+                # Keep the partial file on network errors so the next attempt
+                # (or the next full run) can resume instead of starting over.
+                warn(f"Download attempt {attempt}/{retries} failed: {exc}")
+            except Exception as exc:
+                last_exc = exc
+                warn(f"Download attempt {attempt}/{retries} failed: {exc}")
+
+            if last_exc is None:
+                break
+            if not should_retry:
+                break
+            if attempt < retries:
+                info(f"Retrying in {args.download_retry_wait}s...")
+                time.sleep(max(0, int(args.download_retry_wait)))
+
+        if last_exc is not None:
+            error(f"Download failed after {retries} attempt(s): {last_exc}")
+
+            if isinstance(last_exc, urllib.error.HTTPError):
+                status = int(getattr(last_exc, "code", 0) or 0)
+                if status in (404, 410):
+                    warn(
+                        "Resource not found on remote server. "
+                        "Latest discovered swissTLM3D URL may have changed during download."
+                    )
+                    print(
+                        f"  {GREY}Tip: retry run; URL is re-discovered from catalog at each execution.{RESET}"
+                    )
+                elif status in (401, 403, 407):
+                    warn("Access/proxy authorization issue detected.")
+                    print(f"  {GREY}Tip: check proxy credentials/policies and HTTPS_PROXY/HTTP_PROXY settings.{RESET}")
+                else:
+                    warn("HTTP download error detected.")
+            else:
+                warn("Network/proxy issue detected.")
+
+            print(f"  {GREY}You can bypass Phase 1 with local data:{RESET}")
+            print(f"  {GREY}1) Use a local XTF directory: --xtf-dir ressources/testdata{RESET}")
+            print(f"  {GREY}2) Or pre-download ZIP to {zip_file} and run with --skip-download{RESET}")
+            print(f"  {GREY}3) Or increase timeout/retries: --download-timeout 900 --download-retries 5{RESET}")
+            if part_file.exists():
+                print(
+                    f"  {GREY}4) A partial download ({file_size_mb(part_file)} MB) was kept at "
+                    f"{part_file}; simply re-run the ETL to resume from there.{RESET}"
+                )
             return 1
         elapsed = time.perf_counter() - t0
         ok(f"Downloaded {file_size_mb(zip_file)} MB in {elapsed:.1f}s")
@@ -425,43 +808,46 @@ def main() -> int:
     # Phase 3 — Create empty DGIF GeoPackage (schema import)
     # ========================================================================
     banner("Phase 3: Create DGIF GeoPackage schema")
-
-    if dgif_gpkg.exists():
-        info(f"Removing existing: {dgif_gpkg}")
-        dgif_gpkg.unlink()
-
     dgif_schema_log = tmp_dir / "dgif_schemaimport.log"
-    dgif_schema_args = [
-        "-jar", str(ili2gpkg_jar),
-        "--schemaimport",
-        "--dbfile", str(dgif_gpkg),
-        "--defaultSrsAuth", "EPSG",
-        "--defaultSrsCode", "4326",
-        "--smart2Inheritance",
-        "--nameByTopic",
-        "--createGeomIdx",
-        "--strokeArcs",
-        "--createEnumTabs",
-        "--createEnumTxtCol",
-        "--beautifyEnumDispName",
-        "--createBasketCol",
-        "--createTidCol",
-        "--createStdCols",
-        "--createMetaInfo",
-        "--createFk",
-        "--createFkIdx",
-        "--modeldir", dgif_model_dir,
-        "--log", str(dgif_schema_log),
-        str(dgif_ili),
-    ]
 
-    t0 = time.perf_counter()
-    rc = run_java(dgif_schema_args, "Running ili2gpkg --schemaimport for DGIF...")
-    if rc != 0:
-        error(f"DGIF schema import failed! See: {dgif_schema_log}")
-        return 1
-    elapsed = time.perf_counter() - t0
-    ok(f"DGIF GeoPackage schema created: {file_size_mb(dgif_gpkg)} MB in {elapsed:.1f}s")
+    if args.skip_schema and dgif_gpkg.exists():
+        skip(f"Using existing DGIF GeoPackage: {dgif_gpkg} ({file_size_mb(dgif_gpkg)} MB)")
+    else:
+        if dgif_gpkg.exists():
+            info(f"Removing existing: {dgif_gpkg}")
+            dgif_gpkg.unlink()
+
+        dgif_schema_args = [
+            "-jar", str(ili2gpkg_jar),
+            "--schemaimport",
+            "--dbfile", str(dgif_gpkg),
+            "--defaultSrsAuth", "EPSG",
+            "--defaultSrsCode", "4326",
+            "--smart2Inheritance",
+            "--nameByTopic",
+            "--createGeomIdx",
+            "--strokeArcs",
+            "--createEnumTabs",
+            "--createEnumTxtCol",
+            "--beautifyEnumDispName",
+            "--createBasketCol",
+            "--createTidCol",
+            "--createStdCols",
+            "--createMetaInfo",
+            "--createFk",
+            "--createFkIdx",
+            "--modeldir", dgif_model_dir,
+            "--log", str(dgif_schema_log),
+            str(dgif_ili),
+        ]
+
+        t0 = time.perf_counter()
+        rc = run_java(dgif_schema_args, "Running ili2gpkg --schemaimport for DGIF...")
+        if rc != 0:
+            error(f"DGIF schema import failed! See: {dgif_schema_log}")
+            return 1
+        elapsed = time.perf_counter() - t0
+        ok(f"DGIF GeoPackage schema created: {file_size_mb(dgif_gpkg)} MB in {elapsed:.1f}s")
     print()
 
     # ========================================================================
@@ -476,13 +862,26 @@ def main() -> int:
             info(f"Removing existing: {tlm_gpkg}")
             tlm_gpkg.unlink()
 
-        # 4a — Schema import: create the TLM GeoPackage structure from the .ili
-        #      shipped with the data (found in xtf_dir)
-        tlm_ili_file = list(xtf_dir.glob("*.ili"))
-        if not tlm_ili_file:
-            error(f"No .ili model file found in {xtf_dir}")
+        # 4a — Schema import: create the TLM GeoPackage structure from a readable
+        #      .ili model. Prefer model shipped with data, fallback to models/.
+        tlm_ili_candidates = list(xtf_dir.glob("*.ili")) + [tlm_ili]
+        tlm_ili_file = None
+        for candidate in tlm_ili_candidates:
+            if not candidate.exists() or not candidate.is_file():
+                continue
+            try:
+                with candidate.open("rb") as probe:
+                    probe.read(1)
+                tlm_ili_file = candidate
+                break
+            except OSError:
+                continue
+        if tlm_ili_file is None:
+            error(
+                "No readable .ili model file found in "
+                f"{xtf_dir} or fallback {tlm_ili}"
+            )
             return 1
-        tlm_ili_file = tlm_ili_file[0]
         info(f"TLM model: {tlm_ili_file.name}")
 
         tlm_schema_log = tmp_dir / "tlm_schemaimport.log"
@@ -570,6 +969,10 @@ def main() -> int:
             "--tlm-gpkg", str(tlm_gpkg),
             "--dgif-gpkg", str(dgif_gpkg),
             "--mapping", str(mapping_csv),
+            *([
+                "--target-topics",
+                args.target_topics,
+            ] if args.target_topics else []),
         ],
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,

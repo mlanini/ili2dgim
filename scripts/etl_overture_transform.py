@@ -421,6 +421,29 @@ def ensure_baskets(conn: sqlite3.Connection, topics_needed: set[str]) -> dict[st
     return basket_map
 
 
+def next_available_tid(conn: sqlite3.Connection) -> int:
+    """Return next free T_Id across all tables exposing a T_Id column."""
+    max_tid = 0
+    table_rows = conn.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
+    for (table_name,) in table_rows:
+        try:
+            cols = conn.execute(f'PRAGMA table_info("{table_name}")').fetchall()
+        except sqlite3.Error:
+            continue
+        if not any(str(col[1]).lower() == "t_id" for col in cols):
+            continue
+        try:
+            row = conn.execute(f'SELECT MAX("T_Id") FROM "{table_name}"').fetchone()
+        except sqlite3.Error:
+            continue
+        if row and row[0] is not None:
+            try:
+                max_tid = max(max_tid, int(row[0]))
+            except (TypeError, ValueError):
+                continue
+    return max_tid + 1
+
+
 # ============================================================================
 # GeoPackage WKB helpers
 # ============================================================================
@@ -523,6 +546,38 @@ def _extract_nested_primary(raw_value) -> str | None:
     return None
 
 
+def load_aoi_geometry(aoi_file: str | None, aoi_wkt: str | None) -> ogr.Geometry | None:
+    """Load AOI geometry from GeoJSON file or WKT string."""
+    if aoi_file:
+        ds = ogr.Open(aoi_file)
+        if ds is None:
+            raise ValueError(f"Cannot open AOI file: {aoi_file}")
+        lyr = ds.GetLayer(0)
+        if lyr is None:
+            raise ValueError(f"AOI file has no readable layer: {aoi_file}")
+        lyr.ResetReading()
+        feat = lyr.GetNextFeature()
+        while feat is not None:
+            geom = feat.GetGeometryRef()
+            if geom is not None:
+                out = geom.Clone()
+                out.FlattenTo2D()
+                ds = None
+                return out
+            feat = lyr.GetNextFeature()
+        ds = None
+        raise ValueError(f"AOI file has no geometry features: {aoi_file}")
+
+    if aoi_wkt:
+        geom = ogr.CreateGeometryFromWkt(aoi_wkt)
+        if geom is None:
+            raise ValueError("Invalid AOI WKT")
+        geom.FlattenTo2D()
+        return geom
+
+    return None
+
+
 # ============================================================================
 # Foundation metadata for Overture
 # ============================================================================
@@ -535,6 +590,7 @@ def populate_foundation_metadata(
     now_iso = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     user = "etl_overture"
     tid = start_tid
+    table_columns_cache: dict[str, set[str]] = {}
 
     def _base(extra: dict | None = None) -> dict:
         nonlocal tid
@@ -561,11 +617,23 @@ def populate_foundation_metadata(
         return row
 
     def _insert(table: str, row: dict) -> int:
-        cols = ", ".join(row.keys())
-        placeholders = ", ".join(["?"] * len(row))
+        table_cols = table_columns_cache.get(table)
+        if table_cols is None:
+            col_rows = conn.execute(f'PRAGMA table_info("{table}")').fetchall()
+            table_cols = {str(col[1]).lower() for col in col_rows}
+            table_columns_cache[table] = table_cols
+
+        filtered_row = {
+            key: value
+            for key, value in row.items()
+            if key.lower() in table_cols
+        }
+
+        cols = ", ".join(filtered_row.keys())
+        placeholders = ", ".join(["?"] * len(filtered_row))
         conn.execute(
             f'INSERT INTO "{table}" ({cols}) VALUES ({placeholders})',
-            list(row.values()),
+            list(filtered_row.values()),
         )
         return row["T_Id"]
 
@@ -686,6 +754,9 @@ def transform(
     dgif_gpkg_path: str,
     mapping_csv_path: str,
     parquet_inputs: list[tuple[str, str, str]],  # [(theme, type, path), ...]
+    target_topics: set[str] | None = None,
+    allow_empty: bool = False,
+    aoi_geom: ogr.Geometry | None = None,
 ):
     print("[INFO] Loading mapping table...")
     mapping = load_mapping(mapping_csv_path)
@@ -720,17 +791,21 @@ def transform(
         for mr in rules:
             if mr.dgif_class in class_meta:
                 meta = class_meta[mr.dgif_class]
-                topics_needed.add(f"DGIF_V3.{meta['topic']}")
+                topic_name = str(meta["topic"])
+                if target_topics is None or topic_name in target_topics:
+                    topics_needed.add(f"DGIF_V3.{topic_name}")
             elif mr.dgif_class in DGIF_CLASS_TO_TOPIC:
-                topics_needed.add(f"DGIF_V3.{DGIF_CLASS_TO_TOPIC[mr.dgif_class]}")
-    # Always include Foundation
-    topics_needed.add("DGIF_V3.Foundation")
+                topic_name = DGIF_CLASS_TO_TOPIC[mr.dgif_class]
+                if target_topics is None or topic_name in target_topics:
+                    topics_needed.add(f"DGIF_V3.{topic_name}")
+    if target_topics is None or "Foundation" in target_topics:
+        topics_needed.add("DGIF_V3.Foundation")
 
     print(f"[INFO] Creating baskets for {len(topics_needed)} topics...")
     basket_map = ensure_baskets(dgif_conn, topics_needed)
 
-    # T_Id counter — start at 1
-    next_tid = 1
+    # Support append runs on an existing central DB by continuing T_Id sequence.
+    next_tid = next_available_tid(dgif_conn)
 
     # Statistics
     stats = defaultdict(int)
@@ -770,8 +845,25 @@ def transform(
             ds = None
             continue
 
+        raw_count = lyr.GetFeatureCount()
+
+        if aoi_geom is not None:
+            try:
+                lyr.SetSpatialFilter(aoi_geom)
+            except Exception:
+                # Fallback to feature-level intersection checks below.
+                pass
+
         count = lyr.GetFeatureCount()
-        print(f"  [{theme}/{otype}] {count:,} features")
+        if aoi_geom is not None and raw_count >= 0 and count >= 0 and raw_count > count:
+            stats["aoi_filtered_out"] += (raw_count - count)
+        if aoi_geom is not None:
+            print(
+                f"  [{theme}/{otype}] {raw_count:,} features in file, "
+                f"{count:,} inside AOI"
+            )
+        else:
+            print(f"  [{theme}/{otype}] {count:,} features")
 
         if count == 0:
             ds = None
@@ -831,6 +923,24 @@ def transform(
             # Get geometry from OGR
             src_geom = feat.GetGeometryRef()
 
+            if aoi_geom is not None:
+                if src_geom is None:
+                    stats["aoi_filtered_out"] += 1
+                    theme_skipped += 1
+                    feat = lyr.GetNextFeature()
+                    continue
+                try:
+                    if not src_geom.Intersects(aoi_geom):
+                        stats["aoi_filtered_out"] += 1
+                        theme_skipped += 1
+                        feat = lyr.GetNextFeature()
+                        continue
+                except Exception:
+                    stats["aoi_filtered_out"] += 1
+                    theme_skipped += 1
+                    feat = lyr.GetNextFeature()
+                    continue
+
             # Get Overture ID
             overture_id = ""
             if has_id:
@@ -852,6 +962,11 @@ def transform(
                 dgif_table_name = meta["sqlname"]
                 dgif_cols = meta["columns"]
                 dgif_topic = meta["topic"]
+
+                if target_topics is not None and dgif_topic not in target_topics:
+                    stats["topic_filtered_out"] += 1
+                    theme_skipped += 1
+                    continue
 
                 topic_key = f"DGIF_V3.{dgif_topic}"
                 basket_id = basket_map.get(topic_key)
@@ -965,13 +1080,16 @@ def transform(
     dgif_conn.commit()
 
     # Foundation metadata
-    foundation_basket = basket_map.get("DGIF_V3.Foundation")
-    if foundation_basket is None:
-        foundation_basket = ensure_baskets(dgif_conn, {"DGIF_V3.Foundation"}).get(
-            "DGIF_V3.Foundation"
-        )
-    if foundation_basket is not None:
-        next_tid = populate_foundation_metadata(dgif_conn, foundation_basket, next_tid)
+    if (target_topics is None or "Foundation" in target_topics) and stats["total_inserted"] > 0:
+        foundation_basket = basket_map.get("DGIF_V3.Foundation")
+        if foundation_basket is None:
+            foundation_basket = ensure_baskets(dgif_conn, {"DGIF_V3.Foundation"}).get(
+                "DGIF_V3.Foundation"
+            )
+        if foundation_basket is not None:
+            next_tid = populate_foundation_metadata(dgif_conn, foundation_basket, next_tid)
+    elif target_topics is None or "Foundation" in target_topics:
+        print("[WARN] Skipping Foundation metadata because no source features were inserted.")
 
     # Update gpkg_contents extents
     print("[INFO] Updating spatial extents...")
@@ -1093,9 +1211,15 @@ def transform(
     print(f"  Total features inserted : {stats['total_inserted']:,}")
     print(f"  Total features skipped  : {stats['total_skipped']:,}")
     print(f"  No mapping match        : {stats['total_no_match']:,}")
+    print(f"  Topic filtered out      : {stats.get('topic_filtered_out', 0):,}")
+    print(f"  AOI filtered out        : {stats.get('aoi_filtered_out', 0):,}")
     print(f"  DGIF class not found    : {stats.get('dgif_class_not_found', 0):,}")
     print(f"  DGIF basket not found   : {stats.get('dgif_basket_not_found', 0):,}")
     print(f"  Insert errors           : {stats.get('insert_error', 0):,}")
+
+    if stats["total_inserted"] == 0:
+        print("\n[WARN] No source features inserted.")
+        print("[WARN] Check AOI overlap with local Overture files and selected destination topics.")
 
     print("\n  Features per DGIF table:")
     for k, v in sorted(stats.items()):
@@ -1104,7 +1228,12 @@ def transform(
             print(f"    {table:<45} {v:>8,}")
 
     print("=" * 60)
-    return 0 if stats["total_inserted"] > 0 else 1
+    if stats["total_inserted"] > 0:
+        return 0
+    if allow_empty:
+        print("[INFO] No source features inserted; continuing because --allow-empty is enabled.")
+        return 0
+    return 1
 
 
 # ============================================================================
@@ -1121,6 +1250,26 @@ def main():
         help="theme/type=path pairs, e.g. buildings/building=C:/tmp/data.parquet "
              "(also accepts .geojson, .json)"
     )
+    parser.add_argument(
+        "--target-topics",
+        default=None,
+        help="Comma-separated DGIF topic names to write (e.g. Foundation,Cultural,Transportation)",
+    )
+    parser.add_argument(
+        "--aoi-file",
+        default=None,
+        help="AOI GeoJSON path used to spatially filter source features.",
+    )
+    parser.add_argument(
+        "--aoi-wkt",
+        default=None,
+        help="AOI WKT used to spatially filter source features.",
+    )
+    parser.add_argument(
+        "--allow-empty",
+        action="store_true",
+        help="Return success even if zero source features are inserted.",
+    )
     args = parser.parse_args()
 
     # Validate paths
@@ -1129,6 +1278,9 @@ def main():
         sys.exit(1)
     if not Path(args.mapping).exists():
         print(f"[FATAL] Mapping CSV not found: {args.mapping}", file=sys.stderr)
+        sys.exit(1)
+    if args.aoi_file and not Path(args.aoi_file).exists():
+        print(f"[FATAL] AOI file not found: {args.aoi_file}", file=sys.stderr)
         sys.exit(1)
 
     # Parse --parquet arguments: "theme/type=path"
@@ -1153,7 +1305,26 @@ def main():
     for theme, otype, path in parquet_inputs:
         print(f"  {theme}/{otype} = {path}")
 
-    rc = transform(args.dgif_gpkg, args.mapping, parquet_inputs)
+    selected_topics = None
+    if args.target_topics:
+        selected_topics = {
+            token.strip()
+            for token in args.target_topics.split(",")
+            if token.strip()
+        }
+        if not selected_topics:
+            selected_topics = None
+
+    aoi_geom = load_aoi_geometry(args.aoi_file, args.aoi_wkt)
+
+    rc = transform(
+        args.dgif_gpkg,
+        args.mapping,
+        parquet_inputs,
+        selected_topics,
+        allow_empty=args.allow_empty,
+        aoi_geom=aoi_geom,
+    )
     sys.exit(rc)
 
 

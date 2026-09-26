@@ -19,10 +19,17 @@ Author: Automated DGIF pipeline
 """
 
 import csv
+import io
 import re
 import os
 import sys
+import argparse
 from pathlib import Path
+
+# Ensure Unicode console output works on Windows for symbols like arrows.
+if sys.platform == "win32":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
 # ── paths ────────────────────────────────────────────────────────────────────
 BASE = Path(__file__).resolve().parent.parent
@@ -364,17 +371,17 @@ NEW_MAPPINGS = [
 ]
 
 
-def build_v3_csv():
+def build_v3_csv(ili_file: Path = ILI_FILE, csv_v2: Path = CSV_V2, csv_v3: Path = CSV_V3):
     """Main routine."""
     # 1. Load V3 classes
-    v3_classes = extract_v3_classes(ILI_FILE)
+    v3_classes = extract_v3_classes(ili_file)
     print(f"[INFO] V3 model classes found: {len(v3_classes)}")
 
     # Build case-insensitive lookup
     v3_lower = {c.lower(): c for c in v3_classes}
 
     # 2. Read V2 CSV
-    header, v2_rows = read_v2_csv(CSV_V2)
+    header, v2_rows = read_v2_csv(csv_v2)
     print(f"[INFO] V2 CSV rows: {len(v2_rows)}")
 
     # 3. Index NEW_MAPPINGS by (feature_class, key, value) for quick lookup
@@ -482,13 +489,14 @@ def build_v3_csv():
         fixed_rows.append(row)
 
     # 6. Write V3 CSV
-    with open(CSV_V3, "w", encoding="utf-8-sig", newline="") as f:
+    csv_v3.parent.mkdir(parents=True, exist_ok=True)
+    with open(csv_v3, "w", encoding="utf-8-sig", newline="") as f:
         # Write header
         f.write(header + "\n")
         for row in fixed_rows:
             f.write(";".join(row) + "\n")
 
-    print(f"\n[INFO] V3 CSV written: {CSV_V3}")
+    print(f"\n[INFO] V3 CSV written: {csv_v3}")
     print(f"[INFO] Total rows: {len(fixed_rows)} (V2 base: {len(v2_rows)}, truly new: {new_added})")
     print(f"[INFO] Issues / changes: {len(issues)}")
 
@@ -522,4 +530,37 @@ def build_v3_csv():
 
 
 if __name__ == "__main__":
-    build_v3_csv()
+    parser = argparse.ArgumentParser(
+        description="Build OSM to DGIF V3 mapping CSV"
+    )
+    parser.add_argument(
+        "--ili-file",
+        default=str(ILI_FILE),
+        help=f"Path to DGIF_V3.ili (default: {ILI_FILE})",
+    )
+    parser.add_argument(
+        "--input-csv",
+        default=str(CSV_V2),
+        help=f"Path to OSM_to_DGIF_V2.csv (default: {CSV_V2})",
+    )
+    parser.add_argument(
+        "--output-csv",
+        default=str(CSV_V3),
+        help=f"Path to OSM_to_DGIF_V3.csv (default: {CSV_V3})",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="Optional output directory; if set writes OSM_to_DGIF_V3.csv there",
+    )
+    args = parser.parse_args()
+
+    output_csv = Path(args.output_csv)
+    if args.output_dir:
+        output_csv = Path(args.output_dir) / "OSM_to_DGIF_V3.csv"
+
+    build_v3_csv(
+        ili_file=Path(args.ili_file),
+        csv_v2=Path(args.input_csv),
+        csv_v3=output_csv,
+    )

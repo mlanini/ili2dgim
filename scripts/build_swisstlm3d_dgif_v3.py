@@ -20,6 +20,7 @@ Output:
 import csv
 import re
 import os
+import argparse
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent.parent
@@ -624,9 +625,9 @@ HEADER = (
 )
 
 
-def build_csv():
+def build_csv(ili_dgif: Path = ILI_DGIF, csv_out: Path = CSV_OUT):
     # Validate DGIF classes
-    dgif_classes = extract_dgif_classes(ILI_DGIF)
+    dgif_classes = extract_dgif_classes(ili_dgif)
     print(f"[INFO] DGIF V3 classes: {len(dgif_classes)}")
     print(f"[INFO] Mapping entries: {len(MAPPING)}")
 
@@ -653,12 +654,13 @@ def build_csv():
         rows.append(row)
 
     # Write CSV
-    with open(CSV_OUT, "w", encoding="utf-8-sig", newline="") as f:
+    csv_out.parent.mkdir(parents=True, exist_ok=True)
+    with open(csv_out, "w", encoding="utf-8-sig", newline="") as f:
         f.write(HEADER + "\n")
         for row in rows:
             f.write(";".join(row) + "\n")
 
-    print(f"\n[INFO] CSV written: {CSV_OUT}")
+    print(f"\n[INFO] CSV written: {csv_out}")
     print(f"[INFO] Total rows: {len(rows)}")
 
     if issues:
@@ -682,4 +684,28 @@ def build_csv():
 
 
 if __name__ == "__main__":
-    build_csv()
+    parser = argparse.ArgumentParser(
+        description="Build swissTLM3D to DGIF V3 mapping CSV"
+    )
+    parser.add_argument(
+        "--ili-file",
+        default=str(ILI_DGIF),
+        help=f"Path to DGIF_V3.ili (default: {ILI_DGIF})",
+    )
+    parser.add_argument(
+        "--output-csv",
+        default=str(CSV_OUT),
+        help=f"Path to swissTLM3D_to_DGIF_V3.csv (default: {CSV_OUT})",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="Optional output directory; if set writes swissTLM3D_to_DGIF_V3.csv there",
+    )
+    args = parser.parse_args()
+
+    output_csv = Path(args.output_csv)
+    if args.output_dir:
+        output_csv = Path(args.output_dir) / "swissTLM3D_to_DGIF_V3.csv"
+
+    build_csv(ili_dgif=Path(args.ili_file), csv_out=output_csv)

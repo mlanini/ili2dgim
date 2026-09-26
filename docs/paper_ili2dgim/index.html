@@ -1,0 +1,3047 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="en_US documentation for ili2dgim principles, webapp, backend API, and automation scripts.">
+      
+      
+      
+        <link rel="canonical" href="https://example.invalid/ili2dgim/paper_ili2dgim/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>From UML to GeoPackage: A Model-Driven Pipeline for Implementing the Defence Geospatial Information Model 3.0 with INTERLIS 2.4 - ili2dgim Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#from-uml-to-geopackage-a-model-driven-pipeline-for-implementing-the-defence-geospatial-information-model-30-with-interlis-24" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ili2dgim Documentation" class="md-header__button md-logo" aria-label="ili2dgim Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ili2dgim Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              From UML to GeoPackage: A Model-Driven Pipeline for Implementing the Defence Geospatial Information Model 3.0 with INTERLIS 2.4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/squidfunk/mkdocs-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    squidfunk/mkdocs-material
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ili2dgim Documentation" class="md-nav__button md-logo" aria-label="ili2dgim Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ili2dgim Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/squidfunk/mkdocs-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    squidfunk/mkdocs-material
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-to/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How-To
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webapp
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Webapp
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webapp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-motivation-and-problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Motivation and Problem Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-the-interoperability-challenge-in-defence-geospatial-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 The Interoperability Challenge in Defence Geospatial Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-research-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Research Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Contributions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-paper-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Paper Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-background-and-related-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Background and Related Work
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Background and Related Work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-defence-geospatial-information-framework-dgif-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Defence Geospatial Information Framework (DGIF) 3.0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-the-dgim-uml-model-structure-scope-and-normative-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 The DGIM UML Model: Structure, Scope, and Normative Content
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-interlis-24-and-the-swiss-nsdi-standards-ecosystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 INTERLIS 2.4 and the Swiss NSDI Standards Ecosystem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-ogc-geopackage-and-the-dgiwg-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 OGC GeoPackage and the DGIWG Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-related-approaches-to-geospatial-schema-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Related Approaches to Geospatial Schema Transformation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-architecture-of-the-transformation-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Architecture of the Transformation Pipeline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Architecture of the Transformation Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-end-to-end-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 End-to-End Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Design Principles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Technology Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-uml-to-interlis-model-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. UML-to-INTERLIS Model Transformation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. UML-to-INTERLIS Model Transformation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-xmi-parsing-and-uml-element-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 XMI Parsing and UML Element Extraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-transformation-rules-uml-interlis-24-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Transformation Rules: UML → INTERLIS 2.4 Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-handling-class-hierarchies-topological-sorting-and-cross-topic-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Handling Class Hierarchies: Topological Sorting and Cross-Topic References
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-geometry-resolution-from-ocl-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Geometry Resolution from OCL Constraints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-flat-model-strategy-eliminating-bag-of-constructs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Flat Model Strategy: Eliminating BAG OF Constructs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-compiler-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Compiler Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-concept-dictionary-extraction-dgfcd-and-dgrwi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Concept Dictionary Extraction (DGFCD and DGRWI)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Concept Dictionary Extraction (DGFCD and DGRWI)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-feature-concepts-attribute-concepts-and-value-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Feature Concepts, Attribute Concepts, and Value Domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-serialisation-to-interlis-catalogueobjects_v2-xml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Serialisation to INTERLIS CatalogueObjects_V2 XML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-role-of-catalogues-in-schema-validation-and-etl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Role of Catalogues in Schema Validation and ETL
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-geopackage-generation-and-schema-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. GeoPackage Generation and Schema Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. GeoPackage Generation and Schema Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-from-interlis-to-geopackage-via-ili2gpkg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 From INTERLIS to GeoPackage via ili2gpkg
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-inheritance-flattening-with-smart2inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Inheritance Flattening with --smart2Inheritance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-schema-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Schema Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-conformance-to-the-dgiwg-geopackage-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Conformance to the DGIWG GeoPackage Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cross-domain-semantic-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Cross-Domain Semantic Mapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Cross-Domain Semantic Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-mapping-methodology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Mapping Methodology
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-openstreetmap-dgif-v3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 OpenStreetMap ↔ DGIF V3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-swisstlm3d-dgif-v3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 swissTLM3D ↔ DGIF V3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-overture-maps-dgif-v3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Overture Maps ↔ DGIF V3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-cross-source-semantic-alignment-and-convergence-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5 Cross-Source Semantic Alignment and Convergence Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-etl-pipelines-for-heterogeneous-geodata-harmonisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. ETL Pipelines for Heterogeneous Geodata Harmonisation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. ETL Pipelines for Heterogeneous Geodata Harmonisation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-pipeline-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Pipeline Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-swisstlm3d-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 swissTLM3D Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-overture-maps-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Overture Maps Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-geometry-handling-type-coercion-3d-flattening-centroid-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Geometry Handling: Type Coercion, 3D Flattening, Centroid Extraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-implementation-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 Implementation Challenges
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-evaluation-and-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Evaluation and Results
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Evaluation and Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-model-completeness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Model Completeness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-mapping-coverage-and-gap-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Mapping Coverage and Gap Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-etl-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 ETL Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-cross-source-consistency-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Cross-Source Consistency Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-comparison-with-existing-dgif-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 Comparison with Existing DGIF Implementations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Discussion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Discussion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-benefits-of-the-model-driven-interlis-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 Benefits of the Model-Driven INTERLIS Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-lessons-learned-bridging-natodgiwg-standards-and-swiss-nsdi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Lessons Learned: Bridging NATO/DGIWG Standards and Swiss NSDI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104-generalisability-to-other-defence-or-national-sdi-contexts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 Generalisability to Other Defence or National SDI Contexts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-conclusion-and-future-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Conclusion and Future Work
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Conclusion and Future Work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-summary-of-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Summary of Contributions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-towards-broader-data-model-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Towards Broader Data Model Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-continuous-synchronisation-with-evolving-source-data-and-dgim-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Continuous Synchronisation with Evolving Source Data and DGIM Versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-interlis-24-model-excerpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix A — INTERLIS 2.4 Model Excerpt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-b-uml-interlis-transformation-rule-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix B — UML → INTERLIS Transformation Rule Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-c-mapping-csv-schema-and-sample-rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix C — Mapping CSV Schema and Sample Rows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-d-sql-validation-queries-for-cross-source-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix D — SQL Validation Queries for Cross-Source Consistency
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="from-uml-to-geopackage-a-model-driven-pipeline-for-implementing-the-defence-geospatial-information-model-30-with-interlis-24">From UML to GeoPackage: A Model-Driven Pipeline for Implementing the Defence Geospatial Information Model 3.0 with INTERLIS 2.4<a class="headerlink" href="#from-uml-to-geopackage-a-model-driven-pipeline-for-implementing-the-defence-geospatial-information-model-30-with-interlis-24" title="Permanent link">&para;</a></h1>
+<p><strong>Authors:</strong> <em>Michael Lanini</em></p>
+<p><strong>Abstract.</strong>
+The Defence Geospatial Information Framework (DGIF) 3.0, maintained by the Defence Geospatial Information Working Group (DGIWG), defines a comprehensive conceptual schema for military and civilian geospatial interoperability — comprising 673 feature classes, 64 associations, and a rich concept dictionary. Despite its normative completeness, the framework lacks a reference implementation that bridges the UML conceptual model with a readily usable, physically instantiated geodatabase. This paper presents <em>ili2dgim</em>, a fully automated, model-driven pipeline that transforms the DGIF 3.0 UML model — exported as XMI from Enterprise Architect — into an INTERLIS 2.4 data model compliant with the Swiss federal standard eCH-0031, generates an OGC GeoPackage conforming to the DGIWG profile, extracts the DGFCD and DGRWI concept dictionaries as INTERLIS XML catalogues, and populates the schema with real-world data from heterogeneous sources (swissTLM3D, Overture Maps, OpenStreetMap) through semantic mapping tables and ETL pipelines. The resulting artefacts — a compiler-verified INTERLIS model (0 errors), a 576-table GeoPackage schema in WGS 84, and populated datasets with over 5,000 features — demonstrate that the Swiss INTERLIS ecosystem can serve as an effective implementation platform for NATO/DGIWG standards, enabling formal validation, multi-format output generation, and cross-source geodata harmonisation. We discuss the transformation rules, inheritance flattening strategies, geometry resolution from OCL constraints, and cross-domain semantic mapping methodology, and evaluate the pipeline against completeness, correctness, and interoperability criteria.</p>
+<p><strong>Keywords:</strong> DGIF 3.0, DGIM, INTERLIS 2.4, GeoPackage, model-driven architecture, geospatial interoperability, ETL, DGIWG, eCH-0031, swissTLM3D, Overture Maps, OpenStreetMap</p>
+<hr />
+<h2 id="1-introduction">1. Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h2>
+<h3 id="11-motivation-and-problem-statement">1.1 Motivation and Problem Statement<a class="headerlink" href="#11-motivation-and-problem-statement" title="Permanent link">&para;</a></h3>
+<p>Geospatial data interoperability remains one of the most persistent challenges in defence and civilian spatial data infrastructures. NATO and its partner nations exchange vast quantities of geographic information for situational awareness, mission planning, logistics, and humanitarian operations. The Defence Geospatial Information Working Group (DGIWG) has developed a comprehensive suite of standards — the Defence Geospatial Information Framework (DGIF) 3.0 — to harmonise this exchange. At its core lies the Defence Geospatial Information Model (DGIM), a UML conceptual schema defining 673 feature classes organised into 21 thematic domains, from transportation infrastructure to hydrography, cultural features to aeronautical information.</p>
+<p>However, a conceptual model alone does not produce interoperable data. The gap between a UML class diagram maintained in Enterprise Architect and a populated geodatabase that can be loaded into a GIS, validated against a formal schema, and exchanged between heterogeneous systems, is substantial. Existing DGIF encoding specifications focus primarily on GML (Geography Markup Language), which, while standards-compliant, presents practical limitations: GML files are verbose, tooling is limited in operational GIS environments, and the encoding rules require significant manual effort to maintain as the model evolves.</p>
+<p>This paper addresses the question: <em>Can the DGIF 3.0 conceptual model be automatically transformed into a standards-compliant, physically instantiated geodatabase using a model-driven approach — and can heterogeneous real-world data sources be harmonised into this schema through automated ETL pipelines?</em></p>
+<h3 id="12-the-interoperability-challenge-in-defence-geospatial-data">1.2 The Interoperability Challenge in Defence Geospatial Data<a class="headerlink" href="#12-the-interoperability-challenge-in-defence-geospatial-data" title="Permanent link">&para;</a></h3>
+<p>Military geospatial interoperability operates at multiple levels. At the <em>syntactic</em> level, data must conform to agreed formats (GML, GeoPackage, Shapefile). At the <em>semantic</em> level, the meaning of features and attributes must be shared — a "road" in one dataset must correspond to a "road" in another, with compatible attribute domains. At the <em>schematic</em> level, the structure of the data — class hierarchies, associations, cardinalities — must be mutually understood.</p>
+<p>DGIWG addresses these levels through a layered architecture:</p>
+<ul>
+<li><strong>DGIM</strong> (DGIWG 205-3): the conceptual schema — UML classes, attributes, associations, and constraints.</li>
+<li><strong>DGFCD</strong> (DGIWG 206-3): the Defence Geospatial Feature Concept Dictionary — a controlled vocabulary of feature types, attributes, and permitted values, identified by FACC (Feature and Attribute Coding Catalogue) codes.</li>
+<li><strong>DGRWI</strong> (DGIWG 207-3): the Defence Geospatial Real World Object Index — mapping real-world entities to DGFCD concepts.</li>
+<li><strong>Encoding Specifications</strong> (DGIWG 208-3): rules for serialising the model into GML, with the DGIWG GeoPackage Profile (DGIWG 126) providing an alternative vector tile format.</li>
+</ul>
+<p>The challenge lies in <em>implementing</em> this architecture end-to-end: from the normative UML model to a physical database schema that can ingest, validate, and serve data from diverse national sources.</p>
+<h3 id="13-research-questions">1.3 Research Questions<a class="headerlink" href="#13-research-questions" title="Permanent link">&para;</a></h3>
+<p>This paper addresses three research questions:</p>
+<ol>
+<li>
+<p><strong>RQ1 — Model Transformation:</strong> How can the DGIF 3.0 UML model (673 classes, 64 associations, OCL constraints) be automatically and correctly transformed into an INTERLIS 2.4 data model that compiles without errors?</p>
+</li>
+<li>
+<p><strong>RQ2 — Schema Generation:</strong> Can the resulting INTERLIS model be used to generate a GeoPackage conforming to the DGIWG profile, with an inheritance strategy suitable for operational GIS use?</p>
+</li>
+<li>
+<p><strong>RQ3 — Data Harmonisation:</strong> Can heterogeneous geodata sources (swissTLM3D, Overture Maps, OpenStreetMap) be semantically mapped to the DGIF schema and loaded into the generated GeoPackage through automated ETL pipelines, producing cross-source consistent results?</p>
+</li>
+</ol>
+<h3 id="14-contributions">1.4 Contributions<a class="headerlink" href="#14-contributions" title="Permanent link">&para;</a></h3>
+<p>This paper makes the following contributions:</p>
+<ol>
+<li>
+<p><strong>A complete UML-to-INTERLIS transformation pipeline</strong> that parses XMI, resolves class hierarchies and OCL geometry constraints, performs topological sorting, and produces a 7,782-line INTERLIS 2.4 model with 0 compiler errors.</p>
+</li>
+<li>
+<p><strong>An automated GeoPackage generation workflow</strong> using the INTERLIS toolchain (ili2gpkg) with smart inheritance flattening, producing a 576-table schema conforming to DGIWG STD-08-006.</p>
+</li>
+<li>
+<p><strong>Cross-domain semantic mapping tables</strong> between three heterogeneous data sources and the DGIF schema: OSM (1,657 rules), swissTLM3D (215 rules), and Overture Maps — with a formal methodology for convergence analysis.</p>
+</li>
+<li>
+<p><strong>ETL pipelines</strong> that transform and load real-world data (5,351+ features) into the DGIF GeoPackage, handling coordinate reprojection, geometry type coercion, and attribute domain validation.</p>
+</li>
+<li>
+<p><strong>An open-source reference implementation</strong> (<em>ili2dgim</em>) demonstrating the viability of the Swiss INTERLIS ecosystem as an implementation platform for NATO/DGIWG geospatial standards.</p>
+</li>
+</ol>
+<h3 id="15-paper-structure">1.5 Paper Structure<a class="headerlink" href="#15-paper-structure" title="Permanent link">&para;</a></h3>
+<p>The remainder of this paper is organised as follows. Section 2 provides background on the DGIF framework, INTERLIS, and related work. Section 3 describes the overall pipeline architecture. Section 4 details the UML-to-INTERLIS model transformation. Section 5 covers concept dictionary extraction. Section 6 presents GeoPackage schema generation. Section 7 discusses semantic mapping methodology. Section 8 describes the ETL pipelines. Section 9 evaluates results. Section 10 discusses implications and limitations. Section 11 concludes with future work.</p>
+<hr />
+<h2 id="2-background-and-related-work">2. Background and Related Work<a class="headerlink" href="#2-background-and-related-work" title="Permanent link">&para;</a></h2>
+<h3 id="21-defence-geospatial-information-framework-dgif-30">2.1 Defence Geospatial Information Framework (DGIF) 3.0<a class="headerlink" href="#21-defence-geospatial-information-framework-dgif-30" title="Permanent link">&para;</a></h3>
+<p>The DGIF is a suite of standards published by DGIWG (Defence Geospatial Information Working Group), the NATO-affiliated body responsible for geospatial standardisation. Version 3.0, released in July 2024 [1], represents a major restructuring from previous editions. The framework comprises:</p>
+<ul>
+<li><strong>DGIWG 200-3</strong> — Overview and architecture document.</li>
+<li><strong>DGIWG 205-3</strong> — The DGIM: a UML conceptual model with 673 classes, 64 associations, and 21 thematic topics.</li>
+<li><strong>DGIWG 206-3</strong> — The DGFCD: a concept dictionary with FACC-coded feature types, attribute types, data types, attribute values, role concepts, and units of measure.</li>
+<li><strong>DGIWG 207-3</strong> — The DGRWI: a mapping between real-world objects and feature concepts.</li>
+<li><strong>DGIWG 208-3</strong> — GML encoding specification.</li>
+<li><strong>DGIWG 126</strong> — GeoPackage Profile v1.1 (2025), defining how DGIF data should be stored in OGC GeoPackage format.</li>
+<li><strong>DGIWG 200-3-BL2025-1</strong> — Normative Content Baseline 2025-1, the specific version of the UML model used in this work.</li>
+</ul>
+<p>The DGIM is structured as a hierarchy rooted in two base classes: <code>Entity</code> (carrying lifecycle metadata, external references, and unique identifiers) and <code>FeatureEntity</code> (extending <code>Entity</code> with geometry). The 21 topics span domains including Foundation, Transportation, Cultural, Hydrography, Physiography, Military, Aeronautical Information, and Maritime Navigation.</p>
+<h3 id="22-the-dgim-uml-model-structure-scope-and-normative-content">2.2 The DGIM UML Model: Structure, Scope, and Normative Content<a class="headerlink" href="#22-the-dgim-uml-model-structure-scope-and-normative-content" title="Permanent link">&para;</a></h3>
+<p>The DGIF Baseline 2025-1 UML model is maintained in Sparx Systems Enterprise Architect and exported as an XMI 2.1 file (<code>DGIF_BL_2025-1.xmi</code>, approximately 8 MB). Key structural characteristics include:</p>
+<ul>
+<li><strong>673 concrete classes</strong> distributed across 21 thematic packages (topics).</li>
+<li><strong>64 explicit associations</strong> with named roles and cardinalities.</li>
+<li><strong>OCL constraints</strong> on <code>FeatureEntity</code> subclasses: each concrete feature class carries an <code>ownedRule</code> named <code>geometry_GEO</code> whose body specifies the permitted geometry type via <code>oclIsKindOf()</code> — e.g., <code>inv: geometry-&gt;forAll(g|g.oclIsKindOf(PointGeometryInfo))</code>.</li>
+<li><strong>Deep inheritance hierarchies</strong>: some classes are 3–4 levels deep (e.g., <code>Building</code> extends <code>Structure</code> extends <code>FeatureEntity</code> extends <code>Entity</code>).</li>
+<li><strong>Cross-package references</strong>: classes in one topic frequently reference classes in another (e.g., a <code>Transportation.Railway</code> may reference a <code>Foundation.ContactInfo</code>).</li>
+<li><strong>Enumerations and data types</strong>: approximately 60 data types defined in the Foundation package, plus numerous enumerations for attribute domains.</li>
+</ul>
+<p>The geometry type distribution across the 673 classes is: 104 Point classes, 73 Curve/Line classes, 334 Surface/Polygon classes, and 162 classes without geometry (non-spatial entities or metadata classes).</p>
+<h3 id="23-interlis-24-and-the-swiss-nsdi-standards-ecosystem">2.3 INTERLIS 2.4 and the Swiss NSDI Standards Ecosystem<a class="headerlink" href="#23-interlis-24-and-the-swiss-nsdi-standards-ecosystem" title="Permanent link">&para;</a></h3>
+<p>INTERLIS is a Swiss federal standard (SN 612030) for describing and exchanging geospatial data models and datasets [2]. Legally mandated for official geodata in Switzerland since the Geoinformation Act of 2007 (SR 510.62), it is governed by the eCH-0031 standard (currently v2.1.0) [3].</p>
+<p><strong>Key characteristics of INTERLIS:</strong></p>
+<ul>
+<li><strong>Model-driven approach:</strong> Data models are described in a formal, platform-independent language (<code>.ili</code> files) before any physical implementation.</li>
+<li><strong>Separation of concerns:</strong> Conceptual model ↔ transfer format ↔ physical schema are strictly separated.</li>
+<li><strong>Compiler-verifiable:</strong> The INTERLIS compiler <code>ili2c</code> validates model syntax and semantics before data production.</li>
+<li><strong>Rich type system:</strong> Support for structured types, enumerations with hierarchies, units of measure, coordinate reference systems, polylines with arcs, surfaces with topology rules.</li>
+<li><strong>Multi-target generation:</strong> A single <code>.ili</code> model generates GeoPackage, PostGIS, Oracle Spatial, GML, and INTERLIS XTF transfer files via the <code>ili2db</code> toolchain.</li>
+<li><strong>Validation:</strong> The <code>ilivalidator</code> tool verifies data conformance against the model at any stage.</li>
+</ul>
+<p>The INTERLIS toolchain is open-source and comprises:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+<th>Version used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ili2c</code></td>
+<td>Model compiler and validator</td>
+<td>5.6.8</td>
+</tr>
+<tr>
+<td><code>ili2gpkg</code></td>
+<td>GeoPackage schema/data import/export</td>
+<td>5.3.1</td>
+</tr>
+<tr>
+<td><code>ilivalidator</code></td>
+<td>Data validation against INTERLIS models</td>
+<td>1.15.0</td>
+</tr>
+</tbody>
+</table>
+<p>The relevance of INTERLIS to this work lies in its unique combination of formal model semantics, automatic schema generation, and built-in validation — properties that align well with the DGIF's need for rigorous, machine-verifiable implementations.</p>
+<h3 id="24-ogc-geopackage-and-the-dgiwg-profile">2.4 OGC GeoPackage and the DGIWG Profile<a class="headerlink" href="#24-ogc-geopackage-and-the-dgiwg-profile" title="Permanent link">&para;</a></h3>
+<p>OGC GeoPackage is an open, standards-based, platform-independent format for storing geospatial data in a SQLite database [4]. It supports vector features, tile matrices, attributes, and extensions. The DGIWG GeoPackage Profile (DGIWG 126, v1.1) [5] constrains the general OGC specification for defence use, mandating:</p>
+<ul>
+<li>WGS 84 (EPSG:4326) as the default spatial reference system.</li>
+<li>Specific metadata tables and content types.</li>
+<li>Feature table naming conventions.</li>
+<li>Geometry encoding in GeoPackage binary (GP header + WKB).</li>
+</ul>
+<p>The <code>ili2gpkg</code> tool, part of the <code>ili2db</code> suite, generates GeoPackage databases directly from INTERLIS models, including spatial indexes, foreign keys, metadata tables, and enumeration lookup tables — making it an ideal bridge between the INTERLIS conceptual model and the DGIWG GeoPackage physical implementation.</p>
+<h3 id="25-related-approaches-to-geospatial-schema-transformation">2.5 Related Approaches to Geospatial Schema Transformation<a class="headerlink" href="#25-related-approaches-to-geospatial-schema-transformation" title="Permanent link">&para;</a></h3>
+<p>Several approaches exist for transforming UML geospatial models into physical implementations:</p>
+<p><strong>ShapeChange</strong> [6] is a Java tool developed by interactive instruments GmbH that transforms UML models (in Enterprise Architect format) into GML application schemas, JSON Schema, SQL DDL, and other targets. It is widely used in the INSPIRE community and supports ISO 19109 application schemas. However, ShapeChange does not target INTERLIS and lacks native support for the DGIM's OCL geometry constraints.</p>
+<p><strong>INSPIRE</strong> (Infrastructure for Spatial Information in the European Community) [7] uses a similar model-driven approach with UML schemas transformed to GML application schemas. The INSPIRE approach shares many goals with our work but operates within the European SDI context and relies on GML rather than GeoPackage for data exchange.</p>
+<p><strong>HALE Studio</strong> [8] provides a graphical environment for schema-to-schema mapping and transformation, supporting GML, GeoPackage, Shapefile, and database formats. While powerful for interactive mapping, it does not operate at the model level (UML → formal data description language) as our pipeline does.</p>
+<p><strong>Our approach differs</strong> in several key aspects: (1) it targets INTERLIS 2.4 as the intermediate formal language, enabling compiler verification and multi-target generation; (2) it resolves geometry types from OCL constraints in the UML model; (3) it produces a flat (non-hierarchical) GeoPackage schema through smart inheritance flattening; and (4) it integrates end-to-end from UML parsing to populated geodatabases with cross-source harmonisation.</p>
+<hr />
+<h2 id="3-architecture-of-the-transformation-pipeline">3. Architecture of the Transformation Pipeline<a class="headerlink" href="#3-architecture-of-the-transformation-pipeline" title="Permanent link">&para;</a></h2>
+<h3 id="31-end-to-end-overview">3.1 End-to-End Overview<a class="headerlink" href="#31-end-to-end-overview" title="Permanent link">&para;</a></h3>
+<p>The <em>ili2dgim</em> pipeline transforms the DGIF 3.0 UML model into a populated, standards-compliant geospatial database through six automated stages:</p>
+<div class="highlight"><pre><span></span><code>                 ┌─────────────────────────────────────────────────────────────┐
+                 │                    DGIF BL 2025-1 (XMI)                     │
+                 └──────────────┬────────────────────────┬─────────────────────┘
+                                │                        │
+                       ┌────────▼─────────┐      ┌───────▼────────┐
+                       │  Step 1: Extract │      │  Step 2: Gen.  │
+                       │  DGFCD / DGRWI   │      │  INTERLIS .ili │
+                       │  XML Catalogues  │      │  Model         │
+                       └────────┬─────────┘      └───────┬────────┘
+                                │                        │
+                       7 XML files               DGIF_V3.ili (7782 lines)
+                                │                        │
+                                │               ┌────────▼────────┐
+                                │               │  Step 3: Gen.   │
+                                │               │  GeoPackage     │
+                                │               │  (ili2gpkg)     │
+                                │               └────────┬────────┘
+                                │                        │
+                                │               DGIF_V3.gpkg (576 tables)
+                                │                        │
+                 ┌──────────────┼────────────────────────┼────────────────┐
+                 │              │                        │                │
+        ┌────────▼──────┐ ┌────▼──────────┐ ┌──────────▼──────┐           │
+        │ Step 4: OSM   │ │ Step 5: TLM3D │ │ Step 6a: ETL    │           │
+        │ Mapping Table │ │ Mapping Table │ │ swissTLM3D      │           │
+        │ (1657 rows)   │ │ (215 rows)    │ │ → DGIF GPKG     │           │
+        └───────────────┘ └───────────────┘ └──────────┬──────┘           │
+                                                       │          ┌───────▼──────┐
+                                                       │          │ Step 6b: ETL │
+                                                       │          │ Overture     │
+                                                       │          │ → DGIF GPKG  │
+                                                       │          └──────┬───────┘
+                                                       │                 │
+                                            ┌──────────▼─────────────────▼──┐
+                                            │  DGIF GeoPackage (populated)  │
+                                            │  WGS84 · 40+ tables · 5351+   │
+                                            │  features per source          │
+                                            └───────────────────────────────┘
+</code></pre></div>
+<h3 id="32-design-principles">3.2 Design Principles<a class="headerlink" href="#32-design-principles" title="Permanent link">&para;</a></h3>
+<p>The pipeline is governed by four design principles:</p>
+<ol>
+<li>
+<p><strong>Full automation:</strong> Every step from XMI parsing to populated GeoPackage runs without manual intervention. A single command sequence reproduces the entire output.</p>
+</li>
+<li>
+<p><strong>Standards compliance:</strong> The output conforms to three intersecting standards: INTERLIS 2.4 / eCH-0031 (data model), DGIWG GeoPackage Profile (physical schema), and DGIF 3.0 / Baseline 2025-1 (conceptual schema).</p>
+</li>
+<li>
+<p><strong>Formal verification:</strong> The INTERLIS model is compiled with <code>ili2c</code> (0 errors required), and data can be validated with <code>ilivalidator</code> at any stage.</p>
+</li>
+<li>
+<p><strong>Reproducibility:</strong> All scripts are pure Python (standard library for Steps 1–5; GDAL/OGR for Step 6). The only external runtime dependency is Java for the INTERLIS toolchain.</p>
+</li>
+</ol>
+<h3 id="33-technology-stack">3.3 Technology Stack<a class="headerlink" href="#33-technology-stack" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Technology</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UML model source</td>
+<td>Enterprise Architect XMI 2.1</td>
+<td>Input — normative DGIF UML model</td>
+</tr>
+<tr>
+<td>Model transformation</td>
+<td>Python 3.12, <code>xml.etree.ElementTree</code></td>
+<td>XMI parsing, model generation</td>
+</tr>
+<tr>
+<td>Formal model language</td>
+<td>INTERLIS 2.4</td>
+<td>Intermediate representation — compiler-verified</td>
+</tr>
+<tr>
+<td>Model compilation</td>
+<td><code>ili2c</code> 5.6.8 (Java)</td>
+<td>Syntax and semantic validation</td>
+</tr>
+<tr>
+<td>Schema generation</td>
+<td><code>ili2gpkg</code> 5.3.1 (Java)</td>
+<td>GeoPackage DDL from INTERLIS</td>
+</tr>
+<tr>
+<td>Data validation</td>
+<td><code>ilivalidator</code> 1.15.0 (Java)</td>
+<td>INTERLIS XTF conformance checking</td>
+</tr>
+<tr>
+<td>ETL — geometry</td>
+<td>GDAL/OGR 3.10+ (Python bindings)</td>
+<td>Coordinate reprojection, geometry coercion</td>
+</tr>
+<tr>
+<td>ETL — storage</td>
+<td><code>sqlite3</code> (Python stdlib)</td>
+<td>Direct GeoPackage/SQLite insertion</td>
+</tr>
+<tr>
+<td>Visualisation</td>
+<td>QGIS 3.40+</td>
+<td>GeoPackage rendering and verification</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-uml-to-interlis-model-transformation">4. UML-to-INTERLIS Model Transformation<a class="headerlink" href="#4-uml-to-interlis-model-transformation" title="Permanent link">&para;</a></h2>
+<h3 id="41-xmi-parsing-and-uml-element-extraction">4.1 XMI Parsing and UML Element Extraction<a class="headerlink" href="#41-xmi-parsing-and-uml-element-extraction" title="Permanent link">&para;</a></h3>
+<p>The transformation begins with parsing the DGIF Baseline 2025-1 XMI file (<code>DGIF_BL_2025-1.xmi</code>), an XML Metadata Interchange document conforming to XMI 2.1, exported from Sparx Systems Enterprise Architect.</p>
+<p>The parser, implemented in <code>generate_ili_model.py</code> (approximately 1,280 lines of Python), uses the <code>xml.etree.ElementTree</code> API and extracts the following UML elements:</p>
+<ul>
+<li><strong>Packages:</strong> Navigated recursively from the root model to identify thematic sub-packages (DGIM topics). Each <code>packagedElement</code> with <code>xmi:type="uml:Package"</code> becomes an INTERLIS <code>TOPIC</code>.</li>
+<li><strong>Classes:</strong> <code>packagedElement</code> elements with <code>xmi:type="uml:Class"</code> within topic packages. Each class is assigned an OID based on INTERLIS conventions.</li>
+<li><strong>Attributes:</strong> <code>ownedAttribute</code> elements within classes, with their type references resolved against a global <code>xmi:id → name</code> map. Cardinalities are extracted from <code>lowerValue</code>/<code>upperValue</code> specifications.</li>
+<li><strong>Generalisations:</strong> <code>generalization</code> elements linking subclasses to superclasses, resolving <code>general</code> references to establish EXTENDS relationships.</li>
+<li><strong>Associations:</strong> <code>packagedElement</code> elements with <code>xmi:type="uml:Association"</code>, with <code>memberEnd</code> and <code>ownedEnd</code> references resolved to identify participating classes and roles.</li>
+<li><strong>Enumerations:</strong> Classes with <code>xmi:type="uml:Enumeration"</code>, whose <code>ownedLiteral</code> elements become INTERLIS enumeration values.</li>
+<li><strong>Data types:</strong> Classes with <code>xmi:type="uml:DataType"</code> in the Foundation package, mapped to INTERLIS <code>STRUCTURE</code> definitions or base type equivalents.</li>
+<li><strong>OCL constraints:</strong> <code>ownedRule</code> elements containing geometry specifications (see Section 4.4).</li>
+</ul>
+<p>A critical pre-processing step builds a global ID-to-name resolution map encompassing all <code>xmi:id</code> values in the document, enabling cross-reference resolution throughout the transformation.</p>
+<h3 id="42-transformation-rules-uml-interlis-24-mapping">4.2 Transformation Rules: UML → INTERLIS 2.4 Mapping<a class="headerlink" href="#42-transformation-rules-uml-interlis-24-mapping" title="Permanent link">&para;</a></h3>
+<p>The core of the transformation is a rule-based mapping from UML elements to INTERLIS 2.4 constructs:</p>
+<table>
+<thead>
+<tr>
+<th>UML Element</th>
+<th>INTERLIS 2.4 Construct</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Package <code>DGIM</code> (root)</td>
+<td><code>MODEL DGIF_V3 (en) AT "https://www.dgiwg.org/dgif" VERSION "2025-1"</code></td>
+<td>Single model with English locale</td>
+</tr>
+<tr>
+<td>Thematic sub-packages</td>
+<td><code>TOPIC &lt;name&gt; =</code></td>
+<td>21 topics generated</td>
+</tr>
+<tr>
+<td><code>uml:Class</code></td>
+<td><code>CLASS &lt;name&gt; (FINAL) = OID TEXT*36;</code></td>
+<td>UUID-based OID</td>
+</tr>
+<tr>
+<td><code>uml:Generalization</code></td>
+<td><code>EXTENDS &lt;superclass&gt;</code></td>
+<td>Within same topic</td>
+</tr>
+<tr>
+<td><code>ownedAttribute</code></td>
+<td><code>&lt;name&gt; : [MANDATORY] &lt;type&gt;;</code></td>
+<td>Cardinality-aware</td>
+</tr>
+<tr>
+<td><code>uml:Association</code></td>
+<td><code>ASSOCIATION &lt;name&gt; =</code></td>
+<td>With role names and cardinalities</td>
+</tr>
+<tr>
+<td><code>uml:Enumeration</code></td>
+<td>Inline <code>(value1, value2, ...)</code></td>
+<td>Flat enumeration</td>
+</tr>
+<tr>
+<td><code>uml:DataType</code> (Foundation)</td>
+<td><code>STRUCTURE</code> or INTERLIS base type</td>
+<td>Via <code>INTERLIS_TYPE_MAP</code> (≈60 entries)</td>
+</tr>
+<tr>
+<td>Multi-valued attribute (<code>*</code>)</td>
+<td>Single-valued attribute</td>
+<td>BAG OF eliminated</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Type mapping</strong> is governed by the <code>INTERLIS_TYPE_MAP</code> dictionary, which maps approximately 60 UML data type names to their INTERLIS equivalents. Examples:</p>
+<table>
+<thead>
+<tr>
+<th>UML Data Type</th>
+<th>INTERLIS Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CharacterString</code></td>
+<td><code>TEXT*255</code></td>
+</tr>
+<tr>
+<td><code>Integer</code></td>
+<td><code>0 .. 999999999</code></td>
+</tr>
+<tr>
+<td><code>Real</code></td>
+<td><code>0.000 .. 99999999.999</code></td>
+</tr>
+<tr>
+<td><code>Boolean</code></td>
+<td><code>BOOLEAN</code></td>
+</tr>
+<tr>
+<td><code>Date</code></td>
+<td><code>FORMAT INTERLIS.XMLDate</code></td>
+</tr>
+<tr>
+<td><code>DateTime</code></td>
+<td><code>FORMAT INTERLIS.XMLDateTime</code></td>
+</tr>
+<tr>
+<td><code>URI</code></td>
+<td><code>INTERLIS.URI</code></td>
+</tr>
+<tr>
+<td><code>Measure</code></td>
+<td><code>0.000 .. 99999999.999</code></td>
+</tr>
+</tbody>
+</table>
+<p>Attributes whose name contains the substring "Angle" receive the specialised type <code>0.000 .. 360.000 [Units.Angle_Degree]</code>, affecting 28 attributes across the model.</p>
+<h3 id="43-handling-class-hierarchies-topological-sorting-and-cross-topic-references">4.3 Handling Class Hierarchies: Topological Sorting and Cross-Topic References<a class="headerlink" href="#43-handling-class-hierarchies-topological-sorting-and-cross-topic-references" title="Permanent link">&para;</a></h3>
+<p>The DGIM's deep class hierarchies and cross-topic references present two ordering challenges for INTERLIS generation:</p>
+<p><strong>Intra-topic class ordering.</strong> Within each TOPIC, classes must be ordered such that superclasses appear before their subclasses (for <code>EXTENDS</code> declarations) and referenced classes appear before referencing classes (for <code>REFERENCE TO</code> declarations). The pipeline uses <strong>Kahn's algorithm</strong> for topological sorting with two dependency types:</p>
+<ul>
+<li><em>Hard dependencies</em> (EXTENDS): the superclass must precede the subclass. Violation is a compilation error.</li>
+<li><em>Soft dependencies</em> (REFERENCE TO): the referenced class should precede the referencing class. Violation causes a forward reference, handled by emitting the reference as an INTERLIS comment (<code>!!</code>).</li>
+</ul>
+<p>When the combined hard + soft dependency graph contains cycles (which can occur with mutual references), the algorithm falls back to EXTENDS-only ordering, and soft dependencies that create forward references are emitted as comments.</p>
+<p><strong>Inter-topic ordering.</strong> Topics are topologically sorted based on their EXTENDS dependencies. Cross-topic <code>REFERENCE TO</code> declarations are marked with the <code>(EXTERNAL)</code> qualifier per INTERLIS §2.6.3, and the referenced topic is listed in the <code>DEPENDS ON</code> clause — but only if the target topic has already been emitted.</p>
+<h3 id="44-geometry-resolution-from-ocl-constraints">4.4 Geometry Resolution from OCL Constraints<a class="headerlink" href="#44-geometry-resolution-from-ocl-constraints" title="Permanent link">&para;</a></h3>
+<p>A distinguishing feature of the DGIM is that geometry types are not declared as UML attributes with explicit spatial types. Instead, each concrete <code>FeatureEntity</code> subclass carries an <code>ownedRule</code> named <code>geometry_GEO</code> containing an OCL (Object Constraint Language) invariant of the form:</p>
+<div class="highlight"><pre><span></span><code>inv: geometry-&gt;forAll(g | g.oclIsKindOf(PointGeometryInfo))
+</code></pre></div>
+<p>The pipeline resolves these constraints through the following process:</p>
+<ol>
+<li>
+<p><strong>Extraction:</strong> The function <code>build_geometry_type_map()</code> scans all <code>ownedRule</code> elements in the XMI and applies the regex <code>oclIsKindOf\((\w+)\)</code> to extract the geometry info class name.</p>
+</li>
+<li>
+<p><strong>Mapping:</strong> Each geometry info class is mapped to an INTERLIS geometry type:</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>OCL Geometry Info</th>
+<th>INTERLIS Type</th>
+<th>Feature Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PointGeometryInfo</code></td>
+<td><code>DGIF_V3.Coord2</code></td>
+<td>104 classes</td>
+</tr>
+<tr>
+<td><code>CurveGeometryInfo</code></td>
+<td><code>DGIF_V3.Line</code></td>
+<td>73 classes</td>
+</tr>
+<tr>
+<td><code>SurfaceGeometryInfo</code></td>
+<td><code>DGIF_V3.Surface</code></td>
+<td>334 classes</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p><strong>Priority resolution:</strong> When an OCL constraint specifies multiple permitted geometry types (e.g., both Point and Surface), the type with the highest priority is selected: <code>Surface &gt; Line &gt; Coord3 &gt; Coord2</code>.</p>
+</li>
+<li>
+<p><strong>Inheritance handling:</strong> The function <code>ancestor_has_geometry()</code> traverses the class hierarchy upward to determine whether a superclass already declares a geometry attribute. If so, the subclass does not re-declare it, preventing compilation errors from duplicate attribute definitions.</p>
+</li>
+<li>
+<p><strong>Emission:</strong> The base class <code>FeatureEntity</code> emits a placeholder <code>GeometryPlaceholder</code> that is filtered from the output. Each concrete subclass declares its own <code>geometry : MANDATORY &lt;type&gt;</code> attribute based on the resolved OCL constraint.</p>
+</li>
+</ol>
+<h3 id="45-flat-model-strategy-eliminating-bag-of-constructs">4.5 Flat Model Strategy: Eliminating BAG OF Constructs<a class="headerlink" href="#45-flat-model-strategy-eliminating-bag-of-constructs" title="Permanent link">&para;</a></h3>
+<p>INTERLIS supports multi-valued attributes through <code>BAG OF</code> and <code>LIST OF</code> constructs. However, these structures pose significant challenges for GeoPackage generation: each <code>BAG OF</code> attribute requires a separate table with a foreign key back to the parent, complicating both the schema and downstream ETL queries.</p>
+<p>The pipeline adopts a <strong>flat model strategy</strong>: all attributes with upper cardinality <code>*</code> (unbounded) are collapsed to single-valued attributes. This eliminates all <code>BAG OF</code> constructs from the generated model (0 occurrences in the output), producing a schema where every attribute maps to a single column in the corresponding GeoPackage table.</p>
+<p>This design decision trades completeness for practicality: while a multi-valued attribute theoretically loses information when flattened, the DGIF's operational use cases (feature exchange, terrain analysis, mission planning) overwhelmingly involve single-valued attribute instances. The mapping tables (Section 7) further validate this assumption — no mapping rule requires multi-valued attribute assignment.</p>
+<h3 id="46-compiler-validation">4.6 Compiler Validation<a class="headerlink" href="#46-compiler-validation" title="Permanent link">&para;</a></h3>
+<p>The generated INTERLIS model (<code>DGIF_V3.ili</code>, 7,782 lines) is validated by the INTERLIS compiler <code>ili2c</code> 5.6.8:</p>
+<div class="highlight"><pre><span></span><code>java -jar ili2c.jar --modeldir models/ models/DGIF_V3.ili
+</code></pre></div>
+<p>The model compiles with <strong>0 errors</strong>, confirming syntactic and semantic correctness of all type references, EXTENDS declarations, ASSOCIATION definitions, and DOMAIN specifications. The model declares:</p>
+<ul>
+<li><strong>1 MODEL</strong> (<code>DGIF_V3</code>) with English locale</li>
+<li><strong>21 TOPICs</strong></li>
+<li><strong>673 CLASSes</strong> with <code>OID TEXT*36</code></li>
+<li><strong>64 ASSOCIATIONs</strong></li>
+<li><strong>Global DOMAINs</strong>: <code>Coord2</code> (WGS 84 2D), <code>Coord3</code> (WGS 84 3D), <code>Line</code> (polyline with straights and arcs), <code>Surface</code> (surface without overlaps)</li>
+<li><strong>IMPORTS</strong>: <code>Units</code> (from the INTERLIS standard library)</li>
+</ul>
+<hr />
+<h2 id="5-concept-dictionary-extraction-dgfcd-and-dgrwi">5. Concept Dictionary Extraction (DGFCD and DGRWI)<a class="headerlink" href="#5-concept-dictionary-extraction-dgfcd-and-dgrwi" title="Permanent link">&para;</a></h2>
+<h3 id="51-feature-concepts-attribute-concepts-and-value-domains">5.1 Feature Concepts, Attribute Concepts, and Value Domains<a class="headerlink" href="#51-feature-concepts-attribute-concepts-and-value-domains" title="Permanent link">&para;</a></h3>
+<p>The DGFCD (Defence Geospatial Feature Concept Dictionary) is a controlled vocabulary that provides unique FACC (Feature and Attribute Coding Catalogue) codes for every feature type, attribute, and attribute value in the DGIM. The DGRWI (Defence Geospatial Real World Object Index) maps real-world objects to their corresponding DGFCD feature concepts.</p>
+<p>The extraction script (<code>extract_dgfcd_dgrwi_catalogs.py</code>, approximately 420 lines) navigates the XMI package hierarchy to locate six DGFCD sub-packages and the DGRWI package:</p>
+<table>
+<thead>
+<tr>
+<th>DGFCD Package</th>
+<th>Content</th>
+<th>Output File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FeatureConcepts</td>
+<td>Geospatial object classes</td>
+<td><code>DGFCD_FeatureConcepts.xml</code></td>
+</tr>
+<tr>
+<td>AttributeConcepts</td>
+<td>Feature concept attributes</td>
+<td><code>DGFCD_AttributeConcepts.xml</code></td>
+</tr>
+<tr>
+<td>AttributeDataTypes</td>
+<td>Attribute data types</td>
+<td><code>DGFCD_AttributeDataTypes.xml</code></td>
+</tr>
+<tr>
+<td>AttributeValueConcepts</td>
+<td>Permitted attribute values</td>
+<td><code>DGFCD_AttributeValueConcepts.xml</code></td>
+</tr>
+<tr>
+<td>RoleConcepts</td>
+<td>Association roles</td>
+<td><code>DGFCD_RoleConcepts.xml</code></td>
+</tr>
+<tr>
+<td>UnitsOfMeasure</td>
+<td>Units of measurement</td>
+<td><code>DGFCD_UnitsOfMeasure.xml</code></td>
+</tr>
+<tr>
+<td>DGRWI</td>
+<td>Real-world objects → feature concepts</td>
+<td><code>DGRWI_RealWorldObjects.xml</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-serialisation-to-interlis-catalogueobjects_v2-xml">5.2 Serialisation to INTERLIS CatalogueObjects_V2 XML<a class="headerlink" href="#52-serialisation-to-interlis-catalogueobjects_v2-xml" title="Permanent link">&para;</a></h3>
+<p>Each catalogue is serialised as an INTERLIS 2.4 transfer file conforming to the <code>CatalogueObjects_V2</code> schema. The XML structure follows the INTERLIS XTF (XML Transfer Format) conventions:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;TRANSFER</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://www.interlis.ch/INTERLIS2.4&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;HEADERSECTION</span><span class="w"> </span><span class="na">SENDER=</span><span class="s">&quot;ili2dgim&quot;</span><span class="w"> </span><span class="na">VERSION=</span><span class="s">&quot;2.4&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;MODELS&gt;&lt;MODEL</span><span class="w"> </span><span class="na">NAME=</span><span class="s">&quot;DGFCD_Catalogues&quot;</span><span class="nt">/&gt;&lt;/MODELS&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/HEADERSECTION&gt;</span>
+<span class="w">  </span><span class="nt">&lt;DATASECTION&gt;</span>
+<span class="w">    </span><span class="nt">&lt;DGFCD_Catalogues.FeatureConcepts</span><span class="w"> </span><span class="na">BID=</span><span class="s">&quot;b1&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;FeatureConcept</span><span class="w"> </span><span class="na">TID=</span><span class="s">&quot;b1.1&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;name&gt;</span>Building<span class="nt">&lt;/name&gt;</span>
+<span class="w">        </span><span class="nt">&lt;code&gt;</span>AL013<span class="nt">&lt;/code&gt;</span>
+<span class="w">        </span><span class="nt">&lt;definition&gt;</span>A<span class="w"> </span>relatively<span class="w"> </span>permanent<span class="w"> </span>structure...<span class="nt">&lt;/definition&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/FeatureConcept&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- ... --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/DGFCD_Catalogues.FeatureConcepts&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/DATASECTION&gt;</span>
+<span class="nt">&lt;/TRANSFER&gt;</span>
+</code></pre></div>
+<p>Each entry receives a unique TID (Transfer Identifier) in the format <code>&lt;basket_id&gt;.&lt;sequential_number&gt;</code>, enabling cross-referencing between catalogues (e.g., an AttributeConcept references its parent FeatureConcept via TID).</p>
+<h3 id="53-role-of-catalogues-in-schema-validation-and-etl">5.3 Role of Catalogues in Schema Validation and ETL<a class="headerlink" href="#53-role-of-catalogues-in-schema-validation-and-etl" title="Permanent link">&para;</a></h3>
+<p>The extracted catalogues serve multiple purposes in the pipeline:</p>
+<ol>
+<li>
+<p><strong>ETL attribute validation:</strong> The <code>DGFCD_AttributeValueConcepts.xml</code> catalogue defines the permitted values for each DGIF attribute. ETL pipelines (Section 8) use these values to verify that mapped attribute values are within the DGFCD domain.</p>
+</li>
+<li>
+<p><strong>Mapping table construction:</strong> When building semantic mappings (Section 7), the FACC codes from <code>DGFCD_FeatureConcepts.xml</code> provide the authoritative identifier for each DGIF class, enabling unambiguous source-to-target correspondence.</p>
+</li>
+<li>
+<p><strong>Documentation:</strong> The catalogues serve as machine-readable reference documentation for the DGIF schema, complementing the <code>.ili</code> model file.</p>
+</li>
+</ol>
+<hr />
+<h2 id="6-geopackage-generation-and-schema-design">6. GeoPackage Generation and Schema Design<a class="headerlink" href="#6-geopackage-generation-and-schema-design" title="Permanent link">&para;</a></h2>
+<h3 id="61-from-interlis-to-geopackage-via-ili2gpkg">6.1 From INTERLIS to GeoPackage via ili2gpkg<a class="headerlink" href="#61-from-interlis-to-geopackage-via-ili2gpkg" title="Permanent link">&para;</a></h3>
+<p>The <code>generate_gpkg.py</code> script (approximately 214 lines) invokes <code>ili2gpkg 5.3.1</code> to perform a <code>--schemaimport</code> operation: reading the INTERLIS model and generating a GeoPackage database with the corresponding table structure, constraints, indexes, and metadata.</p>
+<p>The invocation passes the following key options:</p>
+<div class="highlight"><pre><span></span><code>java -jar ili2gpkg-5.3.1.jar --schemaimport \
+    --dbfile output/DGIF_V3.gpkg \
+    --modeldir &quot;models/;http://models.interlis.ch/;%JAR_DIR&quot; \
+    --models DGIF_V3 \
+    --smart2Inheritance \
+    --nameByTopic \
+    --defaultSrsAuth EPSG --defaultSrsCode 4326 \
+    --strokeArcs \
+    --createEnumTabs --createEnumTxtCol --beautifyEnumDispName \
+    --createBasketCol --createTidCol --createStdCols --createMetaInfo \
+    --createFk --createFkIdx \
+    --createGeomIdx --gpkgMultiGeomPerTable
+</code></pre></div>
+<h3 id="62-inheritance-flattening-with-smart2inheritance">6.2 Inheritance Flattening with <code>--smart2Inheritance</code><a class="headerlink" href="#62-inheritance-flattening-with-smart2inheritance" title="Permanent link">&para;</a></h3>
+<p>The <code>--smart2Inheritance</code> option (formally "NewAndSubClass" strategy) is critical for operational usability. It instructs <code>ili2gpkg</code> to <strong>flatten the class hierarchy</strong> such that each concrete (non-abstract) class receives its own table containing <em>all</em> inherited columns from its ancestor chain.</p>
+<p>For example, the class <code>Cultural.Building</code> inherits from <code>Foundation.FeatureEntity</code> which extends <code>Foundation.Entity</code>. With smart inheritance, the <code>cultural_building</code> table contains:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Origin</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>T_Id</code></td>
+<td>ili2gpkg internal</td>
+<td>INTEGER PRIMARY KEY</td>
+</tr>
+<tr>
+<td><code>T_Ili_Tid</code></td>
+<td>ili2gpkg Transfer-ID</td>
+<td>TEXT</td>
+</tr>
+<tr>
+<td><code>T_basket</code></td>
+<td>ili2gpkg basket reference</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td><code>T_LastChange</code>, <code>T_CreateDate</code>, <code>T_User</code></td>
+<td><code>--createStdCols</code></td>
+<td>TIMESTAMP / TEXT</td>
+</tr>
+<tr>
+<td><code>beginlifespanversion</code></td>
+<td>Entity</td>
+<td>TEXT</td>
+</tr>
+<tr>
+<td><code>endlifespanversion</code></td>
+<td>Entity</td>
+<td>TEXT</td>
+</tr>
+<tr>
+<td><code>externalreferences</code></td>
+<td>Entity</td>
+<td>TEXT</td>
+</tr>
+<tr>
+<td><code>uniqueuniversalentityidentifier</code></td>
+<td>Entity</td>
+<td>TEXT</td>
+</tr>
+<tr>
+<td><code>ageometry</code></td>
+<td>FeatureEntity (concrete)</td>
+<td>POLYGON</td>
+</tr>
+<tr>
+<td><code>buildingcondition</code></td>
+<td>Building</td>
+<td>TEXT</td>
+</tr>
+<tr>
+<td><code>buildingfunction</code></td>
+<td>Building</td>
+<td>TEXT</td>
+</tr>
+<tr>
+<td><code>featurefunction</code></td>
+<td>Building</td>
+<td>TEXT</td>
+</tr>
+<tr>
+<td><code>heightabovegroundlevel</code></td>
+<td>Building</td>
+<td>REAL</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<p>This flattening produces a <strong>single-table-per-class</strong> layout with no JOINs required for feature retrieval — ideal for GIS visualisation and operational queries. The trade-off is schema size: the resulting GeoPackage contains <strong>576 feature tables</strong> and <strong>131 attribute/structure tables</strong>, totalling approximately 28 MB for the empty schema.</p>
+<p>Note that the geometry column is named <code>ageometry</code> rather than <code>geometry</code>. This is an ili2gpkg convention to avoid conflicts with GeoPackage reserved column names.</p>
+<h3 id="63-schema-characteristics">6.3 Schema Characteristics<a class="headerlink" href="#63-schema-characteristics" title="Permanent link">&para;</a></h3>
+<p>The generated GeoPackage has the following characteristics:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File size (empty schema)</td>
+<td>~28 MB</td>
+</tr>
+<tr>
+<td>Spatial Reference System</td>
+<td>WGS 84 (EPSG:4326)</td>
+</tr>
+<tr>
+<td>Feature tables</td>
+<td>576</td>
+</tr>
+<tr>
+<td>Attribute tables</td>
+<td>131</td>
+</tr>
+<tr>
+<td>Total tables (incl. metadata)</td>
+<td>~750</td>
+</tr>
+<tr>
+<td>Geometry types</td>
+<td>POINT, LINESTRING, POLYGON, MULTIPOINT, MULTILINESTRING, MULTIPOLYGON</td>
+</tr>
+<tr>
+<td>Spatial indexes</td>
+<td>R-tree per geometry column</td>
+</tr>
+<tr>
+<td>Enumeration tables</td>
+<td>Lookup tables for all INTERLIS enumerations</td>
+</tr>
+<tr>
+<td>Metadata tables</td>
+<td><code>T_ILI2DB_CLASSNAME</code>, <code>T_ILI2DB_ATTRNAME</code>, <code>T_ILI2DB_BASKET</code>, <code>T_ILI2DB_DATASET</code>, <code>T_ILI2DB_MODEL</code>, etc.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="64-conformance-to-the-dgiwg-geopackage-profile">6.4 Conformance to the DGIWG GeoPackage Profile<a class="headerlink" href="#64-conformance-to-the-dgiwg-geopackage-profile" title="Permanent link">&para;</a></h3>
+<p>The generated GeoPackage conforms to the DGIWG GeoPackage Profile (DGIWG 126, v1.1) through:</p>
+<ul>
+<li><strong>CRS:</strong> WGS 84 (EPSG:4326) as mandated by the profile.</li>
+<li><strong>Content type:</strong> Vector features registered in <code>gpkg_contents</code> with <code>data_type = 'features'</code> (spatial) or <code>'attributes'</code> (non-spatial).</li>
+<li><strong>Geometry encoding:</strong> Standard GeoPackage binary format (GP header + Well-Known Binary).</li>
+<li><strong>Metadata:</strong> The <code>gpkg_extensions</code>, <code>gpkg_geometry_columns</code>, and <code>gpkg_spatial_ref_sys</code> tables are populated per OGC specification.</li>
+<li><strong>Naming:</strong> Table names follow <code>topic_class</code> convention (lowercase, underscore-separated) via <code>--nameByTopic</code>.</li>
+</ul>
+<hr />
+<h2 id="7-cross-domain-semantic-mapping">7. Cross-Domain Semantic Mapping<a class="headerlink" href="#7-cross-domain-semantic-mapping" title="Permanent link">&para;</a></h2>
+<h3 id="71-mapping-methodology">7.1 Mapping Methodology<a class="headerlink" href="#71-mapping-methodology" title="Permanent link">&para;</a></h3>
+<p>A core contribution of this work is the systematic semantic mapping between heterogeneous geospatial data sources and the DGIF V3 schema. The mapping methodology follows a structured approach:</p>
+<ol>
+<li>
+<p><strong>Source schema analysis:</strong> For each data source, the thematic domains, feature classes, attributes, and value domains are inventoried.</p>
+</li>
+<li>
+<p><strong>DGFCD concept matching:</strong> Each source feature class is matched to the most appropriate DGFCD Feature Concept, using the feature definition, FACC code, and attribute structure as matching criteria.</p>
+</li>
+<li>
+<p><strong>Attribute alignment:</strong> Source attributes are mapped to DGIF attributes, with value transformations where the source and target domains differ.</p>
+</li>
+<li>
+<p><strong>Mapping classification:</strong> Each mapping rule is classified as:</p>
+</li>
+<li><strong>OK</strong> — direct semantic correspondence (e.g., OSM <code>amenity=hospital</code> → DGIF <code>Building</code> with <code>featureFunction=hospital</code>).</li>
+<li><strong>Generalisation</strong> — the source concept is more specific than the DGIF target (e.g., OSM <code>amenity=bicycle_rental</code> → DGIF <code>Facility</code>).</li>
+<li>
+<p><strong>not in DGIF</strong> — no suitable DGIF class exists for the source concept.</p>
+</li>
+<li>
+<p><strong>Cross-source convergence:</strong> When multiple sources describe the same real-world entity type, the mappings must converge on identical DGIF attributes and values (see Section 7.5).</p>
+</li>
+</ol>
+<p>The mappings are stored as semicolon-delimited CSV files with a standardised column structure supporting up to two DGIF attribute/value pairs per rule.</p>
+<h3 id="72-openstreetmap-dgif-v3">7.2 OpenStreetMap ↔ DGIF V3<a class="headerlink" href="#72-openstreetmap-dgif-v3" title="Permanent link">&para;</a></h3>
+<p>The OSM mapping table (<code>OSM_to_DGIF_V3.csv</code>) was produced by updating the existing V2 mapping (1,610 rows) to align with the V3 model changes. The update script (<code>build_osm_dgif_v3.py</code>, 526 lines) performs:</p>
+<ol>
+<li><strong>Class renames V2 → V3:</strong> Four classes were renamed between model versions:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>V2 Name</th>
+<th>V3 Name</th>
+<th>Affected Rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MemorialMonument</code></td>
+<td><code>Monument</code></td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>Route</code></td>
+<td><code>LandRoute</code></td>
+<td>11</td>
+</tr>
+<tr>
+<td><code>CaravanPark</code></td>
+<td><code>CampSite</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>ArchaeologicalSite</code></td>
+<td><code>ArcheologicalSite</code></td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p><strong>Upgraded mappings:</strong> Seven entries previously marked "not in DGIF" received new V3 mappings (e.g., <code>amenity=bicycle_rental</code> → <code>Facility</code>).</p>
+</li>
+<li>
+<p><strong>47 new OSM tags:</strong> Tags from 16 OSM categories (aeroway, amenity, boundary, highway, historic, landuse, leisure, military, natural, power, railway, shop, telecom, tourism, water, waterway) were added with corresponding DGIF mappings.</p>
+</li>
+</ol>
+<p><strong>Final statistics:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total mapping rules</td>
+<td>1,657</td>
+</tr>
+<tr>
+<td>OK (direct) mappings</td>
+<td>709</td>
+</tr>
+<tr>
+<td>Generalisation mappings</td>
+<td>729</td>
+</tr>
+<tr>
+<td>not in DGIF</td>
+<td>218</td>
+</tr>
+<tr>
+<td>DGIF classes covered</td>
+<td>158 / 673 (23.5%)</td>
+</tr>
+</tbody>
+</table>
+<p>The 515 unmapped DGIF classes are predominantly specialist domains (aviation procedures, maritime navigation aids, military-specific features) with no direct OSM equivalent.</p>
+<h3 id="73-swisstlm3d-dgif-v3">7.3 swissTLM3D ↔ DGIF V3<a class="headerlink" href="#73-swisstlm3d-dgif-v3" title="Permanent link">&para;</a></h3>
+<p>The Swiss Topographic Landscape Model 3D (swissTLM3D) is the national topographic dataset of Switzerland, maintained by swisstopo [9]. It is modelled in INTERLIS 2.3 and uses LV95 (EPSG:2056) coordinates. The model comprises 7 thematic topics with approximately 32 concrete classes, each using an enumerative <code>Objektart</code> attribute to distinguish subtypes.</p>
+<p>The mapping table (<code>swissTLM3D_to_DGIF_V3.csv</code>, 215 rows) was produced by <code>build_swisstlm3d_dgif_v3.py</code>, mapping every <code>(TLM_Class, Objektart)</code> combination to a DGIF V3 class:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total mapping rules</td>
+<td>215</td>
+</tr>
+<tr>
+<td>OK (direct) mappings</td>
+<td>83</td>
+</tr>
+<tr>
+<td>Generalisation mappings</td>
+<td>125</td>
+</tr>
+<tr>
+<td>not in DGIF</td>
+<td>7</td>
+</tr>
+<tr>
+<td>DGIF classes covered</td>
+<td>93 / 673 (13.8%)</td>
+</tr>
+<tr>
+<td>TLM Topics covered</td>
+<td>8 / 8 (100%)</td>
+</tr>
+</tbody>
+</table>
+<p>The seven unmapped elements are Swiss-specific infrastructure nodes (MISTRA nodes, topological nodes, toll stations) and a ventilation shaft sub-type with no DGIF equivalent.</p>
+<h3 id="74-overture-maps-dgif-v3">7.4 Overture Maps ↔ DGIF V3<a class="headerlink" href="#74-overture-maps-dgif-v3" title="Permanent link">&para;</a></h3>
+<p>Overture Maps Foundation provides openly licensed, global geospatial data, structured in themes (transportation, places, buildings, etc.) with a schema based on GeoJSON/GeoParquet [10]. The mapping uses a 4-tuple key <code>(theme, type, subtype, class)</code> with a cascading fallback strategy:</p>
+<ol>
+<li>Exact match: <code>(theme, type, subtype, class)</code></li>
+<li>Ignore subtype: <code>(theme, type, "", class)</code></li>
+<li>Ignore class: <code>(theme, type, subtype, "")</code></li>
+<li>Generic: <code>(theme, type, "", "")</code></li>
+</ol>
+<p>This fallback mechanism accommodates Overture's evolving schema, where new subtypes and classes are introduced between releases.</p>
+<h3 id="75-cross-source-semantic-alignment-and-convergence-analysis">7.5 Cross-Source Semantic Alignment and Convergence Analysis<a class="headerlink" href="#75-cross-source-semantic-alignment-and-convergence-analysis" title="Permanent link">&para;</a></h3>
+<p>A critical quality criterion for the harmonisation framework is <strong>cross-source convergence</strong>: when different data sources describe the same real-world entity type, the resulting DGIF features must carry identical attribute values.</p>
+<p>The harmonisation guide (documented in a separate reference document) defines convergence rules for key feature types. For example:</p>
+<p><strong>Railways:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Source Value</th>
+<th>DGIF Attribute</th>
+<th>DGIF Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>swissTLM3D</td>
+<td><code>Normalspur</code></td>
+<td><code>railwayClass</code></td>
+<td><code>mainLine</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td><code>standard_gauge</code></td>
+<td><code>railwayClass</code></td>
+<td><code>mainLine</code></td>
+</tr>
+<tr>
+<td>swissTLM3D</td>
+<td><code>Schmalspur</code></td>
+<td><code>railwayClass</code></td>
+<td><code>branchLine</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td><code>narrow_gauge</code></td>
+<td><code>railwayClass</code></td>
+<td><code>branchLine</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Roads:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Source Value</th>
+<th>DGIF Attribute</th>
+<th>DGIF Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>swissTLM3D</td>
+<td><code>Autobahn</code></td>
+<td><code>waySignificance</code></td>
+<td><code>primaryWay</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td><code>motorway</code></td>
+<td><code>waySignificance</code></td>
+<td><code>primaryWay</code></td>
+</tr>
+<tr>
+<td>swissTLM3D</td>
+<td><code>Autostrasse</code></td>
+<td><code>waySignificance</code></td>
+<td><code>primaryWay</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td><code>trunk</code></td>
+<td><code>waySignificance</code></td>
+<td><code>primaryWay</code></td>
+</tr>
+</tbody>
+</table>
+<p>Cross-source consistency can be verified with SQL queries against the populated GeoPackage:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">railwayclass</span><span class="p">,</span><span class="w"> </span><span class="n">railwayuse</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">transportation_railway</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">railwayclass</span><span class="p">,</span><span class="w"> </span><span class="n">railwayuse</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h2 id="8-etl-pipelines-for-heterogeneous-geodata-harmonisation">8. ETL Pipelines for Heterogeneous Geodata Harmonisation<a class="headerlink" href="#8-etl-pipelines-for-heterogeneous-geodata-harmonisation" title="Permanent link">&para;</a></h2>
+<h3 id="81-pipeline-architecture">8.1 Pipeline Architecture<a class="headerlink" href="#81-pipeline-architecture" title="Permanent link">&para;</a></h3>
+<p>Each data source follows a five-phase pipeline:</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Tool</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — Acquire</td>
+<td>Python</td>
+<td>Download / locate source data</td>
+</tr>
+<tr>
+<td>2 — Validate</td>
+<td>ilivalidator</td>
+<td>Validate source against INTERLIS model (optional, non-blocking)</td>
+</tr>
+<tr>
+<td>3 — Schema</td>
+<td>ili2gpkg</td>
+<td>Create empty DGIF GeoPackage (<code>--schemaimport</code>)</td>
+</tr>
+<tr>
+<td>4 — Import</td>
+<td>ili2gpkg / OGR</td>
+<td>Import source data into temporary workspace</td>
+</tr>
+<tr>
+<td>5 — Transform</td>
+<td>Python / OGR / sqlite3</td>
+<td>Apply mapping CSV, reproject, insert into DGIF GeoPackage</td>
+</tr>
+</tbody>
+</table>
+<p>Phase 5 is the core of the ETL, where semantic transformation, geometry coercion, and attribute mapping occur. The architecture is consistent across sources, with source-specific adapters for reading and key resolution.</p>
+<h3 id="82-swisstlm3d-pipeline">8.2 swissTLM3D Pipeline<a class="headerlink" href="#82-swisstlm3d-pipeline" title="Permanent link">&para;</a></h3>
+<p>The swissTLM3D ETL (<code>etl_swisstlm3d_to_dgif.py</code> orchestrator + <code>etl_swisstlm3d_transform.py</code> transform, approximately 1,900 lines combined) processes data from the Swiss national topographic model.</p>
+<p><strong>Input processing:</strong>
+- Source data is a ZIP archive containing 8 INTERLIS XTF files (~3.6 GB compressed, ~28 GB decompressed).
+- Each XTF is imported into a temporary GeoPackage using <code>ili2gpkg --import</code> with LV95 (EPSG:2056) coordinates.</p>
+<p><strong>Mapping CSV loading:</strong>
+The function <code>load_mapping()</code> reads the semicolon-delimited CSV and builds a dictionary keyed by <code>(TLM_class, Objektart_value)</code>, where each entry contains the DGIF target class and up to two attribute/value pairs. Rows marked "not in DGIF" are excluded.</p>
+<p><strong>Table discovery:</strong>
+The <code>discover_dgif_tables()</code> function queries the ili2gpkg metadata table <code>T_ILI2DB_CLASSNAME</code> to resolve INTERLIS qualified names (e.g., <code>DGIF_V3.Cultural.Building</code>) to SQL table names (e.g., <code>cultural_building</code>). This indirection is necessary because <code>ili2gpkg</code> applies naming conventions (lowercase, topic prefix) that are not trivially predictable from the INTERLIS model alone.</p>
+<p><strong>Feature transformation loop:</strong>
+For each TLM feature:</p>
+<ol>
+<li><strong>Read</strong> the feature from the temporary GeoPackage via OGR.</li>
+<li><strong>Resolve</strong> the <code>Objektart</code> enumeration value to select the appropriate mapping rule.</li>
+<li><strong>Reproject</strong> geometry from LV95 (EPSG:2056) to WGS 84 (EPSG:4326) using OGR's <code>CoordinateTransformation</code>.</li>
+<li><strong>Flatten</strong> 3D geometries to 2D (the DGIF model uses <code>Coord2</code>, <code>Line</code>, and <code>Surface</code> — all 2D types).</li>
+<li><strong>Coerce</strong> geometry type if necessary: if the source geometry is a polygon but the target DGIF class expects a point, extract the centroid.</li>
+<li><strong>Encode</strong> the geometry as GeoPackage binary (GP header + WKB) using a custom <code>to_gpkg_wkb()</code> function.</li>
+<li><strong>Map</strong> base attributes: <code>T_Id</code> (sequential), <code>T_Ili_Tid</code> (from source or generated UUID), <code>T_basket</code> (resolved per DGIF topic), <code>beginlifespanversion</code> (from <code>Datum_Erstellung</code>, normalised to ISO 8601), <code>uniqueuniversalentityidentifier</code>.</li>
+<li><strong>Map</strong> domain attributes: up to two attribute/value pairs from the CSV mapping rule.</li>
+<li><strong>Fill</strong> NOT NULL defaults: columns with NOT NULL constraints that are not populated by the mapping receive type-appropriate defaults (0 for INTEGER, <code>"unknown"</code> for TEXT).</li>
+<li><strong>Insert</strong> into the DGIF GeoPackage via <code>sqlite3</code> parameterised query.</li>
+</ol>
+<p><strong>Performance optimisations:</strong>
+- SQLite is configured with WAL journal mode, <code>synchronous=NORMAL</code>, and a 64 MB page cache.
+- Foreign key checks are disabled during bulk insertion.
+- R-tree spatial index triggers (created by ili2gpkg and dependent on SpatiaLite functions) are dropped before insertion and rebuilt afterward.
+- Spatial extents are tracked in Python and written to <code>gpkg_contents</code> post-insertion.</p>
+<p><strong>Foundation metadata:</strong>
+The pipeline inserts 9 Foundation-topic records (SourceInfo, Organisation, ContactInfo, etc.) with static metadata referencing geocat.ch and swisstopo, providing provenance documentation for the dataset.</p>
+<h3 id="83-overture-maps-pipeline">8.3 Overture Maps Pipeline<a class="headerlink" href="#83-overture-maps-pipeline" title="Permanent link">&para;</a></h3>
+<p>The Overture Maps ETL (<code>etl_overture_to_dgif.py</code> + <code>etl_overture_transform.py</code>, approximately 1,162 lines for the transform) follows the same five-phase architecture but adapts to the Overture data model:</p>
+<p><strong>Key differences from swissTLM3D:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>swissTLM3D</th>
+<th>Overture Maps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source format</td>
+<td>INTERLIS XTF (→ GeoPackage)</td>
+<td>GeoParquet / GeoJSON</td>
+</tr>
+<tr>
+<td>Mapping key</td>
+<td><code>(TLM_class, Objektart)</code></td>
+<td><code>(theme, type, subtype, class)</code></td>
+</tr>
+<tr>
+<td>CRS handling</td>
+<td>LV95 → WGS 84 reprojection</td>
+<td>Already WGS 84, no reprojection</td>
+</tr>
+<tr>
+<td>Mapping fallback</td>
+<td>Exact match only</td>
+<td>4-level cascade (see Section 7.4)</td>
+</tr>
+<tr>
+<td>Nested attributes</td>
+<td>N/A</td>
+<td><code>names.primary</code>, <code>categories.primary</code> via <code>_extract_nested_primary()</code></td>
+</tr>
+<tr>
+<td>Feature ID</td>
+<td>swissTLM3D <code>OID</code></td>
+<td>Overture <code>id</code> or generated UUID</td>
+</tr>
+<tr>
+<td>Provenance</td>
+<td>geocat.ch / swisstopo</td>
+<td>Overture Maps Foundation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Handling Overture nested structures:</strong>
+Overture features contain nested JSON-like structures (e.g., <code>names.primary</code>, <code>categories.primary</code>) that GDAL may expose as Python dictionaries, JSON strings, or lists depending on the source format. The <code>_extract_nested_primary()</code> function handles all three representations transparently.</p>
+<h3 id="84-geometry-handling-type-coercion-3d-flattening-centroid-extraction">8.4 Geometry Handling: Type Coercion, 3D Flattening, Centroid Extraction<a class="headerlink" href="#84-geometry-handling-type-coercion-3d-flattening-centroid-extraction" title="Permanent link">&para;</a></h3>
+<p>Geometry transformations are a critical aspect of the ETL, as source geometries do not always match the DGIF target type:</p>
+<table>
+<thead>
+<tr>
+<th>Source Geometry</th>
+<th>Target DGIF Type</th>
+<th>Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POINT</td>
+<td>POINT</td>
+<td>Direct (reproject if needed)</td>
+</tr>
+<tr>
+<td>LINESTRING</td>
+<td>LINESTRING</td>
+<td>Direct (reproject if needed)</td>
+</tr>
+<tr>
+<td>POLYGON</td>
+<td>POLYGON/SURFACE</td>
+<td>Direct (reproject if needed)</td>
+</tr>
+<tr>
+<td>LINESTRING</td>
+<td>POINT</td>
+<td>Centroid extraction</td>
+</tr>
+<tr>
+<td>POLYGON</td>
+<td>POINT</td>
+<td>Centroid extraction</td>
+</tr>
+<tr>
+<td>POINT Z</td>
+<td>POINT</td>
+<td>Flatten to 2D (<code>FlattenTo2D()</code>)</td>
+</tr>
+<tr>
+<td>LINESTRING Z</td>
+<td>LINESTRING</td>
+<td>Flatten to 2D</td>
+</tr>
+<tr>
+<td>POLYGON Z</td>
+<td>POLYGON</td>
+<td>Flatten to 2D</td>
+</tr>
+<tr>
+<td>POINT</td>
+<td>POLYGON</td>
+<td>Skip (no sensible upcast)</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>reproject_geometry()</code> function chains these operations: clone → flatten to 2D → coordinate transformation → type coercion (centroid if needed).</p>
+<h3 id="85-implementation-challenges">8.5 Implementation Challenges<a class="headerlink" href="#85-implementation-challenges" title="Permanent link">&para;</a></h3>
+<p>Several technical challenges were encountered during ETL implementation:</p>
+<p><strong>R-tree trigger incompatibility.</strong> <code>ili2gpkg</code> creates SQLite R-tree spatial index triggers that invoke SpatiaLite functions (<code>ST_IsEmpty</code>, <code>ST_MinX</code>, <code>ST_MaxX</code>, <code>ST_MinY</code>, <code>ST_MaxY</code>). These functions are not available in Python's built-in <code>sqlite3</code> module (which uses a vanilla SQLite without SpatiaLite). The solution: drop all R-tree triggers before bulk insertion, track spatial extents in Python, and manually rebuild R-tree indexes after insertion.</p>
+<p><strong>NOT NULL constraint defaults.</strong> Some DGIF classes have columns with NOT NULL constraints for attributes not covered by the mapping (e.g., <code>cabletype</code>, <code>surfacematerialtype</code>). The transform script auto-detects these constraints via <code>PRAGMA table_info()</code> and fills them with type-appropriate defaults when the CSV mapping does not provide a value.</p>
+<p><strong>Table name resolution.</strong> The mapping between INTERLIS qualified names and SQL table names is not trivial (e.g., <code>DGIF_V3.Cultural.Building</code> → <code>cultural_building</code>). The pipeline resolves this through the <code>T_ILI2DB_CLASSNAME</code> metadata table populated by <code>ili2gpkg</code>, which provides an authoritative INTERLIS-to-SQL name mapping.</p>
+<p><strong>Basket and dataset management.</strong> ili2gpkg's data model requires each inserted feature to reference a <em>basket</em> (a container corresponding to an INTERLIS TOPIC instance) and a <em>dataset</em>. The pipeline creates one dataset per source and one basket per DGIF topic, linking features correctly via <code>T_basket</code> foreign keys to the <code>T_ILI2DB_BASKET</code> metadata table.</p>
+<p><strong>Geometry column naming.</strong> The DGIF INTERLIS model declares the attribute as <code>geometry</code>, but ili2gpkg renames it to <code>ageometry</code> to avoid conflicts with GeoPackage reserved column names. All ETL code uses <code>ageometry</code> for geometry insertion.</p>
+<hr />
+<h2 id="9-evaluation-and-results">9. Evaluation and Results<a class="headerlink" href="#9-evaluation-and-results" title="Permanent link">&para;</a></h2>
+<h3 id="91-model-completeness">9.1 Model Completeness<a class="headerlink" href="#91-model-completeness" title="Permanent link">&para;</a></h3>
+<p>The generated INTERLIS model covers the full scope of the DGIF 3.0 Baseline 2025-1:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>DGIM UML Model</th>
+<th>INTERLIS Output</th>
+<th>Coverage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classes</td>
+<td>673</td>
+<td>673</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Topics</td>
+<td>21</td>
+<td>21</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Associations</td>
+<td>64</td>
+<td>64</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Geometry-bearing classes</td>
+<td>511</td>
+<td>511</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Non-spatial classes</td>
+<td>162</td>
+<td>162</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Compiler errors</td>
+<td>—</td>
+<td>0</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>All UML elements are represented in the INTERLIS output. The transformation preserves semantic fidelity: class names, attribute names, cardinalities, inheritance hierarchies, and associations are maintained. Geometry types resolved from OCL constraints match the DGIM's intent (verified by manual review of a 10% sample of classes).</p>
+<h3 id="92-mapping-coverage-and-gap-analysis">9.2 Mapping Coverage and Gap Analysis<a class="headerlink" href="#92-mapping-coverage-and-gap-analysis" title="Permanent link">&para;</a></h3>
+<p><strong>Across data sources:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Total Rules</th>
+<th>OK</th>
+<th>Generalisation</th>
+<th>not in DGIF</th>
+<th>DGIF Classes Covered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OSM</td>
+<td>1,657</td>
+<td>709 (42.8%)</td>
+<td>729 (44.0%)</td>
+<td>218 (13.2%)</td>
+<td>158 (23.5%)</td>
+</tr>
+<tr>
+<td>swissTLM3D</td>
+<td>215</td>
+<td>83 (38.6%)</td>
+<td>125 (58.1%)</td>
+<td>7 (3.3%)</td>
+<td>93 (13.8%)</td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>var.</td>
+<td>var.</td>
+<td>var.</td>
+<td>var.</td>
+<td>var.</td>
+</tr>
+</tbody>
+</table>
+<p>The predominance of "Generalisation" mappings (44–58%) reflects a fundamental difference in granularity: the DGIF schema is finer-grained than typical civilian data sources. For instance, the DGIF distinguishes between <code>Monument</code>, <code>Memorial</code>, and <code>HistoricSite</code>, while OSM uses a single <code>historic=monument</code> tag for all three.</p>
+<p><strong>Gap analysis:</strong> The 515 DGIF classes not covered by OSM are concentrated in:
+- Aeronautical Information (instrument procedures, navaids): ~120 classes
+- Maritime Navigation (buoys, lights, channels): ~80 classes
+- Military-specific features (obstacles, installations): ~60 classes
+- Foundation/metadata classes: ~50 classes
+- Specialist physiography (bathymetry, ice features): ~40 classes</p>
+<p>These gaps are expected: civilian data sources do not capture military, aeronautical, or maritime information at the level of detail defined by DGIWG.</p>
+<h3 id="93-etl-performance">9.3 ETL Performance<a class="headerlink" href="#93-etl-performance" title="Permanent link">&para;</a></h3>
+<p><strong>swissTLM3D single-tile test (SWISSTLM3D_CHLV95LN02.xtf, 21.9 MB):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total features inserted</td>
+<td>5,351</td>
+</tr>
+<tr>
+<td>Features skipped (not in DGIF)</td>
+<td>0 (filtered by CSV)</td>
+</tr>
+<tr>
+<td>No Objektart match</td>
+<td>748 (TLM_STRASSENINFO nodes)</td>
+</tr>
+<tr>
+<td>TLM classes not found in GeoPackage</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Insert errors</td>
+<td>0</td>
+</tr>
+<tr>
+<td>DGIF tables populated</td>
+<td>40</td>
+</tr>
+<tr>
+<td>Output GeoPackage size</td>
+<td>~29 MB</td>
+</tr>
+<tr>
+<td>Transform time (Phase 5 only)</td>
+<td>~3 seconds</td>
+</tr>
+<tr>
+<td>WGS 84 extent</td>
+<td>(8.62°, 46.16°) – (8.87°, 46.40°)</td>
+</tr>
+</tbody>
+</table>
+<p>The zero insert errors and 100% success rate on matched features demonstrate the robustness of the mapping and transformation logic. The 748 unmatched TLM_STRASSENINFO entries correspond to topological nodes and Swiss-specific infrastructure identifiers (MISTRA nodes) that have no DGIF equivalent — a known and documented gap.</p>
+<h3 id="94-cross-source-consistency-validation">9.4 Cross-Source Consistency Validation<a class="headerlink" href="#94-cross-source-consistency-validation" title="Permanent link">&para;</a></h3>
+<p>Cross-source consistency was verified using SQL queries against populated GeoPackages from both swissTLM3D and Overture Maps sources:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Verify railway class convergence</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">railwayclass</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">n</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">transportation_railway</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">railwayclass</span><span class="p">;</span>
+</code></pre></div>
+<p>Both sources produce features with identical <code>railwayclass</code> values (<code>mainLine</code>, <code>branchLine</code>) for semantically equivalent input features, confirming the convergence of the mapping methodology.</p>
+<p>Additional validation queries verify:</p>
+<ul>
+<li><strong>Date format consistency:</strong> All <code>beginlifespanversion</code> values conform to ISO 8601 (<code>YYYY-MM-DD</code> or <code>YYYY-MM-DDTHH:MM:SSZ</code>).</li>
+<li><strong>Domain value conformance:</strong> All attribute values belong to the DGFCD-defined domain.</li>
+<li><strong>Geometry type correctness:</strong> All <code>ageometry</code> values in each table match the expected geometry type registered in <code>gpkg_geometry_columns</code>.</li>
+<li><strong>Referential integrity:</strong> All <code>T_basket</code> values reference valid entries in <code>T_ILI2DB_BASKET</code>.</li>
+</ul>
+<h3 id="95-comparison-with-existing-dgif-implementations">9.5 Comparison with Existing DGIF Implementations<a class="headerlink" href="#95-comparison-with-existing-dgif-implementations" title="Permanent link">&para;</a></h3>
+<p>To our knowledge, this is the first publicly documented implementation of the DGIF 3.0 model as a GeoPackage database generated from an intermediate formal data description language (INTERLIS). The existing DGIF encoding specification (DGIWG 208-3) targets GML, which:</p>
+<ul>
+<li>Produces verbose XML files ill-suited for direct GIS visualisation.</li>
+<li>Requires specialised GML parsers and does not support random-access queries.</li>
+<li>Lacks the spatial indexing and SQLite portability of GeoPackage.</li>
+</ul>
+<p>The INTERLIS-based approach offers several advantages: (1) the model is compiler-verified before any data is produced; (2) the same <code>.ili</code> model can generate GeoPackage, PostGIS, Oracle Spatial, and GML outputs via <code>ili2db</code>; (3) data validation at any stage via <code>ilivalidator</code>; and (4) the GeoPackage output is directly usable in QGIS, ArcGIS, and other standard GIS tools.</p>
+<hr />
+<h2 id="10-discussion">10. Discussion<a class="headerlink" href="#10-discussion" title="Permanent link">&para;</a></h2>
+<h3 id="101-benefits-of-the-model-driven-interlis-approach">10.1 Benefits of the Model-Driven INTERLIS Approach<a class="headerlink" href="#101-benefits-of-the-model-driven-interlis-approach" title="Permanent link">&para;</a></h3>
+<p>The central thesis validated by this work is that the INTERLIS ecosystem provides an effective "implementation bridge" between the DGIF's conceptual UML model and operationally usable geospatial databases. Key benefits include:</p>
+<p><strong>Formal verification.</strong> The INTERLIS compiler catches structural errors — undefined type references, invalid cardinalities, circular dependencies — before any data is produced. This is particularly valuable for a model of DGIF's scale (673 classes), where manual review is impractical.</p>
+<p><strong>Multi-target generation.</strong> The single <code>DGIF_V3.ili</code> model can generate GeoPackage (this work), PostGIS, Oracle Spatial, and INTERLIS XTF outputs without modification. This eliminates the need for parallel maintenance of encoding specifications for different target platforms.</p>
+<p><strong>Standardised validation.</strong> The <code>ilivalidator</code> tool can validate both the model and any data produced against it, providing a formal conformance testing mechanism that goes beyond schema validation (e.g., checking value domains, cardinality constraints, and geometric topology rules).</p>
+<p><strong>Swiss NSDI integration.</strong> As INTERLIS is the legally mandated format for Swiss geodata, the DGIF INTERLIS model integrates natively with the Swiss National Spatial Data Infrastructure (NGDI), model repositories, and cadastral data exchange workflows.</p>
+<h3 id="102-limitations">10.2 Limitations<a class="headerlink" href="#102-limitations" title="Permanent link">&para;</a></h3>
+<p><strong>Semantic loss from BAG OF flattening.</strong> The decision to eliminate all multi-valued attributes (BAG OF) simplifies the schema but prevents representing features with genuinely multi-valued attributes (e.g., a feature with multiple external references). In practice, this limitation has not manifested in the ETL pipelines, but it may become relevant for richer data sources.</p>
+<p><strong>Forward reference limitations.</strong> The INTERLIS language requires classes to be declared before they are referenced. For cyclic cross-topic references, the pipeline emits forward references as comments (<code>!!</code>), which means these associations are present in the model documentation but not enforced by the compiler.</p>
+<p><strong>Mapping subjectivity.</strong> The "Generalisation" mapping category (44–58% of rules) inherently involves subjective judgement about the best-fit DGIF class for a source concept. While guidelines are documented, different domain experts might produce different generalisation mappings.</p>
+<p><strong>NOT NULL default values.</strong> The ETL pipeline fills NOT NULL columns with type-appropriate defaults (0 for INTEGER, "unknown" for TEXT) when no mapping value is available. These synthetic values are indistinguishable from real data unless explicitly flagged — a potential data quality concern.</p>
+<p><strong>Scope of evaluation.</strong> The ETL pipeline has been evaluated on a single swissTLM3D tile (21.9 MB, 5,351 features). Full-scale evaluation on the complete swissTLM3D dataset (~28 GB) would provide more robust performance metrics and potentially uncover edge cases not present in the test tile.</p>
+<h3 id="103-lessons-learned-bridging-natodgiwg-standards-and-swiss-nsdi">10.3 Lessons Learned: Bridging NATO/DGIWG Standards and Swiss NSDI<a class="headerlink" href="#103-lessons-learned-bridging-natodgiwg-standards-and-swiss-nsdi" title="Permanent link">&para;</a></h3>
+<p>Several practical lessons emerged from this implementation:</p>
+<ol>
+<li>
+<p><strong>Geometry column naming conventions differ</strong> between INTERLIS/ili2gpkg and OGC GeoPackage expectations. The automatic renaming of <code>geometry</code> to <code>ageometry</code> required attention throughout the ETL.</p>
+</li>
+<li>
+<p><strong>Metadata table awareness is essential.</strong> The ili2gpkg metadata tables (<code>T_ILI2DB_CLASSNAME</code>, <code>T_ILI2DB_ATTRNAME</code>, <code>T_ILI2DB_BASKET</code>) are the authoritative source for resolving names and relationships. Hardcoding table or column names is fragile and error-prone.</p>
+</li>
+<li>
+<p><strong>SpatiaLite dependency management.</strong> The incompatibility between ili2gpkg's SpatiaLite-dependent R-tree triggers and Python's vanilla SQLite required workaround code for trigger management and manual index rebuilding.</p>
+</li>
+<li>
+<p><strong>Coordinate reference system discipline.</strong> The DGIF mandates WGS 84, while Swiss national data uses LV95. Every geometry in the pipeline passes through explicit reprojection — no implicit CRS assumptions.</p>
+</li>
+<li>
+<p><strong>Model evolution tracking.</strong> Between DGIF V2 and V3, four classes were renamed and several were restructured. Automated update scripts (Section 7.2) proved valuable for maintaining mapping tables across model versions.</p>
+</li>
+</ol>
+<h3 id="104-generalisability-to-other-defence-or-national-sdi-contexts">10.4 Generalisability to Other Defence or National SDI Contexts<a class="headerlink" href="#104-generalisability-to-other-defence-or-national-sdi-contexts" title="Permanent link">&para;</a></h3>
+<p>While this implementation targets the Swiss NSDI, the approach is generalisable:</p>
+<ul>
+<li><strong>Other INTERLIS-using countries</strong> (e.g., Austria, Liechtenstein) can directly reuse the DGIF_V3.ili model.</li>
+<li><strong>Non-INTERLIS environments</strong> can still benefit from the mapping methodology and ETL architecture. The ili2gpkg GeoPackage output is universally readable.</li>
+<li><strong>Other national datasets</strong> (e.g., OS MasterMap UK, ATKIS Germany, BD TOPO France) could be mapped to DGIF using the same CSV-based methodology with source-adapted ETL scripts.</li>
+<li><strong>INSPIRE alignment</strong> is a natural extension: the DGIF and INSPIRE share many thematic domains, and a DGIF-to-INSPIRE mapping layer could leverage the existing catalogues.</li>
+</ul>
+<hr />
+<h2 id="11-conclusion-and-future-work">11. Conclusion and Future Work<a class="headerlink" href="#11-conclusion-and-future-work" title="Permanent link">&para;</a></h2>
+<h3 id="111-summary-of-contributions">11.1 Summary of Contributions<a class="headerlink" href="#111-summary-of-contributions" title="Permanent link">&para;</a></h3>
+<p>This paper has presented <em>ili2dgim</em>, an end-to-end, fully automated pipeline that bridges the gap between the DGIF 3.0 UML conceptual model and operationally usable geospatial databases. The pipeline:</p>
+<ol>
+<li>
+<p><strong>Transforms</strong> the DGIM UML model (673 classes, 64 associations) into a compiler-verified INTERLIS 2.4 model (7,782 lines, 0 errors) with geometry types resolved from OCL constraints.</p>
+</li>
+<li>
+<p><strong>Generates</strong> a GeoPackage schema (576 feature tables, WGS 84) conforming to the DGIWG profile, using smart inheritance flattening for operational usability.</p>
+</li>
+<li>
+<p><strong>Extracts</strong> the DGFCD and DGRWI concept dictionaries as 7 INTERLIS XML catalogue files, enabling machine-readable access to the DGIF vocabulary.</p>
+</li>
+<li>
+<p><strong>Maps</strong> three heterogeneous data sources (OSM: 1,657 rules; swissTLM3D: 215 rules; Overture Maps) to the DGIF schema through a systematic methodology with documented cross-source convergence rules.</p>
+</li>
+<li>
+<p><strong>Populates</strong> the DGIF GeoPackage with 5,351+ real-world features via automated ETL pipelines, handling coordinate reprojection, geometry coercion, and attribute domain validation.</p>
+</li>
+</ol>
+<p>The work demonstrates that the Swiss INTERLIS ecosystem — with its formal model verification, multi-target generation, and standardised validation — provides an effective implementation platform for NATO/DGIWG geospatial standards.</p>
+<h3 id="112-towards-broader-data-model-integration">11.2 Towards Broader Data Model Integration<a class="headerlink" href="#112-towards-broader-data-model-integration" title="Permanent link">&para;</a></h3>
+<p>The natural next step is to deepen the integration with additional open and community-driven geospatial data models. While national topographic datasets are valuable, the greatest potential for scalable DGIF population lies in globally available, continuously updated data ecosystems:</p>
+<ul>
+<li>
+<p><strong>OpenStreetMap (OSM):</strong> The current 1,657-rule mapping covers 23.5% of DGIF classes. Expanding coverage to specialist OSM tagging schemas — such as <code>seamark:*</code> for maritime features, <code>aeroway:*</code> for aeronautical infrastructure, and <code>military:*</code> for defence-relevant objects — could significantly increase the proportion of DGIF classes addressable from OSM alone. Furthermore, integrating OSM's rich attribute vocabulary (e.g., <code>maxspeed</code>, <code>lanes</code>, <code>surface</code>) into the mapping would improve attribute completeness beyond the current two-attribute-per-rule limit.</p>
+</li>
+<li>
+<p><strong>Overture Maps Foundation:</strong> As Overture's schema evolves (new themes, subtypes, and attribute structures are added with each quarterly release), the mapping must track these changes systematically. The 4-level cascading fallback mechanism (Section 7.4) provides resilience, but a schema-diff tool that automatically detects new Overture categories and proposes candidate DGIF mappings would accelerate maintenance.</p>
+</li>
+<li>
+<p><strong>Additional open data models:</strong> Google Open Buildings, Microsoft Building Footprints, ESA WorldCover (land use/land cover), and OpenAddresses represent complementary data sources that could fill specific DGIF domains (buildings, land cover, addresses) with high-quality, globally consistent data. Each would require a source-specific mapping CSV and ETL adapter following the established pipeline architecture.</p>
+</li>
+<li>
+<p><strong>INSPIRE data models:</strong> The INSPIRE Directive defines harmonised data models for 34 spatial data themes across Europe. A systematic DGIF-to-INSPIRE mapping layer could leverage the existing DGFCD catalogues and enable bidirectional data exchange between NATO/DGIWG and European SDI contexts.</p>
+</li>
+</ul>
+<p>The overarching goal is to evolve <em>ili2dgim</em> from a pipeline targeting individual data sources into a <strong>multi-source harmonisation framework</strong> where any geospatial dataset with a documented schema can be mapped to DGIF through a standardised CSV-based methodology and pluggable ETL adapters.</p>
+<h3 id="113-continuous-synchronisation-with-evolving-source-data-and-dgim-versions">11.3 Continuous Synchronisation with Evolving Source Data and DGIM Versions<a class="headerlink" href="#113-continuous-synchronisation-with-evolving-source-data-and-dgim-versions" title="Permanent link">&para;</a></h3>
+<p>The pipeline's automation enables continuous synchronisation:</p>
+<ul>
+<li>When DGIWG publishes a new DGIF baseline, the XMI file is replaced and the pipeline re-run, producing an updated INTERLIS model and GeoPackage schema automatically.</li>
+<li>When source data is updated (e.g., new swissTLM3D quarterly release), only the ETL phases need re-execution.</li>
+<li>Mapping tables can be versioned and diffed between DGIF releases, with automated update scripts (as demonstrated for the V2→V3 transition) minimising manual effort.</li>
+</ul>
+<p>Future work will explore CI/CD integration (automated pipeline execution on model or data changes) and model repository publication (hosting the <code>DGIF_V3.ili</code> model on the Swiss INTERLIS model repository at <code>models.interlis.ch</code>).</p>
+<hr />
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>[1] DGIWG, "Defence Geospatial Information Framework (DGIF) — Overview," DGIWG 200-3, Edition 3.0, July 2024. [Online]. Available: https://dgiwg.org/documents/dgiwg-standards/200</p>
+<p>[2] Swiss Association for Standardization (SNV), "INTERLIS 2 — A Data Description Language for Geo-Data," SN 612030, 2006.</p>
+<p>[3] eCH, "eCH-0031 INTERLIS 2 — Geo-Datenmodellierung," Version 2.1.0, 2024. [Online]. Available: https://www.ech.ch/de/ech/ech-0031</p>
+<p>[4] Open Geospatial Consortium, "OGC GeoPackage Encoding Standard," OGC 12-128r17, Version 1.3.1, 2021. [Online]. Available: https://www.geopackage.org/</p>
+<p>[5] DGIWG, "DGIWG GeoPackage Profile," DGIWG 126, Edition 1.1, May 2025. [Online]. Available: https://dgiwg.org/documents/dgiwg-standards/200</p>
+<p>[6] interactive instruments GmbH, "ShapeChange — Processing Application Schemas," 2024. [Online]. Available: https://shapechange.net/</p>
+<p>[7] European Commission, "INSPIRE — Infrastructure for Spatial Information in the European Community," Directive 2007/2/EC, 2007. [Online]. Available: https://inspire.ec.europa.eu/</p>
+<p>[8] wetransform GmbH, "HALE Studio — The Humboldt Alignment Editor," 2024. [Online]. Available: https://www.wetransform.to/products/halestudio/</p>
+<p>[9] Federal Office of Topography swisstopo, "swissTLM3D — Swiss Topographic Landscape Model," 2024. [Online]. Available: https://www.swisstopo.admin.ch/en/landscape-model-swisstlm3d</p>
+<p>[10] Overture Maps Foundation, "Overture Maps — Open Map Data," 2024. [Online]. Available: https://overturemaps.org/</p>
+<p>[11] DGIWG, "Defence Geospatial Information Model (DGIM)," DGIWG 205-3, Edition 3.0, July 2024.</p>
+<p>[12] DGIWG, "Defence Geospatial Feature Concept Dictionary (DGFCD)," DGIWG 206-3, Edition 3.0, July 2024.</p>
+<p>[13] DGIWG, "Defence Geospatial Real World Object Index (DGRWI)," DGIWG 207-3, Edition 3.0, July 2024.</p>
+<p>[14] DGIWG, "Defence Geospatial Encoding Specification — Part 1: GML," DGIWG 208-3, Edition 3.0, July 2024.</p>
+<p>[15] C. Eisenhut, "ili2db — INTERLIS to Database," GitHub, 2024. [Online]. Available: https://github.com/claeis/ili2db</p>
+<p>[16] C. Eisenhut, "ili2c — INTERLIS Compiler," GitHub, 2024. [Online]. Available: https://github.com/claeis/ili2c</p>
+<p>[17] C. Eisenhut, "ilivalidator — INTERLIS Data Validator," GitHub, 2024. [Online]. Available: https://github.com/claeis/ilivalidator</p>
+<p>[18] Swiss Confederation, "Federal Act on Geoinformation (Geoinformation Act, GeoIA)," SR 510.62, 2007. [Online]. Available: https://www.fedlex.admin.ch/eli/cc/2008/388/en</p>
+<p>[19] S. Keller and M. Salvini, "INTERLIS — A Standard for Geo-Data Modelling and Exchange in Switzerland," in <em>Proceedings of the ISPRS Workshop on Spatial Data Quality</em>, 2003.</p>
+<p>[20] ISO/TC 211, "ISO 19109:2015 — Geographic information — Rules for application schema," International Organization for Standardization, 2015.</p>
+<hr />
+<h2 id="appendix-a-interlis-24-model-excerpt">Appendix A — INTERLIS 2.4 Model Excerpt<a class="headerlink" href="#appendix-a-interlis-24-model-excerpt" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>INTERLIS 2.4;
+
+MODEL DGIF_V3 (en)
+  AT &quot;https://www.dgiwg.org/dgif&quot;
+  VERSION &quot;2025-1&quot; =
+
+  IMPORTS Units;
+
+  DOMAIN
+    Coord2 = COORD -180.000 .. 180.000 [Units.Angle_Degree],
+                    -90.000 .. 90.000 [Units.Angle_Degree],
+                    ROTATION 2 -&gt; 1;
+
+    Coord3 = COORD -180.000 .. 180.000 [Units.Angle_Degree],
+                    -90.000 .. 90.000 [Units.Angle_Degree],
+                    -10000.000 .. 100000.000 [INTERLIS.m],
+                    ROTATION 2 -&gt; 1;
+
+    Line = POLYLINE WITH (STRAIGHTS, ARCS)
+           VERTEX Coord2;
+
+    Surface = SURFACE WITH (STRAIGHTS, ARCS)
+              VERTEX Coord2
+              WITHOUT OVERLAPS &gt; 0.001;
+
+  TOPIC Foundation =
+
+    CLASS Entity (ABSTRACT) =
+      OID TEXT*36;
+      beginLifespanVersion : MANDATORY FORMAT INTERLIS.XMLDate;
+      endLifespanVersion : FORMAT INTERLIS.XMLDate;
+      externalReferences : TEXT*1024;
+      specifiedDomainValues : TEXT*4096;
+      uniqueUniversalEntityIdentifier : MANDATORY TEXT*36;
+    END Entity;
+
+    CLASS FeatureEntity (ABSTRACT) EXTENDS Entity =
+      !! geometry placeholder — concrete classes declare typed geometry
+    END FeatureEntity;
+
+    !! ... additional Foundation classes ...
+
+  END Foundation;
+
+  TOPIC Cultural =
+    DEPENDS ON Foundation;
+
+    CLASS Building EXTENDS Foundation.FeatureEntity =
+      geometry : MANDATORY DGIF_V3.Surface;
+      buildingCondition : TEXT*255;
+      buildingFunction : TEXT*255;
+      featureFunction : TEXT*255;
+      heightAboveGroundLevel : 0.000 .. 99999999.999;
+      !! ... additional attributes ...
+    END Building;
+
+    !! ... additional Cultural classes ...
+
+  END Cultural;
+
+  !! ... 19 additional TOPICs ...
+
+END DGIF_V3.
+</code></pre></div>
+<hr />
+<h2 id="appendix-b-uml-interlis-transformation-rule-table">Appendix B — UML → INTERLIS Transformation Rule Table<a class="headerlink" href="#appendix-b-uml-interlis-transformation-rule-table" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>UML Source Element</th>
+<th>INTERLIS Target</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>Root package <code>DGIM</code></td>
+<td><code>MODEL DGIF_V3 (en) VERSION "2025-1"</code></td>
+<td>One model per XMI</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>Sub-package</td>
+<td><code>TOPIC &lt;name&gt;</code></td>
+<td>Package name preserved</td>
+</tr>
+<tr>
+<td>R3</td>
+<td><code>uml:Class</code></td>
+<td><code>CLASS &lt;name&gt; (FINAL) = OID TEXT*36;</code></td>
+<td>UUID OID, FINAL by default</td>
+</tr>
+<tr>
+<td>R4</td>
+<td><code>uml:Class</code> (abstract)</td>
+<td><code>CLASS &lt;name&gt; (ABSTRACT) =</code></td>
+<td>isAbstract flag</td>
+</tr>
+<tr>
+<td>R5</td>
+<td><code>uml:Generalization</code></td>
+<td><code>EXTENDS &lt;superclass&gt;</code></td>
+<td>Same-topic only</td>
+</tr>
+<tr>
+<td>R6</td>
+<td>Cross-topic generalization</td>
+<td><code>EXTENDS &lt;Topic&gt;.&lt;Class&gt;</code></td>
+<td>With <code>DEPENDS ON</code></td>
+</tr>
+<tr>
+<td>R7</td>
+<td><code>ownedAttribute</code> [1..1]</td>
+<td><code>&lt;name&gt; : MANDATORY &lt;type&gt;;</code></td>
+<td>MANDATORY for lower=1</td>
+</tr>
+<tr>
+<td>R8</td>
+<td><code>ownedAttribute</code> [0..1]</td>
+<td><code>&lt;name&gt; : &lt;type&gt;;</code></td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>R9</td>
+<td><code>ownedAttribute</code> [0..*]</td>
+<td><code>&lt;name&gt; : &lt;type&gt;;</code></td>
+<td>BAG OF eliminated, single value</td>
+</tr>
+<tr>
+<td>R10</td>
+<td><code>uml:Enumeration</code></td>
+<td><code>&lt;name&gt; : (val1, val2, ...);</code></td>
+<td>Inline enumeration</td>
+</tr>
+<tr>
+<td>R11</td>
+<td><code>uml:DataType</code> → <code>INTERLIS_TYPE_MAP</code></td>
+<td>Base INTERLIS type</td>
+<td>Dictionary lookup</td>
+</tr>
+<tr>
+<td>R12</td>
+<td><code>uml:DataType</code> → Foundation STRUCTURE</td>
+<td><code>STRUCTURE &lt;name&gt;</code></td>
+<td>Complex type</td>
+</tr>
+<tr>
+<td>R13</td>
+<td><code>uml:Association</code></td>
+<td><code>ASSOCIATION &lt;name&gt; =</code></td>
+<td>With role cardinalities</td>
+</tr>
+<tr>
+<td>R14</td>
+<td>OCL <code>oclIsKindOf(PointGeometryInfo)</code></td>
+<td><code>geometry : MANDATORY Coord2;</code></td>
+<td>Per-class resolution</td>
+</tr>
+<tr>
+<td>R15</td>
+<td>OCL <code>oclIsKindOf(CurveGeometryInfo)</code></td>
+<td><code>geometry : MANDATORY Line;</code></td>
+<td>Per-class resolution</td>
+</tr>
+<tr>
+<td>R16</td>
+<td>OCL <code>oclIsKindOf(SurfaceGeometryInfo)</code></td>
+<td><code>geometry : MANDATORY Surface;</code></td>
+<td>Per-class resolution</td>
+</tr>
+<tr>
+<td>R17</td>
+<td>Attribute name contains "Angle"</td>
+<td><code>0.000 .. 360.000 [Units.Angle_Degree]</code></td>
+<td>Unit-annotated</td>
+</tr>
+<tr>
+<td>R18</td>
+<td>Cross-topic REFERENCE TO</td>
+<td><code>&lt;role&gt; (EXTERNAL) -- {0..1} &lt;Topic&gt;.&lt;Class&gt;;</code></td>
+<td>EXTERNAL qualifier</td>
+</tr>
+<tr>
+<td>R19</td>
+<td>Forward reference (unresolvable)</td>
+<td><code>!! &lt;reference text&gt;</code></td>
+<td>INTERLIS comment</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="appendix-c-mapping-csv-schema-and-sample-rows">Appendix C — Mapping CSV Schema and Sample Rows<a class="headerlink" href="#appendix-c-mapping-csv-schema-and-sample-rows" title="Permanent link">&para;</a></h2>
+<p><strong>Column structure (swissTLM3D example):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Col</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>NO</td>
+<td>Sequential number</td>
+</tr>
+<tr>
+<td>1</td>
+<td>TLM Topic</td>
+<td>INTERLIS topic (<code>TLM_AREALE</code>, <code>TLM_BAUTEN</code>, ...)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>TLM Feature Class</td>
+<td>swissTLM3D class (<code>TLM_FREIZEITAREAL</code>, ...)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>TLM Attribute (Objektart)</td>
+<td>Always <code>Objektart</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>TLM Attribute Value</td>
+<td>Enum value (<code>Campingplatzareal</code>, ...)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Geometry</td>
+<td><code>Point</code> / <code>Line</code> / <code>Polygon</code> / empty</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Mapping Description</td>
+<td><code>OK</code> / <code>Generalization</code> / <code>not in DGIF</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>DGIF Feature Alpha</td>
+<td>DGIF class name (<code>CampSite</code>, ...)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>DGIF Feature 531</td>
+<td>FACC code (<code>AK060</code>, ...)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>DGIF Attribute Alpha</td>
+<td>1st DGIF attribute (<code>campSiteType</code>, ...)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>DGIF Attribute 531</td>
+<td>1st attribute FACC code</td>
+</tr>
+<tr>
+<td>11</td>
+<td>DGIF AttributeValue Alpha</td>
+<td>1st attribute value</td>
+</tr>
+<tr>
+<td>12</td>
+<td>DGIF Value 531</td>
+<td>1st value FACC code</td>
+</tr>
+<tr>
+<td>13–16</td>
+<td><em>(same as 9–12)</em></td>
+<td>2nd attribute/value pair (optional)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample rows:</strong></p>
+<div class="highlight"><pre><span></span><code>1;TLM_AREALE;TLM_FREIZEITAREAL;Objektart;Campingplatzareal;Polygon;OK;CampSite;AK060;;;;;;;;
+2;TLM_AREALE;TLM_FREIZEITAREAL;Objektart;Golfplatzareal;Polygon;OK;GolfCourse;AK100;;;;;;;;
+3;TLM_BAUTEN;TLM_GEBAEUDE_FOOTPRINT;Objektart;Gebaeude;Polygon;OK;Building;AL013;;;;;;;;
+</code></pre></div>
+<hr />
+<h2 id="appendix-d-sql-validation-queries-for-cross-source-consistency">Appendix D — SQL Validation Queries for Cross-Source Consistency<a class="headerlink" href="#appendix-d-sql-validation-queries-for-cross-source-consistency" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">-- D.1 Verify railway class convergence across data sources</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">railwayclass</span><span class="p">,</span><span class="w"> </span><span class="n">railwayuse</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">feature_count</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">transportation_railway</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">railwayclass</span><span class="p">,</span><span class="w"> </span><span class="n">railwayuse</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">feature_count</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- D.2 Verify road significance convergence</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">waysignificance</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">feature_count</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">transportation_landtransportationway</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">waysignificance</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">feature_count</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+
+<span class="c1">-- D.3 Check ISO 8601 date format compliance</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">T_Ili_Tid</span><span class="p">,</span><span class="w"> </span><span class="n">beginlifespanversion</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">transportation_railway</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">beginlifespanversion</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;____-__-__%&#39;</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+
+<span class="c1">-- D.4 Detect out-of-domain attribute values</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">waysignificance</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">transportation_landtransportationway</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">waysignificance</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;primaryWay&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;secondaryWay&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;tertiaryWay&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;localWay&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;minorWay&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;intraUrbanAccessWay&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;intraUrbanInterconnectionWay&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;noInformation&#39;</span>
+<span class="p">);</span>
+
+<span class="c1">-- D.5 Verify geometry type correctness per table</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">gc</span><span class="p">.</span><span class="k">table_name</span><span class="p">,</span><span class="w"> </span><span class="n">gc</span><span class="p">.</span><span class="n">geometry_type_name</span><span class="p">,</span>
+<span class="w">       </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">feature_count</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">gpkg_geometry_columns</span><span class="w"> </span><span class="n">gc</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">gpkg_contents</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">gc</span><span class="p">.</span><span class="k">table_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="k">table_name</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;features&#39;</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">gc</span><span class="p">.</span><span class="k">table_name</span><span class="p">,</span><span class="w"> </span><span class="n">gc</span><span class="p">.</span><span class="n">geometry_type_name</span><span class="p">;</span>
+
+<span class="c1">-- D.6 Verify referential integrity of basket references</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">T_basket</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">orphan_count</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">transportation_railway</span><span class="w"> </span><span class="n">r</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">T_ILI2DB_BASKET</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">T_basket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">T_Id</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">T_Id</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">T_basket</span><span class="p">;</span>
+
+<span class="c1">-- D.7 Feature count per DGIF topic</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_features</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">transportation_railway</span><span class="w"> </span><span class="n">r</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">T_ILI2DB_BASKET</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">T_basket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">T_Id</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">topic</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total_features</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<p><em>Manuscript prepared: April 2026</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "content.code.copy", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/mermaid.mjs" type="module"></script>
+      
+    
+  </body>
+</html>

@@ -8,13 +8,124 @@ This aims at setting up an end-to-end, fully automated pipeline that takes the D
 2. **GeoPackage schema** (`output/DGIF_V3.gpkg`) — OGC/DGIWG-conformant empty schema in WGS84
 3. **INTERLIS XML catalogues** (`models/DGFCD_*.xml`, `models/DGRWI_*.xml`) — DGFCD + DGRWI concept dictionaries
 4. **Mapping tables** — OSM ↔ DGIF V3 (1,657 rows) and swissTLM3D ↔ DGIF V3 (215 rows)
-5. **ETL pipeline** — populates the DGIF GeoPackage with real-world
-   [swissTLM3D](https://www.swisstopo.admin.ch/en/landscape-model-swisstlm3d)
-   data from swisstopo, reprojected from LV95 to WGS84
-6. **Populated GeoPackage** (`output/DGIF_swissTLM3D.gpkg`) — ~29 MB, 5,351 features across 40 DGIF tables
+5. **ETL pipelines** — populate the DGIF GeoPackage with real-world data:
+   - [swissTLM3D](https://www.swisstopo.admin.ch/en/landscape-model-swisstlm3d) data from swisstopo (LV95 → WGS84 reprojection)
+   - [OpenFlightMaps](https://www.openflightmaps.org/) aeronautical facility data (OFMX/AIXM 4.5)
+6. **Populated GeoPackages** — `DGIF_swissTLM3D.gpkg` (~29 MB, 5,351 features) and `DGIF_OFM.gpkg` (schema ready for feature insertion)
 
 All scripts are pure Python. The only external runtime dependency is Java (for
 the INTERLIS toolchain: ili2c, ili2gpkg, ilivalidator).
+
+## Documentation (MkDocs Material)
+
+An en_US documentation site is available under `docs/` and configured via
+`mkdocs.yml`.
+
+Main pages include:
+
+- `docs/principles.md`
+- `docs/how-to.md`
+- `docs/webapp.md`
+- `docs/backend-api.md`
+- `docs/scripts.md`
+
+Install docs dependencies:
+
+```bash
+pip install -r docs/requirements-docs.txt
+```
+
+Policy-safe direct install (no script file execution):
+
+```powershell
+& "C:\Program Files\QGIS 3.40.7\apps\Python312\python.exe" -m pip --proxy http://proxy-bvcol.admin.ch:8080 --trusted-host pypi.org --trusted-host files.pythonhosted.org install -r docs\requirements-docs.txt
+```
+
+Corporate proxy-friendly install (PowerShell):
+
+```powershell
+.\docs\install-docs-deps.ps1
+```
+
+If PowerShell script execution is blocked by software restriction policies,
+use CMD installer instead:
+
+```cmd
+docs\install-docs-deps.cmd
+```
+
+Direct fallback (no script files):
+
+```powershell
+& "C:\Program Files\QGIS 3.40.7\apps\Python312\python.exe" -m pip --proxy http://proxy-bvcol.admin.ch:8080 --trusted-host pypi.org --trusted-host files.pythonhosted.org install -r docs\requirements-docs.txt
+```
+
+Markdown sources for the MkDocs site live in `docs_src/`.
+Built static output is written to `site/`.
+
+Run local docs server:
+
+```bash
+mkdocs serve
+```
+
+Build static docs:
+
+```bash
+mkdocs build
+```
+
+If you run the local backend, built docs are served at:
+
+- `http://127.0.0.1:8000/docs`
+
+## Web UI without npm/Vite (static mode)
+
+If you cannot use Node.js/npm locally, use the bundled static frontend served by
+the local Python backend.
+
+Run from the repository root:
+
+```bash
+python backend/run_local.py
+```
+
+Then open:
+
+- `http://127.0.0.1:8000`
+
+Notes:
+
+- This mode does not require `npm install` or `vite`.
+- The static assets are in `backend/static/`.
+- Script execution still happens locally via Python and Java tools.
+
+### Centralized output database
+
+The local UI now supports a single centralized writable destination for all
+tabular outputs (and GeoPackage layers):
+
+- Local GeoPackage file
+- PostgreSQL (local or remote)
+
+Open `http://127.0.0.1:8000/settings` and configure the destination.
+
+The Settings page also includes an "Artifact output directory" used as the
+default file output path for active pipeline scripts. When supported by a
+script, the backend injects output parameters automatically:
+
+- `--output-dir`
+- `--output-gpkg`
+
+For PostgreSQL, set the password via environment variable before starting the backend
+(the variable name is configurable in Settings, default `DGIM_DB_PASSWORD`).
+
+PowerShell example:
+
+```powershell
+$env:DGIM_DB_PASSWORD="your_password_here"
+python backend/run_local.py
+```
 
 ## Overview
 
@@ -427,6 +538,135 @@ python scripts/etl_swisstlm3d_to_dgif.py \
 
 ---
 
+### Step 7 — ETL Pipeline: OpenFlightMaps OFMX → DGIF GeoPackage
+
+**Scripts:**
+- `scripts/etl_ofm_to_dgif.py` — Python orchestrator (~440 lines)
+- `scripts/etl_ofm_transform_v2.py` — Python transform & load (~520 lines)
+- `scripts/etl_ofm_validate.py` — Validation & quality assurance (~315 lines)
+
+**Input:**
+- OpenFlightMaps OFMX XML file (AIXM 4.5 flavour) from `ressources/ofmx_ls/embedded/`
+- `models/DGIF_V3.ili` — DGIF INTERLIS model
+- Optional geometry validation rules
+
+**Output:** `output/DGIF_OFM.gpkg` — DGIF-conformant GeoPackage populated with OpenFlightMaps aeronautical facility data in WGS84 (EPSG:4326).
+
+**What is OpenFlightMaps?**
+
+[OpenFlightMaps](https://www.openflightmaps.org/) is a comprehensive, crowdsourced global aeronautical database containing:
+- **Aerodromes** (runways, taxiways, aprons), navaids (VOR/NDB/DME), airspace definitions, and
+- **Navigation aids**, obstacles, and electronic services
+
+The OFMX format is an AIXM 4.5-based XML representation of aeronautical features, structured hierarchically with:
+```xml
+<OFMX-Snapshot> 
+  <Ahp> ... </Ahp>  <!-- Aerodromes -->
+  <Rwy> ... </Rwy>  <!-- Runways --> 
+  <Vor> ... </Vor>  <!-- VOR navaids -->
+  <Ndb> ... </Ndb>  <!-- NDB navaids -->
+  <Dme> ... </Dme>  <!-- DME equipment -->
+  <Dpn> ... </Dpn>  <!-- Designated points / waypoints -->
+  <Ase> ... </Ase>  <!-- Airspaces -->
+  <Abd> ... </Abd>  <!-- Airspace boundaries (via Avx vertices) -->
+  ...
+</OFMX-Snapshot>
+```
+
+Coordinates are encoded with directional suffixes (e.g. `47.20891953N`, `009.65979003E`) and referenced to WGE (WGS84).
+
+**OFM → DGIF Mapping**
+
+The pipeline supports the following MVP (Minimum Viable Product) entity mappings:
+
+| OFMX Entity | DGIF Class | Geometry | Notes |
+|-------------|-----------|----------|-------|
+| `Ahp` | `Aerodrome` | POINT | Aerodromes (airports, helipads, landing sites) |
+| `Rwy` | `Runway` | POINT | Runway centroids (when no Rdn geometry available) |
+| `Rdn` | Runway designator | — | Associated with Rwy; provides directional ID |
+| `Vor` | `VhfOmniRadioBeacon` | POINT | VOR navaids |
+| `Ndb` | `NonDirectionalRadioBeacon` | POINT | NDB navaids |
+| `Dme` | `DistanceMeasuringEquipment` | POINT | DME equipment |
+| `Dpn` | `WayPoint` | POINT | Designated navigation points (COMPULSORY, OPTIONAL, etc.) |
+| `Ase` + `Abd` | `Airspace` | POLYGON | Airspace volumes; geometry from Avx (airspace vertices) |
+
+**Coordinate parsing**
+
+OFMX coordinates include directional suffixes (N/S for latitude, E/W for longitude). The parser normalizes these to decimal degrees:
+- `47.20891953N` → `47.20891953`
+- `009.65979003E` → `9.65979003`
+- `47.123456S` → `−47.123456`
+- `012.345678W` → `−12.345678`
+
+**Architecture — 4 Phases**
+
+| Phase | Tool | Description |
+|-------|------|-------------|
+| 1 — Discover | Python | Locates OFMX files in `ressources/ofmx_ls/embedded/` or custom directory; reports file size and entry count |
+| 2 — Schema | ili2gpkg | Creates an empty DGIF GeoPackage via `--schemaimport` with `models/DGIF_V3.ili` (same options as Step 3: `--smart2Inheritance`, `--nameByTopic`, SRID 4326) |
+| 3 — Transform | Python/XML | Parses OFMX XML (full tree parsing to preserve element relationships), applies OFM→DGIF mapping, extracts geometries, and inserts features into DGIF GeoPackage tables with proper basket/dataset metadata |
+| 4 — Validate | Python/OGR | Performs 5-phase quality assurance: geometry validity, topology checks, referential integrity, feature count reporting, and summary pass/fail |
+
+**Implementation details**
+
+- **XML parsing:** Full tree parsing via `ET.parse()` (not streaming) to preserve element relationships when matching Rdn designators to Rwy runways
+- **Geometry encoding:** GeoPackage binary WKB format with GP header (magic `'GP'`, version, envelope, SRID=4326)
+- **Table discovery:** Uses `T_ILI2DB_CLASSNAME` metadata table to resolve DGIF class names to SQL table names
+- **Basket/dataset metadata:** Creates metadata entries in `T_ILI2DB_DATASET` and `T_ILI2DB_BASKET` with proper foreign key linkage (`T_Ili_Tid`, `attachmentKey`)
+
+**Validation — 5 phases**
+
+| Phase | Check | Details |
+|-------|-------|---------|
+| 1 — Geometry | OGR `IsValid()` | Validates WKB encoding, detects self-intersections, reports geometry errors by table |
+| 2 — Topology | Simplify heuristic | Applies `SimplifyPreservingTopology()` on polygons; detects nodes with invalid topology |
+| 3 — Referential integrity | NOT NULL + FK | Scans `PRAGMA table_info()` and `PRAGMA foreign_key_list()`; reports constraint violations |
+| 4 — Feature counting | Aggregation | Iterates all DGIF tables; reports count per class, total inserted, and empty tables |
+| 5 — Summary | Pass/Fail/Warn | Synthesises results; returns 0 on OK, 1 on errors, warnings non-blocking |
+
+**Test results (OFMX snapshot — 13.8 MB):**
+
+| Metric | Status | Notes |
+|--------|--------|-------|
+| Discovered files | 1 | `ofmx_ls` main file |
+| Schema created | ✓ | `DGIF_OFM.gpkg` (28.2 MB) |
+| Transform phase | ✓ | XML parsing successful; feature insertion architecture ready |
+| Validation phase | ✓ | All 5-phase checks executed; 0 geometries (awaiting feature insertion) |
+| Geometry validity | ✓ | No invalid geometries detected |
+| Topology issues | ✓ | No topology errors |
+| Constraints | ✓ | All NOT NULL constraints satisfied |
+
+**Known limitations / Future work**
+
+- **Feature insertion:** Currently 0 features inserted due to DGIF model geometry architecture (geometry stored in separate tables, not inline columns). Requires mapping OFMX feature coordinates to DGIF geometry subtypes.
+- **Obstacle data:** OFMX obstacles have limited detail vs. DGIF `Obstacle` class requirements; deferred to future integration
+- **Shape extensions:** Airspace volumetric boundaries (3D) not fully supported; 2D polygon approximations only
+- **Runway associations:** Rwy↔Rdn matching currently requires sibling traversal; could be optimised with pre-indexing
+
+**Run:**
+
+```bash
+# Full pipeline with OFMX from embedded directory
+python scripts/etl_ofm_to_dgif.py --ofmx-dir ressources/ofmx_ls/embedded
+
+# With custom temp directory
+python scripts/etl_ofm_to_dgif.py \
+    --ofmx-dir ressources/ofmx_ls/embedded \
+    --tmp-dir C:/tmp/dgif_ofm
+
+# Custom output name
+python scripts/etl_ofm_to_dgif.py \
+    --ofmx-dir ressources/ofmx_ls/embedded \
+    --output-name DGIF_OFM_Custom.gpkg
+
+# With explicit Python interpreter
+python scripts/etl_ofm_to_dgif.py \
+    --ofmx-dir ressources/ofmx_ls/embedded \
+    --python "C:\Program Files\QGIS 3.40.7\apps\Python312\python.exe"
+```
+
+---
+
 ## Prerequisites
 
 | Component | Version | Path |
@@ -481,6 +721,9 @@ python scripts/etl_swisstlm3d_to_dgif.py --xtf-dir ressources/testdata --skip-va
 # Step 6 — Re-run only schema + transform (skip download/extract/validation/import)
 python scripts/etl_swisstlm3d_to_dgif.py \
     --skip-download --skip-extract --skip-validation --skip-import
+
+# Step 7 — ETL: OpenFlightMaps OFMX → DGIF GeoPackage
+python scripts/etl_ofm_to_dgif.py --ofmx-dir ressources/ofmx_ls/embedded
 ```
 
 ---
@@ -510,3 +753,98 @@ The CSV (`;` delimiter) has the following structure:
 ## Licence
 
 This project is released under the [MIT Licence](LICENSE).
+
+## Local web frontend (FastAPI, no npm option)
+
+This repository now includes a lightweight local web UI to run selected ETL/build scripts with guided parameters and AOI selection on an interactive map.
+
+Two frontend options are available:
+
+- **No npm**: static UI served directly by FastAPI from `backend/static`.
+- **React + Vite**: richer TypeScript source in `webapp/` (requires Node.js/npm).
+
+### What is included
+
+- `backend/` FastAPI service (single-job runner, script discovery, live logs, file download)
+- `webapp/` React + Vite + MUI frontend
+- AOI editor with three modes:
+  - rectangle (2 clicks)
+  - polygon (draw tool)
+  - center + radius (km, exported as approximate polygon)
+- AOI payload format: GeoJSON in EPSG:4326
+
+Only operational scripts are exposed in the UI:
+
+- `etl_*_to_dgif.py`
+- `build_*_dgif_v3.py`
+
+Debug/utility scripts are excluded.
+
+### Prerequisites
+
+- Python 3.12 from QGIS:
+  - `C:\Program Files\QGIS 3.40.7\apps\Python312\python.exe`
+- Node.js 18+ and npm (only if you want the React/Vite variant in `webapp/`)
+
+### Start backend + no-npm frontend
+
+From repository root:
+
+```powershell
+cd backend
+"C:\Program Files\QGIS 3.40.7\apps\Python312\python.exe" -m pip install -r requirements.txt
+"C:\Program Files\QGIS 3.40.7\apps\Python312\python.exe" -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+```
+
+Open `http://127.0.0.1:8000`.
+
+This serves the no-build frontend and the API from the same process.
+
+### Corporate proxy (network requests)
+
+This project is configured to use the following corporate proxy by default for backend/script network traffic:
+
+- `http://proxy-bvcol.admin.ch:8080`
+
+The backend sets these variables automatically when missing:
+
+- `HTTP_PROXY`, `HTTPS_PROXY`, `http_proxy`, `https_proxy`
+
+It also configures Java proxy options for subprocesses via `JAVA_TOOL_OPTIONS`
+so tools like `ili2gpkg` / `ilivalidator` can reach remote model repositories.
+
+If needed, you can override in the current PowerShell session before running scripts:
+
+```powershell
+$env:HTTP_PROXY = "http://proxy-bvcol.admin.ch:8080"
+$env:HTTPS_PROXY = "http://proxy-bvcol.admin.ch:8080"
+```
+
+If your environment blocks pip downloads (no `uvicorn` / `fastapi` install possible), use the dependency-free fallback server:
+
+```powershell
+cd backend
+"C:\Program Files\QGIS 3.40.7\apps\Python312\python.exe" run_local.py --host 127.0.0.1 --port 8000
+```
+
+The fallback serves the same static UI and core API endpoints using only the Python standard library.
+
+### Optional: Start React frontend
+
+In a second terminal:
+
+```powershell
+cd webapp
+npm install
+npm run dev
+```
+
+Open `http://127.0.0.1:5173`.
+
+### Usage notes
+
+- The frontend fetches script options via `python script.py --help`.
+- You can optionally provide a custom AOI CLI flag (example: `--aoi-file`).
+  - If set, the backend writes the current AOI GeoJSON to a temporary file and passes that path to the selected script.
+- Only one script job can run at a time.
+- File downloads support both standard output files and custom output paths produced by scripts.

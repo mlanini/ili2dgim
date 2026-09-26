@@ -23,6 +23,7 @@ Author: Automated DGIF pipeline
 
 import csv
 import re
+import argparse
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent.parent
@@ -1197,9 +1198,10 @@ def validate_mappings(dgif_classes: set):
     return issues
 
 
-def write_csv():
+def write_csv(csv_out: Path = CSV_OUT):
     """Write the mapping CSV."""
-    with open(CSV_OUT, "w", newline="", encoding="utf-8") as f:
+    csv_out.parent.mkdir(parents=True, exist_ok=True)
+    with open(csv_out, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f, delimiter=";", quotechar='"', quoting=csv.QUOTE_MINIMAL)
         writer.writerow(HEADER)
         for i, row in enumerate(ALL_MAPPINGS, 1):
@@ -1209,11 +1211,35 @@ def write_csv():
 
 
 def main():
+    parser = argparse.ArgumentParser(
+        description="Build Overture to DGIF V3 mapping CSV"
+    )
+    parser.add_argument(
+        "--ili-file",
+        default=str(ILI_DGIF),
+        help=f"Path to DGIF_V3.ili (default: {ILI_DGIF})",
+    )
+    parser.add_argument(
+        "--output-csv",
+        default=str(CSV_OUT),
+        help=f"Path to Overture_to_DGIF_V3.csv (default: {CSV_OUT})",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="Optional output directory; if set writes Overture_to_DGIF_V3.csv there",
+    )
+    args = parser.parse_args()
+
+    output_csv = Path(args.output_csv)
+    if args.output_dir:
+        output_csv = Path(args.output_dir) / "Overture_to_DGIF_V3.csv"
+
     print("build_overture_dgif_v3.py")
     print("=" * 60)
 
     # Extract DGIF classes
-    dgif_classes = extract_dgif_classes(ILI_DGIF)
+    dgif_classes = extract_dgif_classes(Path(args.ili_file))
     print(f"DGIF V3 classes in model: {len(dgif_classes)}")
     print(f"Mapping rows to write:    {len(ALL_MAPPINGS)}")
 
@@ -1244,8 +1270,8 @@ def main():
         print(f"    {theme}: {cnt}")
 
     # Write CSV
-    n = write_csv()
-    print(f"\n[OK] Written {n} rows to {CSV_OUT}")
+    n = write_csv(output_csv)
+    print(f"\n[OK] Written {n} rows to {output_csv}")
 
 
 if __name__ == "__main__":

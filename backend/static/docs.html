@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SwissDGIM Documentation</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-bar">
+        <div class="header-copy">
+          <h1>SwissDGIM Documentation</h1>
+          <div class="subtitle">Documentation integration page for the local webapp.</div>
+          <div class="header-actions">
+            <a href="/" style="display:inline-block;text-decoration:none;border:1px solid #99c8c4;border-radius:999px;padding:5px 12px;color:#0f766e;font-weight:600;">Back to Runner</a>
+            <a href="/settings" style="display:inline-block;text-decoration:none;border:1px solid #99c8c4;border-radius:999px;padding:5px 12px;color:#0f766e;font-weight:600;">Settings</a>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button id="themeToggle" class="secondary theme-toggle" type="button">Dark mode</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout" style="grid-template-columns:1fr;max-width:980px;margin:0 auto;">
+      <section class="card">
+        <strong>MkDocs site not built yet</strong>
+        <div class="small" style="margin-top:8px;line-height:1.6;">
+          Build the documentation site to enable full navigation at <code>/docs</code>:
+        </div>
+
+        <div style="height:10px"></div>
+        <pre id="cmd" style="margin:0;padding:10px;border-radius:10px;background:#0f172a;color:#dbe9ff;overflow:auto;">pip install -r docs/requirements-docs.txt
+mkdocs build</pre>
+
+        <div style="height:10px"></div>
+        <div class="small">After build, refresh this page and the generated site will be served automatically.</div>
+
+        <div style="height:14px"></div>
+        <strong>Source pages</strong>
+        <div class="small" style="margin-top:8px;">Raw markdown sources can be downloaded below:</div>
+
+        <div style="height:8px"></div>
+        <div id="links" style="display:grid;gap:8px;">
+          <a href="/api/files/download?path=docs_src/index.md" target="_blank">docs_src/index.md</a>
+          <a href="/api/files/download?path=docs_src/principles.md" target="_blank">docs_src/principles.md</a>
+          <a href="/api/files/download?path=docs_src/how-to.md" target="_blank">docs_src/how-to.md</a>
+          <a href="/api/files/download?path=docs_src/webapp.md" target="_blank">docs_src/webapp.md</a>
+          <a href="/api/files/download?path=docs_src/backend-api.md" target="_blank">docs_src/backend-api.md</a>
+          <a href="/api/files/download?path=docs_src/scripts.md" target="_blank">docs_src/scripts.md</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/theme.js"></script>
+  </body>
+</html>

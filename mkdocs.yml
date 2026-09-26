@@ -1,0 +1,93 @@
+site_name: ili2dgim Documentation
+site_description: Multilingual documentation for ili2dgim principles, DGIF foundations, webapp workflows, backend API, and automation scripts.
+site_url: https://example.invalid/ili2dgim
+repo_url: https://github.com/squidfunk/mkdocs-material
+repo_name: squidfunk/mkdocs-material
+docs_dir: docs_src
+site_dir: site
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: true
+      reconfigure_material: false
+      languages:
+        - locale: en_US
+          name: English (US)
+          default: true
+          build: true
+        - locale: fr_FR
+          name: Francais
+          build: true
+          nav_translations:
+            Home: Accueil
+            Principles: Principes
+            How-To: Guides pratiques
+            Webapp: Application web
+            Overview: Vue d'ensemble
+            Backend API: API backend
+            Scripts: Scripts
+        - locale: de_CH
+          name: Deutsch (CH)
+          build: true
+          nav_translations:
+            Home: Startseite
+            Principles: Grundsaetze
+            How-To: Anleitungen
+            Webapp: Webanwendung
+            Overview: Uebersicht
+            Backend API: Backend-API
+            Scripts: Skripte
+        - locale: it_IT
+          name: Italiano (IT)
+          build: true
+          nav_translations:
+            Home: Home
+            Principles: Principi
+            How-To: Guide pratiche
+            Webapp: Applicazione web
+            Overview: Panoramica
+            Backend API: API backend
+            Scripts: Script
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.highlight
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+extra_javascript:
+  - javascripts/mermaid.mjs
+extra:
+  alternate:
+    - name: English (US)
+      link: /docs/
+      lang: en-US
+    - name: Francais
+      link: /docs/fr_FR/
+      lang: fr-FR
+    - name: Deutsch (CH)
+      link: /docs/de_CH/
+      lang: de-CH
+    - name: Italiano (IT)
+      link: /docs/it_IT/
+      lang: it-IT
+nav:
+  - Home: index.md
+  - Principles: principles.md
+  - How-To: how-to.md
+  - Webapp:
+      - Overview: webapp.md
+      - Backend API: backend-api.md
+  - Scripts: scripts.md

@@ -21,7 +21,14 @@ import xml.etree.ElementTree as ET
 import os
 import sys
 import re
+import argparse
+import subprocess
 from collections import OrderedDict, defaultdict
+
+from interlis_tool_paths import (
+    describe_configured_interlis_tools,
+    resolve_interlis_tool_path,
+)
 
 # ── Configuration ──────────────────────────────────────────────────────────
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -30,23 +37,47 @@ XMI_PATH = os.path.join(BASE_DIR, "ressources", "DGIF_BL_2025-1.xmi")
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
 OUTPUT_FILE = os.path.join(OUTPUT_DIR, "DGIF_V3.ili")
 
-XMI_NS = "http://www.omg.org/spec/XMI/20110701"
+XMI_NS_CANDIDATES = (
+    "http://schema.omg.org/spec/XMI/2.1",
+    "http://www.omg.org/spec/XMI/20110701",
+)
 UML_NS = "http://www.omg.org/spec/UML/20110701"
+
+XMI_VERSION_PATTERN = re.compile(r"(\d{4}-\d+)")
 
 # ── Helpers ────────────────────────────────────────────────────────────────
 
+def xmi_attr(elem, local_name, default=""):
+    for ns in XMI_NS_CANDIDATES:
+        value = elem.get(f"{{{ns}}}{local_name}")
+        if value:
+            return value
+    for key, value in elem.attrib.items():
+        if key == local_name or key.endswith(f":{local_name}") or key.endswith(f"}}{local_name}"):
+            return value
+    return default
+
 def xmi_type(elem):
-    return elem.get(f"{{{XMI_NS}}}type", "")
+    return xmi_attr(elem, "type", "")
 
 def xmi_id(elem):
-    return elem.get(f"{{{XMI_NS}}}id", "")
+    return xmi_attr(elem, "id", "")
 
 def xmi_idref(elem):
-    return elem.get(f"{{{XMI_NS}}}idref", elem.get("xmi:idref", ""))
+    return xmi_attr(elem, "idref", "")
 
 def local_tag(elem):
     t = elem.tag
     return t.split("}")[-1] if "}" in t else t
+
+
+def extract_baseline_version_from_xmi_path(xmi_path):
+    """Extract baseline version (e.g. 2026-1) from XMI filename/path."""
+    file_name = os.path.basename(str(xmi_path))
+    match = XMI_VERSION_PATTERN.search(file_name)
+    if match:
+        return match.group(1)
+    return "2025-1"
 
 
 def sanitize_name(name):
@@ -63,11 +94,29 @@ def sanitize_name(name):
 
 def ili_cardinality(lower_val, upper_val):
     """Convert UML cardinality to INTERLIS [min..max] notation."""
-    lo = lower_val if lower_val else "0"
-    hi = upper_val if upper_val else "1"
-    if hi == "*":
-        hi = "*"
+    lo = normalize_cardinality_lower(lower_val, default="0")
+    hi = normalize_cardinality_upper(upper_val, default="1")
     return f"[{lo}..{hi}]"
+
+
+def normalize_cardinality_upper(value, default="*"):
+    """Normalize UML upper bounds to INTERLIS-compatible values."""
+    raw = str(value).strip() if value is not None else ""
+    if not raw:
+        return default
+    if raw == "-1":
+        return "*"
+    return raw
+
+
+def normalize_cardinality_lower(value, default="0"):
+    """Normalize UML lower bounds; keep only non-negative integers."""
+    raw = str(value).strip() if value is not None else ""
+    if not raw:
+        return default
+    if raw.isdigit():
+        return raw
+    return default
 
 
 # ── Global ID→Name map ────────────────────────────────────────────────────
@@ -76,7 +125,7 @@ def build_id_name_map(root):
     """Build a global map of xmi:id → element name for resolving references."""
     id_map = {}
     for elem in root.iter():
-        eid = elem.get(f"{{{XMI_NS}}}id", "")
+        eid = xmi_id(elem)
         ename = elem.get("name", "")
         if eid and ename:
             id_map[eid] = ename
@@ -87,7 +136,7 @@ def build_id_elem_map(root):
     """Build a global map of xmi:id → element for resolving references."""
     id_map = {}
     for elem in root.iter():
-        eid = elem.get(f"{{{XMI_NS}}}id", "")
+        eid = xmi_id(elem)
         if eid:
             id_map[eid] = elem
     return id_map
@@ -104,21 +153,30 @@ def find_package_by_name(parent, name):
     return None
 
 
-def navigate_packages(root, path_names):
-    """Navigate through nested packages."""
-    current = root
+def find_model_element(root):
     for child in root:
         lt = local_tag(child)
         if lt == "Model" or (lt == "packagedElement" and xmi_type(child) == "uml:Model"):
-            current = child
-            break
-    for name in path_names:
-        found = find_package_by_name(current, name)
-        if found is None:
-            print(f"  WARNING: Package '{name}' not found")
-            return None
-        current = found
-    return current
+            return child
+    return root
+
+
+def navigate_packages(root, path_names):
+    """Navigate through nested packages."""
+    current = find_model_element(root)
+    for start_index in range(len(path_names)):
+        candidate = current
+        matched = True
+        for name in path_names[start_index:]:
+            found = find_package_by_name(candidate, name)
+            if found is None:
+                matched = False
+                break
+            candidate = found
+        if matched:
+            return candidate
+    print(f"  WARNING: Package path not found: {'/'.join(path_names)}")
+    return None
 
 
 def get_child_packages(parent):
@@ -283,47 +341,57 @@ def build_geometry_type_map(root, id_name_map):
     This gives concrete classes the most expressive geometry column.
     """
     geom_map = {}  # sanitized class name → INTERLIS type
-    xmi_ns = f"{{{XMI_NS}}}"
 
-    for rule_elem in root.iter():
-        if local_tag(rule_elem) != "ownedRule":
-            continue
-        if rule_elem.get("name", "") != "geometry_GEO":
+    def _extract_constraint_body(constraint_elem):
+        """Return OCL text for geometry_GEO constraints across XMI variants."""
+        # EA/DGIF 2026-1 format: <constraint ... description="...inv: ..."/>
+        desc = constraint_elem.get("description", "")
+        if desc:
+            return desc
+        # EA/DGIF 2025-1 format: <ownedRule><specification body="..."/></ownedRule>
+        spec = None
+        for child in constraint_elem:
+            if local_tag(child) == "specification":
+                spec = child
+                break
+        if spec is not None:
+            return spec.get("body", "")
+        return ""
+
+    # Iterate classes directly so we always know the owning class, regardless
+    # of whether constraints are encoded as uml:ownedRule or uml:constraint.
+    for class_elem in root.iter():
+        if local_tag(class_elem) not in ("packagedElement", "element") or xmi_type(class_elem) != "uml:Class":
             continue
 
-        # The parent <packagedElement> is the owning class
-        # But in ElementTree we don't have parent pointers, so use
-        # the <constrainedElement> child to get the class xmi:id
-        ce = rule_elem.find("constrainedElement")
-        if ce is None:
-            continue
-        class_id = ce.get(f"{xmi_ns}idref", ce.get("xmi:idref", ""))
-        class_raw = id_name_map.get(class_id, "")
+        class_raw = class_elem.get("name", "")
         if not class_raw:
             continue
         class_safe = sanitize_name(class_raw)
 
-        # Parse the OCL body
-        spec = rule_elem.find("specification")
-        if spec is None:
+        class_ili_types = set()
+        for child in class_elem.iter():
+            if child is class_elem:
+                continue
+            lt = local_tag(child)
+            if lt not in ("ownedRule", "constraint"):
+                continue
+            if child.get("name", "") != "geometry_GEO":
+                continue
+
+            body = _extract_constraint_body(child)
+            if not body:
+                continue
+
+            for match_name in _OCL_KINDOF_RE.findall(body):
+                geom_type = _OCL_GEOM_MAP.get(match_name)
+                if geom_type:
+                    class_ili_types.add(geom_type)
+
+        if not class_ili_types:
             continue
-        body = spec.get("body", "")
 
-        # Extract all oclIsKindOf(XxxGeometryInfo) references
-        matches = _OCL_KINDOF_RE.findall(body)
-        if not matches:
-            continue
-
-        # Resolve to INTERLIS types and pick the highest-priority one
-        ili_types = set()
-        for m in matches:
-            if m in _OCL_GEOM_MAP:
-                ili_types.add(_OCL_GEOM_MAP[m])
-
-        if not ili_types:
-            continue
-
-        best = max(ili_types, key=lambda t: _GEOM_PRIORITY.get(t, -1))
+        best = max(class_ili_types, key=lambda t: _GEOM_PRIORITY.get(t, -1))
         geom_map[class_safe] = best
 
     return geom_map
@@ -360,6 +428,12 @@ def resolve_interlis_type(type_id, id_name_map, local_enums, id_elem_map,
     #    with the proper Units.Angle_Degree range.
     if attr_name and ANGLE_ATTR_PATTERN.search(attr_name):
         return (ANGLE_ILI_TYPE, False, None)
+
+    # 0b) Geometry attributes: the 2026-1 XMI may use different external
+    #     type names/IDs for ISO geometry classes. Use stable DGIF attribute
+    #     names as the source of truth for INTERLIS geometry domains.
+    if attr_name and attr_name in GEOMETRY_ATTR_NAME_MAP:
+        return (GEOMETRY_ATTR_NAME_MAP[attr_name], False, None)
     
     # 1) Check direct mapping
     if type_name in INTERLIS_TYPE_MAP:
@@ -430,8 +504,7 @@ def extract_class_info(cls_elem, id_name_map, id_elem_map, local_enums):
             type_elem = child.find("type")
             type_id = ""
             if type_elem is not None:
-                type_id = type_elem.get(f"{{{XMI_NS}}}idref", 
-                          type_elem.get("xmi:idref", ""))
+                type_id = xmi_idref(type_elem)
             
             # Get cardinality
             lower_elem = child.find("lowerValue")
@@ -488,7 +561,7 @@ def extract_association_info(assoc_elem, id_name_map, id_elem_map):
     for child in assoc_elem:
         lt = local_tag(child)
         if lt == "memberEnd":
-            ref = child.get(f"{{{XMI_NS}}}idref", child.get("xmi:idref", ""))
+            ref = xmi_idref(child)
             if ref:
                 member_end_ids.append(ref)
     
@@ -502,8 +575,7 @@ def extract_association_info(assoc_elem, id_name_map, id_elem_map):
             type_elem = child.find("type")
             type_id = ""
             if type_elem is not None:
-                type_id = type_elem.get(f"{{{XMI_NS}}}idref",
-                          type_elem.get("xmi:idref", ""))
+                type_id = xmi_idref(type_elem)
             
             lower_elem = child.find("lowerValue")
             upper_elem = child.find("upperValue")
@@ -545,8 +617,8 @@ def topological_sort_classes(class_infos, local_class_names, id_name_map):
     Only considers dependencies within local_class_names (same topic).
     External dependencies are ignored for ordering purposes.
 
-    When REFERENCE TO creates cycles, those soft edges are dropped so that
-    EXTENDS ordering is always honoured.
+    When REFERENCE TO creates cycles, EXTENDS ordering is still honoured and
+    a best-effort heuristic minimizes unresolved intra-topic forward refs.
     """
     name_to_info = {}
     for ci in class_infos:
@@ -573,39 +645,42 @@ def topological_sort_classes(class_infos, local_class_names, id_name_map):
                 if target_safe and target_safe in local_class_names and target_safe != cname:
                     ref_deps[cname].add(target_safe)
 
-    # ── First pass: try with all deps (hard + soft) ──
-    def _kahn(all_deps):
-        provided_to = {ci["name"]: [] for ci in class_infos}
-        for cname, deps in all_deps.items():
-            for dep in deps:
-                if dep in provided_to:
-                    provided_to[dep].append(cname)
+    # ── Hard-topological + soft-reference heuristic ──
+    # We enforce EXTENDS strictly. Among classes currently eligible
+    # (hard in-degree == 0), we pick the one with the fewest unresolved
+    # local REFERENCE TO dependencies to reduce commented forward refs.
+    hard_in_degree = {ci["name"]: len(extends_deps[ci["name"]]) for ci in class_infos}
+    hard_children = {ci["name"]: [] for ci in class_infos}
+    for cname, deps in extends_deps.items():
+        for dep in deps:
+            if dep in hard_children:
+                hard_children[dep].append(cname)
 
-        in_degree = {ci["name"]: len(all_deps[ci["name"]]) for ci in class_infos}
-        queue = [n for n in in_degree if in_degree[n] == 0]
-        sorted_names = []
-        while queue:
-            queue.sort()
-            node = queue.pop(0)
-            sorted_names.append(node)
-            for ch in provided_to.get(node, []):
-                in_degree[ch] -= 1
-                if in_degree[ch] == 0:
-                    queue.append(ch)
-        return sorted_names
+    placed = set()
+    sorted_names = []
+    remaining = set(name_to_info.keys())
 
-    combined = {n: extends_deps[n] | ref_deps[n] for n in extends_deps}
-    sorted_names = _kahn(combined)
+    while remaining:
+        ready = [n for n in remaining if hard_in_degree.get(n, 0) == 0]
 
-    if len(sorted_names) == len(class_infos):
-        return [name_to_info[n] for n in sorted_names if n in name_to_info]
+        if not ready:
+            # Defensive fallback for malformed/cyclic EXTENDS graphs.
+            node = sorted(remaining)[0]
+        else:
+            def _rank(n):
+                unresolved_soft = len([d for d in ref_deps.get(n, set()) if d not in placed])
+                total_soft = len(ref_deps.get(n, set()))
+                return (unresolved_soft, total_soft, n)
 
-    # ── Cycle detected: fall back to EXTENDS-only ordering ──
-    sorted_names = _kahn(extends_deps)
+            node = min(ready, key=_rank)
 
-    # Append any remaining (should not happen with single-inheritance)
-    remaining = [ci["name"] for ci in class_infos if ci["name"] not in sorted_names]
-    sorted_names.extend(remaining)
+        sorted_names.append(node)
+        placed.add(node)
+        remaining.remove(node)
+
+        for ch in hard_children.get(node, []):
+            if ch in hard_in_degree and hard_in_degree[ch] > 0:
+                hard_in_degree[ch] -= 1
 
     return [name_to_info[n] for n in sorted_names if n in name_to_info]
 
@@ -725,20 +800,20 @@ class IliWriter:
         return "\n".join(self.lines) + "\n"
 
 
-def write_ili_header(w):
+def write_ili_header(w, baseline_version, source_xmi_name):
     w.write("INTERLIS 2.4;")
     w.blank()
-    w.write("/** DGIF Baseline 2025-1 - Defence Geospatial Information Model (DGIM)")
-    w.write(" *  Auto-generated from DGIF_BL_2025-1.xmi")
+    w.write(f"/** DGIF Baseline {baseline_version} - Defence Geospatial Information Model (DGIM)")
+    w.write(f" *  Auto-generated from {source_xmi_name}")
     w.write(" *  INTERLIS 2.4 / eCH-0031 V2.1.0")
     w.write(" */")
     w.blank()
 
 
-def write_model_header(w, model_name):
+def write_model_header(w, model_name, baseline_version):
     w.write(f"MODEL {model_name} (en)")
     w.write(f'  AT "https://www.dgiwg.org/dgif"')
-    w.write(f'  VERSION "2025-1" =')
+    w.write(f'  VERSION "{baseline_version}" =')
     w.blank()
     w.inc()
     w.write("IMPORTS Units;")
@@ -894,7 +969,14 @@ def write_class(w, cls_info, id_name_map, id_elem_map, local_enums,
                 w.write(f"{attr_name}{extended_tag} :{mandatory} TEXT*255;")
         else:
             type_str = ili_type if ili_type else "TEXT*255"
-            w.write(f"{attr_name}{extended_tag} :{mandatory} {type_str};")
+            if "!!" in type_str:
+                base_type, inline_comment = type_str.split("!!", 1)
+                w.write(
+                    f"{attr_name}{extended_tag} :{mandatory} {base_type.strip()};"
+                    f" !! {inline_comment.strip()}"
+                )
+            else:
+                w.write(f"{attr_name}{extended_tag} :{mandatory} {type_str};")
     
     # ── Emit geometry attribute for concrete FeatureEntity subclasses ──
     # If this class has a geometry_GEO constraint and we haven't already
@@ -981,8 +1063,8 @@ def write_association(w, assoc_info, id_name_map, all_class_names,
         upper = end["upper"]
         
         # INTERLIS 2.4 association cardinality uses {min..max}
-        lo = lower if lower else "0"
-        hi = upper if upper else "*"
+        lo = normalize_cardinality_lower(lower, default="0")
+        hi = normalize_cardinality_upper(upper, default="*")
         
         # Relationship strength symbol (§3.7.2)
         # aggregation on the ownedEnd marks the role leading to the Whole
@@ -1039,13 +1121,41 @@ def write_association(w, assoc_info, id_name_map, all_class_names,
 # ── Main logic ─────────────────────────────────────────────────────────────
 
 def main():
+    parser = argparse.ArgumentParser(
+        description="Generate DGIF INTERLIS model (.ili) from DGIF XMI"
+    )
+    parser.add_argument(
+        "--xmi-path",
+        default=XMI_PATH,
+        help=f"Path to DGIF XMI file (default: {XMI_PATH})",
+    )
+    parser.add_argument(
+        "--output-file",
+        default=OUTPUT_FILE,
+        help=f"Output INTERLIS file path (default: {OUTPUT_FILE})",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="Optional output directory; if set, writes DGIF_V3.ili in this folder",
+    )
+    args = parser.parse_args()
+
+    for configured_tool in describe_configured_interlis_tools():
+        print(f"Configured tool: {configured_tool}")
+
+    xmi_path = args.xmi_path
+    output_file = args.output_file
+    if args.output_dir:
+        output_file = os.path.join(args.output_dir, "DGIF_V3.ili")
+
     print("=" * 70)
     print("DGIF XMI -> INTERLIS 2.4 Model Generator")
     print("=" * 70)
     
     # Parse XMI
-    print(f"\nParsing XMI: {XMI_PATH}")
-    tree = ET.parse(XMI_PATH)
+    print(f"\nParsing XMI: {xmi_path}")
+    tree = ET.parse(xmi_path)
     root = tree.getroot()
     print("XMI parsed successfully.")
     
@@ -1079,10 +1189,13 @@ def main():
     for pkg in thematic_packages:
         print(f"  - {pkg.get('name', '?')}")
     
+    baseline_version = extract_baseline_version_from_xmi_path(xmi_path)
+    source_xmi_name = os.path.basename(xmi_path)
+
     # Start writing INTERLIS
     w = IliWriter()
-    write_ili_header(w)
-    write_model_header(w, "DGIF_V3")
+    write_ili_header(w, baseline_version, source_xmi_name)
+    write_model_header(w, "DGIF_V3", baseline_version)
     
     # Collect all class names across all topics for cross-references
     # Also build class_to_topic mapping
@@ -1263,16 +1376,46 @@ def main():
     write_model_footer(w, "DGIF_V3")
     
     # Write output
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    output_dir = os.path.dirname(output_file)
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
+    with open(output_file, "w", encoding="utf-8") as f:
         f.write(w.get_text())
     
     print(f"\n{'=' * 70}")
-    print(f"INTERLIS model generated: {OUTPUT_FILE}")
+    print(f"INTERLIS model generated: {output_file}")
     print(f"  Topics: {len([p for p in thematic_packages if collect_elements_recursive(p, 'uml:Class')])}")
     print(f"  Classes: {total_classes}")
     print(f"  Associations: {total_assocs}")
     print(f"{'=' * 70}")
+
+    ili2c_jar = resolve_interlis_tool_path("ili2c")
+    if ili2c_jar is not None and ili2c_jar.exists():
+        model_dir = os.path.dirname(output_file) or os.path.join(BASE_DIR, "models")
+        print("\nValidating generated model with ili2c...")
+        result = subprocess.run(
+            [
+                "java",
+                "-jar",
+                str(ili2c_jar),
+                "--modeldir",
+                model_dir,
+                output_file,
+            ],
+            cwd=BASE_DIR,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        if result.stdout.strip():
+            print(result.stdout.strip())
+        if result.returncode != 0:
+            if result.stderr.strip():
+                print(result.stderr.strip())
+            print(f"WARNING: ili2c validation failed, but the model file was generated successfully: {output_file}")
+        else:
+            print(f"ili2c validation OK: {ili2c_jar}")
 
 
 if __name__ == "__main__":

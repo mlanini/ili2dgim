@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SwissDGIM Settings</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-bar">
+        <div class="header-copy">
+          <h1>Destination Settings</h1>
+          <div class="subtitle">Configure a single central writable target for all tabular and spatial outputs.</div>
+          <div class="header-actions">
+            <a href="/" style="display:inline-block;text-decoration:none;border:1px solid #99c8c4;border-radius:999px;padding:5px 12px;color:#0f766e;font-weight:600;">Back to Runner</a>
+            <a href="/docs" style="display:inline-block;text-decoration:none;border:1px solid #99c8c4;border-radius:999px;padding:5px 12px;color:#0f766e;font-weight:600;">Docs</a>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button id="themeToggle" class="secondary theme-toggle" type="button">Dark mode</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout" style="grid-template-columns:1fr;max-width:980px;margin:0 auto;">
+      <section class="card">
+        <strong>Central Destination</strong>
+        <div class="small">Exactly one destination is active per run.</div>
+
+        <div style="height:12px"></div>
+        <label for="destinationType">Destination type</label>
+        <select id="destinationType">
+          <option value="geopackage">Local GeoPackage (writable file)</option>
+          <option value="duckdb">DuckDB (local writable file)</option>
+          <option value="postgresql">PostgreSQL (local or online)</option>
+        </select>
+
+        <div style="height:12px"></div>
+        <label for="writeMode">Write mode</label>
+        <select id="writeMode">
+          <option value="replace">replace</option>
+          <option value="append">append</option>
+          <option value="fail">fail if table exists</option>
+        </select>
+
+        <div style="height:12px"></div>
+        <label for="gpkgBindingMode">GeoPackage binding mode</label>
+        <select id="gpkgBindingMode">
+          <option value="direct">direct: scripts write directly to central GeoPackage</option>
+          <option value="ingest">ingest: scripts write staging file, backend imports into central DB</option>
+        </select>
+
+        <div style="height:12px"></div>
+        <label for="tablePrefix">Table prefix</label>
+        <input id="tablePrefix" placeholder="dgim_" />
+
+        <div style="height:12px"></div>
+        <label for="artifactsDir">Artifact output directory (for script files)</label>
+        <input id="artifactsDir" placeholder="C:/path/to/output" />
+        <div class="small" style="margin-top:6px;">
+          All scripts write their file artifacts to this directory unless a script-specific path is set.
+        </div>
+
+        <div style="margin-top:14px;border:1px solid #dce7e7;border-radius:10px;padding:10px;">
+          <strong>Execution Defaults & Environment</strong>
+          <div class="small" style="margin-top:6px;">
+            Common runtime parameters automatically injected when supported by a script.
+          </div>
+
+          <div style="height:8px"></div>
+          <label for="pythonExe">Python interpreter path</label>
+          <input id="pythonExe" placeholder="C:/Program Files/QGIS 3.40.7/apps/Python312/python.exe" />
+
+          <div style="height:8px"></div>
+          <label for="tmpDir">Temporary directory (for --tmp-dir, TMP, TEMP)</label>
+          <input id="tmpDir" placeholder="C:/tmp/dgif" />
+
+          <div style="height:8px"></div>
+          <label for="proxyUrl">Proxy URL (HTTP_PROXY/HTTPS_PROXY)</label>
+          <input id="proxyUrl" placeholder="http://proxy-bvcol.admin.ch:8080" />
+
+          <div style="height:8px"></div>
+          <label for="logLevel">Log level</label>
+          <select id="logLevel">
+            <option value="DEBUG">DEBUG</option>
+            <option value="INFO">INFO</option>
+            <option value="WARNING">WARNING</option>
+            <option value="ERROR">ERROR</option>
+          </select>
+
+          <div style="height:8px"></div>
+          <label for="ili2cPath">ili2c Path</label>
+          <input id="ili2cPath" placeholder="C:/path/to/ili2c.jar" />
+
+          <div style="height:8px"></div>
+          <label for="ili2validatorPath">ili2validator Path</label>
+          <input id="ili2validatorPath" placeholder="C:/path/to/ili2validator.jar" />
+
+          <div style="height:8px"></div>
+          <label for="ili2gpkgPath">ili2gpkg Path</label>
+          <input id="ili2gpkgPath" placeholder="C:/path/to/ili2gpkg.jar" />
+
+          <div style="height:8px"></div>
+          <label for="ili2duckdbPath">ili2duckdb Path</label>
+          <input id="ili2duckdbPath" placeholder="C:/path/to/ili2duckdb.jar" />
+
+          <div style="height:8px"></div>
+          <label for="ili2pgPath">ili2pg Path</label>
+          <input id="ili2pgPath" placeholder="C:/path/to/ili2pg.jar" />
+
+          <div style="height:8px"></div>
+          <label for="envVars">Custom environment variables (KEY=VALUE, one per line)</label>
+          <textarea id="envVars" rows="6" placeholder="EXAMPLE_FLAG=true&#10;GDAL_CACHEMAX=256"></textarea>
+        </div>
+
+        <div id="geoBox" style="margin-top:14px;border:1px solid #dce7e7;border-radius:10px;padding:10px;">
+          <strong>GeoPackage</strong>
+          <div style="height:8px"></div>
+          <label for="gpkgPath">Writable file path</label>
+          <input id="gpkgPath" placeholder="C:/path/to/DGIF_central.gpkg" />
+        </div>
+
+        <div id="duckBox" style="margin-top:14px;border:1px solid #dce7e7;border-radius:10px;padding:10px;">
+          <strong>DuckDB</strong>
+          <div style="height:8px"></div>
+          <label for="duckdbPath">Writable file path</label>
+          <input id="duckdbPath" placeholder="C:/path/to/DGIF_central.duckdb" />
+          <div class="small" style="margin-top:6px;">
+            Incremental mode: ETL scripts still write staging artifacts; backend ingest for DuckDB comes in milestone 4.
+          </div>
+        </div>
+
+        <div id="pgBox" style="margin-top:14px;border:1px solid #dce7e7;border-radius:10px;padding:10px;">
+          <strong>PostgreSQL</strong>
+          <div style="height:8px"></div>
+          <div class="grid-2">
+            <div>
+              <label for="pgHost">Host</label>
+              <input id="pgHost" />
+            </div>
+            <div>
+              <label for="pgPort">Port</label>
+              <input id="pgPort" type="number" />
+            </div>
+          </div>
+          <div style="height:8px"></div>
+          <div class="grid-2">
+            <div>
+              <label for="pgDatabase">Database</label>
+              <input id="pgDatabase" />
+            </div>
+            <div>
+              <label for="pgSchema">Schema</label>
+              <input id="pgSchema" />
+            </div>
+          </div>
+          <div style="height:8px"></div>
+          <div class="grid-2">
+            <div>
+              <label for="pgUser">User</label>
+              <input id="pgUser" />
+            </div>
+            <div>
+              <label for="pgSslmode">SSL mode</label>
+              <select id="pgSslmode">
+                <option value="disable">disable</option>
+                <option value="allow">allow</option>
+                <option value="prefer">prefer</option>
+                <option value="require">require</option>
+                <option value="verify-ca">verify-ca</option>
+                <option value="verify-full">verify-full</option>
+              </select>
+            </div>
+          </div>
+          <div style="height:8px"></div>
+          <label for="pgPasswordEnvVar">Password Env Var</label>
+          <input id="pgPasswordEnvVar" placeholder="DGIM_DB_PASSWORD" />
+          <div class="small" style="margin-top:6px;">Set this environment variable before starting the backend.</div>
+
+          <div style="height:10px"></div>
+          <button id="pgTestBtn" class="secondary" type="button">Test PostGIS Connection</button>
+          <div class="small" style="margin-top:6px;">Tests only PostgreSQL/PostGIS parameters; Proxy URL is not required.</div>
+        </div>
+
+        <div style="height:14px"></div>
+        <div class="grid-2">
+          <button id="validateBtn" class="secondary">Validate connection</button>
+          <button id="saveBtn">Save settings</button>
+        </div>
+
+        <div id="statusBox" style="margin-top:12px" class="small"></div>
+      </section>
+    </main>
+
+    <script type="module" src="/static/settings.js"></script>
+    <script src="/static/theme.js"></script>
+  </body>
+</html>

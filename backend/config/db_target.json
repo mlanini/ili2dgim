@@ -1,0 +1,37 @@
+{
+  "destinationType": "geopackage",
+  "writeMode": "append",
+  "gpkgBindingMode": "direct",
+  "tablePrefix": "dgim_",
+  "artifactsDir": "C:\\Users\\U80808033\\OneDrive - Federal Workplace\\ili2dgim\\output",
+  "execution": {
+    "pythonExe": "C:\\Program Files\\QGIS 3.40.7\\apps\\Python312\\python.exe",
+    "tmpDir": "C:/tmp/dgif",
+    "proxyUrl": "http://prp01.adb.intra.admin.ch:8080",
+    "logLevel": "DEBUG",
+    "interlisTools": {
+      "ili2c": "C:\\ilitools\\ili2c-5.6.8\\ili2c.jar",
+      "ili2validator": "C:\\ilitools\\ilivalidator-1.15.0\\ilivalidator-1.15.0.jar",
+      "ili2gpkg": "C:\\ilitools\\ili2gpkg-5.3.1\\ili2gpkg-5.3.1.jar",
+      "ili2duckdb": "C:\\ilitools\\ili2duckdb-5.5.2\\ili2duckdb-5.5.2.jar",
+      "ili2pg": "C:\\ilitools\\ili2pg-5.5.2\\ili2pg-5.5.2.jar",
+      "ili2imd": "C:\\Users\\U80808033\\OneDrive - Federal Workplace\\ili2dgim\\ressources\\ili2imd-1.7.1\\ili2imd.jar"
+    },
+    "envVars": {}
+  },
+  "geopackage": {
+    "path": "C:\\Users\\U80808033\\OneDrive - Federal Workplace\\ili2dgim\\output\\DGIF_e2e_central.gpkg"
+  },
+  "duckdb": {
+    "path": "C:\\Users\\U80808033\\OneDrive - Federal Workplace\\ili2dgim\\output\\DGIF_central.duckdb"
+  },
+  "postgresql": {
+    "host": "127.0.0.1",
+    "port": 5432,
+    "database": "dgim",
+    "schema": "swissdgif",
+    "user": "postgres",
+    "passwordEnvVar": "DGIM_DB_PASSWORD",
+    "sslmode": "prefer"
+  }
+}

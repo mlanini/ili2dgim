@@ -1,0 +1,1074 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multilingual ili2dgim overview with simple DGIF foundation guidance, official DGIWG references, and links to the project documentation.">
+      
+      
+      
+        <link rel="canonical" href="https://example.invalid/ili2dgim/">
+      
+      
+      
+        <link rel="next" href="principles/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ili2dgim Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}
+        .home-locale-bar{display:flex;flex-wrap:wrap;gap:.75rem 1rem;align-items:center;margin:0 0 1.5rem;padding:1rem 1.25rem;border:1px solid rgba(0,0,0,.12);border-radius:.4rem;background:rgba(0,0,0,.025)}
+        .home-locale-select{min-width:12rem;padding:.45rem .7rem;border:1px solid rgba(0,0,0,.2);border-radius:.35rem;background:#fff;color:inherit;font:inherit}
+        .home-locale-help{margin:0;color:var(--md-default-fg-color--light)}
+        .home-locale-panel{display:none}
+        .home-locale-panel.is-active{display:block}
+        .home-callout{margin:1rem 0 1.5rem;padding:1rem 1.25rem;border-left:.2rem solid var(--md-primary-fg-color);background:rgba(0,0,0,.025)}
+        .resource-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.5rem}
+        .resource-card{padding:1rem 1rem .75rem;border:1px solid rgba(0,0,0,.12);border-radius:.4rem;background:#fff}
+        .resource-card h3{margin-top:0;margin-bottom:.5rem;font-size:1rem}
+        .resource-card p{margin:.5rem 0}
+        .resource-card .resource-links{margin-top:.75rem;font-size:.9rem}
+        .home-mini-title{margin-bottom:.35rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.8rem;color:var(--md-default-fg-color--light)}
+        </style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ili2dgim-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="ili2dgim Documentation" class="md-header__button md-logo" aria-label="ili2dgim Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ili2dgim Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/squidfunk/mkdocs-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    squidfunk/mkdocs-material
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="ili2dgim Documentation" class="md-nav__button md-logo" aria-label="ili2dgim Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ili2dgim Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/squidfunk/mkdocs-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    squidfunk/mkdocs-material
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-ili2dgim-delivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What ili2dgim delivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-for-docs-mkdocs-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start for docs (MkDocs Material)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="how-to/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How-To
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webapp
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Webapp
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="webapp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="backend-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-ili2dgim-delivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What ili2dgim delivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-for-docs-mkdocs-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start for docs (MkDocs Material)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<div id="ili2dgim-documentation"></div>
+<div class="home-locale-bar">
+<label for="locale-select"><strong>Language</strong></label>
+<select id="locale-select" class="home-locale-select" aria-label="Select home page language">
+<option value="en_US">English (en_US)</option>
+<option value="fr_FR">Francais (fr_FR)</option>
+<option value="de_CH">Deutsch (de_CH)</option>
+<option value="it_IT">Italiano (it_IT)</option>
+</select>
+<p class="home-locale-help">This selector localizes the home page overview. Linked technical pages remain in English for now.</p>
+</div>
+
+<section class="home-locale-panel is-active" data-locale="en_US">
+<h1>ili2dgim Documentation (en_US)</h1>
+<p>This home page gives a simple entry point into a complex standards stack. If you are new to DGIF, read the next section first and only then move into the deeper technical pages.</p>
+<p>This documentation describes three areas of the project:</p>
+<ul>
+<li>The ili2dgim principles and modeling approach.</li>
+<li>The web application and backend orchestration API.</li>
+<li>The Python automation scripts used to build model artifacts and run ETL pipelines.</li>
+</ul>
+<h2 id="dgif-foundation-en-us">DGIF foundation for newcomers<a class="headerlink" href="#dgif-foundation-en-us" title="Permanent link">&para;</a></h2>
+<p><strong>DGIF is not one document.</strong> It is a family of DGIWG standards that work together:</p>
+<ol>
+<li><strong>Overview</strong>: explains the whole framework and conformance logic.</li>
+<li><strong>DGIM</strong>: the conceptual UML model of feature classes, attributes, and relationships.</li>
+<li><strong>DGFCD</strong>: the controlled vocabulary for feature concepts, attributes, values, roles, and units.</li>
+<li><strong>DGRWI</strong>: the index that connects real-world things to DGFCD concepts.</li>
+<li><strong>Encoding specifications</strong>: rules for exchanging DGIF data, including GML.</li>
+<li><strong>GeoPackage profile</strong>: practical storage rules when you want a database-style delivery format.</li>
+</ol>
+<p>In simple terms: <strong>DGIM tells you what the world looks like, DGFCD tells you which names and values are allowed, and the encoding/profile documents tell you how to package that information for exchange.</strong></p>
+<p class="home-callout"><strong>Use current editions.</strong> The DGIWG standards catalog can list several revisions of the same family. For this project, start with the DGIF 3.0 documents published in July 2024 and the GeoPackage Profile 1.4 Ed.1.1.1 published in March 2026. Older DGIF generations and older GeoPackage profile revisions should be treated as legacy references unless you are maintaining an older implementation.</p>
+<div class="home-mini-title">Official DGIWG entry point</div>
+<p>Browse the official catalog here: <a href="https://dgiwg.org/documents/dgiwg-standards">DGIWG Standards</a>. The links below point both to the catalog origin page and to the current PDF file published by DGIWG.</p>
+<div class="resource-grid">
+<div class="resource-card">
+<h3>DGIWG 200: DGIF Overview</h3>
+<p>Start here for the big picture, scope, and conformance classes.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/200">Origin page</a> | <a href="https://portal.dgiwg.org/files/68061">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 205: DGIM</h3>
+<p>The conceptual model. Use this when you need to understand classes, inheritance, and semantics.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/205">Origin page</a> | <a href="https://portal.dgiwg.org/files/68062">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 206: DGFCD</h3>
+<p>The dictionary of official feature concepts, attributes, values, roles, and units.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/206">Origin page</a> | <a href="https://portal.dgiwg.org/files/68063">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 207: DGRWI</h3>
+<p>The index that links real-world objects to the DGFCD concepts used in data exchange.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/207">Origin page</a> | <a href="https://portal.dgiwg.org/files/68064">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 208: DGIF Encoding Specification, Part 1</h3>
+<p>The normative GML encoding. Important for standards compliance, even if your operational storage is not GML.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/208">Origin page</a> | <a href="https://portal.dgiwg.org/files/68065">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 126: GeoPackage Profile 1.4 Ed.1.1.1</h3>
+<p>The current GeoPackage profile published by DGIWG. This is especially relevant for ili2dgim output databases.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/126">Origin page</a> | <a href="https://portal.dgiwg.org/files/76055">PDF</a></p>
+</div>
+</div>
+<p><strong>Where ili2dgim fits:</strong> this project takes DGIF conceptual content and turns it into a usable implementation stack based on INTERLIS, GeoPackage, mapping tables, and ETL pipelines.</p>
+<h2 id="what-ili2dgim-delivers-en-us">What ili2dgim delivers<a class="headerlink" href="#what-ili2dgim-delivers-en-us" title="Permanent link">&para;</a></h2>
+<p>The project converts DGIM/DGIF UML content into an operational INTERLIS-based delivery stack:</p>
+<ol>
+<li>INTERLIS model generation (<code>DGIF_V3.ili</code>).</li>
+<li>GeoPackage schema generation (DGIF-aligned target DB).</li>
+<li>Mapping table generation for OSM, swissTLM3D, and Overture.</li>
+<li>ETL pipelines that ingest source data and populate DGIF target layers.</li>
+</ol>
+<h2 id="documentation-map-en-us">Documentation map<a class="headerlink" href="#documentation-map-en-us" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Start with <a href="principles/">Principles</a> for conceptual and architectural foundations.</li>
+<li>Continue with <a href="webapp/">Webapp Overview</a> for frontend/backend operator workflows.</li>
+<li>Use <a href="backend-api/">Backend API</a> as endpoint reference for integrations.</li>
+<li>Use <a href="scripts/">Scripts</a> as command and option reference for pipeline automation.</li>
+</ul>
+<h2 id="quick-start-for-docs-en-us">Quick start for docs (MkDocs Material)<a class="headerlink" href="#quick-start-for-docs-en-us" title="Permanent link">&para;</a></h2>
+<p>Install MkDocs Material directly from the upstream Git repository:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs
+pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/squidfunk/mkdocs-material.git
+</code></pre></div>
+<p>Then run locally from repository root:</p>
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>serve
+</code></pre></div>
+<p>Build static docs:</p>
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>build
+</code></pre></div>
+</section>
+
+<section class="home-locale-panel" data-locale="fr_FR">
+<h1>Documentation ili2dgim (fr_FR)</h1>
+<p>Cette page d'accueil donne une entree simple dans un ensemble de normes complexe. Si DGIF est nouveau pour vous, lisez d'abord la section suivante, puis passez aux pages techniques detaillees.</p>
+<p>Cette documentation couvre trois domaines du projet :</p>
+<ul>
+<li>Les principes ili2dgim et l'approche de modelisation.</li>
+<li>L'application web et l'API d'orchestration du backend.</li>
+<li>Les scripts Python qui construisent les artefacts de modele et executent les pipelines ETL.</li>
+</ul>
+<h2 id="dgif-foundation-fr-fr">Fondation DGIF pour debutants<a class="headerlink" href="#dgif-foundation-fr-fr" title="Permanent link">&para;</a></h2>
+<p><strong>DGIF n'est pas un seul document.</strong> C'est une famille de normes DGIWG qui travaillent ensemble :</p>
+<ol>
+<li><strong>Overview</strong> : explique le cadre general et la logique de conformite.</li>
+<li><strong>DGIM</strong> : le modele UML conceptuel des classes, attributs et relations.</li>
+<li><strong>DGFCD</strong> : le vocabulaire controle pour les concepts, attributs, valeurs, roles et unites.</li>
+<li><strong>DGRWI</strong> : l'index qui relie les objets du monde reel aux concepts DGFCD.</li>
+<li><strong>Specifications d'encodage</strong> : les regles d'echange des donnees DGIF, y compris le GML.</li>
+<li><strong>Profil GeoPackage</strong> : les regles pratiques de stockage quand on veut un format de livraison de type base de donnees.</li>
+</ol>
+<p>En bref : <strong>DGIM decrit le monde, DGFCD decrit les noms et valeurs autorises, et les documents d'encodage/profil expliquent comment emballer ces informations pour l'echange.</strong></p>
+<p class="home-callout"><strong>Utilisez les editions courantes.</strong> Le catalogue DGIWG peut afficher plusieurs revisions d'une meme famille. Pour ce projet, commencez par les documents DGIF 3.0 publies en juillet 2024 et par le profil GeoPackage 1.4 Ed.1.1.1 publie en mars 2026. Les anciennes generations DGIF et les anciennes revisions du profil GeoPackage doivent etre considerees comme des references historiques, sauf si vous maintenez une implementation plus ancienne.</p>
+<div class="home-mini-title">Point d'entree officiel DGIWG</div>
+<p>Parcourez le catalogue officiel ici : <a href="https://dgiwg.org/documents/dgiwg-standards">DGIWG Standards</a>. Les liens ci-dessous pointent vers la page d'origine et vers le PDF officiel publie par DGIWG.</p>
+<div class="resource-grid">
+<div class="resource-card">
+<h3>DGIWG 200 : DGIF Overview</h3>
+<p>Le meilleur point de depart pour comprendre la vue d'ensemble, le perimetre et la conformite.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/200">Page d'origine</a> | <a href="https://portal.dgiwg.org/files/68061">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 205 : DGIM</h3>
+<p>Le modele conceptuel. A utiliser pour comprendre les classes, l'heritage et la semantique.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/205">Page d'origine</a> | <a href="https://portal.dgiwg.org/files/68062">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 206 : DGFCD</h3>
+<p>Le dictionnaire officiel des concepts, attributs, valeurs, roles et unites.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/206">Page d'origine</a> | <a href="https://portal.dgiwg.org/files/68063">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 207 : DGRWI</h3>
+<p>L'index qui relie les objets du monde reel aux concepts utilises pour l'echange.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/207">Page d'origine</a> | <a href="https://portal.dgiwg.org/files/68064">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 208 : Specification d'encodage DGIF, partie 1</h3>
+<p>L'encodage GML normatif. Important pour la conformite, meme si votre stockage operationnel n'est pas en GML.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/208">Page d'origine</a> | <a href="https://portal.dgiwg.org/files/68065">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 126 : Profil GeoPackage 1.4 Ed.1.1.1</h3>
+<p>Le profil GeoPackage actuel publie par DGIWG, tres pertinent pour les bases de donnees de sortie ili2dgim.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/126">Page d'origine</a> | <a href="https://portal.dgiwg.org/files/76055">PDF</a></p>
+</div>
+</div>
+<p><strong>Place d'ili2dgim :</strong> ce projet transforme le contenu conceptuel DGIF en une chaine d'implementation exploitable basee sur INTERLIS, GeoPackage, des tables de correspondance et des pipelines ETL.</p>
+<h2 id="what-ili2dgim-delivers-fr-fr">Ce que livre ili2dgim<a class="headerlink" href="#what-ili2dgim-delivers-fr-fr" title="Permanent link">&para;</a></h2>
+<p>Le projet convertit le contenu UML DGIM/DGIF en une chaine de livraison operationnelle basee sur INTERLIS :</p>
+<ol>
+<li>Generation du modele INTERLIS (<code>DGIF_V3.ili</code>).</li>
+<li>Generation du schema GeoPackage (base cible alignee sur DGIF).</li>
+<li>Generation de tables de correspondance pour OSM, swissTLM3D et Overture.</li>
+<li>Pipelines ETL qui ingèrent les donnees source et remplissent les couches cibles DGIF.</li>
+</ol>
+<h2 id="documentation-map-fr-fr">Plan de la documentation<a class="headerlink" href="#documentation-map-fr-fr" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Commencez par <a href="principles/">Principles</a> pour les bases conceptuelles et architecturales.</li>
+<li>Poursuivez avec <a href="webapp/">Webapp Overview</a> pour les flux operateur frontend/backend.</li>
+<li>Utilisez <a href="backend-api/">Backend API</a> comme reference d'integration.</li>
+<li>Utilisez <a href="scripts/">Scripts</a> comme reference des commandes et options d'automatisation.</li>
+</ul>
+<h2 id="quick-start-for-docs-fr-fr">Demarrage rapide de la documentation (MkDocs Material)<a class="headerlink" href="#quick-start-for-docs-fr-fr" title="Permanent link">&para;</a></h2>
+<p>Installez MkDocs Material directement depuis le depot Git amont :</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs
+pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/squidfunk/mkdocs-material.git
+</code></pre></div>
+<p>Puis lancez depuis la racine du depot :</p>
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>serve
+</code></pre></div>
+<p>Pour generer la documentation statique :</p>
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>build
+</code></pre></div>
+</section>
+
+<section class="home-locale-panel" data-locale="de_CH">
+<h1>ili2dgim Dokumentation (de_CH)</h1>
+<p>Diese Startseite ist ein einfacher Einstieg in einen komplexen Normenstapel. Wenn DGIF fuer Sie neu ist, lesen Sie zuerst den naechsten Abschnitt und gehen Sie danach in die technischen Detailseiten.</p>
+<p>Diese Dokumentation beschreibt drei Projektbereiche:</p>
+<ul>
+<li>Die ili2dgim-Prinzipien und den Modellierungsansatz.</li>
+<li>Die Web-Anwendung und die Backend-Orchestrierungs-API.</li>
+<li>Die Python-Automationsskripte zum Erzeugen von Modellartefakten und zum Ausfuehren von ETL-Pipelines.</li>
+</ul>
+<h2 id="dgif-foundation-de-ch">DGIF-Grundlagen fuer Einsteiger<a class="headerlink" href="#dgif-foundation-de-ch" title="Permanent link">&para;</a></h2>
+<p><strong>DGIF ist nicht nur ein Dokument.</strong> Es ist eine Familie von DGIWG-Standards, die zusammenarbeiten:</p>
+<ol>
+<li><strong>Overview</strong>: erklaert das Gesamtbild und die Konformitaetslogik.</li>
+<li><strong>DGIM</strong>: das konzeptionelle UML-Modell mit Klassen, Attributen und Beziehungen.</li>
+<li><strong>DGFCD</strong>: das kontrollierte Vokabular fuer Konzepte, Attribute, Werte, Rollen und Einheiten.</li>
+<li><strong>DGRWI</strong>: der Index, der reale Objekte mit DGFCD-Konzepten verbindet.</li>
+<li><strong>Encoding Specifications</strong>: Regeln fuer den Austausch von DGIF-Daten, einschliesslich GML.</li>
+<li><strong>GeoPackage-Profil</strong>: praktische Speicherregeln fuer eine datenbankartige Lieferform.</li>
+</ol>
+<p>Kurz gesagt: <strong>DGIM beschreibt die Welt, DGFCD beschreibt die erlaubten Namen und Werte, und die Encoding-/Profil-Dokumente beschreiben, wie diese Informationen fuer den Austausch verpackt werden.</strong></p>
+<p class="home-callout"><strong>Aktuelle Ausgaben verwenden.</strong> Der DGIWG-Katalog zeigt teilweise mehrere Revisionen derselben Familie. Fuer dieses Projekt sollten Sie mit den DGIF-3.0-Dokumenten von Juli 2024 und mit dem GeoPackage Profile 1.4 Ed.1.1.1 von Maerz 2026 beginnen. Aeltere DGIF-Generationen und aeltere GeoPackage-Profilversionen sollten nur als Legacy-Referenzen verwendet werden, ausser Sie pflegen eine aeltere Implementierung.</p>
+<div class="home-mini-title">Offizieller DGIWG-Einstieg</div>
+<p>Der offizielle Katalog ist hier: <a href="https://dgiwg.org/documents/dgiwg-standards">DGIWG Standards</a>. Die folgenden Links zeigen jeweils auf die Herkunftsseite und auf das offizielle PDF von DGIWG.</p>
+<div class="resource-grid">
+<div class="resource-card">
+<h3>DGIWG 200: DGIF Overview</h3>
+<p>Der beste Startpunkt fuer Gesamtbild, Geltungsbereich und Konformitaetsklassen.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/200">Herkunftsseite</a> | <a href="https://portal.dgiwg.org/files/68061">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 205: DGIM</h3>
+<p>Das konzeptionelle Modell. Hier lesen Sie Klassen, Vererbung und Semantik nach.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/205">Herkunftsseite</a> | <a href="https://portal.dgiwg.org/files/68062">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 206: DGFCD</h3>
+<p>Das offizielle Woerterbuch fuer Konzepte, Attribute, Werte, Rollen und Einheiten.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/206">Herkunftsseite</a> | <a href="https://portal.dgiwg.org/files/68063">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 207: DGRWI</h3>
+<p>Der Index, der reale Objekte mit den fuer den Austausch verwendeten Konzepten verbindet.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/207">Herkunftsseite</a> | <a href="https://portal.dgiwg.org/files/68064">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 208: DGIF Encoding Specification, Part 1</h3>
+<p>Die normative GML-Kodierung. Wichtig fuer Standardkonformitaet, auch wenn der operative Speicher nicht GML ist.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/208">Herkunftsseite</a> | <a href="https://portal.dgiwg.org/files/68065">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 126: GeoPackage Profile 1.4 Ed.1.1.1</h3>
+<p>Das aktuelle GeoPackage-Profil von DGIWG. Besonders relevant fuer ili2dgim-Ausgabedatenbanken.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/126">Herkunftsseite</a> | <a href="https://portal.dgiwg.org/files/76055">PDF</a></p>
+</div>
+</div>
+<p><strong>Rolle von ili2dgim:</strong> Dieses Projekt macht aus konzeptionellem DGIF-Inhalt einen nutzbaren Implementierungsstapel mit INTERLIS, GeoPackage, Mapping-Tabellen und ETL-Pipelines.</p>
+<h2 id="what-ili2dgim-delivers-de-ch">Was ili2dgim liefert<a class="headerlink" href="#what-ili2dgim-delivers-de-ch" title="Permanent link">&para;</a></h2>
+<p>Das Projekt wandelt DGIM/DGIF-UML-Inhalte in einen operativen, INTERLIS-basierten Lieferstapel um:</p>
+<ol>
+<li>Erzeugung des INTERLIS-Modells (<code>DGIF_V3.ili</code>).</li>
+<li>Erzeugung des GeoPackage-Schemas (DGIF-ausgerichtete Zieldatenbank).</li>
+<li>Erzeugung von Mapping-Tabellen fuer OSM, swissTLM3D und Overture.</li>
+<li>ETL-Pipelines, die Quelldaten einlesen und DGIF-Ziellayer befuellen.</li>
+</ol>
+<h2 id="documentation-map-de-ch">Dokumentationskarte<a class="headerlink" href="#documentation-map-de-ch" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Beginnen Sie mit <a href="principles/">Principles</a> fuer die konzeptionellen und architektonischen Grundlagen.</li>
+<li>Fahren Sie mit <a href="webapp/">Webapp Overview</a> fuer die Operator-Workflows in Frontend und Backend fort.</li>
+<li>Verwenden Sie <a href="backend-api/">Backend API</a> als Integrationsreferenz.</li>
+<li>Verwenden Sie <a href="scripts/">Scripts</a> als Referenz fuer Befehle und Optionen der Pipeline-Automation.</li>
+</ul>
+<h2 id="quick-start-for-docs-de-ch">Schnellstart fuer die Doku (MkDocs Material)<a class="headerlink" href="#quick-start-for-docs-de-ch" title="Permanent link">&para;</a></h2>
+<p>Installieren Sie MkDocs Material direkt aus dem Upstream-Git-Repository:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs
+pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/squidfunk/mkdocs-material.git
+</code></pre></div>
+<p>Dann vom Repository-Root lokal starten:</p>
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>serve
+</code></pre></div>
+<p>Statische Doku bauen:</p>
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>build
+</code></pre></div>
+</section>
+
+<section class="home-locale-panel" data-locale="it_IT">
+<h1>Documentazione ili2dgim (it_IT)</h1>
+<p>Questa pagina iniziale offre un ingresso semplice in un insieme di standard complesso. Se DGIF e nuovo per te, leggi prima la sezione seguente e solo dopo passa alle pagine tecniche piu dettagliate.</p>
+<p>Questa documentazione descrive tre aree del progetto:</p>
+<ul>
+<li>I principi di ili2dgim e l'approccio di modellazione.</li>
+<li>L'applicazione web e l'API di orchestrazione del backend.</li>
+<li>Gli script Python che costruiscono gli artefatti del modello ed eseguono le pipeline ETL.</li>
+</ul>
+<h2 id="dgif-foundation-it-it">Fondamenti DGIF per chi inizia<a class="headerlink" href="#dgif-foundation-it-it" title="Permanent link">&para;</a></h2>
+<p><strong>DGIF non e un singolo documento.</strong> E una famiglia di standard DGIWG che lavorano insieme:</p>
+<ol>
+<li><strong>Overview</strong>: spiega il quadro generale e la logica di conformita.</li>
+<li><strong>DGIM</strong>: il modello UML concettuale con classi, attributi e relazioni.</li>
+<li><strong>DGFCD</strong>: il vocabolario controllato di concetti, attributi, valori, ruoli e unita.</li>
+<li><strong>DGRWI</strong>: l'indice che collega gli oggetti del mondo reale ai concetti DGFCD.</li>
+<li><strong>Specifiche di encoding</strong>: le regole per scambiare dati DGIF, compreso il GML.</li>
+<li><strong>Profilo GeoPackage</strong>: le regole pratiche di memorizzazione quando serve una consegna in forma di database.</li>
+</ol>
+<p>In breve: <strong>DGIM descrive com'e fatto il mondo, DGFCD dice quali nomi e valori sono ammessi, e i documenti di encoding/profilo spiegano come impacchettare queste informazioni per lo scambio.</strong></p>
+<p class="home-callout"><strong>Usa le edizioni correnti.</strong> Il catalogo DGIWG puo mostrare piu revisioni della stessa famiglia. Per questo progetto conviene partire dai documenti DGIF 3.0 pubblicati a luglio 2024 e dal GeoPackage Profile 1.4 Ed.1.1.1 pubblicato a marzo 2026. Le generazioni DGIF precedenti e le revisioni piu vecchie del profilo GeoPackage vanno considerate solo come riferimenti legacy, salvo manutenzione di implementazioni datate.</p>
+<div class="home-mini-title">Punto di ingresso ufficiale DGIWG</div>
+<p>Il catalogo ufficiale e qui: <a href="https://dgiwg.org/documents/dgiwg-standards">DGIWG Standards</a>. I link sotto puntano sia alla pagina di origine sia al PDF ufficiale pubblicato da DGIWG.</p>
+<div class="resource-grid">
+<div class="resource-card">
+<h3>DGIWG 200: DGIF Overview</h3>
+<p>Il punto di partenza migliore per capire quadro generale, perimetro e classi di conformita.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/200">Pagina origine</a> | <a href="https://portal.dgiwg.org/files/68061">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 205: DGIM</h3>
+<p>Il modello concettuale. Serve per capire classi, ereditarieta e semantica.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/205">Pagina origine</a> | <a href="https://portal.dgiwg.org/files/68062">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 206: DGFCD</h3>
+<p>Il dizionario ufficiale di concetti, attributi, valori, ruoli e unita.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/206">Pagina origine</a> | <a href="https://portal.dgiwg.org/files/68063">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 207: DGRWI</h3>
+<p>L'indice che collega gli oggetti reali ai concetti usati nello scambio dei dati.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/207">Pagina origine</a> | <a href="https://portal.dgiwg.org/files/68064">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 208: DGIF Encoding Specification, Part 1</h3>
+<p>Il GML normativo. E importante per la conformita allo standard anche se lo storage operativo non e in GML.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/208">Pagina origine</a> | <a href="https://portal.dgiwg.org/files/68065">PDF</a></p>
+</div>
+<div class="resource-card">
+<h3>DGIWG 126: GeoPackage Profile 1.4 Ed.1.1.1</h3>
+<p>Il profilo GeoPackage corrente pubblicato da DGIWG. E particolarmente rilevante per i database prodotti da ili2dgim.</p>
+<p class="resource-links"><a href="https://dgiwg.org/documents/dgiwg-standards/126">Pagina origine</a> | <a href="https://portal.dgiwg.org/files/76055">PDF</a></p>
+</div>
+</div>
+<p><strong>Dove si colloca ili2dgim:</strong> questo progetto trasforma il contenuto concettuale DGIF in uno stack implementativo utilizzabile basato su INTERLIS, GeoPackage, tabelle di mapping e pipeline ETL.</p>
+<h2 id="what-ili2dgim-delivers-it-it">Che cosa produce ili2dgim<a class="headerlink" href="#what-ili2dgim-delivers-it-it" title="Permanent link">&para;</a></h2>
+<p>Il progetto converte il contenuto UML DGIM/DGIF in uno stack operativo basato su INTERLIS:</p>
+<ol>
+<li>Generazione del modello INTERLIS (<code>DGIF_V3.ili</code>).</li>
+<li>Generazione dello schema GeoPackage (database target allineato a DGIF).</li>
+<li>Generazione delle tabelle di mapping per OSM, swissTLM3D e Overture.</li>
+<li>Pipeline ETL che acquisiscono i dati sorgente e popolano i layer target DGIF.</li>
+</ol>
+<h2 id="documentation-map-it-it">Mappa della documentazione<a class="headerlink" href="#documentation-map-it-it" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Inizia da <a href="principles/">Principles</a> per le basi concettuali e architetturali.</li>
+<li>Prosegui con <a href="webapp/">Webapp Overview</a> per i flussi operativi frontend/backend.</li>
+<li>Usa <a href="backend-api/">Backend API</a> come riferimento per le integrazioni.</li>
+<li>Usa <a href="scripts/">Scripts</a> come riferimento per comandi e opzioni di automazione.</li>
+</ul>
+<h2 id="quick-start-for-docs-it-it">Avvio rapido della documentazione (MkDocs Material)<a class="headerlink" href="#quick-start-for-docs-it-it" title="Permanent link">&para;</a></h2>
+<p>Installa MkDocs Material direttamente dal repository Git upstream:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs
+pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/squidfunk/mkdocs-material.git
+</code></pre></div>
+<p>Poi esegui dalla root del repository:</p>
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>serve
+</code></pre></div>
+<p>Per generare la documentazione statica:</p>
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>build
+</code></pre></div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.top", "content.code.copy", "search.highlight"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+
+      <script>
+        (function () {
+          var supported = ["en_US", "fr_FR", "de_CH", "it_IT"];
+          var fallback = "en_US";
+          var storageKey = "ili2dgim.homeLocale";
+          var select = document.getElementById("locale-select");
+          var panels = document.querySelectorAll(".home-locale-panel");
+
+          function normalize(value) {
+            if (!value) return fallback;
+            var canonical = String(value).replace("-", "_");
+            if (supported.indexOf(canonical) !== -1) return canonical;
+            var lower = canonical.toLowerCase();
+            if (lower.indexOf("fr") === 0) return "fr_FR";
+            if (lower.indexOf("de") === 0) return "de_CH";
+            if (lower.indexOf("it") === 0) return "it_IT";
+            return fallback;
+          }
+
+          function setLocale(locale) {
+            var resolved = normalize(locale);
+            panels.forEach(function (panel) {
+              var active = panel.getAttribute("data-locale") === resolved;
+              panel.classList.toggle("is-active", active);
+            });
+            if (select) select.value = resolved;
+            document.documentElement.lang = resolved.replace("_", "-");
+            try {
+              localStorage.setItem(storageKey, resolved);
+            } catch (error) {
+            }
+          }
+
+          var stored = null;
+          try {
+            stored = localStorage.getItem(storageKey);
+          } catch (error) {
+          }
+
+          var preferred = normalize(stored || navigator.language || navigator.userLanguage);
+          setLocale(preferred);
+
+          if (select) {
+            select.addEventListener("change", function (event) {
+              setLocale(event.target.value);
+            });
+          }
+        })();
+      </script>
+      
+        <script src="javascripts/mermaid.mjs" type="module"></script>
+      
+    
+  </body>
+</html>

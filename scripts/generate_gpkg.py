@@ -22,7 +22,14 @@ import os
 import subprocess
 import sys
 import time
+import argparse
 from pathlib import Path
+
+from interlis_tool_paths import (
+    describe_configured_interlis_tools,
+    resolve_interlis_tool_path,
+    should_log,
+)
 
 # ============================================================================
 # ANSI colour helpers
@@ -36,11 +43,13 @@ RESET = "\033[0m"
 
 
 def info(msg: str) -> None:
-    print(f"{CYAN}[INFO]{RESET} {msg}")
+    if should_log("INFO"):
+        print(f"{CYAN}[INFO]{RESET} {msg}")
 
 
 def ok(msg: str) -> None:
-    print(f"{GREEN}[OK]{RESET} {msg}")
+    if should_log("INFO"):
+        print(f"{GREEN}[OK]{RESET} {msg}")
 
 
 def error(msg: str) -> None:
@@ -48,9 +57,10 @@ def error(msg: str) -> None:
 
 
 def banner(title: str) -> None:
-    print(f"{CYAN}============================================================{RESET}")
-    print(f"{CYAN}  {title}{RESET}")
-    print(f"{CYAN}============================================================{RESET}")
+    if should_log("INFO"):
+        print(f"{CYAN}============================================================{RESET}")
+        print(f"{CYAN}  {title}{RESET}")
+        print(f"{CYAN}============================================================{RESET}")
 
 
 def file_size_mb(path: Path) -> float:
@@ -61,16 +71,45 @@ def file_size_mb(path: Path) -> float:
 # Main
 # ============================================================================
 def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Generate DGIF GeoPackage schema from INTERLIS model"
+    )
+    parser.add_argument(
+        "--ili-model",
+        default=None,
+        help="Path to DGIF .ili model (default: models/DGIF_V3.ili)",
+    )
+    parser.add_argument(
+        "--output-gpkg",
+        default=None,
+        help="Output GeoPackage path (default: output/DGIF_V3.gpkg)",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="Optional output directory; if set and --output-gpkg not set, uses <output-dir>/DGIF_V3.gpkg",
+    )
+    parser.add_argument(
+        "--log-file",
+        default=None,
+        help="Optional schema import log file path",
+    )
+    args = parser.parse_args()
+
     # ========================================================================
     # Configuration
     # ========================================================================
     workspace_root = Path(__file__).resolve().parent.parent
-    ili2gpkg_jar = workspace_root / "ressources" / "ili2gpkg-5.3.1" / "ili2gpkg-5.3.1.jar"
-    ili_model = workspace_root / "models" / "DGIF_V3.ili"
+    ili2gpkg_jar = resolve_interlis_tool_path("ili2gpkg")
+    ili_model = Path(args.ili_model).expanduser() if args.ili_model else (workspace_root / "models" / "DGIF_V3.ili")
     output_dir = workspace_root / "output"
     models_dir = workspace_root / "models"
     gpkg_file = output_dir / "DGIF_V3.gpkg"
-    log_file = output_dir / "ili2gpkg_schemaimport.log"
+    if args.output_dir and not args.output_gpkg:
+        gpkg_file = Path(args.output_dir).expanduser() / "DGIF_V3.gpkg"
+    if args.output_gpkg:
+        gpkg_file = Path(args.output_gpkg).expanduser()
+    log_file = Path(args.log_file).expanduser() if args.log_file else (gpkg_file.parent / "ili2gpkg_schemaimport.log")
 
     # Model directory: models folder (where .ili lives) + standard repository
     model_dir = f"{models_dir};http://models.interlis.ch/;%JAR_DIR"
@@ -80,6 +119,9 @@ def main() -> int:
     # ========================================================================
     banner("DGIF GeoPackage Generator (ili2gpkg 5.3.1)")
     print()
+    if should_log("DEBUG"):
+        for configured_tool in describe_configured_interlis_tools():
+            info(f"Configured tool: {configured_tool}")
 
     # ========================================================================
     # Prerequisites check
@@ -98,7 +140,7 @@ def main() -> int:
         return 1
 
     # ili2gpkg
-    if not ili2gpkg_jar.exists():
+    if ili2gpkg_jar is None or not ili2gpkg_jar.exists():
         error(f"ili2gpkg not found: {ili2gpkg_jar}")
         return 1
     ok(f"ili2gpkg: {ili2gpkg_jar}")
@@ -113,6 +155,7 @@ def main() -> int:
     # ========================================================================
     # Remove existing GeoPackage
     # ========================================================================
+    gpkg_file.parent.mkdir(parents=True, exist_ok=True)
     if gpkg_file.exists():
         info(f"Removing existing GeoPackage: {gpkg_file}")
         gpkg_file.unlink()

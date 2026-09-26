@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 """
-ETL Pipeline: Overture Maps → DGIF GeoPackage
+ETL Pipeline: Overture Maps -> DGIF GeoPackage
 
 Orchestrates the full ETL process:
-  Phase 1  — Discover pre-downloaded Overture GeoParquet files
-  Phase 2  — Create empty DGIF GeoPackage (schema import from DGIF_V3.ili)
-  Phase 3  — Transform and load: apply mapping table, insert into DGIF GPKG
+    Phase 1  - Discover or download Overture data files for AOI
+    Phase 2  - Create empty DGIF GeoPackage (schema import from DGIF_V3.ili)
+    Phase 3  - Transform and load: apply mapping table, insert into DGIF GPKG
 
-The Overture data files must be downloaded externally (e.g. via
-DuckDB CLI, overturemaps-py, or the Overture Maps Explorer website) and
-placed in a local directory.  Supported formats: GeoParquet (.parquet,
-.geoparquet) and GeoJSON (.geojson, .json).  Files must be named:
+Supported input formats: GeoParquet (.parquet, .geoparquet) and
+GeoJSON (.geojson, .json).  Files should be named:
     overture_{theme}_{type}.parquet   (or .geoparquet / .geojson / .json)
     e.g. overture_buildings_building.parquet
          overture_transportation_segment.geojson
@@ -20,21 +18,31 @@ Prerequisites:
   - Python 3.12 with GDAL/OGR (QGIS bundled, Parquet driver required)
   - ili2gpkg 5.3.1 in ressources/ili2gpkg-5.3.1/
   - DGIF_V3.ili in models/
-  - Overture_to_DGIF_V3.csv in models/
-  - No internet access required
+    - Overture_to_DGIF_V3.csv in models/
+    - Optional internet access (for direct AOI downloads)
 
 Usage:
     python etl_overture_to_dgif.py --parquet-dir C:/tmp/overture_parquet
-    python etl_overture_to_dgif.py --parquet-dir C:/tmp/overture_parquet --themes buildings,transportation
+    python etl_overture_to_dgif.py --aoi-bbox 5.9,45.8,10.5,47.8 --themes buildings,transportation
+    python etl_overture_to_dgif.py --aoi-file C:/tmp/aoi.geojson
 """
 
 import argparse
+from collections import deque
+import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import time
 from pathlib import Path
+
+from interlis_tool_paths import (
+    describe_configured_interlis_tools,
+    resolve_interlis_tool_path,
+    should_log,
+)
 
 
 # ============================================================================
@@ -81,33 +89,46 @@ YELLOW = "\033[93m"
 RED = "\033[91m"
 GREY = "\033[90m"
 RESET = "\033[0m"
+OVERTURE_DOWNLOAD_DOC_URL = "https://docs.overturemaps.org/getting-data/#download-by-area-of-interest"
 
 
 def info(msg: str) -> None:
-    print(f"{CYAN}[INFO]{RESET} {msg}")
+    if should_log("INFO"):
+        print(f"{CYAN}[INFO]{RESET} {msg}")
 
 
 def ok(msg: str) -> None:
-    print(f"{GREEN}[OK]{RESET} {msg}")
+    if should_log("INFO"):
+        print(f"{GREEN}[OK]{RESET} {msg}")
 
 
 def warn(msg: str) -> None:
-    print(f"{YELLOW}[WARNING]{RESET} {msg}")
+    if should_log("WARNING"):
+        print(f"{YELLOW}[WARNING]{RESET} {msg}")
 
 
 def skip(msg: str) -> None:
-    print(f"{YELLOW}[SKIP]{RESET} {msg}")
+    if should_log("INFO"):
+        print(f"{YELLOW}[SKIP]{RESET} {msg}")
 
 
 def error(msg: str) -> None:
     print(f"{RED}[ERROR]{RESET} {msg}", file=sys.stderr)
 
 
+def warn_overture_download_help(reason: str) -> None:
+    warn(
+        "Online AOI download unavailable "
+        f"({reason}). See Overture guide: {OVERTURE_DOWNLOAD_DOC_URL}"
+    )
+
+
 def banner(title: str) -> None:
-    print()
-    print(f"{CYAN}================================================================{RESET}")
-    print(f"{CYAN}  {title}{RESET}")
-    print(f"{CYAN}================================================================{RESET}")
+    if should_log("INFO"):
+        print()
+        print(f"{CYAN}================================================================{RESET}")
+        print(f"{CYAN}  {title}{RESET}")
+        print(f"{CYAN}================================================================{RESET}")
 
 
 def run_java(args: list[str], label: str) -> int:
@@ -154,6 +175,302 @@ OVERTURE_THEME_TYPES = [
     ("divisions", "division_boundary", "Administrative boundaries"),
     ("addresses", "address", "Addresses"),
 ]
+
+
+def parse_bbox(raw_bbox: str) -> tuple[float, float, float, float]:
+    parts = [p.strip() for p in str(raw_bbox).split(",")]
+    if len(parts) != 4:
+        raise ValueError("AOI bbox must be minx,miny,maxx,maxy")
+    minx, miny, maxx, maxy = [float(p) for p in parts]
+    if minx >= maxx or miny >= maxy:
+        raise ValueError("Invalid AOI bbox extent")
+    return minx, miny, maxx, maxy
+
+
+def _iter_coords(node):
+    if isinstance(node, (list, tuple)):
+        if node and isinstance(node[0], (int, float)):
+            if len(node) >= 2:
+                yield float(node[0]), float(node[1])
+            return
+        for child in node:
+            yield from _iter_coords(child)
+
+
+def bbox_from_geojson(aoi_path: Path) -> tuple[float, float, float, float]:
+    payload = json.loads(aoi_path.read_text(encoding="utf-8"))
+    geometry = None
+
+    if isinstance(payload, dict) and payload.get("type") == "Feature":
+        geometry = payload.get("geometry")
+    elif isinstance(payload, dict) and payload.get("type") == "FeatureCollection":
+        features = payload.get("features") or []
+        if features:
+            geometry = {"type": "GeometryCollection", "geometries": [f.get("geometry") for f in features if f.get("geometry")]}
+    elif isinstance(payload, dict) and payload.get("type") in {
+        "Polygon", "MultiPolygon", "Point", "MultiPoint", "LineString", "MultiLineString", "GeometryCollection"
+    }:
+        geometry = payload
+
+    if not geometry:
+        raise ValueError(f"Invalid AOI GeoJSON in {aoi_path}")
+
+    coords = []
+    if geometry.get("type") == "GeometryCollection":
+        for geom in geometry.get("geometries") or []:
+            coords.extend(list(_iter_coords((geom or {}).get("coordinates"))))
+    else:
+        coords = list(_iter_coords(geometry.get("coordinates")))
+
+    if not coords:
+        raise ValueError(f"No coordinates found in AOI GeoJSON: {aoi_path}")
+
+    xs = [xy[0] for xy in coords]
+    ys = [xy[1] for xy in coords]
+    minx, maxx = min(xs), max(xs)
+    miny, maxy = min(ys), max(ys)
+    if minx >= maxx or miny >= maxy:
+        raise ValueError("AOI geometry has zero area bounding box")
+    return minx, miny, maxx, maxy
+
+
+def bbox_from_wkt(aoi_wkt: str) -> tuple[float, float, float, float]:
+    try:
+        from osgeo import ogr
+    except Exception as exc:
+        raise RuntimeError(
+            "GDAL/OGR is required to parse --aoi-wkt. "
+            "Use --aoi-file/--aoi-bbox or fix QGIS GDAL runtime."
+        ) from exc
+
+    geom = ogr.CreateGeometryFromWkt(aoi_wkt)
+    if geom is None:
+        raise ValueError("Invalid AOI WKT")
+    env = geom.GetEnvelope()  # (minx, maxx, miny, maxy)
+    minx, maxx, miny, maxy = env
+    if minx >= maxx or miny >= maxy:
+        raise ValueError("AOI WKT has zero area bounding box")
+    return minx, miny, maxx, maxy
+
+
+def format_bbox(bbox: tuple[float, float, float, float]) -> str:
+    return ",".join(f"{value:.8f}" for value in bbox)
+
+
+def resolve_aoi_bbox(args) -> tuple[float, float, float, float] | None:
+    if args.aoi_bbox:
+        return parse_bbox(args.aoi_bbox)
+    if args.aoi_file:
+        aoi_path = Path(args.aoi_file)
+        if not aoi_path.exists():
+            raise FileNotFoundError(f"AOI file not found: {aoi_path}")
+        return bbox_from_geojson(aoi_path)
+    if args.aoi_wkt:
+        return bbox_from_wkt(args.aoi_wkt)
+    return None
+
+
+def run_command_streaming(cmd: list[str], label: str) -> int:
+    info(label)
+    proc = subprocess.Popen(
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    assert proc.stdout is not None
+    for line in proc.stdout:
+        print(f"  {GREY}{line.rstrip()}{RESET}")
+    proc.wait()
+    return proc.returncode
+
+
+def _to_duckdb_path(path: Path) -> str:
+    return str(path).replace("\\", "/")
+
+
+def _duckdb_sql_literal(value: str) -> str:
+    return value.replace("'", "''")
+
+
+def check_duckdb_available() -> tuple[bool, str]:
+    exe = shutil.which("duckdb")
+    if not exe:
+        return False, "duckdb executable not found in PATH"
+    probe = subprocess.run(
+        [exe, "-c", "SELECT 1;"],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    if probe.returncode != 0:
+        details = (probe.stderr or probe.stdout or "").strip()
+        return False, details or "duckdb probe failed"
+    return True, exe
+
+
+def download_overture_by_aoi_duckdb(
+    bbox: tuple[float, float, float, float],
+    parquet_dir: Path,
+    themes_filter: set[str] | None = None,
+    out_format: str = "geoparquet",
+) -> dict[tuple[str, str], Path]:
+    """Fallback downloader using DuckDB SQL against Overture S3 parquet."""
+    ok_duckdb, duckdb_info = check_duckdb_available()
+    if not ok_duckdb:
+        raise RuntimeError(
+            "DuckDB fallback unavailable: "
+            f"{duckdb_info}. Install DuckDB CLI or make it available in PATH."
+        )
+
+    duckdb_exe = duckdb_info
+    parquet_dir.mkdir(parents=True, exist_ok=True)
+    minx, miny, maxx, maxy = bbox
+
+    if out_format == "geojson":
+        driver = "GeoJSON"
+        ext = ".geojson"
+    else:
+        driver = "Parquet"
+        ext = ".parquet"
+
+    for theme, otype, _ in OVERTURE_THEME_TYPES:
+        if themes_filter and theme not in themes_filter:
+            continue
+
+        output_file = parquet_dir / f"overture_{theme}_{otype}{ext}"
+        if output_file.exists() and output_file.stat().st_size > 0:
+            skip(f"Reuse existing AOI download: {output_file.name}")
+            continue
+
+        output_literal = _duckdb_sql_literal(_to_duckdb_path(output_file))
+        type_literal = _duckdb_sql_literal(otype)
+        theme_literal = _duckdb_sql_literal(theme)
+
+        sql = f"""
+INSTALL spatial;
+LOAD spatial;
+INSTALL httpfs;
+LOAD httpfs;
+SET s3_region='us-west-2';
+SET VARIABLE latest=(SELECT latest FROM 'https://stac.overturemaps.org/catalog.json');
+COPY (
+  SELECT *
+  FROM read_parquet(
+    's3://overturemaps-us-west-2/release/' || getvariable('latest') || '/theme={theme_literal}/type={type_literal}/*',
+    filename=true,
+    hive_partitioning=1
+  )
+  WHERE bbox.xmin <= {maxx}
+    AND bbox.xmax >= {minx}
+    AND bbox.ymin <= {maxy}
+    AND bbox.ymax >= {miny}
+) TO '{output_literal}' WITH (FORMAT GDAL, DRIVER '{driver}');
+""".strip()
+
+        rc = run_command_streaming(
+            [duckdb_exe, "-c", sql],
+            f"Downloading Overture {theme}/{otype} for AOI via DuckDB...",
+        )
+        if rc != 0:
+            warn(f"DuckDB download failed for {theme}/{otype}; continuing with other types")
+            continue
+
+        if not output_file.exists() or output_file.stat().st_size == 0:
+            warn(f"DuckDB produced no output for {theme}/{otype}")
+
+    return discover_parquet_files(parquet_dir, themes_filter)
+
+
+def check_overturemaps_available(python_exe: str) -> tuple[bool, str]:
+    probe = subprocess.run(
+        [python_exe, "-m", "overturemaps", "--help"],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    if probe.returncode == 0:
+        return True, ""
+    details = (probe.stderr or probe.stdout or "").strip()
+    if len(details) > 1200:
+        details = details[-1200:]
+    return False, details
+
+
+def download_overture_by_aoi(
+    python_exe: str,
+    bbox: tuple[float, float, float, float],
+    parquet_dir: Path,
+    themes_filter: set[str] | None = None,
+    out_format: str = "geoparquet",
+) -> dict[tuple[str, str], Path]:
+    """Download Overture data by AOI using overturemaps, fallback to DuckDB."""
+    bbox_str = format_bbox(bbox)
+    parquet_dir.mkdir(parents=True, exist_ok=True)
+
+    available, details = check_overturemaps_available(python_exe)
+    if not available:
+        warn_overture_download_help("overturemaps CLI/module not available")
+        warn(
+            "overturemaps is not available; trying DuckDB fallback. "
+            f"Details: {details or 'module probe failed'}"
+        )
+        return download_overture_by_aoi_duckdb(
+            bbox=bbox,
+            parquet_dir=parquet_dir,
+            themes_filter=themes_filter,
+            out_format=out_format,
+        )
+
+    ext = ".parquet" if out_format == "geoparquet" else ".geojson"
+
+    had_failure = False
+    for theme, otype, _ in OVERTURE_THEME_TYPES:
+        if themes_filter and theme not in themes_filter:
+            continue
+
+        output_file = parquet_dir / f"overture_{theme}_{otype}{ext}"
+        if output_file.exists() and output_file.stat().st_size > 0:
+            skip(f"Reuse existing AOI download: {output_file.name}")
+            continue
+
+        cmd = [
+            python_exe,
+            "-m",
+            "overturemaps",
+            "download",
+            f"--bbox={bbox_str}",
+            "-f",
+            out_format,
+            f"--type={otype}",
+            "-o",
+            str(output_file),
+        ]
+
+        rc = run_command_streaming(cmd, f"Downloading Overture {theme}/{otype} for AOI...")
+        if rc != 0:
+            had_failure = True
+            warn(f"Download failed for {theme}/{otype}; continuing with other types")
+
+    discovered = discover_parquet_files(parquet_dir, themes_filter)
+    if discovered:
+        return discovered
+
+    if had_failure:
+        warn_overture_download_help("overturemaps AOI download returned no usable files")
+        warn("No files downloaded with overturemaps; trying DuckDB fallback.")
+        return download_overture_by_aoi_duckdb(
+            bbox=bbox,
+            parquet_dir=parquet_dir,
+            themes_filter=themes_filter,
+            out_format=out_format,
+        )
+
+    return discovered
 
 
 def discover_parquet_files(
@@ -235,10 +552,37 @@ def main() -> int:
     )
     parser.add_argument(
         "--parquet-dir",
-        required=True,
+        required=False,
         help="Directory containing pre-downloaded Overture data files "
              "(.parquet, .geoparquet, .geojson, .json). "
-             "E.g. overture_buildings_building.parquet or .geojson",
+             "E.g. overture_buildings_building.parquet or .geojson. "
+             "Optional when --aoi-file or --aoi-bbox is used.",
+    )
+    parser.add_argument(
+        "--aoi-file",
+        default=None,
+        help="Path to AOI GeoJSON file (Feature/FeatureCollection/Geometry).",
+    )
+    parser.add_argument(
+        "--aoi-wkt",
+        default=None,
+        help="AOI geometry as WKT (POLYGON/MULTIPOLYGON). Used for download bbox and transform clipping.",
+    )
+    parser.add_argument(
+        "--aoi-bbox",
+        default=None,
+        help="AOI bbox as minx,miny,maxx,maxy (EPSG:4326).",
+    )
+    parser.add_argument(
+        "--download-dir",
+        default=None,
+        help="Directory used for automatic Overture AOI downloads (default: <tmp-dir>/overture_download).",
+    )
+    parser.add_argument(
+        "--download-format",
+        choices=["geoparquet", "geojson"],
+        default="geoparquet",
+        help="Format for automatic AOI downloads (default: geoparquet).",
     )
     parser.add_argument(
         "--tmp-dir",
@@ -249,6 +593,16 @@ def main() -> int:
         "--output-name",
         default="DGIF_Overture.gpkg",
         help="Output DGIF GeoPackage filename (default: DGIF_Overture.gpkg)",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="Output directory for DGIF GeoPackage (default: workspace/output)",
+    )
+    parser.add_argument(
+        "--output-gpkg",
+        default=None,
+        help="Full output GeoPackage path; overrides --output-dir/--output-name",
     )
     parser.add_argument(
         "--skip-schema",
@@ -266,6 +620,21 @@ def main() -> int:
         default=sys.executable,
         help="Path to Python interpreter with GDAL (default: current interpreter)",
     )
+    parser.add_argument(
+        "--target-topics",
+        default=None,
+        help="Comma-separated DGIF topics to write (e.g. Foundation,Cultural,Transportation)",
+    )
+    parser.add_argument(
+        "--ili-model",
+        default=None,
+        help="Path to DGIF INTERLIS model (.ili). Defaults to workspace models/DGIF_V3.ili",
+    )
+    parser.add_argument(
+        "--mapping",
+        default=None,
+        help="Path to Overture mapping CSV. Defaults to models/Overture_to_DGIF_V3.csv.",
+    )
     args = parser.parse_args()
 
     # Filter themes if specified
@@ -277,27 +646,59 @@ def main() -> int:
     # Configuration
     # ========================================================================
     workspace_root = Path(__file__).resolve().parent.parent
-    ili2gpkg_jar = workspace_root / "ressources" / "ili2gpkg-5.3.1" / "ili2gpkg-5.3.1.jar"
-    dgif_ili = workspace_root / "models" / "DGIF_V3.ili"
-    mapping_csv = workspace_root / "models" / "Overture_to_DGIF_V3.csv"
+    ili2gpkg_jar = resolve_interlis_tool_path("ili2gpkg")
+    mapping_csv = (
+        Path(args.mapping).expanduser()
+        if args.mapping
+        else (workspace_root / "models" / "Overture_to_DGIF_V3.csv")
+    )
     transform_py = workspace_root / "scripts" / "etl_overture_transform.py"
     python_exe = args.python
 
-    output_dir = workspace_root / "output"
+    output_dir = Path(args.output_dir).expanduser() if args.output_dir else (workspace_root / "output")
     dgif_gpkg = output_dir / args.output_name
+    if args.output_gpkg:
+        dgif_gpkg = Path(args.output_gpkg).expanduser()
+        output_dir = dgif_gpkg.parent
+
+    # Prefer explicit --ili-model; otherwise try output folder first so
+    # UI runs that generate DGIF_V3.ili in custom output dirs keep working.
+    if args.ili_model:
+        dgif_ili = Path(args.ili_model).expanduser()
+    else:
+        default_model = workspace_root / "models" / "DGIF_V3.ili"
+        output_model = output_dir / "DGIF_V3.ili"
+        dgif_ili = output_model if output_model.exists() else default_model
 
     tmp_dir = Path(args.tmp_dir)
-    parquet_dir = Path(args.parquet_dir)
+    parquet_dir = Path(args.parquet_dir).expanduser() if args.parquet_dir else None
+    download_dir = Path(args.download_dir).expanduser() if args.download_dir else (tmp_dir / "overture_download")
+    aoi_bbox = resolve_aoi_bbox(args)
+    if aoi_bbox is None:
+        error("AOI is required. Provide --aoi-file, --aoi-wkt, or --aoi-bbox.")
+        return 1
 
     models_dir = workspace_root / "models"
-    dgif_model_dir = f"{models_dir};http://models.interlis.ch/;%JAR_DIR"
+    model_dirs = [str(dgif_ili.parent), str(models_dir)]
+    dedup_model_dirs: list[str] = []
+    for model_dir in model_dirs:
+        if model_dir not in dedup_model_dirs:
+            dedup_model_dirs.append(model_dir)
+    dgif_model_dir = f"{';'.join(dedup_model_dirs)};http://models.interlis.ch/;%JAR_DIR"
 
     # ========================================================================
     # Banner
     # ========================================================================
     banner("ETL Pipeline: Overture Maps -> DGIF GeoPackage")
     print()
-    info(f"Parquet dir: {parquet_dir}")
+    if should_log("DEBUG"):
+        for configured_tool in describe_configured_interlis_tools():
+            info(f"Configured tool: {configured_tool}")
+    info(f"DGIF model: {dgif_ili}")
+    info(f"Mapping CSV: {mapping_csv}")
+    info(f"Parquet dir: {parquet_dir if parquet_dir else '(not provided)'}")
+    if aoi_bbox:
+        info(f"AOI bbox:   {format_bbox(aoi_bbox)}")
     info(f"Themes:      {args.themes or 'all'}")
     print()
 
@@ -319,7 +720,7 @@ def main() -> int:
         return 1
 
     # ili2gpkg
-    if not ili2gpkg_jar.exists():
+    if ili2gpkg_jar is None or not ili2gpkg_jar.exists():
         error(f"ili2gpkg not found: {ili2gpkg_jar}")
         return 1
     ok(f"ili2gpkg: {ili2gpkg_jar}")
@@ -350,23 +751,47 @@ def main() -> int:
         error(f"Python/GDAL not available at: {python_exe} ({exc})")
         return 1
 
-    # Parquet directory
-    if not parquet_dir.is_dir():
-        error(f"Parquet directory not found: {parquet_dir}")
-        return 1
-    ok(f"Parquet dir: {parquet_dir}")
-
     # Directories
     tmp_dir.mkdir(parents=True, exist_ok=True)
     output_dir.mkdir(parents=True, exist_ok=True)
     print()
 
     # ========================================================================
-    # Phase 1 — Discover Overture GeoParquet files
+    # Phase 1 - Discover or download Overture data files
     # ========================================================================
-    banner("Phase 1: Discover Overture data files")
+    banner("Phase 1: Discover or download Overture data files")
 
-    parquet_files = discover_parquet_files(parquet_dir, themes_filter)
+    parquet_files = {}
+    if parquet_dir and parquet_dir.is_dir():
+        parquet_files = discover_parquet_files(parquet_dir, themes_filter)
+
+    if parquet_files:
+        ok(f"Using pre-downloaded data from: {parquet_dir}")
+    else:
+        if parquet_dir and not parquet_dir.is_dir():
+            warn(f"Parquet directory not found: {parquet_dir}")
+        if aoi_bbox is not None:
+            info(f"No local Overture input found; downloading by AOI into: {download_dir}")
+            try:
+                parquet_files = download_overture_by_aoi(
+                    python_exe=python_exe,
+                    bbox=aoi_bbox,
+                    parquet_dir=download_dir,
+                    themes_filter=themes_filter,
+                    out_format=args.download_format,
+                )
+            except Exception as exc:
+                warn_overture_download_help("all online download strategies failed")
+                error(str(exc))
+                return 1
+            parquet_dir = download_dir
+        else:
+            error("No Overture input files found and no AOI specified for direct download.")
+            info("Provide one of:")
+            info("  - --parquet-dir C:/tmp/overture_parquet")
+            info("  - --aoi-file C:/tmp/aoi.geojson")
+            info("  - --aoi-bbox minx,miny,maxx,maxy")
+            return 1
 
     if not parquet_files:
         error(f"No matching data files found in: {parquet_dir}")
@@ -377,7 +802,7 @@ def main() -> int:
             print(f"  overture_{theme}_{otype}.geojson    ({desc})")
         print(f"  ...")
         print()
-        info("Download Overture data externally using one of:")
+        info("Download Overture data using one of:")
         info("  1. DuckDB CLI: duckdb -c \"COPY (SELECT * FROM read_parquet("
              "'s3://overturemaps-us-west-2/release/2025-05-21.0/"
              "theme=buildings/type=building/*') WHERE bbox.xmin >= 5.9 "
@@ -459,6 +884,19 @@ def main() -> int:
             str(transform_py),
             "--dgif-gpkg", str(dgif_gpkg),
             "--mapping", str(mapping_csv),
+            "--allow-empty",
+            *([
+                "--aoi-file",
+                args.aoi_file,
+            ] if args.aoi_file else []),
+            *([
+                "--aoi-wkt",
+                args.aoi_wkt,
+            ] if args.aoi_wkt and not args.aoi_file else []),
+            *([
+                "--target-topics",
+                args.target_topics,
+            ] if args.target_topics else []),
         ] + parquet_args,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
@@ -466,13 +904,20 @@ def main() -> int:
         encoding="utf-8",
         errors="replace",
     )
+    output_tail: deque[str] = deque(maxlen=40)
     assert proc.stdout is not None
     for line in proc.stdout:
-        print(f"  {line.rstrip()}")
+        clean_line = line.rstrip()
+        output_tail.append(clean_line)
+        print(f"  {clean_line}")
     proc.wait()
 
     if proc.returncode != 0:
-        error("Python transform failed!")
+        error(f"Python transform failed with exit code {proc.returncode}.")
+        if output_tail:
+            print("[ERROR] Transform output tail:", file=sys.stderr)
+            for tail_line in output_tail:
+                print(f"[ERROR]   {tail_line}", file=sys.stderr)
         return 1
 
     elapsed = time.perf_counter() - t0

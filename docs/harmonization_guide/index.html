@@ -1,0 +1,1211 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="en_US documentation for ili2dgim principles, webapp, backend API, and automation scripts.">
+      
+      
+      
+        <link rel="canonical" href="https://example.invalid/ili2dgim/harmonization_guide/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Harmonization Guide for Heterogeneous Geodata towards DGIF V3 - ili2dgim Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#harmonization-guide-for-heterogeneous-geodata-towards-dgif-v3" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ili2dgim Documentation" class="md-header__button md-logo" aria-label="ili2dgim Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ili2dgim Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Harmonization Guide for Heterogeneous Geodata towards DGIF V3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/squidfunk/mkdocs-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    squidfunk/mkdocs-material
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ili2dgim Documentation" class="md-nav__button md-logo" aria-label="ili2dgim Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ili2dgim Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/squidfunk/mkdocs-material" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    squidfunk/mkdocs-material
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Principles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-to/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How-To
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webapp
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Webapp
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webapp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pipeline-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Pipeline Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-fundamental-harmonization-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Fundamental Harmonization Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Fundamental Harmonization Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-dgif-attribute-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 DGIF Attribute Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-dgfcd-domain-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 DGFCD Domain Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Geometry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-coordinate-reference-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Coordinate Reference System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-date-format-beginlifespanversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Date Format (beginlifespanversion)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-unique-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Unique Identifiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mapping-csv-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Mapping CSV Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cross-source-equivalent-mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Cross-Source Equivalent Mappings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Cross-Source Equivalent Mappings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-railways-railway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Railways (Railway)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-roads-landtransportationway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Roads (LandTransportationWay)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-common-mistakes-to-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Common Mistakes to Avoid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-procedure-for-adding-a-new-data-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Procedure for Adding a New Data Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cross-source-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Cross-Source Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="harmonization-guide-for-heterogeneous-geodata-towards-dgif-v3">Harmonization Guide for Heterogeneous Geodata towards DGIF V3<a class="headerlink" href="#harmonization-guide-for-heterogeneous-geodata-towards-dgif-v3" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>This document describes best practices for harmonizing geodata from
+heterogeneous sources (e.g. <strong>swissTLM3D</strong>, <strong>Overture Maps</strong>, <strong>OSM</strong>) into the
+<strong>DGIF V3</strong> (INTERLIS) model.  The goal is to produce GeoPackage datasets
+conformant to the DGIF V3 schema, semantically consistent regardless of the
+original source.</p>
+<hr />
+<h2 id="1-pipeline-architecture">1. Pipeline Architecture<a class="headerlink" href="#1-pipeline-architecture" title="Permanent link">&para;</a></h2>
+<p>Each data source follows the same three-stage schema:</p>
+<div class="highlight"><pre><span></span><code>[Source Data]  --&gt;  [Mapping CSV]  --&gt;  [ETL Transform &amp; Load]  --&gt;  [DGIF GPKG]
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mapping CSV</strong></td>
+<td>Mapping table <code>source -&gt; DGIF</code>: class, attribute, value</td>
+</tr>
+<tr>
+<td><strong>ETL orchestrator</strong></td>
+<td>Source file discovery, iteration, logging</td>
+</tr>
+<tr>
+<td><strong>ETL transform</strong></td>
+<td>OGR reading, CSV lookup, geometry transformation, sqlite3 INSERT</td>
+</tr>
+<tr>
+<td><strong>DGIF GPKG</strong></td>
+<td>GeoPackage generated by ili2gpkg with <code>--smart2Inheritance</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-fundamental-harmonization-rules">2. Fundamental Harmonization Rules<a class="headerlink" href="#2-fundamental-harmonization-rules" title="Permanent link">&para;</a></h2>
+<h3 id="21-dgif-attribute-names">2.1 DGIF Attribute Names<a class="headerlink" href="#21-dgif-attribute-names" title="Permanent link">&para;</a></h3>
+<p>Column names in the GeoPackage are <strong>lowercase</strong> (generated by ili2gpkg).
+The mapping CSV uses <strong>camelCase</strong> format (<code>railwayClass</code>, <code>waySignificance</code>)
+which is then compared with <code>lower()</code> in the ETL.</p>
+<p><strong>Mandatory check</strong>: before adding an attribute to the CSV, verify that it
+actually exists in the DGIF schema via:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Actual columns of the DGIF table</span>
+<span class="n">PRAGMA</span><span class="w"> </span><span class="n">table_info</span><span class="p">(</span><span class="n">transportation_railway</span><span class="p">);</span>
+
+<span class="c1">-- ILI -&gt; SQL mapping</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">SqlName</span><span class="p">,</span><span class="w"> </span><span class="n">IliName</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">T_ILI2DB_ATTRNAME</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ColOwner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;transportation_railway&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>If an attribute in the CSV does not match any real column, the value is
+<strong>silently ignored</strong> by the ETL (the <code>attr_lower in dgif_cols</code> check fails).</p>
+<h3 id="22-dgfcd-domain-values">2.2 DGFCD Domain Values<a class="headerlink" href="#22-dgfcd-domain-values" title="Permanent link">&para;</a></h3>
+<p>Attribute values must come from the DGFCD catalogue
+(<code>DGFCD_AttributeValueConcepts.xml</code>).  Examples:</p>
+<table>
+<thead>
+<tr>
+<th>DGIF Attribute</th>
+<th>Allowed Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>railwayClass</code></td>
+<td><code>branchLine</code>, <code>highSpeedRail</code>, <code>mainLine</code></td>
+</tr>
+<tr>
+<td><code>railwayUse</code></td>
+<td><code>tramway</code>, <code>funicular</code>, <code>undergroundRailway</code>, <code>railRapidTransit</code>, ...</td>
+</tr>
+<tr>
+<td><code>waySignificance</code></td>
+<td><code>primaryWay</code>, <code>secondaryWay</code>, <code>tertiaryWay</code>, <code>localWay</code>, <code>minorWay</code>, ...</td>
+</tr>
+<tr>
+<td><code>meansTransportation</code></td>
+<td><code>pedestrian</code>, <code>bicycle</code>, <code>automobile</code>, <code>train</code>, <code>tram</code>, ...</td>
+</tr>
+<tr>
+<td><code>waySurfaceCategory</code></td>
+<td><code>hardPaved</code>, <code>loosePaved</code>, <code>unpaved</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-geometry">2.3 Geometry<a class="headerlink" href="#23-geometry" title="Permanent link">&para;</a></h3>
+<p>The DGIF schema declares a geometry type for each class (POINT, LINESTRING,
+POLYGON).  The pipelines must handle discrepancies:</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source = LINESTRING, Target = LINESTRING</td>
+<td>Direct reprojection</td>
+</tr>
+<tr>
+<td>Source = POLYGON, Target = POINT</td>
+<td>Centroid extraction</td>
+</tr>
+<tr>
+<td>Source = POINT, Target = POLYGON</td>
+<td>Do not insert (fallback not possible)</td>
+</tr>
+<tr>
+<td>Source 3D (Z)</td>
+<td>Flatten to 2D (<code>ogr.ForceTo(geom, ogr.wkbXxx)</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Warning</strong>: the geometry column in the GPKG is called <code>ageometry</code> (NOT <code>geometry</code>).
+ili2gpkg renames <code>geometry</code> from the INTERLIS model to <code>ageometry</code> to avoid
+conflicts with GeoPackage reserved columns.</p>
+<h3 id="24-coordinate-reference-system">2.4 Coordinate Reference System<a class="headerlink" href="#24-coordinate-reference-system" title="Permanent link">&para;</a></h3>
+<p>DGIF V3 uses <strong>WGS 84 (EPSG:4326)</strong>.  The pipelines must reproject:</p>
+<ul>
+<li>swissTLM3D: LV95/LN02 (EPSG:2056) -&gt; WGS 84</li>
+<li>Overture Maps: already in WGS 84, no reprojection needed</li>
+<li>OSM: already in WGS 84</li>
+</ul>
+<h3 id="25-date-format-beginlifespanversion">2.5 Date Format (<code>beginlifespanversion</code>)<a class="headerlink" href="#25-date-format-beginlifespanversion" title="Permanent link">&para;</a></h3>
+<p>Always use <strong>ISO 8601</strong>: <code>YYYY-MM-DD</code> or <code>YYYY-MM-DDTHH:MM:SSZ</code>.</p>
+<ul>
+<li>swissTLM3D: the <code>datum_erstellung</code> field uses format <code>YYYY/MM/DD</code>
+  -&gt; normalize with <code>replace("/", "-")</code></li>
+<li>Overture Maps: already uses ISO 8601 (<code>update_time</code> in GeoJSON)</li>
+<li>If the date is not available, use the current ETL run date</li>
+</ul>
+<h3 id="26-unique-identifiers">2.6 Unique Identifiers<a class="headerlink" href="#26-unique-identifiers" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>DGIF Field</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>T_Ili_Tid</code></td>
+<td>Source ID (UUID, TID, <code>@id</code>) or generated UUID</td>
+</tr>
+<tr>
+<td><code>uniqueuniversalentityidentifier</code></td>
+<td>Same value as <code>T_Ili_Tid</code></td>
+</tr>
+<tr>
+<td><code>externalreferences</code></td>
+<td>Reference to the source (optional)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-mapping-csv-structure">3. Mapping CSV Structure<a class="headerlink" href="#3-mapping-csv-structure" title="Permanent link">&para;</a></h2>
+<p>The CSV uses <code>;</code> as delimiter.  Columns:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>NO</td>
+<td>Sequential number</td>
+</tr>
+<tr>
+<td>1-4</td>
+<td>Source</td>
+<td>Theme/layer/attribute/value of the data source</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Geometry</td>
+<td>Source geometry type</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Mapping Description</td>
+<td><code>OK</code> = direct mapping, <code>Generalization</code> = approximation</td>
+</tr>
+<tr>
+<td>7</td>
+<td>DGIF Feature Alpha</td>
+<td>DGIF class name (camelCase)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>DGIF Feature 531</td>
+<td>DGFCD class code</td>
+</tr>
+<tr>
+<td>9</td>
+<td>DGIF Attribute Alpha</td>
+<td>First DGIF attribute (camelCase)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>DGIF Attribute 531</td>
+<td>DGFCD attribute code</td>
+</tr>
+<tr>
+<td>11</td>
+<td>DGIF AttributeValue Alpha</td>
+<td>First attribute value</td>
+</tr>
+<tr>
+<td>12</td>
+<td>DGIF Value 531</td>
+<td>DGFCD numeric value code</td>
+</tr>
+<tr>
+<td>13-16</td>
+<td>(same as 9-12)</td>
+<td>Second DGIF attribute (optional)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-cross-source-equivalent-mappings">4. Cross-Source Equivalent Mappings<a class="headerlink" href="#4-cross-source-equivalent-mappings" title="Permanent link">&para;</a></h2>
+<p>When two sources describe the same real-world entity, the mapping must
+converge on the <strong>same</strong> DGIF attributes and values.</p>
+<h3 id="41-railways-railway">4.1 Railways (Railway)<a class="headerlink" href="#41-railways-railway" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Source Value</th>
+<th>DGIF Attribute</th>
+<th>DGIF Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>swissTLM3D</td>
+<td>Normalspur</td>
+<td><code>railwayClass</code></td>
+<td><code>mainLine</code></td>
+</tr>
+<tr>
+<td>swissTLM3D</td>
+<td>Schmalspur</td>
+<td><code>railwayClass</code></td>
+<td><code>branchLine</code></td>
+</tr>
+<tr>
+<td>swissTLM3D</td>
+<td>Kleinbahn</td>
+<td><code>railwayClass</code></td>
+<td><code>branchLine</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>standard_gauge</td>
+<td><code>railwayClass</code></td>
+<td><code>mainLine</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>narrow_gauge</td>
+<td><code>railwayClass</code></td>
+<td><code>branchLine</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>tram</td>
+<td><code>railwayUse</code></td>
+<td><code>tramway</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>subway</td>
+<td><code>railwayUse</code></td>
+<td><code>undergroundRailway</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>funicular</td>
+<td><code>railwayUse</code></td>
+<td><code>funicular</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>light_rail</td>
+<td><code>railwayUse</code></td>
+<td><code>railRapidTransit</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-roads-landtransportationway">4.2 Roads (LandTransportationWay)<a class="headerlink" href="#42-roads-landtransportationway" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Source Value</th>
+<th>DGIF Attribute</th>
+<th>DGIF Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>swissTLM3D</td>
+<td>Autobahn</td>
+<td><code>waySignificance</code></td>
+<td><code>primaryWay</code></td>
+</tr>
+<tr>
+<td>swissTLM3D</td>
+<td>Autostrasse</td>
+<td><code>waySignificance</code></td>
+<td><code>primaryWay</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>motorway</td>
+<td><code>waySignificance</code></td>
+<td><code>primaryWay</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>trunk</td>
+<td><code>waySignificance</code></td>
+<td><code>primaryWay</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>primary</td>
+<td><code>waySignificance</code></td>
+<td><code>primaryWay</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>secondary</td>
+<td><code>waySignificance</code></td>
+<td><code>secondaryWay</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>tertiary</td>
+<td><code>waySignificance</code></td>
+<td><code>tertiaryWay</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>residential</td>
+<td><code>waySignificance</code></td>
+<td><code>localWay</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>footway</td>
+<td><code>meansTransportation</code></td>
+<td><code>pedestrian</code></td>
+</tr>
+<tr>
+<td>Overture</td>
+<td>cycleway</td>
+<td><code>meansTransportation</code></td>
+<td><code>bicycle</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-common-mistakes-to-avoid">5. Common Mistakes to Avoid<a class="headerlink" href="#5-common-mistakes-to-avoid" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Consequence</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Using DFDD attribute names (e.g. <code>gaugeOfRailway</code>, <code>functionalClass</code>)</td>
+<td>Value silently lost</td>
+<td>Validate against <code>PRAGMA table_info()</code></td>
+</tr>
+<tr>
+<td>Column <code>geometry</code> instead of <code>ageometry</code></td>
+<td>INSERT fails</td>
+<td>Always use <code>ageometry</code> in checks</td>
+</tr>
+<tr>
+<td>Dates in <code>YYYY/MM/DD</code> format</td>
+<td>Inconsistency between sources</td>
+<td>Normalize to ISO 8601</td>
+</tr>
+<tr>
+<td>Values outside DGFCD domain</td>
+<td>Non-interoperable data</td>
+<td>Consult <code>DGFCD_AttributeValueConcepts.xml</code></td>
+</tr>
+<tr>
+<td>Inserting <code>0</code>/<code>"unknown"</code> for NOT NULL</td>
+<td>Indistinguishable from real data</td>
+<td>Prefer <code>noInformation</code> / <code>-999999</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-procedure-for-adding-a-new-data-source">6. Procedure for Adding a New Data Source<a class="headerlink" href="#6-procedure-for-adding-a-new-data-source" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Analyze the source schema</strong>: themes, layers, attributes, geometry types</li>
+<li><strong>Create the mapping CSV</strong>: for each source combination, find the
+   corresponding DGIF class in the DGFCD catalogue (<code>DGFCD_FeatureConcepts.xml</code>)</li>
+<li><strong>Validate attributes</strong>: every <code>DGIF Attribute Alpha</code> must correspond to a
+   real column verified with <code>PRAGMA table_info()</code></li>
+<li><strong>Validate values</strong>: every <code>DGIF AttributeValue Alpha</code> must come from
+   <code>DGFCD_AttributeValueConcepts.xml</code></li>
+<li><strong>Implement the ETL</strong>: copy the pattern from <code>etl_overture_transform.py</code>:</li>
+<li>OGR reading</li>
+<li>CSV lookup with 4-level fallback</li>
+<li>Centroid/reprojection handling</li>
+<li>INSERT via sqlite3</li>
+<li><strong>Test</strong>: run with a test dataset and verify:</li>
+<li>No attributes silently lost (count successful INSERTs)</li>
+<li>Valid geometries (check <code>gpkg_geometry_columns</code>)</li>
+<li>Dates in ISO 8601 format</li>
+<li>Correct domain values</li>
+</ol>
+<hr />
+<h2 id="7-cross-source-validation">7. Cross-Source Validation<a class="headerlink" href="#7-cross-source-validation" title="Permanent link">&para;</a></h2>
+<p>To verify consistency between datasets produced from different sources:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Compare Railway attributes across sources</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">railwayclass</span><span class="p">,</span><span class="w"> </span><span class="n">railwayuse</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">transportation_railway</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">railwayclass</span><span class="p">,</span><span class="w"> </span><span class="n">railwayuse</span><span class="p">;</span>
+
+<span class="c1">-- Verify ISO 8601 dates</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">beginlifespanversion</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">transportation_railway</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">beginlifespanversion</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;____-__-__%&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Search for out-of-domain values</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">waysignificance</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">transportation_landtransportationway</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">waysignificance</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;primaryWay&#39;</span><span class="p">,</span><span class="s1">&#39;secondaryWay&#39;</span><span class="p">,</span><span class="s1">&#39;tertiaryWay&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;localWay&#39;</span><span class="p">,</span><span class="s1">&#39;minorWay&#39;</span><span class="p">,</span><span class="s1">&#39;intraUrbanAccessWay&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;intraUrbanInterconnectionWay&#39;</span><span class="p">,</span><span class="s1">&#39;noInformation&#39;</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>INTERLIS model: <code>models/DGIF_V3.ili</code></li>
+<li>Attribute catalogue: <code>models/DGFCD_AttributeConcepts.xml</code></li>
+<li>Value catalogue: <code>models/DGFCD_AttributeValueConcepts.xml</code></li>
+<li>Feature catalogue: <code>models/DGFCD_FeatureConcepts.xml</code></li>
+<li>swissTLM3D mapping: <code>models/swissTLM3D_to_DGIF_V3.csv</code></li>
+<li>Overture mapping: <code>models/Overture_to_DGIF_V3.csv</code></li>
+<li>OSM mapping: <code>models/OSM_to_DGIF_V3.csv</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "content.code.copy", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/mermaid.mjs" type="module"></script>
+      
+    
+  </body>
+</html>

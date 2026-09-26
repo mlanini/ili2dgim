@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ili2dgim - Web Application</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0f766e 0%, #164e63 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+        
+        header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab-button:hover {
+            background: #f5f5f5;
+        }
+        
+        .tab-button.active {
+            color: #0f766e;
+            border-bottom-color: #0f766e;
+        }
+        
+        .tab-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        
+        .content {
+            padding: 30px;
+            min-height: 400px;
+        }
+        
+        .tab-panel {
+            display: none;
+        }
+        
+        .tab-panel.active {
+            display: block;
+        }
+        
+        .card {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .card h3 {
+            color: #0f766e;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        button {
+            background: #0f766e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        
+        button:hover:not(:disabled) {
+            background: #164e63;
+        }
+        
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .status {
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .logs {
+            background: #0f172a;
+            color: #d6e8ff;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .runtime-panel {
+            margin-top: 15px;
+            border: 1px solid #d6e3f3;
+            border-radius: 6px;
+            background: #f8fbff;
+            padding: 12px;
+        }
+
+        .runtime-progress {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 999px;
+            overflow: hidden;
+            margin: 8px 0 6px;
+        }
+
+        .runtime-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #0f766e 0%, #164e63 100%);
+            transition: width 0.25s ease;
+        }
+
+        .runtime-meta {
+            font-size: 12px;
+            color: #475569;
+            margin-top: 3px;
+        }
+
+        .aoi-map {
+            width: 100%;
+            height: 360px;
+            border: 1px solid #d6e3f3;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 8px;
+            background: #f8fbff;
+        }
+
+        .aoi-mode-chip {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+            background: #e2e8f0;
+            color: #334155;
+            margin-top: 8px;
+        }
+        
+        input[type="text"], input[type="file"], select {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .file-input-label {
+            display: block;
+            margin: 10px 0;
+            padding: 15px;
+            border: 2px dashed #0f766e;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .file-input-label:hover {
+            background: #f0f9f8;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.3.0/dist/maplibre-gl.css">
+    <link rel="stylesheet" href="https://unpkg.com/@mapbox/mapbox-gl-draw@1.5.0/dist/mapbox-gl-draw.css">
+    <script src="https://unpkg.com/@turf/turf@7.2.0/turf.min.js"></script>
+    <script src="https://unpkg.com/maplibre-gl@3.3.0/dist/maplibre-gl.js"></script>
+    <script src="https://unpkg.com/@mapbox/mapbox-gl-draw@1.5.0/dist/mapbox-gl-draw.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 SwissDGIF Orchestrator 🪄</h1>
+            <p>INTERLIS for DGIF Data Integration and Harmonization</p>
+            <p id="baselineActiveInfo" style="margin-top:8px; font-size:13px; opacity:0.95;">Active Baseline: verifica in corso...</p>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab-button" onclick="switchTab(0)" id="tab-0">Settings</button>
+            <button class="tab-button active" onclick="switchTab(1)" id="tab-1">Baseline</button>
+            <button class="tab-button" onclick="switchTab(2)" id="tab-2">Mappings</button>
+            <button class="tab-button" onclick="switchTab(3)" id="tab-3">ETL</button>
+            <button class="tab-button" onclick="switchTab(4)" id="tab-4">Viewer</button>
+        </div>
+        
+        <div class="content">
+            <!-- Tab 0: Settings -->
+            <div class="tab-panel" id="panel-0">
+                <div class="card">
+                    <h3>Global Settings</h3>
+                    <p>Configure model format, folder paths, and common parameters.</p>
+                </div>
+                
+                <div class="card">
+                    <label>Model Format</label>
+                    <select id="modelFormat">
+                        <option value="ili">INTERLIS 2.4 (.ili)</option>
+                        <option value="xmi">UML/XMI (.xmi)</option>
+                    </select>
+                    
+                    <label>XMI Input Folder</label>
+                    <input type="text" id="xmiInputFolder" placeholder="/path/to/xmi">
+                    
+                    <label>Generic Output Folder</label>
+                    <input type="text" id="modelOutputFolder" placeholder="/path/to/output">
+
+                    <label>Proxy URL</label>
+                    <input type="text" id="proxyUrl" placeholder="http://proxy.example.com:8080">
+
+                    <label>Log Level</label>
+                    <select id="logLevel">
+                        <option value="DEBUG">DEBUG</option>
+                        <option value="INFO">INFO</option>
+                        <option value="WARNING">WARNING</option>
+                        <option value="ERROR">ERROR</option>
+                    </select>
+
+                    <label>ili2c Path</label>
+                    <input type="text" id="ili2cPath" placeholder="C:/path/to/ili2c.jar">
+
+                    <label>ili2validator Path</label>
+                    <input type="text" id="ili2validatorPath" placeholder="C:/path/to/ili2validator.jar">
+
+                    <label>ili2gpkg Path</label>
+                    <input type="text" id="ili2gpkgPath" placeholder="C:/path/to/ili2gpkg.jar">
+
+                    <label>ili2duckdb Path</label>
+                    <input type="text" id="ili2duckdbPath" placeholder="C:/path/to/ili2duckdb.jar">
+
+                    <label>ili2pg Path</label>
+                    <input type="text" id="ili2pgPath" placeholder="C:/path/to/ili2pg.jar">
+
+                    <hr style="border-color:#2a3650; margin:14px 0;">
+                    <label>PostGIS Host</label>
+                    <input type="text" id="pgHost" placeholder="127.0.0.1">
+
+                    <label>PostGIS Port</label>
+                    <input type="number" id="pgPort" placeholder="5432">
+
+                    <label>PostGIS Database</label>
+                    <input type="text" id="pgDatabase" placeholder="dgim">
+
+                    <label>PostGIS Schema</label>
+                    <input type="text" id="pgSchema" placeholder="swissdgif">
+
+                    <label>PostGIS User</label>
+                    <input type="text" id="pgUser" placeholder="postgres">
+
+                    <label>Password Env Var</label>
+                    <input type="text" id="pgPasswordEnvVar" placeholder="DGIM_DB_PASSWORD">
+
+                    <label>PostGIS SSL Mode</label>
+                    <select id="pgSslMode">
+                        <option value="disable">disable</option>
+                        <option value="allow">allow</option>
+                        <option value="prefer">prefer</option>
+                        <option value="require">require</option>
+                        <option value="verify-ca">verify-ca</option>
+                        <option value="verify-full">verify-full</option>
+                    </select>
+                    
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+                        <button onclick="saveSettings()">💾 Save Settings</button>
+                        <button onclick="exportTab0SettingsJson()">⬇️ Export JSON</button>
+                        <button onclick="document.getElementById('tab0ImportJson').click()">⬆️ Import JSON</button>
+                    </div>
+                    <input type="file" id="tab0ImportJson" accept="application/json,.json" style="display:none" onchange="importTab0SettingsJson(event)">
+                    <div id="settingsStatus"></div>
+                </div>
+            </div>
+            
+            <!-- Tab 1: Baseline -->
+            <div class="tab-panel active" id="panel-1">
+                <div class="card">
+                    <h3>Load XMI Baseline</h3>
+                    <p>Upload an XMI model file to extract INTERLIS model and DGFCD/DGRWI catalogs.</p>
+                </div>
+                
+                <div class="card">
+                    <label class="file-input-label" for="xmiFile">
+                        📁 Click to upload XMI file<br>
+                        <small>(or drag and drop)</small>
+                    </label>
+                    <input type="file" id="xmiFile" accept=".xmi" style="display:none" onchange="uploadBaseline()">
+                    
+                    <button onclick="document.getElementById('xmiFile').click()">Select XMI File</button>
+                    <div id="baselineStatus"></div>
+
+                    <div id="baselineRuntime" class="runtime-panel" style="display:none;">
+                        <div class="runtime-progress">
+                            <div id="baselineProgressFill" class="runtime-progress-fill"></div>
+                        </div>
+                        <div id="baselineProgressText" class="runtime-meta">Progress: 0% (idle)</div>
+                        <div id="baselinePhase" class="runtime-meta">Current Phase: idle</div>
+                        <div class="logs" id="baselineLogs">No logs yet.</div>
+                    </div>
+                    
+                    <div id="baselineResults" style="display:none; margin-top: 20px;">
+                        <h4>Extraction Results</h4>
+                        <p><strong>INTERLIS Model:</strong> <a id="iliModelPath" target="_blank" rel="noreferrer">-</a></p>
+                        <p><strong>DGFCD Catalogs:</strong> <a id="dgfcdPath" target="_blank" rel="noreferrer">-</a></p>
+                        <p><strong>DGRWI Catalogs:</strong> <a id="dgrwiPath" target="_blank" rel="noreferrer">-</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 2: Mappings -->
+            <div class="tab-panel" id="panel-2">
+                <div class="card">
+                    <h3>Source Data & Mappings</h3>
+                    <p>Select source data types and generate mapping tables.</p>
+                </div>
+                
+                <div class="card">
+                    <label>
+                        <input type="checkbox" id="swissTLM3D"> swissTLM3D
+                    </label><br>
+                    <label>
+                        <input type="checkbox" id="osm"> OpenStreetMap (OSM)
+                    </label><br>
+                    <label>
+                        <input type="checkbox" id="overture"> Overture Maps
+                    </label>
+                    
+                    <button onclick="generateMappings()" style="margin-top: 15px;">🔄 Generate Mapping Tables</button>
+                    <div id="mappingsStatus"></div>
+
+                    <div id="mappingsRuntime" class="runtime-panel" style="display:none;">
+                        <div class="runtime-progress">
+                            <div id="mappingsProgressFill" class="runtime-progress-fill"></div>
+                        </div>
+                        <div id="mappingsProgressText" class="runtime-meta">Progress: 0% (idle)</div>
+                        <div id="mappingsPhase" class="runtime-meta">Current Phase: idle</div>
+                        <div class="logs" id="mappingsLogs">No logs yet.</div>
+                    </div>
+                    
+                    <div id="mappingsResults" style="display:none; margin-top: 20px;">
+                        <h4>Generated Mappings</h4>
+                        <div id="mappingsList"></div>
+                        <button onclick="downloadMappings()">📥 Download All Mappings</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 3: ETL -->
+            <div class="tab-panel" id="panel-3">
+                <div class="card">
+                    <h3>Extract, Transform, Load</h3>
+                    <p>Configure and execute ETL process with area of interest.</p>
+                </div>
+                
+                <div class="card">
+                    <label>Source Data</label>
+                    <select id="sourceSelect" onchange="onSourceSelectChanged()">
+                        <option>Select from configured sources...</option>
+                    </select>
+                    <p id="sourceSelectHint" style="font-size:12px; color:#64748b; margin:4px 0 8px 0;">Generate mappings first to enable source selection.</p>
+
+                    <div id="overtureInputGroup" style="display:none; margin-bottom: 10px;">
+                        <label>Overture Input Folder (GeoParquet/GeoJSON)</label>
+                        <input
+                            type="text"
+                            id="overtureParquetDir"
+                            placeholder="C:/tmp/overture_parquet"
+                            oninput="onOvertureParquetDirChanged()"
+                        >
+                        <p style="font-size:12px; color:#64748b; margin:4px 0 0 0;">
+                            This folder must contain Overture files (for example overture_buildings_building.parquet).
+                        </p>
+                    </div>
+                    
+                    <label>Output Format</label>
+                    <select id="outputFormat" onchange="refreshEtlOutputPathPreview()">
+                        <option value="gpkg">GeoPackage (.gpkg)</option>
+                        <option value="postgis">PostGIS</option>
+                        <option value="duckdb">DuckDB</option>
+                    </select>
+                    
+                    <label>Output Path</label>
+                    <p id="etlOutputPathPreview" style="margin:6px 0 10px 0; color:#dbe5ff; word-break:break-all;">(auto)</p>
+
+                    <label>Destination TOPICS</label>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+                        <button type="button" onclick="selectAllTopics()">Select All</button>
+                        <button type="button" onclick="clearAllTopics()">Clear</button>
+                    </div>
+                    <div
+                        id="targetTopics"
+                        style="display:flex; flex-wrap:wrap; gap:8px 14px; padding:8px; border:1px solid #3b4a63; border-radius:8px; background:#0d1525;"
+                    ></div>
+                    <p style="font-size: 12px; color: #999; margin: 6px 0 0 0;">
+                        Select one or more topics to write.
+                    </p>
+                    
+                    <div style="margin: 15px 0;">
+                        <p><strong>Area of Interest:</strong> Required for ETL clipping.</p>
+                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin:8px 0;">
+                            <button type="button" onclick="setAoiMode('rectangle')">Rectangle</button>
+                            <button type="button" onclick="setAoiMode('polygon')">Polygon</button>
+                            <button type="button" onclick="clearAoi()">Clear AOI</button>
+                        </div>
+                        <div id="aoiModeInfo" class="aoi-mode-chip">AOI mode: rectangle</div>
+                        <div id="etlMap" class="aoi-map"></div>
+                        <p style="font-size: 12px; color: #64748b; margin-top: 8px;">
+                            Rectangle: click two opposite corners. Polygon: click points and double-click to close.
+                        </p>
+                        <button onclick="startETL()">▶️ Start ETL</button>
+                        <button onclick="stopETL()" id="stopBtn" disabled>⏹️ Stop ETL</button>
+                    </div>
+                    
+                    <div id="etlStatus"></div>
+
+                    <div id="etlRuntime" class="runtime-panel" style="display:none;">
+                        <div class="runtime-progress">
+                            <div id="etlProgressFill" class="runtime-progress-fill"></div>
+                        </div>
+                        <div id="etlProgressText" class="runtime-meta">Progress: 0% (idle)</div>
+                        <div id="etlPhase" class="runtime-meta">Current Phase: idle</div>
+                        <div class="logs" id="etlLogs">No logs yet.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 4: Viewer -->
+            <div class="tab-panel" id="panel-4">
+                <div class="card">
+                    <h3>Data Visualization</h3>
+                    <p>View and explore the converted geospatial data.</p>
+                </div>
+                
+                <div class="card">
+                    <p>📊 Complete ETL to view results here.</p>
+                    <p style="margin-top: 15px; font-size: 12px; color: #999;">
+                        <strong>Coming soon:</strong> GeoLibre 2D map, 3D visualization with Cesium.js, layer toggling, export functionality
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = "http://127.0.0.1:8000";
+        let currentTab = 1;
+        const AOI_SOURCE_ID = 'etl-aoi-source';
+        const SWITZERLAND_BBOX = [5.96, 45.82, 10.50, 47.82];
+        let etlMap = null;
+        let etlDraw = null;
+        let etlAoiMode = 'rectangle';
+        let etlFirstCorner = null;
+
+        function safeStorageGet(key) {
+            try {
+                return window.localStorage.getItem(key);
+            } catch (_err) {
+                return null;
+            }
+        }
+
+        function safeStorageSet(key, value) {
+            try {
+                window.localStorage.setItem(key, value);
+            } catch (_err) {
+                // Browser privacy settings may block storage; keep the session usable without crashing.
+            }
+        }
+
+        let appState = {
+            settings: {
+                modelFormat: 'xmi',
+                xmiInputFolder: '',
+                modelOutputFolder: '',
+                commonParams: { proxyUrl: 'http://prp01.adb.intra.admin.ch:8080', logLevel: 'INFO' },
+                toolPaths: {
+                    ili2c: '',
+                    ili2gpkg: '',
+                    ili2duckdb: '',
+                    ili2pg: ''
+                },
+                postgresql: {
+                    host: '127.0.0.1',
+                    port: 5432,
+                    database: 'dgim',
+                    schema: 'swissdgif',
+                    user: 'postgres',
+                    passwordEnvVar: 'DGIM_DB_PASSWORD',
+                    sslmode: 'prefer'
+                }
+            },
+            baseline: {
+                xmiFile: null,
+                baselineActive: false,
+                iliModel: null,
+                dgfcdCatalogs: null,
+                dgrwiCatalogs: null,
+                baselineVersion: null,
+                baselineLabel: null
+            },
+            mappings: { selectedMappings: { swissTLM3D: false, osm: false, overture: false }, mappingTables: {} },
+            etl: { sourceData: '', outputFormat: 'gpkg', outputPath: '', aoiFeature: null, targetTopics: [], overtureParquetDir: '' }
+        };
+
+        function toAoiFeatureCollection(feature) {
+            if (!feature) {
+                return { type: 'FeatureCollection', features: [] };
+            }
+            return { type: 'FeatureCollection', features: [feature] };
+        }
+
+        function toRectPolygon(a, b) {
+            const minX = Math.min(a[0], b[0]);
+            const maxX = Math.max(a[0], b[0]);
+            const minY = Math.min(a[1], b[1]);
+            const maxY = Math.max(a[1], b[1]);
+            return {
+                type: 'Feature',
+                properties: { mode: 'rectangle' },
+                geometry: {
+                    type: 'Polygon',
+                    coordinates: [[[minX, minY], [maxX, minY], [maxX, maxY], [minX, maxY], [minX, minY]]]
+                }
+            };
+        }
+
+        function setAoiFeature(feature) {
+            appState.etl = appState.etl || {};
+            appState.etl.aoiFeature = feature;
+            safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+
+            if (etlMap && etlMap.isStyleLoaded()) {
+                const source = etlMap.getSource(AOI_SOURCE_ID);
+                if (source) {
+                    source.setData(toAoiFeatureCollection(feature));
+                }
+            }
+            updateSourceSelectOptions();
+            refreshEtlOutputPathPreview();
+        }
+
+        function inferSourceTypeFromMapping(mappingKey, mappingPath) {
+            const key = String(mappingKey || '').toLowerCase();
+            const path = String(mappingPath || '').toLowerCase().replace(/\\/g, '/');
+
+            if (key.includes('swisstlm3d') || path.includes('swisstlm3d_to_dgif_v3.csv')) return 'swissTLM3D';
+            if (key.includes('overture') || path.includes('overture_to_dgif_v3.csv')) return 'overture';
+            if (key === 'osm' || key.includes('openstreetmap') || path.includes('osm_to_dgif_v3.csv')) return 'osm';
+            if (key === 'ofm' || key.includes('ofmx') || path.includes('ofm_to_dgif')) return 'ofm';
+            return '';
+        }
+
+        function getMappedSources() {
+            const mappingTables = appState?.mappings?.mappingTables || {};
+            const order = ['swissTLM3D', 'osm', 'overture', 'ofm'];
+            const found = new Set();
+
+            Object.entries(mappingTables).forEach(([key, value]) => {
+                const source = inferSourceTypeFromMapping(key, value);
+                if (source) {
+                    found.add(source);
+                }
+            });
+
+            return order.filter((source) => found.has(source));
+        }
+
+        function getSourceLabel(source) {
+            if (source === 'swissTLM3D') return 'swissTLM3D (Switzerland)';
+            if (source === 'osm') return 'OpenStreetMap (outside CH)';
+            if (source === 'overture') return 'Overture Maps (outside CH)';
+            if (source === 'ofm') return 'OFM';
+            return source;
+        }
+
+        function renderMappingsResults() {
+            const list = document.getElementById('mappingsList');
+            const results = document.getElementById('mappingsResults');
+            if (!list || !results) return;
+
+            const tables = appState?.mappings?.mappingTables || {};
+            const entries = Object.entries(tables);
+            if (!entries.length) {
+                list.innerHTML = '';
+                results.style.display = 'none';
+                return;
+            }
+
+            list.innerHTML = entries.map(([k, v]) => {
+                const href = toFileUrl(v);
+                return `<p><strong>${k}:</strong> <a href="${href}" target="_blank" rel="noreferrer">${v}</a></p>`;
+            }).join('');
+            results.style.display = 'block';
+        }
+
+        function getAoiInsideSwitzerland(feature) {
+            if (!feature || typeof turf === 'undefined') return null;
+            try {
+                const bbox = turf.bboxPolygon(SWITZERLAND_BBOX);
+                return turf.booleanWithin(feature, bbox);
+            } catch (_err) {
+                return null;
+            }
+        }
+
+        function onSourceSelectChanged() {
+            const select = document.getElementById('sourceSelect');
+            if (!select) return;
+            const value = String(select.value || '');
+            appState.etl = appState.etl || {};
+            appState.etl.sourceData = value;
+            safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+            const hint = document.getElementById('sourceSelectHint');
+            if (hint && value === 'overture') {
+                hint.textContent = 'Overture source requires local input data files (parquet/geoparquet/geojson). Output format (GPKG/DuckDB) is independent.';
+            }
+            updateOvertureInputVisibility();
+            refreshEtlOutputPathPreview();
+        }
+
+        function onOvertureParquetDirChanged() {
+            const input = document.getElementById('overtureParquetDir');
+            appState.etl = appState.etl || {};
+            appState.etl.overtureParquetDir = input ? String(input.value || '').trim() : '';
+            safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+        }
+
+        function updateOvertureInputVisibility() {
+            const group = document.getElementById('overtureInputGroup');
+            const input = document.getElementById('overtureParquetDir');
+            const selectedSource = String(appState?.etl?.sourceData || '');
+            if (group) {
+                group.style.display = selectedSource === 'overture' ? 'block' : 'none';
+            }
+            if (input) {
+                input.value = String(appState?.etl?.overtureParquetDir || '');
+            }
+        }
+
+        function updateSourceSelectOptions() {
+            const select = document.getElementById('sourceSelect');
+            const hint = document.getElementById('sourceSelectHint');
+            if (!select) return;
+
+            const mappedSources = getMappedSources();
+            const allowed = mappedSources.slice();
+
+            if (hint) {
+                const insideCh = getAoiInsideSwitzerland(appState?.etl?.aoiFeature || null);
+                if (!allowed.length) {
+                    hint.textContent = 'Generate mappings first to enable source selection.';
+                } else if (insideCh === true) {
+                    hint.textContent = 'AOI is inside Switzerland. Source options are based on generated mappings.';
+                } else if (insideCh === false) {
+                    hint.textContent = 'AOI is outside Switzerland. Source options are based on generated mappings.';
+                } else {
+                    hint.textContent = 'Select ETL source from generated mappings.';
+                }
+            }
+
+            if (!allowed.length) {
+                select.innerHTML = '<option value="">No source available</option>';
+                select.value = '';
+                appState.etl = appState.etl || {};
+                appState.etl.sourceData = '';
+                safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+                return;
+            }
+
+            const current = String(appState?.etl?.sourceData || '');
+            const preferred = allowed.includes(current) ? current : allowed[0];
+
+            select.innerHTML = allowed
+                .map((source) => `<option value="${source}">${getSourceLabel(source)}</option>`)
+                .join('');
+            select.value = preferred;
+
+            appState.etl = appState.etl || {};
+            appState.etl.sourceData = preferred;
+            safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+            if (hint && preferred === 'overture') {
+                hint.textContent = 'Overture source requires local input data files (parquet/geoparquet/geojson). Output format (GPKG/DuckDB) is independent.';
+            }
+            updateOvertureInputVisibility();
+        }
+
+        function updateAoiModeInfo(message) {
+            const chip = document.getElementById('aoiModeInfo');
+            if (!chip) return;
+            chip.textContent = message;
+        }
+
+        function setAoiMode(mode) {
+            etlAoiMode = mode;
+            etlFirstCorner = null;
+
+            if (etlDraw) {
+                if (mode === 'polygon') {
+                    etlDraw.changeMode('draw_polygon');
+                    updateAoiModeInfo('AOI mode: polygon (click points, double-click to finish)');
+                } else {
+                    etlDraw.changeMode('simple_select');
+                    updateAoiModeInfo('AOI mode: rectangle (click two opposite corners)');
+                }
+            }
+        }
+
+        function clearAoi() {
+            etlFirstCorner = null;
+            if (etlDraw) {
+                etlDraw.deleteAll();
+            }
+            setAoiFeature(null);
+            updateAoiModeInfo(`AOI mode: ${etlAoiMode}`);
+        }
+
+        function initEtlMap() {
+            const mapEl = document.getElementById('etlMap');
+            if (!mapEl || etlMap) return;
+            if (typeof maplibregl === 'undefined' || typeof MapboxDraw === 'undefined') {
+                updateAoiModeInfo('AOI map unavailable (map libraries not loaded).');
+                return;
+            }
+
+            window.mapboxgl = maplibregl;
+
+            etlMap = new maplibregl.Map({
+                container: mapEl,
+                style: {
+                    version: 8,
+                    sources: {
+                        osm: {
+                            type: 'raster',
+                            tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+                            tileSize: 256,
+                            attribution: 'OpenStreetMap'
+                        }
+                    },
+                    layers: [{ id: 'osm', type: 'raster', source: 'osm' }]
+                },
+                center: [8.2275, 46.8182],
+                zoom: 7
+            });
+
+            etlMap.addControl(new maplibregl.NavigationControl({ showCompass: true }), 'top-right');
+
+            // mapbox-gl-draw@1.5.0's bundled default theme uses raw number
+            // arrays as branches of a "case" expression for line-dasharray
+            // (e.g. [0.2, 2]). MapLibre GL's stricter validator rejects this
+            // ("Expression name must be a string, but found number instead")
+            // unless wrapped as ["literal", [...]]. Patch just that layer.
+            const drawStyles = MapboxDraw.lib.theme.map((style) => {
+                if (style.id !== 'gl-draw-lines') return style;
+                return {
+                    ...style,
+                    paint: {
+                        ...style.paint,
+                        'line-dasharray': [
+                            'case',
+                            ['==', ['get', 'active'], 'true'],
+                            ['literal', [0.2, 2]],
+                            ['literal', [2, 0]]
+                        ]
+                    }
+                };
+            });
+
+            etlDraw = new MapboxDraw({
+                displayControlsDefault: false,
+                controls: {
+                    polygon: true,
+                    trash: true
+                },
+                styles: drawStyles
+            });
+
+            etlMap.on('load', () => {
+                etlMap.addControl(etlDraw, 'top-left');
+                etlMap.addSource(AOI_SOURCE_ID, {
+                    type: 'geojson',
+                    data: toAoiFeatureCollection(appState?.etl?.aoiFeature || null)
+                });
+                etlMap.addLayer({
+                    id: 'etl-aoi-fill',
+                    type: 'fill',
+                    source: AOI_SOURCE_ID,
+                    paint: {
+                        'fill-color': '#0f766e',
+                        'fill-opacity': 0.18
+                    }
+                });
+                etlMap.addLayer({
+                    id: 'etl-aoi-line',
+                    type: 'line',
+                    source: AOI_SOURCE_ID,
+                    paint: {
+                        'line-color': '#0f766e',
+                        'line-width': 2.5
+                    }
+                });
+                setAoiMode(etlAoiMode);
+            });
+
+            etlMap.on('click', (event) => {
+                if (etlAoiMode !== 'rectangle') return;
+                const pos = [event.lngLat.lng, event.lngLat.lat];
+                if (!etlFirstCorner) {
+                    etlFirstCorner = pos;
+                    updateAoiModeInfo('AOI mode: rectangle (first corner set, click opposite corner)');
+                    return;
+                }
+                const rect = toRectPolygon(etlFirstCorner, pos);
+                etlFirstCorner = null;
+                if (etlDraw) {
+                    etlDraw.deleteAll();
+                }
+                setAoiFeature(rect);
+                updateAoiModeInfo('AOI mode: rectangle (AOI set)');
+            });
+
+            const syncPolygonFromDraw = () => {
+                if (etlAoiMode !== 'polygon' || !etlDraw) return;
+                const data = etlDraw.getAll();
+                const polygon = (data.features || []).find((f) => f.geometry && f.geometry.type === 'Polygon');
+                if (polygon) {
+                    setAoiFeature(polygon);
+                    updateAoiModeInfo('AOI mode: polygon (AOI set)');
+                }
+            };
+
+            etlMap.on('draw.create', syncPolygonFromDraw);
+            etlMap.on('draw.update', syncPolygonFromDraw);
+            etlMap.on('draw.delete', () => {
+                if (etlAoiMode === 'polygon') {
+                    setAoiFeature(null);
+                }
+            });
+        }
+
+        function normalizeSettings(raw) {
+            const settings = raw || {};
+            const commonParams = settings.commonParams || {};
+            const toolPaths = settings.toolPaths || {};
+            const postgresql = settings.postgresql || {};
+            return {
+                modelFormat: settings.modelFormat || 'xmi',
+                xmiInputFolder: settings.xmiInputFolder || '',
+                modelOutputFolder: settings.modelOutputFolder || settings.catalogsOutputFolder || '',
+                commonParams: {
+                    proxyUrl: commonParams.proxyUrl || 'http://prp01.adb.intra.admin.ch:8080',
+                    logLevel: commonParams.logLevel || 'INFO'
+                },
+                toolPaths: {
+                    ili2c: toolPaths.ili2c || '',
+                    ili2validator: toolPaths.ili2validator || '',
+                    ili2gpkg: toolPaths.ili2gpkg || '',
+                    ili2duckdb: toolPaths.ili2duckdb || '',
+                    ili2pg: toolPaths.ili2pg || ''
+                },
+                postgresql: {
+                    host: postgresql.host || '127.0.0.1',
+                    port: Number(postgresql.port) || 5432,
+                    database: postgresql.database || 'dgim',
+                    schema: postgresql.schema || 'swissdgif',
+                    user: postgresql.user || 'postgres',
+                    passwordEnvVar: postgresql.passwordEnvVar || 'DGIM_DB_PASSWORD',
+                    sslmode: postgresql.sslmode || 'prefer'
+                }
+            };
+        }
+
+        function applySettingsToForm(settings) {
+            document.getElementById('modelFormat').value = settings.modelFormat;
+            document.getElementById('xmiInputFolder').value = settings.xmiInputFolder;
+            document.getElementById('modelOutputFolder').value = settings.modelOutputFolder;
+            document.getElementById('proxyUrl').value = settings.commonParams.proxyUrl;
+            document.getElementById('logLevel').value = settings.commonParams.logLevel;
+            document.getElementById('ili2cPath').value = settings.toolPaths.ili2c;
+            document.getElementById('ili2validatorPath').value = settings.toolPaths.ili2validator;
+            document.getElementById('ili2gpkgPath').value = settings.toolPaths.ili2gpkg;
+            document.getElementById('ili2duckdbPath').value = settings.toolPaths.ili2duckdb;
+            document.getElementById('ili2pgPath').value = settings.toolPaths.ili2pg;
+            document.getElementById('pgHost').value = settings.postgresql.host;
+            document.getElementById('pgPort').value = String(settings.postgresql.port);
+            document.getElementById('pgDatabase').value = settings.postgresql.database;
+            document.getElementById('pgSchema').value = settings.postgresql.schema;
+            document.getElementById('pgUser').value = settings.postgresql.user;
+            document.getElementById('pgPasswordEnvVar').value = settings.postgresql.passwordEnvVar;
+            document.getElementById('pgSslMode').value = settings.postgresql.sslmode;
+        }
+
+        async function loadCentralExecutionSettings() {
+            try {
+                const res = await fetch(`${API_BASE}/api/settings/db`);
+                if (!res.ok) return;
+                const dbSettings = await res.json();
+                const execution = dbSettings.execution || {};
+                const postgresql = dbSettings.postgresql || {};
+                appState.settings = normalizeSettings({
+                    ...appState.settings,
+                    commonParams: {
+                        ...(appState.settings.commonParams || {}),
+                        proxyUrl: execution.proxyUrl || appState.settings.commonParams.proxyUrl || 'http://prp01.adb.intra.admin.ch:8080',
+                        logLevel: execution.logLevel || appState.settings.commonParams.logLevel || 'INFO'
+                    },
+                    toolPaths: {
+                        ...(appState.settings.toolPaths || {}),
+                        ...(execution.interlisTools || {})
+                    },
+                    postgresql: {
+                        ...(appState.settings.postgresql || {}),
+                        ...postgresql
+                    }
+                });
+                safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+                applySettingsToForm(appState.settings);
+                refreshEtlOutputPathPreview();
+            } catch (_err) {
+                // Keep the legacy UI usable if backend settings cannot be loaded.
+            }
+        }
+        
+        function switchTab(n) {
+            currentTab = n;
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+            document.getElementById(`panel-${n}`).classList.add('active');
+            document.getElementById(`tab-${n}`).classList.add('active');
+            if (n === 3 && etlMap) {
+                window.setTimeout(() => etlMap.resize(), 50);
+            }
+        }
+
+        function startRuntimePolling(prefix) {
+            const runtimeEl = document.getElementById(`${prefix}Runtime`);
+            const logsEl = document.getElementById(`${prefix}Logs`);
+            const progressFill = document.getElementById(`${prefix}ProgressFill`);
+            const progressText = document.getElementById(`${prefix}ProgressText`);
+            const phaseText = document.getElementById(`${prefix}Phase`);
+
+            runtimeEl.style.display = 'block';
+            logsEl.textContent = 'No logs yet.';
+            progressFill.style.width = '0%';
+            progressText.textContent = 'Progress: 0% (running)';
+            phaseText.textContent = 'Current Phase: preparing request';
+
+            let offset = 0;
+            let busy = false;
+
+            return window.setInterval(async () => {
+                if (busy) return;
+                busy = true;
+                try {
+                    const res = await fetch(`${API_BASE}/api/runtime/status?offset=${offset}`);
+                    if (!res.ok) return;
+                    const status = await res.json();
+
+                    offset = status.nextOffset || offset;
+                    const progress = Number(status.progress || 0);
+                    progressFill.style.width = `${progress}%`;
+                    progressText.textContent = `Progress: ${progress}% ${status.running ? '(running)' : '(idle)'}`;
+                    phaseText.textContent = `Current Phase: ${status.currentPhase || 'running'}`;
+
+                    if (status.newLogs && status.newLogs.length) {
+                        if (logsEl.textContent === 'No logs yet.') {
+                            logsEl.textContent = status.newLogs.join('\n');
+                        } else {
+                            logsEl.textContent += `\n${status.newLogs.join('\n')}`;
+                        }
+                        logsEl.scrollTop = logsEl.scrollHeight;
+                    }
+                } catch (_err) {
+                    // Keep UI responsive even if polling fails intermittently.
+                } finally {
+                    busy = false;
+                }
+            }, 500);
+        }
+        
+        async function saveSettings() {
+            appState.settings = normalizeSettings({
+                modelFormat: document.getElementById('modelFormat').value,
+                xmiInputFolder: document.getElementById('xmiInputFolder').value,
+                modelOutputFolder: document.getElementById('modelOutputFolder').value,
+                commonParams: {
+                    proxyUrl: document.getElementById('proxyUrl').value,
+                    logLevel: document.getElementById('logLevel').value
+                },
+                toolPaths: {
+                    ili2c: document.getElementById('ili2cPath').value,
+                    ili2validator: document.getElementById('ili2validatorPath').value,
+                    ili2gpkg: document.getElementById('ili2gpkgPath').value,
+                    ili2duckdb: document.getElementById('ili2duckdbPath').value,
+                    ili2pg: document.getElementById('ili2pgPath').value
+                },
+                postgresql: {
+                    host: document.getElementById('pgHost').value,
+                    port: Number(document.getElementById('pgPort').value) || 5432,
+                    database: document.getElementById('pgDatabase').value,
+                    schema: document.getElementById('pgSchema').value,
+                    user: document.getElementById('pgUser').value,
+                    passwordEnvVar: document.getElementById('pgPasswordEnvVar').value,
+                    sslmode: document.getElementById('pgSslMode').value
+                }
+            });
+            safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+            refreshEtlOutputPathPreview();
+
+            try {
+                const currentRes = await fetch(`${API_BASE}/api/settings/db`);
+                const currentDbSettings = currentRes.ok ? await currentRes.json() : {};
+                const payload = {
+                    ...currentDbSettings,
+                    execution: {
+                        ...(currentDbSettings.execution || {}),
+                        proxyUrl: appState.settings.commonParams.proxyUrl,
+                        logLevel: appState.settings.commonParams.logLevel,
+                        interlisTools: appState.settings.toolPaths
+                    },
+                    postgresql: {
+                        ...(currentDbSettings.postgresql || {}),
+                        ...(appState.settings.postgresql || {})
+                    }
+                };
+                const saveRes = await fetch(`${API_BASE}/api/settings/db`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!saveRes.ok) {
+                    throw new Error(await saveRes.text());
+                }
+                showStatus('settingsStatus', 'Settings saved and synced!', 'success');
+            } catch (err) {
+                showStatus('settingsStatus', 'Saved locally, backend sync failed: ' + err.message, 'error');
+            }
+        }
+
+        function getTab0ExportSettings() {
+            const toolPaths = appState.settings.toolPaths || {};
+            return {
+                ...appState.settings,
+                toolPaths: {
+                    ili2c: toolPaths.ili2c || '',
+                    ili2validator: toolPaths.ili2validator || '',
+                    ili2gpkg: toolPaths.ili2gpkg || '',
+                    ili2duckdb: toolPaths.ili2duckdb || '',
+                    ili2pg: toolPaths.ili2pg || ''
+                }
+            };
+        }
+
+        function exportTab0SettingsJson() {
+            const blob = new Blob([JSON.stringify(getTab0ExportSettings(), null, 2)], { type: 'application/json' });
+            const url = window.URL.createObjectURL(blob);
+            const anchor = document.createElement('a');
+            anchor.href = url;
+            anchor.download = 'tab0-settings.json';
+            anchor.click();
+            window.URL.revokeObjectURL(url);
+            showStatus('settingsStatus', '📦 Tab 0 settings exported as JSON.', 'success');
+        }
+
+        async function importTab0SettingsJson(event) {
+            try {
+                const file = event.target.files && event.target.files[0];
+                event.target.value = '';
+                if (!file) return;
+
+                const parsed = JSON.parse(await file.text());
+                const imported = parsed && typeof parsed === 'object'
+                    ? (parsed.settings || parsed.tab0 || parsed)
+                    : null;
+                if (!imported || typeof imported !== 'object') {
+                    throw new Error('Invalid JSON payload');
+                }
+
+                appState.settings = normalizeSettings({
+                    ...appState.settings,
+                    ...imported,
+                    commonParams: {
+                        ...(appState.settings.commonParams || {}),
+                        ...(imported.commonParams || {})
+                    },
+                    toolPaths: {
+                        ...(appState.settings.toolPaths || {}),
+                        ...(imported.toolPaths || {}),
+                        ili2imd: appState.settings.toolPaths.ili2imd || ''
+                    },
+                    postgresql: {
+                        ...(appState.settings.postgresql || {}),
+                        ...(imported.postgresql || {})
+                    }
+                });
+                safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+                applySettingsToForm(appState.settings);
+                refreshEtlOutputPathPreview();
+                await saveSettings();
+                showStatus('settingsStatus', '📦 Tab 0 settings imported from JSON.', 'success');
+            } catch (err) {
+                showStatus('settingsStatus', '❌ JSON import failed: ' + err.message, 'error');
+            }
+        }
+        
+        async function uploadBaseline() {
+            const fileInput = document.getElementById('xmiFile');
+            const file = fileInput.files[0];
+            if (!file) return;
+            
+            showStatus('baselineStatus', '⏳ Uploading and processing...', 'info');
+            const runtimeTicker = startRuntimePolling('baseline');
+            
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('modelFormat', 'xmi');
+                if (appState.settings.xmiInputFolder) {
+                    formData.append('xmiInputFolder', appState.settings.xmiInputFolder);
+                }
+                if (appState.settings.modelOutputFolder) {
+                    formData.append('modelOutputFolder', appState.settings.modelOutputFolder);
+                }
+                if (appState.settings.modelOutputFolder) {
+                    formData.append('outputFolder', appState.settings.modelOutputFolder);
+                }
+                
+                const res = await fetch(`${API_BASE}/api/baseline/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    throw new Error(data.detail || 'Failed to extract baseline');
+                }
+                
+                appState.baseline = {
+                    xmiFile: file.name,
+                    baselineActive: true,
+                    iliModel: data.iliModel,
+                    dgfcdCatalogs: data.dgfcdCatalogs,
+                    dgrwiCatalogs: data.dgrwiCatalogs,
+                    baselineVersion: data.baselineVersion || null,
+                    baselineLabel: data.baselineLabel || null
+                };
+                safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+                
+                if (data.iliModel) {
+                    document.getElementById('baselineResults').style.display = 'block';
+                    document.getElementById('iliModelPath').textContent = data.iliModel;
+                    document.getElementById('iliModelPath').href = toFileUrl(data.iliModel);
+                    document.getElementById('dgfcdPath').textContent = data.dgfcdCatalogs || 'Not found';
+                    document.getElementById('dgfcdPath').href = toFileUrl(data.dgfcdCatalogs);
+                    document.getElementById('dgrwiPath').textContent = data.dgrwiCatalogs || 'Not found';
+                    document.getElementById('dgrwiPath').href = toFileUrl(data.dgrwiCatalogs);
+                    appState.baseline = {
+                        ...(appState.baseline || {}),
+                        baselineActive: true,
+                        iliModel: data.iliModel || null,
+                        dgfcdCatalogs: data.dgfcdCatalogs || null,
+                        dgrwiCatalogs: data.dgrwiCatalogs || null,
+                        baselineVersion: data.baselineVersion || null,
+                        baselineLabel: data.baselineLabel || null
+                    };
+                    safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+                    updateBaselineHeader();
+                    showStatus('baselineStatus', '✅ Baseline extracted successfully!', 'success');
+                    document.getElementById('tab-2').disabled = false;
+                } else {
+                    showStatus('baselineStatus', '❌ ' + (data.detail || 'Failed to extract baseline'), 'error');
+                }
+            } catch (err) {
+                showStatus('baselineStatus', '❌ ' + err.message, 'error');
+            } finally {
+                window.clearInterval(runtimeTicker);
+            }
+        }
+        
+        async function generateMappings() {
+            const sources = [];
+            if (document.getElementById('swissTLM3D').checked) sources.push('swissTLM3D');
+            if (document.getElementById('osm').checked) sources.push('osm');
+            if (document.getElementById('overture').checked) sources.push('overture');
+            
+            if (!sources.length) {
+                showStatus('mappingsStatus', '❌ Select at least one source', 'error');
+                return;
+            }
+            
+            showStatus('mappingsStatus', '⏳ Generating mappings...', 'info');
+            const runtimeTicker = startRuntimePolling('mappings');
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/mappings/generate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sourceTypes: sources,
+                        iliModelPath: appState.baseline?.iliModel || '',
+                        modelOutputFolder: appState.settings?.modelOutputFolder || ''
+                    })
+                });
+                
+                const data = await res.json();
+                if (!res.ok) {
+                    throw new Error(data.detail || 'Failed to generate mappings');
+                }
+                const selectedMappings = {
+                    swissTLM3D: document.getElementById('swissTLM3D').checked,
+                    osm: document.getElementById('osm').checked,
+                    overture: document.getElementById('overture').checked
+                };
+                const mergedMappingTables = {
+                    ...((appState.mappings && appState.mappings.mappingTables) || {}),
+                    ...(data.mappingTables || {})
+                };
+                appState.mappings = {
+                    ...(appState.mappings || {}),
+                    selectedMappings,
+                    mappingTables: mergedMappingTables
+                };
+                safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+                updateSourceSelectOptions();
+                refreshEtlOutputPathPreview();
+
+                renderMappingsResults();
+                showStatus('mappingsStatus', '✅ Mapping tables generated!', 'success');
+                document.getElementById('tab-3').disabled = false;
+            } catch (err) {
+                showStatus('mappingsStatus', '❌ ' + err.message, 'error');
+            } finally {
+                window.clearInterval(runtimeTicker);
+            }
+        }
+        
+        async function downloadMappings() {
+            try {
+                const res = await fetch(`${API_BASE}/api/mappings/download`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tables: appState.mappings.mappingTables })
+                });
+                
+                const blob = await res.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'mapping-tables.zip';
+                a.click();
+            } catch (err) {
+                showStatus('mappingsStatus', '❌ ' + err.message, 'error');
+            }
+        }
+        
+        async function startETL() {
+            if (!appState.mappings.mappingTables || Object.keys(appState.mappings.mappingTables).length === 0) {
+                showStatus('etlStatus', '❌ Generate mappings first', 'error');
+                return;
+            }
+
+            if (!appState?.etl?.aoiFeature) {
+                showStatus('etlStatus', '❌ Draw AOI on the map before starting ETL', 'error');
+                return;
+            }
+
+            const outputPath = deriveEtlOutputPath();
+            if (!outputPath) {
+                showStatus('etlStatus', '❌ Set Generic Output Folder in Tab 0 (PostGIS not supported)', 'error');
+                return;
+            }
+
+            const selectedSource = resolveEtlSourceForOutput();
+            if (!selectedSource || selectedSource === 'output') {
+                showStatus('etlStatus', '❌ Select a valid source in Tab 3', 'error');
+                return;
+            }
+
+            if (selectedSource === 'overture') {
+                const parquetDir = String(appState?.etl?.overtureParquetDir || '').trim();
+                if (!parquetDir) {
+                    showStatus('etlStatus', '❌ Set Overture Input Folder in Tab 3 before running Overture ETL', 'error');
+                    return;
+                }
+            }
+
+            appState.etl = appState.etl || {};
+            appState.etl.outputPath = outputPath;
+            appState.etl.outputFormat = document.getElementById('outputFormat').value;
+            appState.etl.sourceData = selectedSource;
+            safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+            
+            showStatus('etlStatus', '⏳ Starting ETL...', 'info');
+            document.getElementById('stopBtn').disabled = false;
+            const runtimeTicker = startRuntimePolling('etl');
+
+            const targetTopics = getSelectedTargetTopics();
+            appState.etl = appState.etl || {};
+            appState.etl.targetTopics = targetTopics;
+            safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+            
+            try {
+                const res = await fetch(`${API_BASE}/api/etl/start`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sourceTypes: [selectedSource],
+                        outputFormat: document.getElementById('outputFormat').value,
+                        outputPath,
+                        genericOutputFolder: appState.settings?.modelOutputFolder || '',
+                        parquetDir: selectedSource === 'overture' ? String(appState?.etl?.overtureParquetDir || '').trim() : undefined,
+                        aoiGeoJson: appState.etl.aoiFeature,
+                        targetTopics
+                    })
+                });
+                
+                const data = await res.json();
+                if (!res.ok) {
+                    throw new Error(data.detail || 'ETL failed');
+                }
+                document.getElementById('etlLogs').textContent += `\n[ETL] Completed: ${data.outputFile}`;
+                showStatus('etlStatus', '✅ ETL completed: ' + data.outputFile, 'success');
+                appState.etl.outputPath = data.outputFile;
+                safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+                document.getElementById('tab-4').disabled = false;
+            } catch (err) {
+                document.getElementById('etlLogs').textContent += `\n[ERROR] ${err.message}`;
+                showStatus('etlStatus', '❌ ' + err.message, 'error');
+            } finally {
+                window.clearInterval(runtimeTicker);
+                document.getElementById('stopBtn').disabled = true;
+            }
+        }
+        
+        async function stopETL() {
+            try {
+                await fetch(`${API_BASE}/api/etl/stop`, { method: 'POST' });
+                showStatus('etlStatus', '⏹️ ETL stopped', 'info');
+            } catch (err) {
+                showStatus('etlStatus', '❌ ' + err.message, 'error');
+            }
+        }
+        
+        function showStatus(elementId, message, type) {
+            const el = document.getElementById(elementId);
+            el.textContent = message;
+            el.className = `status ${type}`;
+        }
+
+        function toFileUrl(path) {
+            if (!path) return '';
+            const normalized = String(path).replace(/\\/g, '/');
+            if (normalized.startsWith('file://')) return normalized;
+            return `file:///${encodeURI(normalized)}`;
+        }
+
+        function toOutputFileName(source, outputFormat) {
+            const slug = String(source || 'output').toLowerCase();
+            return outputFormat === 'duckdb' ? `DGIF_${slug}.duckdb` : `DGIF_${slug}.gpkg`;
+        }
+
+        function joinPath(folder, fileName) {
+            const trimmed = String(folder || '').trim().replace(/[\\/]+$/, '');
+            if (!trimmed) return '';
+            return `${trimmed}/${fileName}`;
+        }
+
+        function resolveEtlSourceForOutput() {
+            const mapped = getMappedSources();
+            const selectedSource = String(appState?.etl?.sourceData || '').trim();
+            if (selectedSource) {
+                if (mapped.includes(selectedSource)) {
+                    return selectedSource;
+                }
+            }
+            if (mapped.length > 0) return mapped[0];
+            return 'output';
+        }
+
+        function deriveEtlOutputPath() {
+            const outputFormatElement = document.getElementById('outputFormat');
+            const format = String(outputFormatElement?.value || appState?.etl?.outputFormat || 'gpkg').toLowerCase();
+            if (format === 'postgis') return '';
+            const source = resolveEtlSourceForOutput();
+            const fileName = toOutputFileName(source, format === 'duckdb' ? 'duckdb' : 'gpkg');
+            return joinPath(appState?.settings?.modelOutputFolder || '', fileName);
+        }
+
+        function refreshEtlOutputPathPreview() {
+            const preview = document.getElementById('etlOutputPathPreview');
+            if (!preview) return;
+            const value = deriveEtlOutputPath();
+            preview.textContent = value || '(auto from Generic Output Folder - not available)';
+        }
+
+        function getSelectedTargetTopics() {
+            const container = document.getElementById('targetTopics');
+            if (!container) return [];
+            const selected = [];
+            container.querySelectorAll('input[type="checkbox"][name="targetTopic"]:checked').forEach((checkbox) => {
+                selected.push(checkbox.value);
+            });
+            return selected;
+        }
+
+        function renderTargetTopics(topics, preferredSelected) {
+            const container = document.getElementById('targetTopics');
+            if (!container) return;
+
+            const selectedSet = new Set(
+                Array.isArray(preferredSelected)
+                    ? preferredSelected.filter((topic) => topics.includes(topic))
+                    : []
+            );
+            if (selectedSet.size === 0) {
+                topics.forEach((topic) => selectedSet.add(topic));
+            }
+
+            container.innerHTML = topics.map((topic) => {
+                const checked = selectedSet.has(topic) ? 'checked' : '';
+                const safeTopic = String(topic).replace(/"/g, '&quot;');
+                return `<label style="display:flex; align-items:center; gap:6px; color:#dbe5ff; font-size:13px;"><input type="checkbox" name="targetTopic" value="${safeTopic}" ${checked} onchange="onTargetTopicsChanged()">${safeTopic}</label>`;
+            }).join('');
+
+            appState.etl = appState.etl || {};
+            appState.etl.targetTopics = getSelectedTargetTopics();
+            safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+        }
+
+        function onTargetTopicsChanged() {
+            appState.etl = appState.etl || {};
+            appState.etl.targetTopics = getSelectedTargetTopics();
+            safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+        }
+
+        function selectAllTopics() {
+            const container = document.getElementById('targetTopics');
+            if (!container) return;
+            container.querySelectorAll('input[type="checkbox"][name="targetTopic"]').forEach((checkbox) => {
+                checkbox.checked = true;
+            });
+            onTargetTopicsChanged();
+        }
+
+        function clearAllTopics() {
+            const container = document.getElementById('targetTopics');
+            if (!container) return;
+            container.querySelectorAll('input[type="checkbox"][name="targetTopic"]').forEach((checkbox) => {
+                checkbox.checked = false;
+            });
+            onTargetTopicsChanged();
+        }
+
+        function formatBaselineLabel(label, version) {
+            const base = label && String(label).trim() ? String(label).trim() : 'DGIF V3 Baseline';
+            if (!version) return base;
+            return base.includes(version) ? base : `${base} ${version}`;
+        }
+
+        function updateBaselineHeader() {
+            const infoEl = document.getElementById('baselineActiveInfo');
+            if (!infoEl) return;
+            if (appState.baseline && appState.baseline.baselineActive) {
+                const label = formatBaselineLabel(
+                    appState.baseline.baselineLabel,
+                    appState.baseline.baselineVersion
+                );
+                infoEl.textContent = `Active Baseline: ${label}`;
+                infoEl.style.color = '#dcfce7';
+            } else {
+                infoEl.textContent = 'Active Baseline: NO';
+                infoEl.style.color = '#fef3c7';
+            }
+        }
+
+        async function checkExistingBaseline() {
+            try {
+                const payload = {
+                    modelOutputFolder: appState.settings.modelOutputFolder || ''
+                };
+                const res = await fetch(`${API_BASE}/api/baseline/check`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) return;
+                const status = await res.json();
+
+                appState.baseline = {
+                    ...(appState.baseline || {}),
+                    baselineActive: Boolean(status.baselineActive),
+                    iliModel: status.iliModel || null,
+                    dgfcdCatalogs: status.dgfcdCatalogs || null,
+                    dgrwiCatalogs: status.dgrwiCatalogs || null,
+                    baselineVersion: status.baselineVersion || null,
+                    baselineLabel: status.baselineLabel || null
+                };
+                safeStorageSet('ili2dgim_state', JSON.stringify(appState));
+
+                if (appState.baseline.baselineActive) {
+                    document.getElementById('baselineResults').style.display = 'block';
+                    document.getElementById('iliModelPath').textContent = appState.baseline.iliModel;
+                    document.getElementById('iliModelPath').href = toFileUrl(appState.baseline.iliModel);
+                    document.getElementById('dgfcdPath').textContent = appState.baseline.dgfcdCatalogs;
+                    document.getElementById('dgfcdPath').href = toFileUrl(appState.baseline.dgfcdCatalogs);
+                    document.getElementById('dgrwiPath').textContent = appState.baseline.dgrwiCatalogs;
+                    document.getElementById('dgrwiPath').href = toFileUrl(appState.baseline.dgrwiCatalogs);
+                    document.getElementById('tab-2').disabled = false;
+                }
+
+                updateBaselineHeader();
+                await loadEtlTopics();
+            } catch (_err) {
+                updateBaselineHeader();
+            }
+        }
+
+        async function loadEtlTopics() {
+            try {
+                const res = await fetch(`${API_BASE}/api/etl/topics`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        iliModelPath: appState.baseline?.iliModel || undefined,
+                        modelOutputFolder: appState.settings?.modelOutputFolder || undefined
+                    })
+                });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!Array.isArray(data.topics)) return;
+                const savedSelected = appState?.etl?.targetTopics || [];
+                renderTargetTopics(data.topics, savedSelected);
+            } catch (_err) {
+                // Best effort only
+            }
+        }
+        
+        // Load state from localStorage on startup
+        const saved = safeStorageGet('ili2dgim_state');
+        if (saved) appState = JSON.parse(saved);
+        appState.settings = normalizeSettings(appState.settings);
+        appState.mappings = {
+            selectedMappings: { swissTLM3D: false, osm: false, overture: false },
+            mappingTables: {},
+            ...(appState.mappings || {})
+        };
+        appState.baseline = {
+            xmiFile: null,
+            baselineActive: false,
+            iliModel: null,
+            dgfcdCatalogs: null,
+            dgrwiCatalogs: null,
+            baselineVersion: null,
+            baselineLabel: null,
+            ...(appState.baseline || {})
+        };
+        appState.etl = {
+            sourceData: '',
+            outputFormat: 'gpkg',
+            outputPath: '',
+            aoiFeature: null,
+            targetTopics: [],
+            overtureParquetDir: '',
+            ...(appState.etl || {})
+        };
+        
+        // Populate UI from saved state
+        applySettingsToForm(appState.settings);
+        initEtlMap();
+        renderMappingsResults();
+        updateSourceSelectOptions();
+        updateOvertureInputVisibility();
+        if (appState.etl && appState.etl.outputFormat) {
+            document.getElementById('outputFormat').value = appState.etl.outputFormat;
+        }
+        refreshEtlOutputPathPreview();
+        updateBaselineHeader();
+        void checkExistingBaseline();
+        void loadEtlTopics();
+        void loadCentralExecutionSettings();
+    </script>
+</body>
+</html>

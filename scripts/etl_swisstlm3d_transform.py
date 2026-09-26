@@ -514,6 +514,29 @@ def ensure_baskets(conn: sqlite3.Connection, topics_needed: set[str]) -> dict[st
     return basket_map
 
 
+def next_available_tid(conn: sqlite3.Connection) -> int:
+    """Return next free T_Id across all tables exposing a T_Id column."""
+    max_tid = 0
+    table_rows = conn.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
+    for (table_name,) in table_rows:
+        try:
+            cols = conn.execute(f'PRAGMA table_info("{table_name}")').fetchall()
+        except sqlite3.Error:
+            continue
+        if not any(str(col[1]).lower() == "t_id" for col in cols):
+            continue
+        try:
+            row = conn.execute(f'SELECT MAX("T_Id") FROM "{table_name}"').fetchone()
+        except sqlite3.Error:
+            continue
+        if row and row[0] is not None:
+            try:
+                max_tid = max(max_tid, int(row[0]))
+            except (TypeError, ValueError):
+                continue
+    return max_tid + 1
+
+
 # ============================================================================
 # Populate Foundation metadata from geocat.ch (swissTLM3D)
 # ============================================================================
@@ -771,6 +794,7 @@ def transform(
     tlm_gpkg_path: str,
     dgif_gpkg_path: str,
     mapping_csv_path: str,
+    target_topics: set[str] | None = None,
 ):
     print("[INFO] Loading mapping table...")
     mapping = load_mapping(mapping_csv_path)
@@ -821,14 +845,19 @@ def transform(
         for mr in rules:
             if mr.dgif_class in class_meta:
                 meta = class_meta[mr.dgif_class]
-                topics_needed.add(f"DGIF_V3.{meta['topic']}")
+                topic_name = str(meta["topic"])
+                if target_topics is None or topic_name in target_topics:
+                    topics_needed.add(f"DGIF_V3.{topic_name}")
+
+    if target_topics is not None and "Foundation" in target_topics:
+        topics_needed.add("DGIF_V3.Foundation")
 
     print(f"[INFO] Creating baskets for {len(topics_needed)} topics...")
     basket_map = ensure_baskets(dgif_conn, topics_needed)
     print(f"[INFO] Baskets: {basket_map}")
 
-    # T_Id counter — start at 1 (tables are empty after schemaimport)
-    next_tid = 1
+    # Support append runs on an existing central DB by continuing T_Id sequence.
+    next_tid = next_available_tid(dgif_conn)
 
     # Statistics
     stats = defaultdict(int)
@@ -945,6 +974,11 @@ def transform(
                 dgif_cols = meta["columns"]
                 dgif_iliname = meta["iliname"]   # e.g. 'DGIF_V3.Cultural.Building'
                 dgif_topic = meta["topic"]       # e.g. 'Cultural'
+
+                if target_topics is not None and dgif_topic not in target_topics:
+                    stats["topic_filtered_out"] += 1
+                    class_skipped += 1
+                    continue
 
                 # Resolve basket
                 topic_key = f"DGIF_V3.{dgif_topic}"
@@ -1077,18 +1111,19 @@ def transform(
     dgif_conn.commit()
 
     # ---- Foundation metadata (geocat.ch → DGIF) ----
-    foundation_basket = basket_map.get("DGIF_V3.Foundation")
-    if foundation_basket is None:
-        # Ensure Foundation basket exists even when no GeneralLocation features
-        foundation_basket = ensure_baskets(dgif_conn, {"DGIF_V3.Foundation"}).get(
-            "DGIF_V3.Foundation"
-        )
-    if foundation_basket is not None:
-        next_tid = populate_foundation_metadata(
-            dgif_conn, foundation_basket, next_tid
-        )
-    else:
-        print("[WARN] Foundation basket not found — skipping metadata population.")
+    if target_topics is None or "Foundation" in target_topics:
+        foundation_basket = basket_map.get("DGIF_V3.Foundation")
+        if foundation_basket is None:
+            # Ensure Foundation basket exists even when no GeneralLocation features
+            foundation_basket = ensure_baskets(dgif_conn, {"DGIF_V3.Foundation"}).get(
+                "DGIF_V3.Foundation"
+            )
+        if foundation_basket is not None:
+            next_tid = populate_foundation_metadata(
+                dgif_conn, foundation_basket, next_tid
+            )
+        else:
+            print("[WARN] Foundation basket not found — skipping metadata population.")
 
     # Update gpkg_contents extent **per table** (not global)
     print("[INFO] Updating spatial extents...")
@@ -1265,6 +1300,11 @@ def main():
     parser.add_argument("--tlm-gpkg", required=True, help="Path to temporary swissTLM3D GeoPackage")
     parser.add_argument("--dgif-gpkg", required=True, help="Path to target DGIF GeoPackage")
     parser.add_argument("--mapping", required=True, help="Path to swissTLM3D_to_DGIF_V3.csv")
+    parser.add_argument(
+        "--target-topics",
+        default=None,
+        help="Comma-separated DGIF topic names to write (e.g. Foundation,Cultural,Transportation)",
+    )
     args = parser.parse_args()
 
     # Validate paths
@@ -1277,7 +1317,17 @@ def main():
         print(f"[FATAL] DGIF GPKG not found: {args.dgif_gpkg}", file=sys.stderr)
         sys.exit(1)
 
-    rc = transform(args.tlm_gpkg, args.dgif_gpkg, args.mapping)
+    selected_topics = None
+    if args.target_topics:
+        selected_topics = {
+            token.strip()
+            for token in args.target_topics.split(",")
+            if token.strip()
+        }
+        if not selected_topics:
+            selected_topics = None
+
+    rc = transform(args.tlm_gpkg, args.dgif_gpkg, args.mapping, selected_topics)
     sys.exit(rc)
 
 

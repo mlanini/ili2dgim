@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+:root {
+  --page-bg-a: #d8ede8;
+  --page-bg-b: #fde9d9;
+  --panel-shadow: 0 10px 30px rgba(15, 118, 110, 0.15);
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: radial-gradient(circle at 8% 4%, var(--page-bg-a), transparent 38%),
+    radial-gradient(circle at 90% 92%, var(--page-bg-b), transparent 42%),
+    linear-gradient(160deg, #f5f9f8 0%, #fff6ee 100%);
+  color: #132728;
+}
+
+.mono {
+  font-family: "IBM Plex Mono", "Consolas", monospace;
+}
+
+.fade-in {
+  animation: fadeInUp 450ms ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

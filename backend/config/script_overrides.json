@@ -1,0 +1,154 @@
+{
+  "extract_dgfcd_dgrwi_catalogs.py": [
+    {
+      "name": "xmi_path",
+      "cliFlag": "--xmi-path",
+      "type": "string",
+      "required": false,
+      "help": "Path to DGIF XMI source file"
+    },
+    {
+      "name": "output_dir",
+      "cliFlag": "--output-dir",
+      "type": "string",
+      "required": false,
+      "help": "Output directory for generated XML catalogs"
+    }
+  ],
+  "generate_ili_model.py": [
+    {
+      "name": "xmi_path",
+      "cliFlag": "--xmi-path",
+      "type": "string",
+      "required": false,
+      "help": "Path to DGIF XMI source file"
+    },
+    {
+      "name": "output_dir",
+      "cliFlag": "--output-dir",
+      "type": "string",
+      "required": false,
+      "help": "Output directory for DGIF_V3.ili"
+    }
+  ],
+  "generate_gpkg.py": [
+    {
+      "name": "ili_model",
+      "cliFlag": "--ili-model",
+      "type": "string",
+      "required": false,
+      "help": "Path to INTERLIS model (.ili)"
+    },
+    {
+      "name": "output_gpkg",
+      "cliFlag": "--output-gpkg",
+      "type": "string",
+      "required": false,
+      "help": "Output GeoPackage path"
+    },
+    {
+      "name": "output_dir",
+      "cliFlag": "--output-dir",
+      "type": "string",
+      "required": false,
+      "help": "Fallback output directory for DGIF_V3.gpkg"
+    }
+  ],
+  "etl_ofm_to_dgif.py": [
+    {
+      "name": "ofmx_dir",
+      "cliFlag": "--ofmx-dir",
+      "type": "string",
+      "required": true,
+      "help": "Directory containing OFMX files"
+    },
+    {
+      "name": "tmp_dir",
+      "cliFlag": "--tmp-dir",
+      "type": "string",
+      "required": false,
+      "default": "C:/tmp/dgif_ofm",
+      "help": "Temporary working directory"
+    },
+    {
+      "name": "output_dir",
+      "cliFlag": "--output-dir",
+      "type": "string",
+      "required": false,
+      "help": "Output directory for generated DGIF GeoPackage"
+    },
+    {
+      "name": "output_gpkg",
+      "cliFlag": "--output-gpkg",
+      "type": "string",
+      "required": false,
+      "help": "Full output path for generated DGIF GeoPackage"
+    }
+  ],
+  "etl_overture_to_dgif.py": [
+    {
+      "name": "parquet_dir",
+      "cliFlag": "--parquet-dir",
+      "type": "string",
+      "required": false,
+      "help": "Optional directory containing pre-downloaded Overture files; if omitted, AOI download mode is used"
+    },
+    {
+      "name": "output_dir",
+      "cliFlag": "--output-dir",
+      "type": "string",
+      "required": false,
+      "help": "Output directory for generated DGIF GeoPackage"
+    },
+    {
+      "name": "output_gpkg",
+      "cliFlag": "--output-gpkg",
+      "type": "string",
+      "required": false,
+      "help": "Full output path for generated DGIF GeoPackage"
+    }
+  ],
+  "etl_swisstlm3d_to_dgif.py": [
+    {
+      "name": "output_dir",
+      "cliFlag": "--output-dir",
+      "type": "string",
+      "required": false,
+      "help": "Output directory for generated DGIF GeoPackage"
+    },
+    {
+      "name": "output_gpkg",
+      "cliFlag": "--output-gpkg",
+      "type": "string",
+      "required": false,
+      "help": "Full output path for generated DGIF GeoPackage"
+    }
+  ],
+  "build_osm_dgif_v3.py": [
+    {
+      "name": "output_dir",
+      "cliFlag": "--output-dir",
+      "type": "string",
+      "required": false,
+      "help": "Output directory for OSM_to_DGIF_V3.csv"
+    }
+  ],
+  "build_overture_dgif_v3.py": [
+    {
+      "name": "output_dir",
+      "cliFlag": "--output-dir",
+      "type": "string",
+      "required": false,
+      "help": "Output directory for Overture_to_DGIF_V3.csv"
+    }
+  ],
+  "build_swisstlm3d_dgif_v3.py": [
+    {
+      "name": "output_dir",
+      "cliFlag": "--output-dir",
+      "type": "string",
+      "required": false,
+      "help": "Output directory for swissTLM3D_to_DGIF_V3.csv"
+    }
+  ]
+}
